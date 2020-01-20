@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '複製',
+      copy_success: '複製成功',
+      copy_failure: '複製失敗'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="憑證取得方法憑證有分等級，最簡單的就是驗證網域484你的(傳檔案驗證OR DNS驗證)然後就發給你憑證，阿高級一點的就須要人工的身份證明之類的東西我們申請簡單的憑證，幾個方法 手動生出 密鑰 密鑰再用來生成憑證簽屬請求檔，再拿這請求檔去跟各大平台，驗證網域484你的之後，拿憑證和中繼憑證回來 最簡單的方法，就是網路上有人做跟各憑證平台串接，做了方法1的事，生出 密鑰、憑證、中繼憑證 之後我們再載回">
+<meta name="keywords" content="https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="申請SSL">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;%E7%94%B3%E8%AB%8BSSL&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="憑證取得方法憑證有分等級，最簡單的就是驗證網域484你的(傳檔案驗證OR DNS驗證)然後就發給你憑證，阿高級一點的就須要人工的身份證明之類的東西我們申請簡單的憑證，幾個方法 手動生出 密鑰 密鑰再用來生成憑證簽屬請求檔，再拿這請求檔去跟各大平台，驗證網域484你的之後，拿憑證和中繼憑證回來 最簡單的方法，就是網路上有人做跟各憑證平台串接，做了方法1的事，生出 密鑰、憑證、中繼憑證 之後我們再載回">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2020-01-20T10:02:06.610Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dkchange.github.io/2019/11/06/%E7%94%B3%E8%AB%8BSSL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>申請SSL | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">蛋粒個人網誌</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dkchange" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/11/06/%E7%94%B3%E8%AB%8BSSL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          申請SSL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-11-06 18:31:21" itemprop="dateCreated datePublished" datetime="2019-11-06T18:31:21+11:00">2019-11-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps路線</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/%E7%B6%B2%E8%B7%AF%E8%88%87%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">網路與安全</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/%E7%B6%B2%E8%B7%AF%E8%88%87%E5%AE%89%E5%85%A8/https/" itemprop="url" rel="index">
+                    <span itemprop="name">https</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/11/06/%E7%94%B3%E8%AB%8BSSL/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/06/申請SSL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="憑證取得方法"><a href="#憑證取得方法" class="headerlink" title="憑證取得方法"></a>憑證取得方法</h1><p>憑證有分等級，最簡單的就是<strong>驗證網域484你的</strong>(傳檔案驗證OR DNS驗證)然後就發給你憑證，<br>阿高級一點的就須要人工的身份證明之類的東西<br>我們申請簡單的憑證，幾個方法</p><ol>
+<li>手動生出 <strong>密鑰</strong> 密鑰再用來生成<strong>憑證簽屬請求檔</strong>，再拿這請求檔去跟各大平台，驗證網域484你的之後，拿<strong>憑證</strong>和<strong>中繼憑證</strong>回來</li>
+<li>最簡單的方法，就是網路上有人做跟各憑證平台串接，做了方法1的事，生出 <strong>密鑰、憑證、中繼憑證</strong> 之後我們再載回來用，像是<a href="https://free.com.tw/ssl-for-free/" target="_blank" rel="noopener">https://free.com.tw/ssl-for-free/</a></li>
+<li>用像是集成方法2功能的軟體，缺點是要打指令，優點是他可以自動排程更新憑證，DNS驗證網域使用域名解析商提供的API來添加TXT達成驗證，像是acme.sh</li>
+</ol><a id="more"></a>
+
+<h1 id="Let’s-Encrypt"><a href="#Let’s-Encrypt" class="headerlink" title="Let’s Encrypt"></a>Let’s Encrypt</h1><p>Let’s Encrypt ，沒有開放直接從網站輸入私密金鑰、CSR 檔案來取得憑證的介面<br>Let’s Encrypt免費SSL憑證只有三個月的有效期<br>所以看來只能採第三種方法</p>
+<h1 id="acme-sh"><a href="#acme-sh" class="headerlink" title="acme.sh"></a>acme.sh</h1><p>ACME(Automated Certificate Management Environment)自動證書管理環境<br>官網也有推別款，但我找到的<a href="https://magiclen.org/simple-ssl-acme-cloudflare/" target="_blank" rel="noopener">如何在Linux作業系統上免費申請Let’s Encrypt的SSL憑證，並實現自動化申請和套用</a>介紹的是這個</p>
+<h1 id="安裝acme-sh"><a href="#安裝acme-sh" class="headerlink" title="安裝acme.sh"></a>安裝acme.sh</h1><p>接下來記錄安裝過程，因為有遇到困難，所以才有這篇XD<br>跟著<a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">說明書</a>做</p>
+<p>在做這些動作之前，請切到root，不然會有權限問題，也不要加sudo直接做，路徑會不在root底下，而且作者這樣說</p>
+<blockquote>
+<p><a href="https://github.com/Neilpang/acme.sh/issues/2124" target="_blank" rel="noopener">do not run as sudo</a></p>
+</blockquote>
+<pre><code>sudo su
+下載
+curl https://get.acme.sh | sh
+更新
+acme.sh --upgrade --auto-upgrade
+出現問題**acme.sh: command not found**
+解決辦法:https://github.com/Neilpang/acme.sh/issues/2149
+source  ~/.bashrc
+
+acme.sh --issue --nginx -d dkchange.nctu.me 
+
+手動更新，因為我的DNS是小家nctu.me沒人作API
+acme.sh --issue -d dkchange.nctu.me --dns --yes-I-know-dns-manual-mode-enough-go-ahead-please
+然後憑證就出來了
+
+
+下次手動更新的時間，我們給他記起乃
+[Wed Nov  6 11:26:47 UTC 2019] Skip, Next renewal time is: Sun Jan  5 11:05:26 UTC 2020
+[Wed Nov  6 11:26:47 UTC 2019] Add &apos;--force&apos; to force to renew.
+接著下次就醬
+acme.sh --renew -d dkchange.nctu.me  --yes-I-know-dns-manual-mode-enough-go-ahead-please</code></pre><h1 id="nginx設定"><a href="#nginx設定" class="headerlink" title="nginx設定"></a>nginx設定</h1><p>先把這兩個檔案搬到讀的到的目錄</p>
+<pre><code>cp fullchain.cer /home/fullchain.cer
+cp dkchange.nctu.me.key /home/dkchange.nctu.me.key</code></pre><p>接著設定nginx設定檔</p>
+<pre><code>server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    ssl_certificate /home/fullchain.cer;
+    ssl_certificate_key /home/dkchange.nctu.me.key;
+}
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name dkchange.nctu.me;
+        return  301 https://$host$request_uri;
+}</code></pre><p>服務重啟</p>
+<pre><code>sudo systemctl restart nginx</code></pre><p>AWS記得開443port</p>
+<p>Let’s Encrypt也支援萬用SSL 憑證，不限個數的子網域 但是<a href="https://github.com/Neilpang/acme.sh/issues/1433#issuecomment-377242752" target="_blank" rel="noopener">只支援dns驗證</a></p>
+<pre><code>補憑證時下面這行因為通配符的子網域驗證只適用於-dns 伺服器-nginx 和檔案位置-w都不能用
+acme.sh --issue -w /var/www/html/lighthouse-tutorial/public/  -d *.dkchange.nctu.me
+
+所以nginx的conf檔也要改
+server_name dkchange.nctu.me *.dkchange.nctu.me;
+改成寫死的admin 驗證方式也要改，因為有設定301重導和https了，所以走模擬server請求的nginx結果會不同
+acme.sh --issue -w /var/www/html/lighthouse-tutorial/public/  -d admin.dkchange.nctu.me
+server_name dkchange.nctu.me admin.dkchange.nctu.me;</code></pre><p>哪天有閒錢再來買godaddy之類的，像<a href="https://footmark.info/linux/centos/acmesh-godaddy-letsencrypt-wildcard/" target="_blank" rel="noopener">這篇</a>和<a href="https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert#3-multiple-domains-san-mode--hybrid-mode" target="_blank" rel="noopener">https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert#3-multiple-domains-san-mode--hybrid-mode</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/https/" rel="tag"># https</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/04/laravel%E4%BD%BF%E7%94%A8artisan/" rel="next" title="laravel使用artisan">
+                  <i class="fa fa-chevron-left"></i> laravel使用artisan
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/07/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/" rel="prev" title="不常用會忘的linux指令">
+                  不常用會忘的linux指令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#憑證取得方法"><span class="nav-number">1.</span> <span class="nav-text">憑證取得方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Let’s-Encrypt"><span class="nav-number">2.</span> <span class="nav-text">Let’s Encrypt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#acme-sh"><span class="nav-number">3.</span> <span class="nav-text">acme.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝acme-sh"><span class="nav-number">4.</span> <span class="nav-text">安裝acme.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx設定"><span class="nav-number">5.</span> <span class="nav-text">nginx設定</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stanley Ke"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dkchange.nctu.me/" title="https:&#x2F;&#x2F;dkchange.nctu.me" rel="noopener" target="_blank">作品</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dkchange.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://dkchange.github.io/2019/11/06/%E7%94%B3%E8%AB%8BSSL/",
+            identifier: "2019/11/06/申請SSL/",
+            title: "申請SSL"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://dkchange.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>
