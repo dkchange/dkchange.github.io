@@ -19,7 +19,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
   <meta name="description" content="改變資料夾底下檔案的預設權限使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000此時你需要">
@@ -176,6 +176,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dkchange" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dkchange" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -409,8 +414,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2019/11/07/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" rel="next" title="laravel使用使用者認證">
-                  laravel使用使用者認證 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/07/laravel%E6%9C%83%E5%93%A1%E7%99%BB%E5%85%A5%E9%85%8D%E7%BD%AE/" rel="next" title="laravel會員登入配置">
+                  laravel會員登入配置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -464,7 +469,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
 
     </div>
@@ -472,7 +477,7 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
