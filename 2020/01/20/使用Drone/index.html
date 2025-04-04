@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有代碼提交代碼測試代碼審核代碼合併代碼佈署環境建制代碼編譯 那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？git 提交ftp 手動上傳 10 台？代碼測試每一台環境手動重新安裝？在不同環境下不同指令編譯寫許多腳本來環境安裝 太多名詞在網路上飛， 基於沒用過至少也要聽過">
+<meta name="keywords" content="travisCI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Drone">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;01&#x2F;20&#x2F;%E4%BD%BF%E7%94%A8Drone&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有代碼提交代碼測試代碼審核代碼合併代碼佈署環境建制代碼編譯 那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？git 提交ftp 手動上傳 10 台？代碼測試每一台環境手動重新安裝？在不同環境下不同指令編譯寫許多腳本來環境安裝 太多名詞在網路上飛， 基於沒用過至少也要聽過">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-07-30T10:11:28.906Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/01/20/%E4%BD%BF%E7%94%A8Drone/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>使用Drone | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#play-with-docker"><span class="nav-number">2.</span> <span class="nav-text">play with docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何謂-DevOps"><span class="nav-number">3.</span> <span class="nav-text">何謂 DevOps</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本控制系統-Version-Control-System-VCS"><span class="nav-number">4.</span> <span class="nav-text">版本控制系統( Version Control System, VCS)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-開發流程（工作流程）"><span class="nav-number">5.</span> <span class="nav-text">git 開發流程（工作流程）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何謂-CI-CD"><span class="nav-number">6.</span> <span class="nav-text">何謂 CI/CD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-server"><span class="nav-number">6.1.</span> <span class="nav-text">CI server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自動訊息通知"><span class="nav-number">6.2.</span> <span class="nav-text">自動訊息通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自動單元測試"><span class="nav-number">6.3.</span> <span class="nav-text">自動單元測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自動部屬"><span class="nav-number">6.4.</span> <span class="nav-text">自動部屬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部屬完的環境設定"><span class="nav-number">6.5.</span> <span class="nav-text">部屬完的環境設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器的集群管理平台"><span class="nav-number">6.6.</span> <span class="nav-text">容器的集群管理平台</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/01/20/%E4%BD%BF%E7%94%A8Drone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Drone
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-01-20 14:11:20" itemprop="dateCreated datePublished" datetime="2020-01-20T14:11:20+08:00">2020-01-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">DevOps路線</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/CI-CD%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CI/CD工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/CI-CD%E5%B7%A5%E5%85%B7/Drone/" itemprop="url" rel="index"><span itemprop="name">Drone</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有<br>代碼提交<br>代碼測試<br>代碼審核<br>代碼合併<br>代碼佈署<br>環境建制<br>代碼編譯</p>
+<p>那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？<br>git 提交<br>ftp 手動上傳 10 台？<br>代碼測試<br>每一台環境手動重新安裝？<br>在不同環境下不同指令編譯<br>寫許多腳本來環境安裝</p>
+<p>太多名詞在網路上飛， 基於<strong>沒用過至少也要聽過</strong>，為了跟得上時代，有些東西還是免不了，這篇整理自<br><a href="https://ithelp.ithome.com.tw/users/20120491/ironman/2538" target="_blank" rel="noopener">就是「懶」才更需要重視 DevOps</a><br><a href="https://ithelp.ithome.com.tw/users/20107551/ironman/1906" target="_blank" rel="noopener">從零開始建立自動化發佈的流水線</a><br><a href="https://medium.com/asiayo-engineering/%E7%94%A8-drone-%E6%89%93%E9%80%A0-ci-cd-flow-36b9d14c7620" target="_blank" rel="noopener">用 Drone 打造 CI/CD flow</a><br>的讀後感心得，特別推 <strong>從零開始建立自動化發佈的流水線</strong></p>
+<h1 id="play-with-docker"><a href="#play-with-docker" class="headerlink" title="play with docker"></a>play with docker</h1><p><a href="https://labs.play-with-docker.com/" target="_blank" rel="noopener">https://labs.play-with-docker.com/</a><br>可以免費玩 docker 4hr 的服務</p>
+<h1 id="何謂-DevOps"><a href="#何謂-DevOps" class="headerlink" title="何謂 DevOps"></a>何謂 DevOps</h1><p><strong>開發</strong> 與 <strong>維運</strong> 融會貫通後的一種技術能力體現<br>只是，時間終究有限，需要 「自動化」 協助「DevOps」人員<br>是現代敏捷開發所秉持的精神</p>
+<h1 id="版本控制系統-Version-Control-System-VCS"><a href="#版本控制系統-Version-Control-System-VCS" class="headerlink" title="版本控制系統( Version Control System, VCS)"></a>版本控制系統( Version Control System, VCS)</h1><p>大致上分為兩種類型，集中式與分散式<br>代表案例：<br>Subversion 就是集中式版本控制系統<br><strong>Git</strong>、Mercurial 則是分散式版本控制系統。</p>
+<p>品牌認識:GitHub、BitBucket、Azure DevOps、GitLab</p>
+<h1 id="git-開發流程（工作流程）"><a href="#git-開發流程（工作流程）" class="headerlink" title="git 開發流程（工作流程）"></a>git 開發流程（工作流程）</h1><p>團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。<br>團隊間可以自行協調出工作流程或是根據知名的規範走<br>規範認識:git flow、Github flow、Gitlab flow</p>
+<h1 id="何謂-CI-CD"><a href="#何謂-CI-CD" class="headerlink" title="何謂 CI/CD"></a>何謂 CI/CD</h1><p>CI(Continuous integration)，持續整合，利用頻繁地<strong>提交</strong>新功能的變更，觸發自動化建置和測試<br>CD(Continuous Deployment)，持續佈署，快速而自動的<strong>部署</strong>，任何版本的軟體到不同的環境<br>CD(Continuous Delivery)，持續交付，儘快將最新版本的軟體，交付到最終使用者(end-user)手中</p>
+<h2 id="CI-server"><a href="#CI-server" class="headerlink" title="CI server"></a>CI server</h2><p>可以自己架，或者使用線上平台提供架好的 CI 應用程式，這可以用來整合其他應用<br>知名品牌:Drone ,Jenkins, travisCI ,GitLab CI, CircleCI ,github action<br>以 drone 為例，其流程大致為：<br>clone git repo<br>run linter<br>run unit test<br>prepare bulid<br>publish docker<br>deploy<br>nofity</p>
+<p>github ations <a href="https://www.youtube.com/watch?v=kuRhHaumEtE" target="_blank" rel="noopener">https://www.youtube.com/watch?v=kuRhHaumEtE</a></p>
+<h2 id="自動訊息通知"><a href="#自動訊息通知" class="headerlink" title="自動訊息通知"></a>自動訊息通知</h2><p>CI server 發 mail 或與現有的知名通訊軟體做整合，或寫 API</p>
+<h2 id="自動單元測試"><a href="#自動單元測試" class="headerlink" title="自動單元測試"></a>自動單元測試</h2><p>被測試的物件，商業邏輯的是否正確、輸出入的結果是否符合預期<br>單元測試的運用與觀念，非常重視 物件導向的特性 與 SOLID 原則。所以，假若不常用或不熟悉物件導向的開發者，初期不容易切入單元測試的世界。<br>單元測試，真正發揮它的 POWER 的時間點，在於軟體後續長期維護、需求變動、重構時，才能真正的明白為什麼需要單元測試。<br>自己寫腳本</p>
+<h2 id="自動部屬"><a href="#自動部屬" class="headerlink" title="自動部屬"></a>自動部屬</h2><p>自己寫腳本與現有的知名雲端平台做整合</p>
+<h2 id="部屬完的環境設定"><a href="#部屬完的環境設定" class="headerlink" title="部屬完的環境設定"></a>部屬完的環境設定</h2><p>如果每次部屬一台機器就要設定一次是很煩的事，服<br>所以就有了容器這項技術<br>直接針對 應用程式層下手，將 應用程式本身與相關的函式庫、環境配置檔，打包成映像檔 (Image)<br>知名專案:Docker</p>
+<h2 id="容器的集群管理平台"><a href="#容器的集群管理平台" class="headerlink" title="容器的集群管理平台"></a>容器的集群管理平台</h2><p>服務編排的功能<br>可讓您執行 Docker 容器和工作負載，並協助您解決在調整跨多部伺服器部署之多個容器規模時的一些複雜作業<br>知名專案:Mesos,Docker Swarm,K8S</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/travisCI/" rel="tag"># travisCI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/" rel="prev" title="安裝環境">
+                  <i class="fa fa-chevron-left"></i> 安裝環境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/24/laravel%E4%BD%BF%E7%94%A8Socialite/" rel="next" title="laravel使用Socialite">
+                  laravel使用Socialite <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

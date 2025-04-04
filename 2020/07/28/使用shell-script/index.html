@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言shell script 是初階維運必備技能shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快http:&#x2F;&#x2F;linux.vbird.org&#x2F;linux_basic&#x2F;0320bash.php例如 sh, bash, csh, tcsh,Powershell, MSDOS可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用shell script">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;07&#x2F;28&#x2F;%E4%BD%BF%E7%94%A8shell-script&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言shell script 是初階維運必備技能shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快http:&#x2F;&#x2F;linux.vbird.org&#x2F;linux_basic&#x2F;0320bash.php例如 sh, bash, csh, tcsh,Powershell, MSDOS可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2023-03-18T02:29:13.914Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/07/28/%E4%BD%BF%E7%94%A8shell-script/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>使用shell script | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用指令"><span class="nav-number">2.</span> <span class="nav-text">常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#alias"><span class="nav-number">2.1.</span> <span class="nav-text">alias</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#歷史相關指令"><span class="nav-number">2.2.</span> <span class="nav-text">歷史相關指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#規則"><span class="nav-number">3.</span> <span class="nav-text">規則</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分類"><span class="nav-number">4.</span> <span class="nav-text">分類</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件開頭"><span class="nav-number">4.1.</span> <span class="nav-text">文件開頭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兩段不同語言混雜"><span class="nav-number">4.2.</span> <span class="nav-text">兩段不同語言混雜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例-1"><span class="nav-number">4.3.</span> <span class="nav-text">範例 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-環境變量"><span class="nav-number">4.4.</span> <span class="nav-text">shell 環境變量</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/07/28/%E4%BD%BF%E7%94%A8shell-script/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用shell script
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-07-28 09:48:13" itemprop="dateCreated datePublished" datetime="2020-07-28T09:48:13+08:00">2020-07-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-03-18 10:29:13" itemprop="dateModified" datetime="2023-03-18T10:29:13+08:00">2023-03-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>shell script 是初階維運必備技能<br>shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快<br><a href="http://linux.vbird.org/linux_basic/0320bash.php" target="_blank" rel="noopener">http://linux.vbird.org/linux_basic/0320bash.php</a><br>例如 sh, bash, csh, tcsh,Powershell, MSDOS<br>可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就不叫他 shell script 了<br>例如 perl，php，java, python<br>為什麼沒有 c 呢？因為 c 不是直譯而是編譯的，<br>那 java 呢？因為 java 編譯出的是字節碼（需要透過 jdk 來執行），不是機器碼，cpu 不能直接用</p>
+<p>那為什麼有了 python 這些，還需要有 shell script 呢？<br><a href="https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163" target="_blank" rel="noopener">https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163</a></p>
+<p>那在這篇探討最通用的 sh<br>，本身語法難度相較於其他程式語言並不難，難的是你必須要會操作軟體的指令，例如 nginx 指令，git 指令等等</p>
+<p>既然是程式語言，就可以做任何事，但因為速度不快，比較長應用在維運方面，常見的應用</p>
+<ul>
+<li>初始化（軟體安裝）</li>
+<li>自動佈署（lamp，lnmp）</li>
+<li>寫管理應用程序（叢集管理，kvm，nginx，mysql，批量遠端 raid）</li>
+<li>log 分析（grep）</li>
+<li>自動化備份</li>
+<li>監控（cpu，disk）</li>
+<li>自動擴充（監控 &gt;&gt; API AWS/EC2 &gt;&gt; shell script 自動佈署）</li>
+</ul>
+<p>那以上應用也有不同軟體可以達成，不一定要用 sh，例如老牌 zabbix 監控軟體，絕對比自己寫 sh 好</p>
+<h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><p>列出所有 shell<br>cat /etc/shells</p>
+<p>查詢相關配置文件<br>rpm -qc bash</p>
+<p>調適腳本 debug<br>bash -vx pinggoogle.sh</p>
+<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p>查看別名<br>alias<br>定義臨時別名<br>aias stanley = ‘date’<br>定義永久別名<br>vim .bashrc<br>取消別名<br>unalias 別名</p>
+<h2 id="歷史相關指令"><a href="#歷史相關指令" class="headerlink" title="歷史相關指令"></a>歷史相關指令</h2><p>!! 上個命令<br>!$ 上個命令的最後一個參數</p>
+<h1 id="規則"><a href="#規則" class="headerlink" title="規則"></a>規則</h1><h1 id="分類"><a href="#分類" class="headerlink" title="分類"></a>分類</h1><ul>
+<li>login shell（ su - stanley）<ul>
+<li>/etc/profile</li>
+<li>/etc/bashrc</li>
+<li>~/.bash_profile</li>
+<li>~/.bashrc</li>
+</ul>
+</li>
+<li>nologin shell ( su stanley)<ul>
+<li>/ect/bashrc</li>
+<li>~/.bashrc</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件開頭"><a href="#文件開頭" class="headerlink" title="文件開頭"></a>文件開頭</h2><p>#!/usr/bin/bash<br>#!/usr/bin/python<br>指定解釋器</p>
+<blockquote>
+<p>chmod +x pinggoogle.sh</p>
+</blockquote>
+<p>就可以直接執行<br>sub shell 會另開 shell</p>
+<blockquote>
+<p>./pinggoole.sh</p>
+</blockquote>
+<p>或是</p>
+<blockquote>
+<p>. pinggoole.sh<br>source pinggoogle.sh</p>
+</blockquote>
+<p>會影響當前 shell 的執行（目前的視窗）<br>否則就必須前面訂解釋器</p>
+<p>sub shell 會另開 shell</p>
+<blockquote>
+<p>bash pinggoogle.sh</p>
+</blockquote>
+<h2 id="兩段不同語言混雜"><a href="#兩段不同語言混雜" class="headerlink" title="兩段不同語言混雜"></a>兩段不同語言混雜</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"im bash"</span></span><br><span class="line"></span><br><span class="line">/usr/bin/python &lt;&lt;-EOF</span><br><span class="line"><span class="built_in">print</span> <span class="string">"im python"</span></span><br><span class="line">EOF</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'im bash'</span></span><br></pre></td></tr></table></figure>
+
+<p>上面這段代碼，EOF 是約定俗成，可自由定義，其中&lt;&lt;-的-可以避免縮進問題<br>例如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"im bash"</span></span><br><span class="line"></span><br><span class="line">/usr/bin/python &lt;&lt;EOF</span><br><span class="line"><span class="built_in">print</span> <span class="string">"im python"</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>上面這段去掉-就會報錯</p>
+<h2 id="範例-1"><a href="#範例-1" class="headerlink" title="範例 1"></a>範例 1</h2><p>ping 一次</p>
+<blockquote>
+<p>ping -c1 google.com &amp;&gt;/dev/null &amp;&amp; echo “google is alive” || echo “google is down”<br>&amp;&amp;和||相當於三元運算子<br>&amp;&gt;/dev/null 將過程輸出到/dev/null 不顯示</p>
+</blockquote>
+<h2 id="shell-環境變量"><a href="#shell-環境變量" class="headerlink" title="shell 環境變量"></a>shell 環境變量</h2><p>相關內容鳥哥的網站都有說<br><a href="https://www.cntofu.com/book/46/linux_system/1517.md" target="_blank" rel="noopener">https://www.cntofu.com/book/46/linux_system/1517.md</a></p>
+<p>set:顯示(設置)shell 變量 包括的私有變量以及用戶變量，不同類的 shell 有不同的私有變量 bash,ksh,csh 每中 shell 私有變量都不一樣</p>
+<p>env:顯示(設置)用戶變量變量</p>
+<p>export:顯示(設置)當前導出成用戶變量的 shell 變量。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/09/%E5%AE%89%E8%A3%9Dwordpress/" rel="prev" title="安裝wordpress">
+                  <i class="fa fa-chevron-left"></i> 安裝wordpress
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/04/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E8%A8%98%E7%9A%84windows%E6%8C%87%E4%BB%A4/" rel="next" title="不常用會忘記的windows指令">
+                  不常用會忘記的windows指令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

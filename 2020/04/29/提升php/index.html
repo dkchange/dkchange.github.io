@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言語言百百種，一開始入門的一個語言是 php，中途又跑去碰了 js，js 演變非常的快，來來回回耗費了許多生命，但是我只有一條命，是該專注於其中一種語言了，即便這門語言不是那麼的賺錢  php 葵花寶典https:&#x2F;&#x2F;www.awaimai.com&#x2F;phphttps:&#x2F;&#x2F;www.cnblogs.com&#x2F;aiweixiao&#x2F;p&#x2F;8202365.htmlhttp:&#x2F;&#x2F;t.ti-node.com&#x2F;th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提升php">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;04&#x2F;29&#x2F;%E6%8F%90%E5%8D%87php&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言語言百百種，一開始入門的一個語言是 php，中途又跑去碰了 js，js 演變非常的快，來來回回耗費了許多生命，但是我只有一條命，是該專注於其中一種語言了，即便這門語言不是那麼的賺錢  php 葵花寶典https:&#x2F;&#x2F;www.awaimai.com&#x2F;phphttps:&#x2F;&#x2F;www.cnblogs.com&#x2F;aiweixiao&#x2F;p&#x2F;8202365.htmlhttp:&#x2F;&#x2F;t.ti-node.com&#x2F;th">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2023-04-18T23:54:04.182Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/04/29/%E6%8F%90%E5%8D%87php/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>提升php | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什麼是-CGI、FastCGI、PHP-FPM"><span class="nav-number">2.</span> <span class="nav-text">什麼是 CGI、FastCGI、PHP-FPM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-請求外部資源"><span class="nav-number">3.</span> <span class="nav-text">php 請求外部資源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-開啟服務"><span class="nav-number">4.</span> <span class="nav-text">php 開啟服務</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重構"><span class="nav-number">5.</span> <span class="nav-text">重構</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#避免用-switch"><span class="nav-number">5.1.</span> <span class="nav-text">避免用 switch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#trait"><span class="nav-number">6.</span> <span class="nav-text">trait</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reflection"><span class="nav-number">7.</span> <span class="nav-text">Reflection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fun-fact"><span class="nav-number">8.</span> <span class="nav-text">fun fact</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#array-vs"><span class="nav-number">9.</span> <span class="nav-text">array() vs []</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#new-static"><span class="nav-number">10.</span> <span class="nav-text">new static()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP-EOL"><span class="nav-number">11.</span> <span class="nav-text">PHP_EOL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php5-2"><span class="nav-number">12.</span> <span class="nav-text">php5.2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-雙引號"><span class="nav-number">13.</span> <span class="nav-text">php 雙引號</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-echo"><span class="nav-number">14.</span> <span class="nav-text">php echo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-防止跨站腳本"><span class="nav-number">15.</span> <span class="nav-text">php 防止跨站腳本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-節省-html-中的大括號"><span class="nav-number">16.</span> <span class="nav-text">php 節省 html 中的大括號{}</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-compact"><span class="nav-number">17.</span> <span class="nav-text">php compact</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-extract"><span class="nav-number">18.</span> <span class="nav-text">php extract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-new-self-new-static"><span class="nav-number">19.</span> <span class="nav-text">php new self , new static</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#為什麼要用-require-而不是-include；為什麼要用-require-而不是-require-once"><span class="nav-number">20.</span> <span class="nav-text">為什麼要用 require 而不是 include；為什麼要用 require 而不是 require_once</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#製作-composer-package"><span class="nav-number">21.</span> <span class="nav-text">製作 composer package</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#composer-replace-取代一個套件"><span class="nav-number">22.</span> <span class="nav-text">composer replace 取代一個套件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fork-出沒有人維護的包-用-fork-的包來取代其他有用這個包的依賴"><span class="nav-number">22.1.</span> <span class="nav-text">fork 出沒有人維護的包,用 fork 的包來取代其他有用這個包的依賴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝沒有在-packagist-上註冊的私人套件"><span class="nav-number">22.2.</span> <span class="nav-text">安裝沒有在 packagist 上註冊的私人套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定私有庫來源，並給予帳密"><span class="nav-number">22.3.</span> <span class="nav-text">設定私有庫來源，並給予帳密</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#laravel-的方法"><span class="nav-number">23.</span> <span class="nav-text">laravel 的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#composer-autoload-的幾種方式"><span class="nav-number">24.</span> <span class="nav-text">composer autoload 的幾種方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA-公鑰"><span class="nav-number">25.</span> <span class="nav-text">RSA 公鑰</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#json-encode-出線換行符"><span class="nav-number">26.</span> <span class="nav-text">json_encode 出線換行符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列出-php-加密演算法列表"><span class="nav-number">27.</span> <span class="nav-text">列出 php 加密演算法列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#phpinfo"><span class="nav-number">28.</span> <span class="nav-text">phpinfo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xdebug-配置"><span class="nav-number">29.</span> <span class="nav-text">xdebug 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#disable-fucntion"><span class="nav-number">30.</span> <span class="nav-text">disable_fucntion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-lint"><span class="nav-number">31.</span> <span class="nav-text">php lint</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字串比較"><span class="nav-number">32.</span> <span class="nav-text">字串比較</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fastcgi-finish-request"><span class="nav-number">33.</span> <span class="nav-text">fastcgi_finish_request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#精度問題"><span class="nav-number">34.</span> <span class="nav-text">精度問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP-sleep-是否会占用很多资源？"><span class="nav-number">35.</span> <span class="nav-text">PHP sleep() 是否会占用很多资源？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP運用多執行緒"><span class="nav-number">36.</span> <span class="nav-text">PHP運用多執行緒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP-MySQL多语句执行"><span class="nav-number">37.</span> <span class="nav-text">PHP+MySQL多语句执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#composer-autoload會佔據記憶體嗎"><span class="nav-number">38.</span> <span class="nav-text">composer autoload會佔據記憶體嗎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效能調校"><span class="nav-number">39.</span> <span class="nav-text">效能調校</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#amp-before-the-function-name"><span class="nav-number">40.</span> <span class="nav-text">&amp; before the function name</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP-強制使用「強型態」的模式"><span class="nav-number">41.</span> <span class="nav-text">PHP 強制使用「強型態」的模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#json-encode-浮点小数溢出错误"><span class="nav-number">42.</span> <span class="nav-text">json_encode() 浮点小数溢出错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pdo和mysqli"><span class="nav-number">43.</span> <span class="nav-text">pdo和mysqli</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#假設你要測量一個php-function的效能，要如何在不影響原有代碼的情況下，標記執行時間呢"><span class="nav-number">44.</span> <span class="nav-text">假設你要測量一個php function的效能，要如何在不影響原有代碼的情況下，標記執行時間呢?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#json-deocde"><span class="nav-number">45.</span> <span class="nav-text">json_deocde</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/04/29/%E6%8F%90%E5%8D%87php/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          提升php
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-04-29 12:02:24" itemprop="dateCreated datePublished" datetime="2020-04-29T12:02:24+08:00">2020-04-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-04-19 07:54:04" itemprop="dateModified" datetime="2023-04-19T07:54:04+08:00">2023-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>語言百百種，一開始入門的一個語言是 php，中途又跑去碰了 js，js 演變非常的快，來來回回耗費了許多生命，但是我只有一條命，是該專注於其中一種語言了，<br>即便這門語言不是那麼的賺錢</p>
+<ul>
+<li>php 葵花寶典<br><a href="https://www.awaimai.com/php" target="_blank" rel="noopener">https://www.awaimai.com/php</a><br><a href="https://www.cnblogs.com/aiweixiao/p/8202365.html" target="_blank" rel="noopener">https://www.cnblogs.com/aiweixiao/p/8202365.html</a><br><a href="http://t.ti-node.com/thread/6445811931549794305" target="_blank" rel="noopener">http://t.ti-node.com/thread/6445811931549794305</a><br><a href="https://mp.weixin.qq.com/s/NTbS3KtToodhFfdjrBjBsw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NTbS3KtToodhFfdjrBjBsw</a><br><a href="https://phper.shujuwajue.com/phpxuan-xiang-he-yun-xing-yuan-li/php-sapi" target="_blank" rel="noopener">https://phper.shujuwajue.com/phpxuan-xiang-he-yun-xing-yuan-li/php-sapi</a></li>
+</ul>
+<p><a href="https://imyoungyang.gitbooks.io/php7-study-group-notes/content/packagist.html" target="_blank" rel="noopener">https://imyoungyang.gitbooks.io/php7-study-group-notes/content/packagist.html</a></p>
+<p><a href="https://learnku.com/docs/php-internals/php7" target="_blank" rel="noopener">https://learnku.com/docs/php-internals/php7</a></p>
+<ul>
+<li>php 进阶探讨<br><a href="https://www.lanqiao.cn/library/advanced-php/" target="_blank" rel="noopener">https://www.lanqiao.cn/library/advanced-php/</a></li>
+</ul>
+<h1 id="什麼是-CGI、FastCGI、PHP-FPM"><a href="#什麼是-CGI、FastCGI、PHP-FPM" class="headerlink" title="什麼是 CGI、FastCGI、PHP-FPM"></a>什麼是 CGI、FastCGI、PHP-FPM</h1><p>CGI與FPM<br>CGI是一種協議，為了保證web server傳過來的資料是標準格式</p>
+<p>比如說，如果請求 index.html，web server會去找到這個文件再丟給瀏覽器，但這個只限於靜態文件而已，如果是index.php呢，就需要去找php解析器來處理了，接下來web service就會把這個請求交給php 解析器處理，那會傳那一些資料呢?像是 post或是url還有http header等，CGI就是規定要傳哪些資料、以及怎麼樣的格式</p>
+<p>FastCGI是什麼?<br>接下來又提到那FastCGI是什麼呢? FastCGI是用來提高CGI處理process性能用的</p>
+<p>那FastCGI會怎麼實作呢?<br>當php啟動時、會去尋找php.ini、進行環境的初始化，如果不使用FastCGI的情況下，每一個請求都會做這個動作，很明顯浪費系統資源，所以FastCGI會先啟動一個master，解析配置文件用，接下來再啟動worker，當請求過來時、master會遞資訊給worker，然後接下來等下一個請求，有這個機制就不用每一次重新跑一次初始化的動作了</p>
+<p>PHP-FPM<br>那PHP-FPM呢? Fastcgi是一個協議，其實是php-fpm實現了這個協議</p>
+<p>php-fpm是管理fastcgi ，大概的關係就是這</p>
+<p>所以最後才會造成如果修改php.ini檔案之後，才需要重新啟動php-fpm，原因就是這個樣子</p>
+<p><a href="https://github.com/UniSharp/blog/blob/master/2017/10/04/Nginx%20%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%88%E4%BA%8C%EF%BC%89FastCGI%20Proxying/index.html" target="_blank" rel="noopener">https://github.com/UniSharp/blog/blob/master/2017/10/04/Nginx%20%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%88%E4%BA%8C%EF%BC%89FastCGI%20Proxying/index.html</a><br><a href="https://www.astralweb.com.tw/what-is-differences-between-fastcgi-php-fpm/" target="_blank" rel="noopener">https://www.astralweb.com.tw/what-is-differences-between-fastcgi-php-fpm/</a><br><a href="https://www.zybuluo.com/phper/note/50231" target="_blank" rel="noopener">https://www.zybuluo.com/phper/note/50231</a></p>
+<h1 id="php-請求外部資源"><a href="#php-請求外部資源" class="headerlink" title="php 請求外部資源"></a>php 請求外部資源</h1><p>可以<br>file_get_contents<br>fopen<br>fsockopen<br>curl</p>
+<h1 id="php-開啟服務"><a href="#php-開啟服務" class="headerlink" title="php 開啟服務"></a>php 開啟服務</h1><p>stream_socket_server()<br>workerman 的原理</p>
+<h1 id="重構"><a href="#重構" class="headerlink" title="重構"></a>重構</h1><p><a href="https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit" target="_blank" rel="noopener">https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit</a></p>
+<h2 id="避免用-switch"><a href="#避免用-switch" class="headerlink" title="避免用 switch"></a>避免用 switch</h2><p><a href="https://www.slideshare.net/kylinfish/php-best-practice-81744253" target="_blank" rel="noopener">https://www.slideshare.net/kylinfish/php-best-practice-81744253</a><br><a href="https://learnku.com/laravel/t/7468/please-keep-your-php-code-neat-and-tidy" target="_blank" rel="noopener">https://learnku.com/laravel/t/7468/please-keep-your-php-code-neat-and-tidy</a></p>
+<h1 id="trait"><a href="#trait" class="headerlink" title="trait"></a>trait</h1><p>官网讲的非常清楚<br><a href="https://www.php.net/manual/zh/language.oop5.traits.php" target="_blank" rel="noopener">https://www.php.net/manual/zh/language.oop5.traits.php</a><br>唯一缺的范例是，当 trait 的 function 和要使用的 class 冲突时,你不想复盖，想要拿来用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">FooTrait</span> &#123;</span><br><span class="line">	<span class="title">bar</span> <span class="title">as</span> <span class="title">traitBar</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://andy-carter.com/blog/overriding-extending-a-php-trait-method" target="_blank" rel="noopener">https://andy-carter.com/blog/overriding-extending-a-php-trait-method</a></p>
+<h1 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h1><p>获取档案路径 class function params 等等的详细资料<br>还可以用来实例一个物件,而非传统的 new 关键字做出实例</p>
+<h1 id="fun-fact"><a href="#fun-fact" class="headerlink" title="fun fact"></a>fun fact</h1><p>http_build_query()<br><a href="https://stackoverflow.com/questions/14761418/browser-mis-interpreting-not-in-url" target="_blank" rel="noopener">https://stackoverflow.com/questions/14761418/browser-mis-interpreting-not-in-url</a></p>
+<h1 id="array-vs"><a href="#array-vs" class="headerlink" title="array() vs []"></a>array() vs []</h1><p>版本問題，5.4 之後推薦使用[]為標準用法</p>
+<h1 id="new-static"><a href="#new-static" class="headerlink" title="new static()"></a>new static()</h1><p><a href="https://xyz.cinc.biz/2016/11/php-new-self-vs-new-static.html" target="_blank" rel="noopener">PHP new self 、new static 比較</a><br>new self() =&gt; 生成的物件為實際寫有這句 code 的 class<br>new static() =&gt;生成的物件為呼叫使用這句 code 的 class</p>
+<h1 id="PHP-EOL"><a href="#PHP-EOL" class="headerlink" title="PHP_EOL"></a>PHP_EOL</h1><p>PHP_EOL 是一个些已经定义好的常量，代表 php 的换行符，这个变量会根据平台而变，在 windows 下会是/r/n，在 linux 下是/n，在 mac 下是/r。<br>$str = str_replace(PHP_EOL, ‘’, $str);<br>這段程式碼，在單一來源的輸入沒問題，產出會隨著作業系統做變動，但是<br>如果<br>輸入有可能來自不同作業系統，我們沒辦法確定來源作業系統與 server 的相同<br>那會用到的情境是，我們有使用 rsa 密鑰，但他是.PEM 金鑰複製貼上的，為了避免 user 的 editor 太過聰明，直接依照作業系統換行，我們後端需要有處理換行的動作<br><a href="https://www.cnblogs.com/cxx8181602/p/9132946.html" target="_blank" rel="noopener">https://www.cnblogs.com/cxx8181602/p/9132946.html</a></p>
+<p>$str = str_replace(array(“/r/n”, “/r”, “/n”), “”, $str);<br><a href="https://9iphp.com/web/php/1006.html" target="_blank" rel="noopener">https://9iphp.com/web/php/1006.html</a></p>
+<p>或是正則<br>$skuList = preg_split(‘/\r\n|\r|\n/‘, $_POST[‘skuList’]);</p>
+<h1 id="php5-2"><a href="#php5-2" class="headerlink" title="php5.2"></a>php5.2</h1><p>RSA256<br><a href="https://stackoverflow.com/questions/10524198/what-version-of-openssl-is-needed-to-sign-with-sha256withrsaencryption" target="_blank" rel="noopener">https://stackoverflow.com/questions/10524198/what-version-of-openssl-is-needed-to-sign-with-sha256withrsaencryption</a></p>
+<h1 id="php-雙引號"><a href="#php-雙引號" class="headerlink" title="php 雙引號"></a>php 雙引號</h1><p>php 雙引號可以直接帶出變數</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"hello $name"</span>;</span><br><span class="line"><span class="comment">//等同於</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"hello &#123;$name&#125;"</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="php-echo"><a href="#php-echo" class="headerlink" title="php echo"></a>php echo</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> $name; <span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//等同於</span></span><br><span class="line"><span class="meta">&lt;?</span>= $name <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="php-防止跨站腳本"><a href="#php-防止跨站腳本" class="headerlink" title="php 防止跨站腳本"></a>php 防止跨站腳本</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htmlspecialchars($_Get[<span class="string">'userInput'</span>]);</span><br></pre></td></tr></table></figure>
+
+<h1 id="php-節省-html-中的大括號"><a href="#php-節省-html-中的大括號" class="headerlink" title="php 節省 html 中的大括號{}"></a>php 節省 html 中的大括號{}</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>():</span><br><span class="line"><span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">if</span>():</span><br><span class="line"><span class="keyword">endif</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="php-compact"><a href="#php-compact" class="headerlink" title="php compact"></a>php compact</h1><p>取變數名組成關聯陣列</p>
+<h1 id="php-extract"><a href="#php-extract" class="headerlink" title="php extract"></a>php extract</h1><p>取關聯陣列 key value 產出變數</p>
+<h1 id="php-new-self-new-static"><a href="#php-new-self-new-static" class="headerlink" title="php new self , new static"></a>php new self , new static</h1><p><a href="https://xyz.cinc.biz/2016/11/php-new-self-vs-new-static.html" target="_blank" rel="noopener">https://xyz.cinc.biz/2016/11/php-new-self-vs-new-static.html</a><br>new self() =&gt; 生成的物件為實際寫有這句 code 的 class<br>new static() =&gt;生成的物件為呼叫使用這句 code 的 class<br>一般就推荐用 static() 才不会有机会实例出父类别</p>
+<h1 id="為什麼要用-require-而不是-include；為什麼要用-require-而不是-require-once"><a href="#為什麼要用-require-而不是-include；為什麼要用-require-而不是-require-once" class="headerlink" title="為什麼要用 require 而不是 include；為什麼要用 require 而不是 require_once"></a>為什麼要用 require 而不是 include；為什麼要用 require 而不是 require_once</h1><p>include 僅會拋出 Warning<br>require_once ，因為在執行時期完全沒有任何警告或錯誤，以致於造成冗餘程式碼<br>require 會在引入時發生錯誤時（例如被引入目標不存在）拋出 Error 且終止應用程式<br>composer autoload 有這 4 種方式<br>psr0,psr4,classmap,files 自動載入</p>
+<h1 id="製作-composer-package"><a href="#製作-composer-package" class="headerlink" title="製作 composer package"></a>製作 composer package</h1><p><a href="https://rivsen.github.io/post/how-to-publish-package-to-packagist-using-github-and-composer-step-by-step" target="_blank" rel="noopener">https://rivsen.github.io/post/how-to-publish-package-to-packagist-using-github-and-composer-step-by-step</a></p>
+<h1 id="composer-replace-取代一個套件"><a href="#composer-replace-取代一個套件" class="headerlink" title="composer replace 取代一個套件"></a>composer replace 取代一個套件</h1><h2 id="fork-出沒有人維護的包-用-fork-的包來取代其他有用這個包的依賴"><a href="#fork-出沒有人維護的包-用-fork-的包來取代其他有用這個包的依賴" class="headerlink" title="fork 出沒有人維護的包,用 fork 的包來取代其他有用這個包的依賴"></a>fork 出沒有人維護的包,用 fork 的包來取代其他有用這個包的依賴</h2><p><a href="https://jaceju.net/composer-replace/" target="_blank" rel="noopener">https://jaceju.net/composer-replace/</a></p>
+<h2 id="安裝沒有在-packagist-上註冊的私人套件"><a href="#安裝沒有在-packagist-上註冊的私人套件" class="headerlink" title="安裝沒有在 packagist 上註冊的私人套件"></a>安裝沒有在 packagist 上註冊的私人套件</h2><p><a href="https://blog.johnsonlu.org/getting-started-with-composer/" target="_blank" rel="noopener">https://blog.johnsonlu.org/getting-started-with-composer/</a><br><a href="https://www.hellosanta.com.tw/blog/how-to-add-3rd-party-plugin-by-using-composer" target="_blank" rel="noopener">https://www.hellosanta.com.tw/blog/how-to-add-3rd-party-plugin-by-using-composer</a></p>
+<h2 id="設定私有庫來源，並給予帳密"><a href="#設定私有庫來源，並給予帳密" class="headerlink" title="設定私有庫來源，並給予帳密"></a>設定私有庫來源，並給予帳密</h2><p><a href="https://stackoverflow.com/questions/35082739/composer-asks-only-for-password-with-private-repository" target="_blank" rel="noopener">https://stackoverflow.com/questions/35082739/composer-asks-only-for-password-with-private-repository</a></p>
+<h1 id="laravel-的方法"><a href="#laravel-的方法" class="headerlink" title="laravel 的方法"></a>laravel 的方法</h1><p><a href="https://docs.chipperci.com/builds/composer-auth/" target="_blank" rel="noopener">https://docs.chipperci.com/builds/composer-auth/</a></p>
+<h1 id="composer-autoload-的幾種方式"><a href="#composer-autoload-的幾種方式" class="headerlink" title="composer autoload 的幾種方式"></a>composer autoload 的幾種方式</h1><p><a href="https://malagege.github.io/blog/2019/01/19/composer%E4%BD%BF%E7%94%A8psr0-psr4-classmap-files%E8%87%AA%E5%8B%95%E8%BC%89%E5%85%A5%E7%B4%80%E9%8C%84/" target="_blank" rel="noopener">https://malagege.github.io/blog/2019/01/19/composer%E4%BD%BF%E7%94%A8psr0-psr4-classmap-files%E8%87%AA%E5%8B%95%E8%BC%89%E5%85%A5%E7%B4%80%E9%8C%84/</a></p>
+<h1 id="RSA-公鑰"><a href="#RSA-公鑰" class="headerlink" title="RSA 公鑰"></a>RSA 公鑰</h1><p>openssl_get_publickey server 回傳 false，但在本機正常，原本以為是作業系統不同的問題，<br>一查可能是因為 php 版本的問題，為了應付<br>網路上說</p>
+<pre><code>我知道了 其实公钥是不能放在一行写的，要用原来demo里的，支付宝还告诉我一定要放在一行写，坑爹啊
+一行书写，在windows下是正常的，在linux下返回false</code></pre><p>上面寫的不全正確，應為我環境都是 linux 照樣一個報錯一個沒報<br>server php 5.6.24<br>local PHP 5.6.40<br>在這裡筆記一下<br>每 64 字元換行</p>
+<h1 id="json-encode-出線換行符"><a href="#json-encode-出線換行符" class="headerlink" title="json_encode 出線換行符"></a>json_encode 出線換行符</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json_encode($data,<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>即可回傳正常 json</p>
+<h1 id="列出-php-加密演算法列表"><a href="#列出-php-加密演算法列表" class="headerlink" title="列出 php 加密演算法列表"></a>列出 php 加密演算法列表</h1><p>print_r(hash_algos());</p>
+<h1 id="phpinfo"><a href="#phpinfo" class="headerlink" title="phpinfo"></a>phpinfo</h1><p>commandline php -i</p>
+<h1 id="xdebug-配置"><a href="#xdebug-配置" class="headerlink" title="xdebug 配置"></a>xdebug 配置</h1><p>[root] # cd /usr/local/src<br>[root] # tar zxvf xdebug-2.6.0RC2.tgz<br>[root] # cd xdebug-2.6.0RC2<br>[root] # /usr/local/php/bin/phpize<br>[root] # ./configure –enable-xdebug  –with-php-config=/usr/local/php/bin/php-config<br>[root] # make &amp;&amp; make install<br>zend_extension=xdebug.so //指定Xdebug扩展文件的路径<br>xdebug.remote_enable=1 //是否开启远程调试<br>xdebug.remote_handler=dbgp //指定远程调试的处理协议<br>xdebug.remote_mode=req //可以设为req或jit，req表示脚本一开始运行就连接远程客户端，jit表示脚本出错时才连接远程客户端。<br>xdebug.remote_host=192.168.1.98 //指定远程调试的主机名（安装phpstorm的主机ip）<br>xdebug.remote_port=9001 //指定远程调试的端口号<br>xdebug.idekey=”PHPSTORM” //指定传递给DBGp调试器处理程序的IDE Key<br>xdebug 配置並不簡單<br><a href="https://segmentfault.com/a/1190000011907425" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011907425</a><br><a href="https://segmentfault.com/a/1190000018961750" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018961750</a><br><a href="https://www.yisu.com/zixun/39716.html" target="_blank" rel="noopener">https://www.yisu.com/zixun/39716.html</a></p>
+<h1 id="disable-fucntion"><a href="#disable-fucntion" class="headerlink" title="disable_fucntion"></a>disable_fucntion</h1><p><a href="https://www.anquanke.com/post/id/197745" target="_blank" rel="noopener">https://www.anquanke.com/post/id/197745</a></p>
+<h1 id="php-lint"><a href="#php-lint" class="headerlink" title="php lint"></a>php lint</h1><p>雖然 phpstorm 內建整合 php-cs-fixer ，跟 laravel 一樣的套件<br><a href="https://laracasts.com/discuss/channels/laravel/php-cs-config-for-php-cs-fixer" target="_blank" rel="noopener">https://laracasts.com/discuss/channels/laravel/php-cs-config-for-php-cs-fixer</a><br>阿我們還是希望協作者能夠在提交前跑一次格式檢查<br>此時就會用到<br>使用 Git pre-commit 自動修正 PHP 的 Coding Style<br><a href="https://codefun.tw/2019/2019051901-php-coding-style-fix-with-git" target="_blank" rel="noopener">https://codefun.tw/2019/2019051901-php-coding-style-fix-with-git</a></p>
+<h1 id="字串比較"><a href="#字串比較" class="headerlink" title="字串比較"></a>字串比較</h1><p>mbstring 使用了国家默认语言设置（NLS），所以在做字串長度比較時，需要注意<br>mbstring.language = UTF-8<br>mbstring.internal_encoding = UTF-8</p>
+<h1 id="fastcgi-finish-request"><a href="#fastcgi-finish-request" class="headerlink" title="fastcgi_finish_request"></a>fastcgi_finish_request</h1><p>当PHP运行在FastCGI模式时，PHP FPM提供了一个名为fastcgi_finish_request的方法。按照文档上的说法，此方法可以提高请求的处理速度，如果有些处理可以在页面生成完后再进行，就可以使用这个方法</p>
+<p><a href="https://blog.huoding.com/2011/04/12/63" target="_blank" rel="noopener">https://blog.huoding.com/2011/04/12/63</a></p>
+<h1 id="精度問題"><a href="#精度問題" class="headerlink" title="精度問題"></a>精度問題</h1><p>所有程式語言一定都有的問題，因為二進位無法完美表示浮點數<br>php官方建議如果需要高位數的計算的話，需要使用BC Math或是GMP<br><a href="https://blog.walile.info/2013/06/14/about-php-float-problem/" target="_blank" rel="noopener">關於php浮點數float以及int的問題</a></p>
+<h1 id="PHP-sleep-是否会占用很多资源？"><a href="#PHP-sleep-是否会占用很多资源？" class="headerlink" title="PHP sleep() 是否会占用很多资源？"></a>PHP sleep() 是否会占用很多资源？</h1><p> sleep本身不占CPU资源, 但是在基于PHP的LAMP环境中, 就不能这样说了, 因为CPU不是唯一的资源. 进程数, 内存, 这些都是资源.</p>
+<h1 id="PHP運用多執行緒"><a href="#PHP運用多執行緒" class="headerlink" title="PHP運用多執行緒"></a>PHP運用多執行緒</h1><p> php可以利用其他的東西來實現偽多進程，多線程，例如：fsockopen實際是利用socket的多線程，popen，pcntl_fork ，proc_open利用httpd多進程功能的外衣<br> <a href="https://bps1025.blogspot.com/2018/10/php-multi-threadprocopen.html" target="_blank" rel="noopener">《面試官別再問》PHP運用多執行緒(Multi-thread)實現非阻塞方法</a><br> <a href="https://stackoverflow.com/questions/2267345/how-do-you-make-good-use-of-multicore-cpus-in-your-php-mysql-applications" target="_blank" rel="noopener">How do you make good use of multicore CPUs in your PHP/MySQL applications?</a></p>
+<h1 id="PHP-MySQL多语句执行"><a href="#PHP-MySQL多语句执行" class="headerlink" title="PHP+MySQL多语句执行"></a>PHP+MySQL多语句执行</h1><p> <a href="http://www.jinglingshu.org/?p=3941" target="_blank" rel="noopener">http://www.jinglingshu.org/?p=3941</a><br> 实际上mysql早在4.1版本就允许多语句执行。只是PHP自身限制了这种用法。</p>
+<h1 id="composer-autoload會佔據記憶體嗎"><a href="#composer-autoload會佔據記憶體嗎" class="headerlink" title="composer autoload會佔據記憶體嗎"></a>composer autoload會佔據記憶體嗎</h1><p> 答:不會</p>
+<p> 如果下面連結說的是正確的話， 會在實際new的時候才載入CODE，記憶體一開始autoload只是一個檔案位址的陣列<br> <a href="https://stackoverflow.com/questions/37283217/composer-dont-use-autoload-and-load-single-classes" target="_blank" rel="noopener">https://stackoverflow.com/questions/37283217/composer-dont-use-autoload-and-load-single-classes</a></p>
+<h1 id="效能調校"><a href="#效能調校" class="headerlink" title="效能調校"></a>效能調校</h1><ul>
+<li><p>where:local端測試</p>
+</li>
+<li><p>when: testing，deploying</p>
+</li>
+<li><p>what: 執行時間，記憶體使用量</p>
+</li>
+<li><p>目標:在效能與可維護之間做平衡<br><a href="https://www.youtube.com/watch?v=hOajLLej68Y" target="_blank" rel="noopener">https://www.youtube.com/watch?v=hOajLLej68Y</a></p>
+<h1 id="amp-before-the-function-name"><a href="#amp-before-the-function-name" class="headerlink" title="&amp; before the function name"></a>&amp; before the function name</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooBar</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $properties = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> &amp;<span class="title">__get</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;properties[$name];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//If I hadn't used &amp; there, this wouldn't be possible:</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span><span class="params">($name, $value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;properties[$name] = $value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$foobar = <span class="keyword">new</span> FooBar;</span><br><span class="line">$foobar-&gt;subArray = <span class="keyword">array</span>();</span><br><span class="line">$foobar-&gt;subArray[<span class="string">'FooBar'</span>] = <span class="string">'Hallo World!'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p> Instead PHP would thrown an error saying something like ‘cannot indirectly modify overloaded property’.<br> <a href="https://stackoverflow.com/questions/3255516/what-does-before-the-function-name-signify" target="_blank" rel="noopener">https://stackoverflow.com/questions/3255516/what-does-before-the-function-name-signify</a><br> <a href="https://stackoverflow.com/questions/21058439/is-there-ever-a-need-to-use-ampersand-in-front-of-an-object" target="_blank" rel="noopener">https://stackoverflow.com/questions/21058439/is-there-ever-a-need-to-use-ampersand-in-front-of-an-object</a></p>
+<h1 id="PHP-強制使用「強型態」的模式"><a href="#PHP-強制使用「強型態」的模式" class="headerlink" title="PHP 強制使用「強型態」的模式"></a>PHP 強制使用「強型態」的模式</h1> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span>(strict_types = <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="json-encode-浮点小数溢出错误"><a href="#json-encode-浮点小数溢出错误" class="headerlink" title="json_encode() 浮点小数溢出错误"></a>json_encode() 浮点小数溢出错误</h1><p> 该现象只出现在PHP 7.1+版本上<br> 這個就是只有靠經驗才會知道的知識點<br> 可以靠serialize_precision這個解決</p>
+<h1 id="pdo和mysqli"><a href="#pdo和mysqli" class="headerlink" title="pdo和mysqli"></a>pdo和mysqli</h1><p> 這兩個庫都是很熱門的資料庫API，各有優缺點，但pdo不只支援mysql</p>
+<p> <a href="https://websitebeaver.com/php-pdo-vs-mysqli" target="_blank" rel="noopener">PDO vs. MySQLi: The Battle of PHP Database APIs</a></p>
+<h1 id="假設你要測量一個php-function的效能，要如何在不影響原有代碼的情況下，標記執行時間呢"><a href="#假設你要測量一個php-function的效能，要如何在不影響原有代碼的情況下，標記執行時間呢" class="headerlink" title="假設你要測量一個php function的效能，要如何在不影響原有代碼的情況下，標記執行時間呢?"></a>假設你要測量一個php function的效能，要如何在不影響原有代碼的情況下，標記執行時間呢?</h1><p> <a href="https://stackoverflow.com/questions/9262158/how-can-i-inject-and-remove-php-code-before-a-function-call" target="_blank" rel="noopener">https://stackoverflow.com/questions/9262158/how-can-i-inject-and-remove-php-code-before-a-function-call</a></p>
+<h1 id="json-deocde"><a href="#json-deocde" class="headerlink" title="json_deocde"></a>json_deocde</h1><p> 在接收兩個幾乎相同的字串時，php json_decode 會報出 syntax error的錯<br> 錯的原因，雙引號前面多了個slash，奇怪的是我單純放進input後端magic quote產生有slash的字串不會錯，但是前端JSON.Stringfy()之後放進input 後端產生有slash的字串卻抱錯了<br> <a href="https://stackoverflow.com/questions/14757983/json-post-with-magic-quotes-plus-a-quote-character-in-the-data" target="_blank" rel="noopener">https://stackoverflow.com/questions/14757983/json-post-with-magic-quotes-plus-a-quote-character-in-the-data</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/28/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="prev" title="常用的快捷键">
+                  <i class="fa fa-chevron-left"></i> 常用的快捷键
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/30/%E4%BD%BF%E7%94%A8postman/" rel="next" title="使用postman">
+                  使用postman <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

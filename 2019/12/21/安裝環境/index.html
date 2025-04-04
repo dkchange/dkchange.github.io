@@ -13,64 +13,36 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '複製',
-      copy_success: '複製成功',
-      copy_failure: '複製失敗'
-    },
-    sidebarPadding: 40
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
 
-  <meta name="description" content="前言事情是這樣子的，以前從windows環境就安裝AppServ、WampServer、Xampp這種快速安裝的安裝包，為什麼呢?因為最後環境還是會在linux上，所以windows上能開發就好，也就不用太講究了，因為有些包在linux沒問題，在windows會出事，心血來潮試著自己安裝一次看看名詞解釋">
+  <meta name="description" content="前言事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢?因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事，心血來潮試著自己安裝一次看看 名詞解釋 X86 X32我們要安裝 PHP 時就會看到一些不懂的名詞x86 等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝環境">
 <meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2019&#x2F;12&#x2F;21&#x2F;%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83&#x2F;index.html">
 <meta property="og:site_name" content="蛋粒個人網誌">
-<meta property="og:description" content="前言事情是這樣子的，以前從windows環境就安裝AppServ、WampServer、Xampp這種快速安裝的安裝包，為什麼呢?因為最後環境還是會在linux上，所以windows上能開發就好，也就不用太講究了，因為有些包在linux沒問題，在windows會出事，心血來潮試著自己安裝一次看看名詞解釋">
+<meta property="og:description" content="前言事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢?因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事，心血來潮試著自己安裝一次看看 名詞解釋 X86 X32我們要安裝 PHP 時就會看到一些不懂的名詞x86 等">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-01-20T10:02:06.610Z">
+<meta property="og:updated_time" content="2021-07-30T10:17:40.447Z">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="http://dkchange.github.io/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
   };
 </script>
 
@@ -82,92 +54,136 @@
 
 
 
-
-
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">蛋粒個人網誌</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切換導航欄">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
-  </li>
-        <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
 
-  </li>
-        <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
-
-  </li>
-  </ul>
-
-</nav>
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名詞解釋"><span class="nav-number">2.</span> <span class="nav-text">名詞解釋</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#php-ini-時區設定的問題"><span class="nav-number">3.</span> <span class="nav-text">php.ini 時區設定的問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遭遇問題"><span class="nav-number">4.</span> <span class="nav-text">遭遇問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#403-forbidden"><span class="nav-number">5.</span> <span class="nav-text">403 forbidden</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Noinput-file-specified"><span class="nav-number">6.</span> <span class="nav-text">Noinput file specified</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XDebug-環境配置"><span class="nav-number">7.</span> <span class="nav-text">XDebug 環境配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx-设定"><span class="nav-number">8.</span> <span class="nav-text">nginx 设定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#domain-name"><span class="nav-number">8.1.</span> <span class="nav-text">domain name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#index-php-failed-13-Permission-denied"><span class="nav-number">8.2.</span> <span class="nav-text">index.php failed (13: Permission denied)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apache-設定"><span class="nav-number">9.</span> <span class="nav-text">apache 設定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vhost"><span class="nav-number">9.1.</span> <span class="nav-text">vhost</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#502-Bad-Gateway"><span class="nav-number">10.</span> <span class="nav-text">502 Bad Gateway</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache2-conf-設定檔中文版"><span class="nav-number">11.</span> <span class="nav-text">Apache2 conf 設定檔中文版</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -176,22 +192,20 @@
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/dkchange" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,43 +217,34 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蛋粒個人網誌">
     </span>
+
+    
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           安裝環境
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-21 20:22:50" itemprop="dateCreated datePublished" datetime="2019-12-21T20:22:50+11:00">2019-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-
-          
-  
-  <span class="post-meta-item">
-    
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/21/安裝環境/" itemprop="commentCount"></span>
-    </a>
-  </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2019-12-21 20:22:50" itemprop="dateCreated datePublished" datetime="2019-12-21T20:22:50+08:00">2019-12-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:17:40" itemprop="dateModified" datetime="2021-07-30T18:17:40+08:00">2021-07-30</time>
+      </span>
+
   
-  
+</div>
 
         </div>
       </header>
@@ -248,190 +253,134 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣子的，以前從windows環境就安裝AppServ、WampServer、Xampp這種快速安裝的安裝包，為什麼呢?<br>因為最後環境還是會在linux上，所以windows上能開發就好，也就不用太講究了，因為有些包在linux沒問題，在windows會出事，<br>心血來潮試著自己安裝一次看看</p><h1 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h1><a id="more"></a>
-<ul>
-<li><p>X86 X32<br>我們要安裝PHP時就會看到一些不懂的名詞<br>x86等於32位元<br>X64等於64位元<br>為何這樣奇怪的命名就是歷史因素了</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢?<br>因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事，<br>心血來潮試著自己安裝一次看看</p>
+<h1 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h1><ul>
+<li><p>X86 X32<br>我們要安裝 PHP 時就會看到一些不懂的名詞<br>x86 等於 32 位元<br>X64 等於 64 位元<br>為何這樣奇怪的命名就是歷史因素了</p>
 </li>
 <li><p>Thread Safe</p>
 </li>
-<li><p>None Thread Safe<br>線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看<a href="https://www.awaimai.com/88.html" target="_blank" rel="noopener">https://www.awaimai.com/88.html</a><br>阿因為我們開發機，先不考慮線程安全和效能，任1種皆可</p>
+<li><p>None Thread Safe<br>線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看<a href="https://www.awaimai.com/88.html" target="_blank" rel="noopener">https://www.awaimai.com/88.html</a><br>阿因為我們開發機，先不考慮線程安全和效能，任 1 種皆可</p>
 </li>
 </ul>
-<h1 id><a href="#" class="headerlink" title></a></h1>
+<h1 id="php-ini-時區設定的問題"><a href="#php-ini-時區設定的問題" class="headerlink" title="php.ini 時區設定的問題"></a>php.ini 時區設定的問題</h1><p>如果你是跑 php-fpm 那設定在/etc/php.ini 的時區你會吃不到，此時就要跑去<br>/etc/php-fpm.d/<a href="http://www.conf" target="_blank" rel="noopener">www.conf</a> 加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_admin_value[date.timezone] = Europe/Berlin</span><br></pre></td></tr></table></figure>
+
+<h1 id="遭遇問題"><a href="#遭遇問題" class="headerlink" title="遭遇問題"></a>遭遇問題</h1><p>今天打開 Xampp 試著開啟 mysql 服務的時候，程序出錯<br>Error: MySQL shutdown unexpectedly.</p>
+<p>打開日誌看不出個什麼鬼，只知道突然中斷<br>日誌都是正常的紀錄<br>然後就開始爬文<br><a href="https://blog.csdn.net/yuer_xiao/article/details/79236719" target="_blank" rel="noopener">https://blog.csdn.net/yuer_xiao/article/details/79236719</a></p>
+<pre><code>在mysql/bin/my.ini 文件 加一个：
+[mysqld]
+innodb_force_recovery = 4</code></pre><p>失敗</p>
+<pre><code>把xampp\mysql\data下的ibdata1文件删掉
+這有人說這文件很重要，但是我還是試試看</code></pre><p>失敗</p>
+<pre><code>用管理员启动命令行，进入mysql的bin目录，输入
+mysqld --install，回车
+net start mysql ，可以正常启动</code></pre><p>失敗</p>
+<pre><code>將ib_logfile0以及ib_logfile1這兩個日誌黨刪除,</code></pre><p>失敗<br>把 xampp/mysql/backup/ 底下所有檔案，複製取代到 xampp/mysql/data/ …<br>成功<br><a href="https://dotblogs.com.tw/mepowerlmay/2019/12/19/085908" target="_blank" rel="noopener">https://dotblogs.com.tw/mepowerlmay/2019/12/19/085908</a></p>
+<h1 id="403-forbidden"><a href="#403-forbidden" class="headerlink" title="403 forbidden"></a>403 forbidden</h1><p>除了在 nginx 有設定以外，如果本身資料加權限 84nginx 的進程使用者也會報錯</p>
+<h1 id="Noinput-file-specified"><a href="#Noinput-file-specified" class="headerlink" title="Noinput file specified"></a>Noinput file specified</h1><p>找不到檔案，很可能就是 nginx 的正則錯了</p>
+<h1 id="XDebug-環境配置"><a href="#XDebug-環境配置" class="headerlink" title="XDebug 環境配置"></a>XDebug 環境配置</h1><p><a href="https://segmentfault.com/a/1190000011907425" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011907425</a></p>
+<p>ubutu 安裝 php xdebug<br>sudo apt-get install php-xdebug<br>sudo phpenmod xdebug<br>sudo gedit /etc/php/7.3/mods-available/xdebug.ini<br>重啟 webserver</p>
+<p><a href="https://youtu.be/3idASlzGTg4" target="_blank" rel="noopener">Debugging PHP on Linux with Xdebug and PHPStorm</a><br>有三種方式</p>
+<ol>
+<li>在瀏覽器 url 打上參數</li>
+<li>用 phpstorm 網站提供的書籤</li>
+<li>安裝 chrome 插件<br><a href="https://stackoverflow.com/questions/46263043/how-to-setup-docker-phpstorm-xdebug-on-ubuntu-16-04" target="_blank" rel="noopener">https://stackoverflow.com/questions/46263043/how-to-setup-docker-phpstorm-xdebug-on-ubuntu-16-04</a><br><a href="https://www.youtube.com/watch?v=mahIIF0c8Zo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mahIIF0c8Zo</a><br>use ‘xdebug.remote_host=host.docker.internal’ better than hard code IP address.<br>但是 linux 版本要看有沒有支援<br>xdebug.remote_host=docker.for.mac.localhost ，我是这样配置的可以调用成功<br>這個方法也是要看 mac 版本<br>Docker on Linux allows Xdebug to automatically connect back to the host system so you can just set xdebug.remote_connect_back=1 and leave out the xdebug.remote_host in your xdebug.ini.<br>這個方法沒事過</li>
+</ol>
+<p>linux 不支援 host.docker.internal 可以看這裡<br><a href="https://dev.to/bufferings/access-host-from-a-docker-container-4099" target="_blank" rel="noopener">https://dev.to/bufferings/access-host-from-a-docker-container-4099</a></p>
+<h1 id="nginx-设定"><a href="#nginx-设定" class="headerlink" title="nginx 设定"></a>nginx 设定</h1><p><a href="https://blog.51cto.com/13930997/2311716" target="_blank" rel="noopener">https://blog.51cto.com/13930997/2311716</a></p>
+<p><a href="https://regex101.com/" target="_blank" rel="noopener">https://regex101.com/</a></p>
+<h2 id="domain-name"><a href="#domain-name" class="headerlink" title="domain name"></a>domain name</h2><p>如果你記自己的測試機是以 xxx.localhost 來當 domain 的話，那你的 hosts 的檔就可以不用改了，因為他自己會幫你導向本機</p>
+<h2 id="index-php-failed-13-Permission-denied"><a href="#index-php-failed-13-Permission-denied" class="headerlink" title="index.php failed (13: Permission denied)"></a>index.php failed (13: Permission denied)</h2><p>關閉 selinux 即可</p>
+<p>setenforce 0</p>
+<h1 id="apache-設定"><a href="#apache-設定" class="headerlink" title="apache 設定"></a>apache 設定</h1><h2 id="vhost"><a href="#vhost" class="headerlink" title="vhost"></a>vhost</h2><p>site-available 來設定 vhost<br>site-enabled 是 apache 自己產生的，不要手動去改他</p>
+<blockquote>
+<p>sudo a2ensite vhost_domain_name<br>site-enabled 就會產生出對應的檔案了</p>
+</blockquote>
+<h1 id="502-Bad-Gateway"><a href="#502-Bad-Gateway" class="headerlink" title="502 Bad Gateway"></a>502 Bad Gateway</h1><p><a href="https://www.centos.bz/2017/07/nginx-php-fpm-502-error/" target="_blank" rel="noopener">https://www.centos.bz/2017/07/nginx-php-fpm-502-error/</a></p>
+<p><a href="https://serverfault.com/questions/457911/nginx-php-fpm-502-bad-gateway" target="_blank" rel="noopener">https://serverfault.com/questions/457911/nginx-php-fpm-502-bad-gateway</a><br>發生這個問題的原因有很多，之前還有可能是 cdn 快取導致頁面一直出現這個錯誤</p>
+<h1 id="Apache2-conf-設定檔中文版"><a href="#Apache2-conf-設定檔中文版" class="headerlink" title="Apache2 conf 設定檔中文版"></a>Apache2 conf 設定檔中文版</h1><p><a href="https://sites.google.com/site/linuxcooltea/apache2/a" target="_blank" rel="noopener">https://sites.google.com/site/linuxcooltea/apache2/a</a><br>這篇詳細解釋 conf 內容，對於我們這種非網管人員幫助很大</p>
+
     </div>
 
     
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
 
         
 
           <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/20/%E4%BD%BF%E7%94%A8git/" rel="next" title="使用git">
+            <div class="post-nav-item">
+                <a href="/2019/12/20/%E4%BD%BF%E7%94%A8git/" rel="prev" title="使用git">
                   <i class="fa fa-chevron-left"></i> 使用git
                 </a>
             </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2020/01/20/TravisCI/" rel="prev" title="TravisCI">
-                  TravisCI <i class="fa fa-chevron-right"></i>
+            <div class="post-nav-item">
+                <a href="/2020/01/20/%E4%BD%BF%E7%94%A8Drone/" rel="next" title="使用Drone">
+                  使用Drone <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
-      </footer>
-    
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
-    
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目錄
-        </li>
-        <li class="sidebar-nav-overview">
-          本站概要
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名詞解釋"><span class="nav-number">2.</span> <span class="nav-text">名詞解釋</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text"></span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Stanley Ke"
-    src="/images/avatar.gif">
-  <p class="site-author-name" itemprop="name">Stanley Ke</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">24</span>
-          <span class="site-state-item-name">文章</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">分類</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">29</span>
-        <span class="site-state-item-name">標籤</span></a>
-      </div>
-  </nav>
-</div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dkchange.nctu.me/" title="https:&#x2F;&#x2F;dkchange.nctu.me" rel="noopener" target="_blank">作品</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
+      
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
   </div>
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -449,46 +398,18 @@
 
 
 
+  
+
+
+
+
+
 
 
 
   
 
   
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dkchange.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  function loadComments() {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "http://dkchange.github.io/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/",
-            identifier: "2019/12/21/安裝環境/",
-            title: "安裝環境"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://dkchange.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  }
-    window.addEventListener('load', loadComments, false);
-</script>
 
 </body>
 </html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言這筆記為開放式課程筆記 目的在補足大學時代的不認真資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢找出最有效率的演算法system life cycle  需求 分析 設計 細分寫 CODE 驗證  概述 data abstraction algorithm specification資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？演算法就是解決問題的方法，跟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="資料結構與演算法">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;05&#x2F;21&#x2F;%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言這筆記為開放式課程筆記 目的在補足大學時代的不認真資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢找出最有效率的演算法system life cycle  需求 分析 設計 細分寫 CODE 驗證  概述 data abstraction algorithm specification資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？演算法就是解決問題的方法，跟">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-09-02T05:16:31.020Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/05/21/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>資料結構與演算法 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最簡單的演算法-sort"><span class="nav-number">3.</span> <span class="nav-text">最簡單的演算法 sort</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以數字為例作搜索-binary-search"><span class="nav-number">4.</span> <span class="nav-text">以數字為例作搜索 binary search</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遞迴演算法"><span class="nav-number">5.</span> <span class="nav-text">遞迴演算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#作業"><span class="nav-number">6.</span> <span class="nav-text">作業</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#performance-evaluation"><span class="nav-number">7.</span> <span class="nav-text">performance evaluation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效能分析"><span class="nav-number">8.</span> <span class="nav-text">效能分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#陣列"><span class="nav-number">9.</span> <span class="nav-text">陣列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stack-a-last-in-first-out-list"><span class="nav-number">10.</span> <span class="nav-text">stack: a last in first out list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#queue-a-first-in-first-out-list"><span class="nav-number">11.</span> <span class="nav-text">queue: a first in first out list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#circular-queue"><span class="nav-number">12.</span> <span class="nav-text">circular queue</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/05/21/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          資料結構與演算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-05-21 13:44:30" itemprop="dateCreated datePublished" datetime="2020-05-21T13:44:30+08:00">2020-05-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-09-02 13:16:31" itemprop="dateModified" datetime="2021-09-02T13:16:31+08:00">2021-09-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%BB%E4%BD%95%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">任何路線</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這筆記為開放式課程筆記 目的在補足大學時代的不認真<br>資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢<br>找出最有效率的演算法<br>system life cycle</p>
+<ul>
+<li>需求</li>
+<li>分析</li>
+<li>設計</li>
+<li>細分寫 CODE</li>
+<li>驗證</li>
+</ul>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>data abstraction</li>
+<li>algorithm specification<br>資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？<br>演算法就是解決問題的方法，跟你是哪一種語言沒有關係</li>
+</ul>
+<h1 id="最簡單的演算法-sort"><a href="#最簡單的演算法-sort" class="headerlink" title="最簡單的演算法 sort"></a>最簡單的演算法 sort</h1><ul>
+<li><p>selection sort<br>每一次從一堆數字取最大的出來 放在第一個位置…第二個位置<br>那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的</p>
+</li>
+<li><p>bubble sort</p>
+</li>
+<li><p>quick sort</p>
+</li>
+</ul>
+<h1 id="以數字為例作搜索-binary-search"><a href="#以數字為例作搜索-binary-search" class="headerlink" title="以數字為例作搜索 binary search"></a>以數字為例作搜索 binary search</h1><p>和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了</p>
+<h1 id="遞迴演算法"><a href="#遞迴演算法" class="headerlink" title="遞迴演算法"></a>遞迴演算法</h1><ul>
+<li>n 階層</li>
+<li>乘法</li>
+</ul>
+<h1 id="作業"><a href="#作業" class="headerlink" title="作業"></a>作業</h1><ul>
+<li>試著用 recursive 做 abc 排列組合</li>
+<li>試著用 for 做 abc 排列組合</li>
+</ul>
+<h1 id="performance-evaluation"><a href="#performance-evaluation" class="headerlink" title="performance evaluation"></a>performance evaluation</h1><ul>
+<li>無關機器的評估</li>
+<li>有機器的評估</li>
+</ul>
+<h1 id="效能分析"><a href="#效能分析" class="headerlink" title="效能分析"></a>效能分析</h1><p>這邊蠻重視數學的<br>log？ n 次方程式？</p>
+<ul>
+<li><p>時間複雜度<br>編譯時間+input 所影響的時間<br>一般來講就是程式預計要走幾步</p>
+<ul>
+<li>大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限；</li>
+<li>大寫的希臘字母 Ω (Omega)函數，代表下限；</li>
+<li>大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限<br>那我們通常用的是 O<br>f(n)&lt;=cg(n)</li>
+</ul>
+</li>
+<li><p>空間複雜度(佔用多少記憶體)<br>code 的大小+input 的量所影響的空間</p>
+</li>
+</ul>
+<h1 id="陣列"><a href="#陣列" class="headerlink" title="陣列"></a>陣列</h1><p>定義：一組索引(index)和值(value)的集合<br>資料結構：一個索引對應一個值<br>實作：在電腦裡面用連續空間來存放<br>應用例子：矩陣、多項式、字串</p>
+<h1 id="stack-a-last-in-first-out-list"><a href="#stack-a-last-in-first-out-list" class="headerlink" title="stack: a last in first out list"></a>stack: a last in first out list</h1><p>定義：有限的元素<br>實作：用陣列來實作<br>應用例子：老鼠走迷宮</p>
+<h1 id="queue-a-first-in-first-out-list"><a href="#queue-a-first-in-first-out-list" class="headerlink" title="queue: a first in first out list"></a>queue: a first in first out list</h1><p>定義：有限的元素 多了兩個變數指向 font 前面 rear 後面<br>實作：用陣列來實作<br>應用例子：job scheduling</p>
+<h1 id="circular-queue"><a href="#circular-queue" class="headerlink" title="circular queue"></a>circular queue</h1><p>定義：實質上還是一長列的 queue<br>實作：用 queue 實現<br>好處：充分利用空間</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/15/%E5%B0%88%E6%A1%88%E4%BA%A4%E4%BB%98%E7%9B%B8%E9%97%9C/" rel="prev" title="專案交付相關">
+                  <i class="fa fa-chevron-left"></i> 專案交付相關
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/05/21/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/" rel="next" title="字元編碼">
+                  字元編碼 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

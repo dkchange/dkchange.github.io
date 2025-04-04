@@ -13,67 +13,39 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '複製',
-      copy_success: '複製成功',
-      copy_failure: '複製失敗'
-    },
-    sidebarPadding: 40
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
 
-  <meta name="description" content="安裝laravel本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提VirtualBox沒有command line的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在AWS的免費EC2方案，受限於電腦配備，虛擬機行不通、然後docker容器也行不通，所以認命重頭裝QQBTW 簡中的laravel文檔，翻譯得比繁中的完整喔https:&#x2F;&#x2F;learnku.com">
+  <meta name="description" content="安裝 laravel本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提 VirtualBox 沒有 command line 的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在 AWS 的免費 EC2 方案，受限於電腦配備，虛擬機行不通、然後 docker 容器也行不通，所以認命重頭裝 QQBTW 簡中的 laravel 文檔，翻譯得比繁中的完整喔https">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝laravel">
 <meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2019&#x2F;11&#x2F;04&#x2F;%E5%AE%89%E8%A3%9Dlaravel&#x2F;index.html">
 <meta property="og:site_name" content="蛋粒個人網誌">
-<meta property="og:description" content="安裝laravel本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提VirtualBox沒有command line的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在AWS的免費EC2方案，受限於電腦配備，虛擬機行不通、然後docker容器也行不通，所以認命重頭裝QQBTW 簡中的laravel文檔，翻譯得比繁中的完整喔https:&#x2F;&#x2F;learnku.com">
+<meta property="og:description" content="安裝 laravel本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提 VirtualBox 沒有 command line 的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在 AWS 的免費 EC2 方案，受限於電腦配備，虛擬機行不通、然後 docker 容器也行不通，所以認命重頭裝 QQBTW 簡中的 laravel 文檔，翻譯得比繁中的完整喔https">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;images&#x2F;%E6%88%90%E5%8A%9F.PNG">
-<meta property="og:updated_time" content="2020-01-20T10:02:06.594Z">
+<meta property="og:updated_time" content="2022-01-03T06:47:00.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;images&#x2F;%E6%88%90%E5%8A%9F.PNG">
+
 
 <link rel="canonical" href="http://dkchange.github.io/2019/11/04/%E5%AE%89%E8%A3%9Dlaravel/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
   };
 </script>
 
@@ -85,92 +57,136 @@
 
 
 
-
-
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">蛋粒個人網誌</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切換導航欄">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
-  </li>
-        <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
 
-  </li>
-        <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
-
-  </li>
-  </ul>
-
-</nav>
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-laravel"><span class="nav-number">1.</span> <span class="nav-text">安裝 laravel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝過程"><span class="nav-number">2.</span> <span class="nav-text">安裝過程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最後"><span class="nav-number">3.</span> <span class="nav-text">最後</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#資料庫設定"><span class="nav-number">4.</span> <span class="nav-text">資料庫設定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#laravel-套件開發"><span class="nav-number">5.</span> <span class="nav-text">laravel 套件開發</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -179,22 +195,20 @@
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/dkchange" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/11/04/%E5%AE%89%E8%A3%9Dlaravel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -206,66 +220,51 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蛋粒個人網誌">
     </span>
+
+    
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           安裝laravel
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-11-04 17:36:44" itemprop="dateCreated datePublished" datetime="2019-11-04T17:36:44+11:00">2019-11-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/11/04/%E5%AE%89%E8%A3%9Dlaravel/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/04/安裝laravel/" itemprop="commentCount"></span>
-    </a>
-  </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2019-11-04 17:36:44" itemprop="dateCreated datePublished" datetime="2019-11-04T17:36:44+08:00">2019-11-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-01-03 14:47:00" itemprop="dateModified" datetime="2022-01-03T14:47:00+08:00">2022-01-03</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">後端路線</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index"><span itemprop="name">framework</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index"><span itemprop="name">laravel</span></a>
+        </span>
+    </span>
+
   
-  
+</div>
 
         </div>
       </header>
@@ -274,9 +273,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="安裝laravel"><a href="#安裝laravel" class="headerlink" title="安裝laravel"></a>安裝laravel</h1><p>本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提VirtualBox沒有command line的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在AWS的免費EC2方案，受限於電腦配備，虛擬機行不通、然後docker容器也行不通，所以認命重頭裝QQ<br>BTW 簡中的laravel文檔，翻譯得比繁中的完整喔<a href="https://learnku.com/docs/laravel/5.7" target="_blank" rel="noopener">https://learnku.com/docs/laravel/5.7</a></p><a id="more"></a>
+        <h1 id="安裝-laravel"><a href="#安裝-laravel" class="headerlink" title="安裝 laravel"></a>安裝 laravel</h1><p>本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提 VirtualBox 沒有 command line 的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在 AWS 的免費 EC2 方案，受限於電腦配備，虛擬機行不通、然後 docker 容器也行不通，所以認命重頭裝 QQ<br>BTW 簡中的 laravel 文檔，翻譯得比繁中的完整喔<a href="https://learnku.com/docs/laravel/5.7" target="_blank" rel="noopener">https://learnku.com/docs/laravel/5.7</a></p>
+<p><a href="http://kejyun.github.io/Laravel-5-Learning-Notes-Books/" target="_blank" rel="noopener">http://kejyun.github.io/Laravel-5-Learning-Notes-Books/</a><br><a href="https://github.com/oomusou/oomusou.github.io/issues/1" target="_blank" rel="noopener">https://github.com/oomusou/oomusou.github.io/issues/1</a></p>
 <h1 id="安裝過程"><a href="#安裝過程" class="headerlink" title="安裝過程"></a>安裝過程</h1><p>就是中間有報錯上網查，缺什麼裝什麼</p>
 <pre><code>sudo apt-get update
 sudo apt install mariadb-server
@@ -299,6 +297,9 @@ sudo apt-get install php7.2-mysql
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
+composer self-update
+更新composer
+
 composer global require laravel/installer
 上面這行有報錯的話要給權限
 
@@ -308,15 +309,16 @@ export PATH=~/.composer/vendor/bin:$PATH
 這樣以ubuntu登入時就可以使用laravel這個指令
 cd /var/www/html/
 laravel new myproject</code></pre><p>之後進<code>/etc/nginx/sites-enabled/default</code></p>
-<p>把try_files最後的404改成入口文件，<a href="https://www.hi-linux.com/posts/53878.html" target="_blank" rel="noopener">詳情請看</a></p>
+<p>把 try_files 最後的 404 改成入口文件，<a href="https://www.hi-linux.com/posts/53878.html" target="_blank" rel="noopener">詳情請看</a></p>
 <pre><code>try_files $uri $uri/ /index.php?$query_string;
 設定nginx的網站根目錄
 root /var/www/html/myproject/public/;
 還有設定php7.2-fpm的位置
-fastcgi_pass unix:/run/php/php7.2-fpm.sock;    </code></pre><p>然後重啟nginx</p>
-<pre><code>systemctl restart nginx</code></pre><p>之後進<code>/etc/nginx/nginx.conf</code>看看nginx的user是誰，改網站目錄</p>
+fastcgi_pass unix:/run/php/php7.2-fpm.sock;</code></pre><p>然後重啟 nginx</p>
+<pre><code>systemctl restart nginx</code></pre><p>之後進<code>/etc/nginx/nginx.conf</code>看看 nginx 的 user 是誰，改網站目錄</p>
 <pre><code>chown -R www-data:www-data /var/www/html/myproject</code></pre><h1 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h1><p><img src="/images/%E6%88%90%E5%8A%9F.PNG" alt="成功"></p>
 <h1 id="資料庫設定"><a href="#資料庫設定" class="headerlink" title="資料庫設定"></a>資料庫設定</h1><p>網路上教學清楚<br><a href="https://gist.github.com/vicgonvt/cd0431a5cdc043ebab7f4954f7b4d471" target="_blank" rel="noopener">https://gist.github.com/vicgonvt/cd0431a5cdc043ebab7f4954f7b4d471</a></p>
+<h1 id="laravel-套件開發"><a href="#laravel-套件開發" class="headerlink" title="laravel 套件開發"></a>laravel 套件開發</h1><p><a href="http://kejyun.github.io/Laravel-5-Learning-Notes-Books/package/development/package-development-README.html" target="_blank" rel="noopener">http://kejyun.github.io/Laravel-5-Learning-Notes-Books/package/development/package-development-README.html</a></p>
 
     </div>
 
@@ -324,7 +326,7 @@ fastcgi_pass unix:/run/php/php7.2-fpm.sock;    </code></pre><p>然後重啟nginx
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/laravel/" rel="tag"># laravel</a>
           </div>
@@ -332,167 +334,76 @@ fastcgi_pass unix:/run/php/php7.2-fpm.sock;    </code></pre><p>然後重啟nginx
         
 
           <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/02/%E8%A9%B2%E8%A8%98%E5%8F%96%E7%9A%84%E6%95%99%E8%A8%93/" rel="next" title="該記取的教訓">
+            <div class="post-nav-item">
+                <a href="/2019/11/02/%E8%A9%B2%E8%A8%98%E5%8F%96%E7%9A%84%E6%95%99%E8%A8%93/" rel="prev" title="該記取的教訓">
                   <i class="fa fa-chevron-left"></i> 該記取的教訓
                 </a>
             </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/04/laravel%E4%BD%BF%E7%94%A8artisan/" rel="prev" title="laravel使用artisan">
+            <div class="post-nav-item">
+                <a href="/2019/11/04/laravel%E4%BD%BF%E7%94%A8artisan/" rel="next" title="laravel使用artisan">
                   laravel使用artisan <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
-      </footer>
-    
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
-    
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目錄
-        </li>
-        <li class="sidebar-nav-overview">
-          本站概要
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝laravel"><span class="nav-number">1.</span> <span class="nav-text">安裝laravel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝過程"><span class="nav-number">2.</span> <span class="nav-text">安裝過程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最後"><span class="nav-number">3.</span> <span class="nav-text">最後</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#資料庫設定"><span class="nav-number">4.</span> <span class="nav-text">資料庫設定</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Stanley Ke"
-    src="/images/avatar.gif">
-  <p class="site-author-name" itemprop="name">Stanley Ke</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">24</span>
-          <span class="site-state-item-name">文章</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">分類</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">29</span>
-        <span class="site-state-item-name">標籤</span></a>
-      </div>
-  </nav>
-</div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dkchange.nctu.me/" title="https:&#x2F;&#x2F;dkchange.nctu.me" rel="noopener" target="_blank">作品</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
+      
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
   </div>
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -510,46 +421,18 @@ fastcgi_pass unix:/run/php/php7.2-fpm.sock;    </code></pre><p>然後重啟nginx
 
 
 
+  
+
+
+
+
+
 
 
 
   
 
   
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dkchange.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  function loadComments() {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "http://dkchange.github.io/2019/11/04/%E5%AE%89%E8%A3%9Dlaravel/",
-            identifier: "2019/11/04/安裝laravel/",
-            title: "安裝laravel"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://dkchange.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  }
-    window.addEventListener('load', loadComments, false);
-</script>
 
 </body>
 </html>

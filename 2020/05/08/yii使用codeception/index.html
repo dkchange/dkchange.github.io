@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言中文 codeception 的基本設定原文 codeception 的基本設定开始之前一定要跟教学建一个测试专用的资料库，因為测试用的资料都会被清除，除非你想要内测的资料每次都被清除，否则只好照做参考惨案:測試資料都被刪光了https:&#x2F;&#x2F;segmentfault.com&#x2F;u&#x2F;zebrayoung&#x2F;articles?sort=vote codeception 是一套独立的测试框架，可跟其它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yii使用codeception">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;05&#x2F;08&#x2F;yii%E4%BD%BF%E7%94%A8codeception&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言中文 codeception 的基本設定原文 codeception 的基本設定开始之前一定要跟教学建一个测试专用的资料库，因為测试用的资料都会被清除，除非你想要内测的资料每次都被清除，否则只好照做参考惨案:測試資料都被刪光了https:&#x2F;&#x2F;segmentfault.com&#x2F;u&#x2F;zebrayoung&#x2F;articles?sort=vote codeception 是一套独立的测试框架，可跟其它">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-07-30T10:11:28.905Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/05/08/yii%E4%BD%BF%E7%94%A8codeception/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>yii使用codeception | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何编写测试用例"><span class="nav-number">2.</span> <span class="nav-text">如何编写测试用例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Waterfall-Agile-DevOps"><span class="nav-number">2.1.</span> <span class="nav-text">Waterfall Agile DevOps</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#為什么要写测试"><span class="nav-number">3.</span> <span class="nav-text">為什么要写测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哪些类和方法要编写单元测试？"><span class="nav-number">3.1.</span> <span class="nav-text">哪些类和方法要编写单元测试？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代碼覆蓋率（Code-coverage）"><span class="nav-number">4.</span> <span class="nav-text">代碼覆蓋率（Code coverage）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依单位来划分测试"><span class="nav-number">5.</span> <span class="nav-text">依单位来划分测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#验收测试"><span class="nav-number">5.1.</span> <span class="nav-text">验收测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能测试"><span class="nav-number">5.2.</span> <span class="nav-text">功能测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">5.3.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api-测试"><span class="nav-number">5.4.</span> <span class="nav-text">api 测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归测试"><span class="nav-number">6.</span> <span class="nav-text">回归测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设定"><span class="nav-number">7.</span> <span class="nav-text">设定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断言"><span class="nav-number">8.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调试"><span class="nav-number">9.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行机制"><span class="nav-number">10.</span> <span class="nav-text">运行机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-测试"><span class="nav-number">11.</span> <span class="nav-text">yii 测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录底下有个-codeception-yml"><span class="nav-number">12.</span> <span class="nav-text">/目录底下有个 codeception.yml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fixtures"><span class="nav-number">13.</span> <span class="nav-text">fixtures</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当一个方法-code-很多，裡面的-code-没有相依，不想因為其中一个断言失败而中断"><span class="nav-number">14.</span> <span class="nav-text">当一个方法 code 很多，裡面的 code 没有相依，不想因為其中一个断言失败而中断</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标记哪些方法已经被测试"><span class="nav-number">15.</span> <span class="nav-text">标记哪些方法已经被测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#啟用模块"><span class="nav-number">16.</span> <span class="nav-text">啟用模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试器"><span class="nav-number">17.</span> <span class="nav-text">测试器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试报告"><span class="nav-number">18.</span> <span class="nav-text">测试报告</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-faker"><span class="nav-number">19.</span> <span class="nav-text">使用 faker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-feature"><span class="nav-number">20.</span> <span class="nav-text">使用 feature</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dataprovider"><span class="nav-number">21.</span> <span class="nav-text">dataprovider</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/05/08/yii%E4%BD%BF%E7%94%A8codeception/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          yii使用codeception
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-05-08 09:09:35" itemprop="dateCreated datePublished" datetime="2020-05-08T09:09:35+08:00">2020-05-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://juejin.im/entry/588049612f301e00697dcb6a" target="_blank" rel="noopener">中文 codeception 的基本設定</a><br><a href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-testing.md" target="_blank" rel="noopener">原文 codeception 的基本設定</a><br>开始之前一定要跟教学建一个测试专用的资料库，因為测试用的资料都会被清除，除非你想要内测的资料每次都被清除，否则只好照做<br><a href="https://segmentfault.com/a/1190000008157520?utm_source=tag-newest" target="_blank" rel="noopener">参考惨案:測試資料都被刪光了</a><br><a href="https://segmentfault.com/u/zebrayoung/articles?sort=vote" target="_blank" rel="noopener">https://segmentfault.com/u/zebrayoung/articles?sort=vote</a></p>
+<p>codeception 是一套独立的测试框架，可跟其它 php 框架做搭配，在这我们和 yii 做搭配<br>在这裡推荐 kk 的教学文章，个人觉得中文教学难找，他写得很详细，应该说我觉得他写的比官网还要详细，是我看错官网吗<br>然后绝对不要再生产环境做测试<br><a href="https://codeception.com/docs/" target="_blank" rel="noopener">原文官方文檔</a><br><a href="https://github.com/kk8686/xoa" target="_blank" rel="noopener">KK 測試範例</a><br><a href="http://www.kkh86.com/it/codeception/guide-leaning-depends.html" target="_blank" rel="noopener">KK 中文技術文檔</a></p>
+<h1 id="如何编写测试用例"><a href="#如何编写测试用例" class="headerlink" title="如何编写测试用例"></a>如何编写测试用例</h1><p>有什么比较好的门道，平衡覆盖率和收益<br><a href="https://www.zhihu.com/question/51558124" target="_blank" rel="noopener">如何编写测试用例</a><br>底下的留言有正交表的相關資訊，那由於學習正交表相關理論需要時間，我目前還是用窮舉的方式來做測試<br><a href="https://testerhome.com/topics/11744" target="_blank" rel="noopener">接口测试用例到底应该怎么写</a></p>
+<h2 id="Waterfall-Agile-DevOps"><a href="#Waterfall-Agile-DevOps" class="headerlink" title="Waterfall Agile DevOps"></a>Waterfall Agile DevOps</h2><p>软件开发并的管理流程 与其框架 实践方法</p>
+<ul>
+<li>Waterfall →CMMI</li>
+<li>Agile → Scrum</li>
+<li>Agile → xp</li>
+<li>Agile → Kanban</li>
+<li>Agile → Lean</li>
+<li>Agile → xp →TDD</li>
+<li>DevOps →TDD<br>都有软件开发、测试和部署的阶段。<br>然而，敏捷流程在这三个阶段之后会终止。<br>相反，DevOps 包括后续持续的运维。</li>
+</ul>
+<p>由以上方法衍生出</p>
+<ul>
+<li>TDD：測試驅動開發（Test-Driven Development）</li>
+<li>BDD：行為驅動開發（Behavior Driven Development）</li>
+<li>ATDD：驗收測試驅動開發（Acceptance Test Driven Development）</li>
+<li>DDD：領域驅動開發（Domain Drive Design）</li>
+</ul>
+<h1 id="為什么要写测试"><a href="#為什么要写测试" class="headerlink" title="為什么要写测试"></a>為什么要写测试</h1><p>即使是一个不成功的项目也是会有规模增长以及复杂度的增加的<br>当项目一大，你所写的 code 可能很多地方都有用到，然而人是健忘的，只有在写 code 的当下才会清楚这代码和其他 code 的耦合，那我们能做的就是在当下写测试，确保修改之后的测试报错，能让你回想到写 code 当下的逻辑，避免真正产品上限之后出现改 a 错 b 的情形<br>手动能测试的有限，每次改完都要在手动重测一次很累，尔且一定会有测试没复盖到的地方<br>测试代码并不能将所有角度都全部测试，因为程序员可能会写漏一些角度的测试代码<br>比如数据搜索的测试，搜索条件组合花样百出，如果 1000 个商品分类里有其中 3 个有问题，那为了准确找出这些问题，程序员是不是要写 1000 种不同商品分类的测试代码？<br>这不现实，测试代码确实无法完美地测试所有问题，但大部分问题已经写好测试代码后，一旦修改业务逻辑，你不再需要人工访问这里那里的页面测试刷新测试刷新</p>
+<h2 id="哪些类和方法要编写单元测试？"><a href="#哪些类和方法要编写单元测试？" class="headerlink" title="哪些类和方法要编写单元测试？"></a>哪些类和方法要编写单元测试？</h2><p>一切其实都是看性价比，你觉得值了就写，不值了就别写<br>例如 临时的/少调用的/非核心的类就可以不必为它写测试方法<br>你觉得哪些容易出错，后期修改容易造成误差的内容嘛，就测那些好了。不然你测得再多，有的本身就很稳定，永远不出错，你这个测试代码可能就白写了，自己学会把握哦</p>
+<h1 id="代碼覆蓋率（Code-coverage）"><a href="#代碼覆蓋率（Code-coverage）" class="headerlink" title="代碼覆蓋率（Code coverage）"></a>代碼覆蓋率（Code coverage）</h1><p><a href="https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" target="_blank" rel="noopener">基本准则参考 wiki</a></p>
+<ul>
+<li>函式覆蓋率（Function coverage）：有呼叫到程式中的每一個函式（或副程式）嗎？</li>
+<li>指令覆蓋率（Statement coverage）：函式中每一行都執行一次了吗？</li>
+<li>判斷覆蓋率（Decision coverage）：有 if 的情况，那 true 和 false 这两个有满足吗</li>
+<li>條件覆蓋率（Condition coverage）：if 裡面所有的条件都有 true 和 false 都考虑到吗</li>
+<li>條件/判斷覆蓋率（Condition/decision coverage）：需同時滿足判斷覆蓋率和條件覆蓋率，所有排列组合。</li>
+<li>其他还有一些准则请参考 wiki</li>
+</ul>
+<h1 id="依单位来划分测试"><a href="#依单位来划分测试" class="headerlink" title="依单位来划分测试"></a>依单位来划分测试</h1><p>codeception 划分了几种测试，那测试的划分也是十分重要，怎样才算单元？<br><a href="https://segmentfault.com/q/1010000005160792?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/q/1010000005160792?utm_source=tag-newest</a><br>PHP 原生的对象方法理解为单元,没有过多层次的调用封装的<br>开发者自己将业务串联起来一起测试的这就是功能测试</p>
+<h2 id="验收测试"><a href="#验收测试" class="headerlink" title="验收测试"></a>验收测试</h2><p>验收测试则是主要针对页面做测试<br>模拟使用者使用浏览器的测试，不限定你后端的语言，你就是个单纯的使用者</p>
+<h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><p>和验受测试很像，没有模拟使用者的功能测试</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试主要针对函数/方法做测试<br>根據 SRP 原則,就是一个个 class 做自己的事,测试裡头的每个 function</p>
+<h2 id="api-测试"><a href="#api-测试" class="headerlink" title="api 测试"></a>api 测试</h2><h1 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h1><p>检验软件原有功能在修改后是否保持完整。</p>
+<h1 id="设定"><a href="#设定" class="headerlink" title="设定"></a>设定</h1><p>文件配置这个我再官网找不到相关说明，请在 kk 的文章找相关讯息<br>如果你想在本地开发时使用自己特殊的路径和数据库信息配置，但是又不想影响其他开发成员，以及在测试机上不使用你自己的配置来运行</p>
+<p>dist 配置支持<br>只要知道“codeception.dist.yml 这个配置文件如果存在的话，会与 codeception.yml 进行合并，并且两者存在相同配置时会优先使用 codeception.yml 的“</p>
+<p>你只要别提交 codeception.yml 到代码仓库上就行了</p>
+<h1 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h1><p>所谓的断言就是<br>我判断这个结果是<br>我敢断言这个结果是<br>既然有了 assertTrue 这个几乎万能的断言，为什么还会有那些别的断言呢？–其实是为了提高测试报告的精准性。<br>例如<br>$this-&gt;assertContains($id, [1,2,3]);<br>或者<br>每一个断言方法的最后一个参数都叫做$message，并且是一个可选参数<br>$this-&gt;assertTrue(in_array($id, [1, 2, 3]), ‘无效的 ID’); //这里传了第 2 个参数，一个用于表达错误的消息字符串<br>让你的测试讯息能清楚些</p>
+<h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><p>有的时候多个测试方法执行时，会影响到下一个，例如 var_dump()会影响,下一个测试的请求<br>reponse，他就会说 header 已经送过了，这样什么东西都看不到，此时最好是用 codeception 提供的方法<br>codecept_debug(‘abc’);<br>运行的同时也要加上参数，这样就可以 debug 了，不用像 var_dump()写还还要删掉<br>php E:\codecept.phar run unit –debug<br>php E:\codecept.phar run unit -d</p>
+<h1 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h1><p>我写 api 测试时，只要是 public 的方法都会被运行，命名并没有强制规范，之后再来看看<br>每一个方法只要裡面有其中一个断言失败，那么整个方法就会中断，直接换测下一个方法<br>获取当前测试的方法可以用$this-&gt;getName()<br><a href="https://github.com/Codeception/Codeception/issues/1251" target="_blank" rel="noopener">https://github.com/Codeception/Codeception/issues/1251</a><br>//那因為版本的不同，这边就要看官网写的比较详细<br><a href="https://codeception.com/docs/07-AdvancedUsage" target="_blank" rel="noopener">https://codeception.com/docs/07-AdvancedUsage</a><br>Codeception\Scenario is also available in Actor classes and StepObjects. You can access it with $this-&gt;getScenario().<br>_before 和_after<br>可以与其做搭配<br>如果测试的方法有先后关西，就要透过注解@depends testxxx 来达成，也就是假如 a()失败了 b()就没必要做下去<br>依赖关系只会在运行整个测试用例的时候生效<br>每次运行一个测试方法,测试用例都会被重新 new 一次,那么私有属性就变回默认值了</p>
+<h1 id="yii-测试"><a href="#yii-测试" class="headerlink" title="yii 测试"></a>yii 测试</h1><p>yii 官方推荐 codecept,然而 codecept 和 test 设定档互相有冲突，所以必须要分开设定<br><a href="https://github.com/yiisoft/yii2-app-advanced/issues/346" target="_blank" rel="noopener">https://github.com/yiisoft/yii2-app-advanced/issues/346</a></p>
+<h1 id="目录底下有个-codeception-yml"><a href="#目录底下有个-codeception-yml" class="headerlink" title="/目录底下有个 codeception.yml"></a>/目录底下有个 codeception.yml</h1><p>裡面会 include 需要的测试档案</p>
+<p><a href="https://github.com/Codeception/Codeception/issues/5017" target="_blank" rel="noopener">https://github.com/Codeception/Codeception/issues/5017</a></p>
+<p>我的问题也是 autoload 的问题<br>因為专案一开始初始化叫做 admin/tests<br>之后又改成 mapi/tests<br>PHP Fatal error: Trait ‘mapi\tests_generated\FunctionalTesterActions’ not found in /var/www/mapi/tests/_support/FunctionalTester.php on line 21<br>就解决了</p>
+<p>如果你是 yii advenced<br><a href="https://codeception.com/docs/10-APITesting#REST-API" target="_blank" rel="noopener">https://codeception.com/docs/10-APITesting#REST-API</a><br>就近进到应用程式资料夹，再下指令<br>../vendor/bin/codecept generate:suite api<br>这样生成的档案才会对应到正确的资料夹<br><a href="https://www.cnblogs.com/cfYu/p/10531552.html" target="_blank" rel="noopener">https://www.cnblogs.com/cfYu/p/10531552.html</a><br>接著就照上面的设置打指令<br>../vendor/bin/codecept generate:cest api AgentCest</p>
+<p>跑测试<br>../vendor/bin/codecept run api AgentCest</p>
+<p>../vendor/bin/codecept run api AgentCest:testXXX</p>
+<p>如果测试的时候遇到，测试的方法不支援，那可能是模组没有载入，我们可以在刚刚建好的 suite 裡面加载<br>例如我运行<br>$I-&gt;fail(‘list contain agent not belong to you’);<br>显示不支援，所以必须在模下面添加 Asserts，至于我怎知道是大写还是小写 ASSERTS,因為我原本填大写找不到，只好去 github 看原码的 class 是大写还是小写…</p>
+<p>actor: ApiTester<br>modules:<br>enabled: - \mapi\tests\Helper\Api - REST:<br>depends: Yii2<br>part: Json - Asserts</p>
+<h1 id="fixtures"><a href="#fixtures" class="headerlink" title="fixtures"></a>fixtures</h1><p>使用这功能真的会清空资料库，请小心<br><a href="https://www.yiichina.com/tutorial/694" target="_blank" rel="noopener">https://www.yiichina.com/tutorial/694</a><br><a href="https://www.yiiframework.com/doc/guide/2.0/zh-cn/test-fixtures" target="_blank" rel="noopener">https://www.yiiframework.com/doc/guide/2.0/zh-cn/test-fixtures</a><br><a href="https://cloud.tencent.com/developer/section/1494451" target="_blank" rel="noopener">https://cloud.tencent.com/developer/section/1494451</a></p>
+<p>看解释：<br>使用场景： 在我们开发或者测试的时候，可能会需要某种特定状态下的数据，比如我想要用户刚下订单还未支付这个状态，那木我们就需要手动进行添加购物车、下订单等惭怍，但是 fixtures 可以直接将这个状态保存下来，如果需要使用这个状态，只要命令行里面加载一下对应的 fixtures 就好了。（待续）</p>
+<h1 id="当一个方法-code-很多，裡面的-code-没有相依，不想因為其中一个断言失败而中断"><a href="#当一个方法-code-很多，裡面的-code-没有相依，不想因為其中一个断言失败而中断" class="headerlink" title="当一个方法 code 很多，裡面的 code 没有相依，不想因為其中一个断言失败而中断"></a>当一个方法 code 很多，裡面的 code 没有相依，不想因為其中一个断言失败而中断</h1><p>use \Codeception\Specify; 这个 Trait<br>$this-&gt;specify(‘测试目标的说明’, $具体的测试工作代码函数)<br>将 code 包成一块一块的</p>
+<h1 id="标记哪些方法已经被测试"><a href="#标记哪些方法已经被测试" class="headerlink" title="标记哪些方法已经被测试"></a>标记哪些方法已经被测试</h1><p>写过测试的 code 要增加@test 标记,并说明测试用例是哪个命名空间</p>
+<h1 id="啟用模块"><a href="#啟用模块" class="headerlink" title="啟用模块"></a>啟用模块</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">modules:</span></span><br><span class="line"><span class="attr">enabled:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">\mapi\tests\Helper\Api</span></span><br><span class="line"><span class="attr">  - REST:</span></span><br><span class="line"><span class="attr">      depends:</span> <span class="string">Yii2</span></span><br><span class="line"><span class="attr">      part:</span> <span class="string">Json</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">Asserts</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="测试器"><a href="#测试器" class="headerlink" title="测试器"></a>测试器</h1><p>将各个模块合并成了一个类</p>
+<p>codecept build<br>之后就会出现一个 tester 类，那在运行测试时，这个类会备注入进各个方法</p>
+<h1 id="测试报告"><a href="#测试报告" class="headerlink" title="测试报告"></a>测试报告</h1><p>运行测试失败之后会在_output 产生测试报告</p>
+<h1 id="使用-faker"><a href="#使用-faker" class="headerlink" title="使用 faker"></a>使用 faker</h1><p>失败中….<br>為了生出测试用的资料，必须要借用这功能来产出一些随机字串和假资料<br>use faker<br><a href="https://github.com/yiisoft/yii2/issues/8692" target="_blank" rel="noopener">https://github.com/yiisoft/yii2/issues/8692</a></p>
+<p><a href="https://github.com/yiisoft/yii2-app-advanced/issues/172" target="_blank" rel="noopener">https://github.com/yiisoft/yii2-app-advanced/issues/172</a></p>
+<h1 id="使用-feature"><a href="#使用-feature" class="headerlink" title="使用 feature"></a>使用 feature</h1><p>清空资料库和载入资料库</p>
+<p>记得要</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- Yii2:</span></span><br><span class="line"><span class="attr">    part:</span> <span class="string">[orm,</span> <span class="string">fixtures]</span></span><br></pre></td></tr></table></figure>
+
+<p>切记，使用 feature 会清空资料库，所以一定要在自己测试的资料库执行，也就是说<br>不建议执行 console 的<br>loadDATA<br>yii fixture/load Agent<br>然后你就会看到非测试的资料空清空之后，加上你指定在_data 的资料<br>这不是走测试资料库<br>会清空掉内测共用资料库，很恐怖<br>不是我们想要的结果</p>
+<p>Set public $dataFile = <strong>DIR</strong> . ‘/data/init_login.php’; inside UserFixture</p>
+<p>测试指令可行，test alias 路径也可行<br>参数-d 代表-debug<br>../vendor/bin/codecept run api AgentCest -d</p>
+<h1 id="dataprovider"><a href="#dataprovider" class="headerlink" title="dataprovider"></a>dataprovider</h1><p>dataprovider 可以透過程式的註解將資料帶進我的要測試的 function 裡面，但是有個缺點是他資料只能寫死，因為這個 function 跑在整個測試之前，<br>所以最後我還是靠迴圈自己來跑動態的資料測試</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/30/%E4%BD%BF%E7%94%A8postman/" rel="prev" title="使用postman">
+                  <i class="fa fa-chevron-left"></i> 使用postman
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/05/08/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="next" title="密码学">
+                  密码学 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

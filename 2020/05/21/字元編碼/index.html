@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言http:&#x2F;&#x2F;vito-note.blogspot.com&#x2F;2012&#x2F;01&#x2F;blog-post_86.htmlhttp:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2007&#x2F;10&#x2F;ascii_unicode_and_utf-8.html平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字元編碼">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;05&#x2F;21&#x2F;%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言http:&#x2F;&#x2F;vito-note.blogspot.com&#x2F;2012&#x2F;01&#x2F;blog-post_86.htmlhttp:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2007&#x2F;10&#x2F;ascii_unicode_and_utf-8.html平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2023-03-18T02:29:13.914Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/05/21/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>字元編碼 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unicode"><span class="nav-number">2.</span> <span class="nav-text">Unicode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-進制"><span class="nav-number">2.1.</span> <span class="nav-text">16 進制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unicode-衍生出的編碼方式"><span class="nav-number">2.2.</span> <span class="nav-text">Unicode 衍生出的編碼方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-8"><span class="nav-number">2.2.1.</span> <span class="nav-text">UTF-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-16"><span class="nav-number">2.2.2.</span> <span class="nav-text">UTF-16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-32"><span class="nav-number">2.2.3.</span> <span class="nav-text">UTF-32</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#資料庫字元編碼相關"><span class="nav-number">3.</span> <span class="nav-text">資料庫字元編碼相關</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-the-difference-between-utf8-general-ci-and-utf8-unicode-ci"><span class="nav-number">3.1.</span> <span class="nav-text">What’s the difference between utf8_general_ci and utf8_unicode_ci?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相關技巧"><span class="nav-number">4.</span> <span class="nav-text">相關技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-進位的轉換"><span class="nav-number">4.1.</span> <span class="nav-text">16 進位的轉換</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看"><span class="nav-number">4.2.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#亂碼轉換"><span class="nav-number">4.3.</span> <span class="nav-text">亂碼轉換</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/05/21/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字元編碼
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-05-21 14:47:06" itemprop="dateCreated datePublished" datetime="2020-05-21T14:47:06+08:00">2020-05-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-03-18 10:29:13" itemprop="dateModified" datetime="2023-03-18T10:29:13+08:00">2023-03-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%BB%E4%BD%95%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">任何路線</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="http://vito-note.blogspot.com/2012/01/blog-post_86.html" target="_blank" rel="noopener">http://vito-note.blogspot.com/2012/01/blog-post_86.html</a><br><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a><br>平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。<br>每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950</p>
+<h1 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h1><p>但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準<br>它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。</p>
+<h2 id="16-進制"><a href="#16-進制" class="headerlink" title="16 進制"></a>16 進制</h2><p>因為用二進制來對應所有的字實在太長<br>汉字严的 Unicode 是十六进制数 4E25<br>转换成二进制数足足有 15 位（100111000100101）<br>所以 unicode 採用 16 進制來做對應<br>Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。<br>你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母<br>大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間<br>\u4e2d\u6587 這是中文兩個字鎖對應的 unicode</p>
+<h2 id="Unicode-衍生出的編碼方式"><a href="#Unicode-衍生出的編碼方式" class="headerlink" title="Unicode 衍生出的編碼方式"></a>Unicode 衍生出的編碼方式</h2><p><a href="https://www.branah.com/unicode-converter" target="_blank" rel="noopener">https://www.branah.com/unicode-converter</a></p>
+<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号<br>\xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8</p>
+<h3 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h3><p>UTF-16 是 Unicode 的实现方式之一，字符用两个字节或四个字节表示<br>\u{4e2d}\u{6587} 這是中文兩個字鎖對應的 UTF-16</p>
+<h3 id="UTF-32"><a href="#UTF-32" class="headerlink" title="UTF-32"></a>UTF-32</h3><p>UTF-32 是 Unicode 的实现方式之一，字符用四个字节表示</p>
+<p>那由以上來看，utf-8 要筆其他兩種方式都省空間<br>U+00004e2dU+00006587 這是中文兩個字鎖對應的 UTF-16</p>
+<h1 id="資料庫字元編碼相關"><a href="#資料庫字元編碼相關" class="headerlink" title="資料庫字元編碼相關"></a>資料庫字元編碼相關</h1><h2 id="What’s-the-difference-between-utf8-general-ci-and-utf8-unicode-ci"><a href="#What’s-the-difference-between-utf8-general-ci-and-utf8-unicode-ci" class="headerlink" title="What’s the difference between utf8_general_ci and utf8_unicode_ci?"></a>What’s the difference between utf8_general_ci and utf8_unicode_ci?</h2><p>這個連結出現在 yii 官方 migration 的檔案裡面<br><a href="https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci" target="_blank" rel="noopener">https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci</a></p>
+<h1 id="相關技巧"><a href="#相關技巧" class="headerlink" title="相關技巧"></a>相關技巧</h1><h2 id="16-進位的轉換"><a href="#16-進位的轉換" class="headerlink" title="16 進位的轉換"></a>16 進位的轉換</h2><p>假設你有一個 string str=”12345”<br>你想要加一個字元 enter 他的 16 進位編碼是 0A<br>“x31\x32\x33\x34\x35\x0A”貼在瀏覽器會變成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"x312345</span></span><br><span class="line"><span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p>$ od -xc “filename” | head</p>
+<p>a ：利用預設的字元來輸出；<br>c ：使用 ASCII 字元來輸出<br>d[size] ：利用十進位(decimal)來輸出資料，每個整數佔用 size bytes ；<br>f[size] ：利用浮點數值(floating)來輸出資料，每個數佔用 size bytes ；<br>o[size] ：利用八進位(octal)來輸出資料，每個整數佔用 size bytes ；<br>x[size] ：利用十六進位(hexadecimal)來輸出資料，每個整數佔用 size bytes ；</p>
+<h2 id="亂碼轉換"><a href="#亂碼轉換" class="headerlink" title="亂碼轉換"></a>亂碼轉換</h2><p>在UTF8還沒普及之前，大家都習慣有各自語言的編碼<br>例如big5和gbk<br>所以當你切換編碼時，編輯器在顯示時就會出現亂碼，此時你又按下了儲存鍵<br>這樣原本的gbk編碼的內容就會流失，要還原可能只能還原一部份了….</p>
+<p><a href="https://www.modb.pro/db/106751" target="_blank" rel="noopener">GBK与UTF-8互转乱码详解</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/21/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" rel="prev" title="資料結構與演算法">
+                  <i class="fa fa-chevron-left"></i> 資料結構與演算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/06/16/%E9%80%9A%E8%A8%8A%E8%88%87%E5%8D%94%E5%AE%9A/" rel="next" title="通訊與協定">
+                  通訊與協定 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

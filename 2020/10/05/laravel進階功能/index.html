@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="symfony一個開源的框架，因為致力於做出PHP比較底層的原件，所以很多php框架都底層都用他，laravel也不例外，其中尤其重要的是http-kernel這個元件 生命週期Laravel 執行原理分析與原始碼分析,底層看這篇足矣 Service Containerlaravel 服務容器管理 class 的依賴關係的一種方式，例如 route model binding，讓你可以依賴注入，好">
+<meta name="keywords" content="service container">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel進階功能">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;10&#x2F;05&#x2F;laravel%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="symfony一個開源的框架，因為致力於做出PHP比較底層的原件，所以很多php框架都底層都用他，laravel也不例外，其中尤其重要的是http-kernel這個元件 生命週期Laravel 執行原理分析與原始碼分析,底層看這篇足矣 Service Containerlaravel 服務容器管理 class 的依賴關係的一種方式，例如 route model binding，讓你可以依賴注入，好">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2022-06-10T00:10:17.142Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/10/05/laravel%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>laravel進階功能 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#symfony"><span class="nav-number">1.</span> <span class="nav-text">symfony</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生命週期"><span class="nav-number">2.</span> <span class="nav-text">生命週期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Service-Container"><span class="nav-number">3.</span> <span class="nav-text">Service Container</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#View-Composer"><span class="nav-number">4.</span> <span class="nav-text">View Composer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Polymorphic-Relationships"><span class="nav-number">5.</span> <span class="nav-text">Polymorphic Relationships</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Facades"><span class="nav-number">6.</span> <span class="nav-text">Facades</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Macros"><span class="nav-number">7.</span> <span class="nav-text">Macros</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipeline"><span class="nav-number">8.</span> <span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Repository-Pattern"><span class="nav-number">9.</span> <span class="nav-text">Repository Pattern</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lazy-Collection"><span class="nav-number">10.</span> <span class="nav-text">Lazy Collection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Soft-delete"><span class="nav-number">11.</span> <span class="nav-text">Soft delete</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Notifications"><span class="nav-number">12.</span> <span class="nav-text">Notifications</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#laravel-design-pattern"><span class="nav-number">13.</span> <span class="nav-text">laravel design pattern</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/10/05/laravel%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          laravel進階功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-10-05 11:02:05" itemprop="dateCreated datePublished" datetime="2020-10-05T11:02:05+08:00">2020-10-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-06-10 08:10:17" itemprop="dateModified" datetime="2022-06-10T08:10:17+08:00">2022-06-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">後端路線</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index"><span itemprop="name">framework</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index"><span itemprop="name">laravel</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="symfony"><a href="#symfony" class="headerlink" title="symfony"></a>symfony</h1><p>一個開源的框架，因為致力於做出PHP比較底層的原件，所以很多php框架都底層都用他，laravel也不例外，其中尤其重要的是<br>http-kernel這個元件</p>
+<h1 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h1><p><a href="https://learnku.com/articles/54613" target="_blank" rel="noopener">Laravel 執行原理分析與原始碼分析,底層看這篇足矣</a></p>
+<h1 id="Service-Container"><a href="#Service-Container" class="headerlink" title="Service Container"></a>Service Container</h1><p>laravel 服務容器管理 class 的依賴關係的一種方式，例如 route model binding，讓你可以依賴注入，<br>好處是當你的建構子需要改東西時，你不用在個別有 new 他的地方改 code，你只需要改一個地方</p>
+<p><a href="https://laracasts.com/series/laravel-6-from-scratch/episodes/39?autoplay=true" target="_blank" rel="noopener">https://laracasts.com/series/laravel-6-from-scratch/episodes/39?autoplay=true</a></p>
+<p>那由於 laravel 最自動幫你找命名空間下的 class,有的話他就會幫你注入，你不必自己去綁定進 app 這個 container，但是如果你是個 interface，laravel 就不能幫你實體化了</p>
+<p>在 AppServiceProvider</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;app-&gt;bind(PaymentGateway::class,<span class="function"><span class="keyword">function</span><span class="params">($app)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PaymentGateway(<span class="string">'usd'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="View-Composer"><a href="#View-Composer" class="headerlink" title="View Composer"></a>View Composer</h1><p>解決的痛點是，如果各個 controller 都需要用到某個 model 的資料來應用在各個 view 上面，<br>就不需要在每個 controller 上面都都進行 query，而且當 query 語句要變，你只需要改一個地方</p>
+<p>在 AppServiceProvider</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// option1 每一個view都進行query耗效能</span></span><br><span class="line">    View::share(<span class="string">'channels'</span>,Channel::orderBy(<span class="string">'name'</span>)-&gt;get());</span><br><span class="line">    <span class="comment">// option2 指定view進行query</span></span><br><span class="line">    View::composer([<span class="string">'post.*'</span>,<span class="string">'channel.index'</span>],<span class="function"><span class="keyword">function</span><span class="params">($view)</span></span>&#123;</span><br><span class="line">        $view-&gt;with(<span class="string">'channels'</span>,Channel::orderBy(<span class="string">'name'</span>)-&gt;get());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Polymorphic-Relationships"><a href="#Polymorphic-Relationships" class="headerlink" title="Polymorphic Relationships"></a>Polymorphic Relationships</h1><p><a href="https://www.itdaan.com/blog/2011/03/22/1861cf1574aa7995b47010f2e11f87e2.html" target="_blank" rel="noopener">https://www.itdaan.com/blog/2011/03/22/1861cf1574aa7995b47010f2e11f87e2.html</a></p>
+<p>多態的關聯不是真的表格中的關聯，而是定義在 class 中的關係，程式自己會去找欄位對應的關係<br>所以不必在建立表格時，設定 fk，也不必而外建立一張表，但要注意這是建立在 eloquent 層，而不是 db 層，如果刪除資料，別的資料並不會有所聯動<br><a href="https://youtu.be/6J8vb5_WRBw" target="_blank" rel="noopener">https://youtu.be/6J8vb5_WRBw</a></p>
+<ul>
+<li>1 對 1 的關係 ，不常見<br>例如： 一個人對應一個身份字號</li>
+<li>1 對多的關係，最常見的一種<br>例如： 一個有多筆訂單</li>
+<li>多對多的關係，在實際的表格設計中你就需要設計另外一個表個來存放關聯<br>例如：一個文章有多個標籤，一個標籤屬於多個文章</li>
+</ul>
+<h1 id="Facades"><a href="#Facades" class="headerlink" title="Facades"></a>Facades</h1><p>看起來像呼叫靜態方法的設計模式，配合著 service contaier 來做，達到用看似使用靜態方法的 code 來呼叫需要實例化的方法<br>不用像參數依賴注入一樣不需要在 register 註冊，直接使用更方便，你參數才不會議長串很難看，那跟依賴注入一樣，new 的動作就交給 container</p>
+<p>在 AppServiceProvider</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;app-&gt;singleton(<span class="string">'Postcard'</span>,<span class="function"><span class="keyword">function</span><span class="params">($app)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PostcardSendingService(<span class="string">'us'</span>,<span class="string">'600'</span>,<span class="string">'400'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Macros"><a href="#Macros" class="headerlink" title="Macros"></a>Macros</h1><p>用來擴充 laravel 內建 class 方法 的方式，laravel 官網有列可以這樣擴充的清單</p>
+<h1 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h1><h1 id="Repository-Pattern"><a href="#Repository-Pattern" class="headerlink" title="Repository Pattern"></a>Repository Pattern</h1><p>有人主张 controller 應該要愈少行愈清楚越好，<br>為了不讓 controller 參雜重複太多邏輯，有些人會把邏輯直接放在 model，讓 orm 的 find where 留在 model，但有時候商業邏輯牽扯到兩個 model 時，你是要將他寫在哪一個 model 呢？<br>所以有些人會特地抽出一層 repository 來，一切看你專案複雜度而定</p>
+<p>好處是假如你哪一天 orm 換掉了，controller 和 model 也不會有太大變動，商業邏輯的部份特地切了出來</p>
+<p>中小型專案並不建議導入，會增加專案的複雜度</p>
+<p>為什 laravel 不內建這設計模式？<br>因為業界對於這個設計模式沒有一個準則<br><a href="https://stackoverflow.com/questions/60295553/creating-laravel-repositories-and-binding-as-service-providers" target="_blank" rel="noopener">https://stackoverflow.com/questions/60295553/creating-laravel-repositories-and-binding-as-service-providers</a></p>
+<h1 id="Lazy-Collection"><a href="#Lazy-Collection" class="headerlink" title="Lazy Collection"></a>Lazy Collection</h1><p>底層是用 php 的 generator 來達成的，配合 for 和 yield 關鍵字，可以幫你省下不少記憶體，算是蠻少用的功能，但需要時就很實用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Collection::times(<span class="number">100000</span>)-&gt;map(<span class="function"><span class="keyword">function</span><span class="params">($number)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> pow(<span class="number">2</span>,$number);</span><br><span class="line">&#125;)-&gt;all();</span><br><span class="line">User::all();</span><br><span class="line"> <span class="comment">// vs</span></span><br><span class="line">LazyCollection::times(<span class="number">100000</span>)-&gt;map(<span class="function"><span class="keyword">function</span><span class="params">($number)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> pow(<span class="number">2</span>,$number);</span><br><span class="line">&#125;)-&gt;all();</span><br><span class="line">User::cursor();</span><br></pre></td></tr></table></figure>
+
+<h1 id="Soft-delete"><a href="#Soft-delete" class="headerlink" title="Soft delete"></a>Soft delete</h1><p>這也是很常用的功能<br>大部分的時候，如果你要刪除使用者，你並不會真的刪除他，而是把他隱藏起來<br>需要在 migration 做欄位的增加，通常會配合 policy 來實作</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Eloquent</span>\<span class="title">SoftDeletes</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> <span class="keyword">extends</span> <span class="title">Model</span></span>&#123;</span><br><span class="line">  <span class="keyword">use</span> <span class="title">SoftDelets</span></span><br><span class="line">  <span class="title">protected</span> $<span class="title">guarded</span> = [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Notifications"><a href="#Notifications" class="headerlink" title="Notifications"></a>Notifications</h1><p>通知使用者的機器人，通常會有第三方的套件給你用</p>
+<h1 id="laravel-design-pattern"><a href="#laravel-design-pattern" class="headerlink" title="laravel design pattern"></a>laravel design pattern</h1><p><a href="https://stackoverflow.com/questions/60029955/when-to-use-repository-vs-service-vs-trait-in-laravel" target="_blank" rel="noopener">https://stackoverflow.com/questions/60029955/when-to-use-repository-vs-service-vs-trait-in-laravel</a><br><a href="https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/" target="_blank" rel="noopener">https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/service-container/" rel="tag"># service container</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/17/%E4%BD%BF%E7%94%A8phpstorm/" rel="prev" title="使用phpstorm">
+                  <i class="fa fa-chevron-left"></i> 使用phpstorm
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/14/web%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8D%94%E5%AE%9A/" rel="next" title="web常用的協定">
+                  web常用的協定 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

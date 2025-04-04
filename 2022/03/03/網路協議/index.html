@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="TCP&#x2F;IP目前TCP&#x2F;IP協議泛指現在網路公認使用的所有協議 7層整理來講，為了方便區分這麼多協議的種類，我們將其分成了5層各別舉個例子:應用層 http  需要瀏覽器這種應用程式來拆包傳輸層 TCP   需要三向交握確認連線網路層 IP    需要IP當地址連結層 ARP   需要找出實體MAC物理層 網路線 這些協議，從瀏覽器發出封包時，經過機器，需要的資料會一層包過一層 請求在傳輸層裡，每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="網路協議">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2022&#x2F;03&#x2F;03&#x2F;%E7%B6%B2%E8%B7%AF%E5%8D%94%E8%AD%B0&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="TCP&#x2F;IP目前TCP&#x2F;IP協議泛指現在網路公認使用的所有協議 7層整理來講，為了方便區分這麼多協議的種類，我們將其分成了5層各別舉個例子:應用層 http  需要瀏覽器這種應用程式來拆包傳輸層 TCP   需要三向交握確認連線網路層 IP    需要IP當地址連結層 ARP   需要找出實體MAC物理層 網路線 這些協議，從瀏覽器發出封包時，經過機器，需要的資料會一層包過一層 請求在傳輸層裡，每">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2023-04-18T23:51:52.503Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2022/03/03/%E7%B6%B2%E8%B7%AF%E5%8D%94%E8%AD%B0/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>網路協議 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7層"><span class="nav-number">2.</span> <span class="nav-text">7層</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#請求"><span class="nav-number">3.</span> <span class="nav-text">請求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封包大小"><span class="nav-number">4.</span> <span class="nav-text">封包大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#乙太網路"><span class="nav-number">5.</span> <span class="nav-text">乙太網路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#網際網路"><span class="nav-number">6.</span> <span class="nav-text">網際網路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ifconfig"><span class="nav-number">7.</span> <span class="nav-text">ifconfig</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#port號"><span class="nav-number">8.</span> <span class="nav-text">port號</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#socket"><span class="nav-number">9.</span> <span class="nav-text">socket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#併發量"><span class="nav-number">10.</span> <span class="nav-text">併發量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#telnet"><span class="nav-number">11.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-number">12.</span> <span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RPC-Remote-Procedure-Call"><span class="nav-number">13.</span> <span class="nav-text">RPC(Remote Procedure Call)</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2022/03/03/%E7%B6%B2%E8%B7%AF%E5%8D%94%E8%AD%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          網路協議
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-03-03 16:26:22" itemprop="dateCreated datePublished" datetime="2022-03-03T16:26:22+08:00">2022-03-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-04-19 07:51:52" itemprop="dateModified" datetime="2023-04-19T07:51:52+08:00">2023-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h1><p>目前TCP/IP協議泛指現在網路公認使用的所有協議</p>
+<h1 id="7層"><a href="#7層" class="headerlink" title="7層"></a>7層</h1><p>整理來講，為了方便區分這麼多協議的種類，我們將其分成了5層<br>各別舉個例子:<br>應用層 http  需要瀏覽器這種應用程式來拆包<br>傳輸層 TCP   需要三向交握確認連線<br>網路層 IP    需要IP當地址<br>連結層 ARP   需要找出實體MAC<br>物理層 網路線</p>
+<p>這些協議，從瀏覽器發出封包時，經過機器，需要的資料會一層包過一層</p>
+<h1 id="請求"><a href="#請求" class="headerlink" title="請求"></a>請求</h1><p>在傳輸層裡，每一個封包都需要回覆收到，沒收到的話，會將該請求反覆重試，然而使用者自在F12裡面只會看到一次請求，事實上網路線裡面的資料已經來來回回好幾百次</p>
+<h1 id="封包大小"><a href="#封包大小" class="headerlink" title="封包大小"></a>封包大小</h1><p>每一層的協議都有規定其封包大小，其中IPV4最大為 65575 bytes大概就65kb左右</p>
+<p>然後封包又包在幀裡面</p>
+<h1 id="乙太網路"><a href="#乙太網路" class="headerlink" title="乙太網路"></a>乙太網路</h1><p>在數據連結層會用到的技術名，一開始用於區域網路(微星狀或匯流排)的傳輸<br>連結層會用到MAC，知道兩台電腦的MAC就可以互向通信</p>
+<h1 id="網際網路"><a href="#網際網路" class="headerlink" title="網際網路"></a>網際網路</h1><p>從網路層開始，有了IP開始了點對點的傳輸<br>回環地址 127.0.0.1<br>廣播地址 區網內最後一個IP位址，所以沒有一定</p>
+<p>每個路由器會緩存一個到下個IP的路由表<br>有了ARP協議，每個請求有ARP緩存，裡面紀錄了下一個節點IP和MAC對應，這個緩存到了下一個節點就又會變動</p>
+<p>乙太網路使用MAC來傳輸數據，但是光有MAC是無法連到網路上其他MAC地址，因為你沒有IP，不知道去哪找MAC，試想一下，如果當初沒有IP這個設計出現，那要維護全世界的MAC表這個數據量會有多龐大，所以IP和MAC缺一不可</p>
+<h1 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h1><p>ifconfig 命令归属于 net-tools 工具集。net-tools 起源于 BSD，自 2001 年起，Linux 社区已经停止对其进行维护。<br>一些 Linux 发行版已经停止支持 net-tools，只支持 iproute2，在这些 Linux 版本中，只能使用 ip addr 命令查看 IP 地址，使用 ifconfig 会提示命名不存在</p>
+<h1 id="port號"><a href="#port號" class="headerlink" title="port號"></a>port號</h1><p>傳輸層，port號是一個虛擬的概念，並無實際上的硬體做對應，大概來說每個port號可以對應道不同的程序，為什麼有65535的限制是因為TCP當初協定定義是2的16次方-1，並不是有什麼硬體限制<br>标准既定的端口号（静态方法: 例如HTTP 80端口，其他的軟體自定義的就落在1024 到 49151 之间<br>时序分配法（动态方法:例如打開wireshark，你去訪問server80端口，就會看到很多介於49152 到 65535 之间這種由作業系統分配的暫時的port號）</p>
+<h1 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h1><p>是作業系統網路API的名字<br>负责监听的 Socket 和真正用来传数据的 Socket 是两个，一个叫作监听 Socket，一个叫作已连接 Socket，连接建立成功之后，双方开始通过 read 和 write 函数来读写数据<br>如果你留心过 Nginx 里面 PHP-FPM 的配置，就会发现有两种方式将 PHP 动态请求转发给 PHP-FPM，一种是 IP 地址+端口号，例如：127.0.0.1:9000，一种是 Socket 文件，例如：unix:/run/php/php7.1-fpm.sock。这里也可以表明，Socket 在 Linux 中确实以文件形式存在，由于不需要建立额外的网络请求，所以后者效率更高，但是由于是本地文件，所以不能跨机器访问，如果 Nginx 和 PHP-FPM 部署在不同的机器，只能通过前一种方式转发请求</p>
+<h1 id="併發量"><a href="#併發量" class="headerlink" title="併發量"></a>併發量</h1><p>理論上: 最大 TCP 连接数 = 客户端 IP 数 × 客户端端口数。对 IPv4，客户端的 IP 数最多为 2 的 32 次方，客户端的端口数最多为 2 的 16 次方，也就是服务端单机最大 TCP 连接数，约为 2 的 48 次方。<br>實際上: ocket 都是文件，所以首先要通过 ulimit 配置文件描述符的数目；另一个限制是内存，按上面的数据结构，每个 TCP 连接都要占用一定内存，操作系统是有限的。</p>
+<p>姑且不論上述的內存，要如何盡量處理高併發呢?</p>
+<ol>
+<li>多進程</li>
+<li>多線程<br>C10K 问题（一台机器要维护 1 万个连接，就要创建 1 万个进程或者线程，操作系统是无法承受的。<br>维持 1 亿用户在线需要 10 万台服务器，成本太高了</li>
+<li>多路IO复用<br>所谓多路 IO 复用可以简单理解为一个线程维护多个 Socket文件（前面多进程或多线程都是一个进程或线程维护一个 Socket），这也有两种实现方式：轮询和事件通知。<br>所谓轮询就是调用内核的 select 函数监听文件描述符集合是否有变化<br>所谓事件通知，就是某个文件描述符发生变化，调用 epoll 函数主动通知</li>
+</ol>
+<h1 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h1><p>telnet也是一個協定名稱，通常開23port<br>也是早期登入BBS的工具名，所以幾乎所有電腦都有裝，可以用來測PORT，所以跟你server有沒有開23port無關，他就是一個工具可以來測port</p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>相對於telnet比較安全的協議</p>
+<p>中間人攻擊:<br>如果攻击者插在用户与远程主机之间，用伪造的公钥，获取用户的登录密码，再用这个密码登录远程主机，那么 SSH 的安全机制就荡然无存了。<br>因为不像 HTTPS 协议，SSH 协议的公钥是没有认证中心（CA）公证的，也就是说，都是自己签发的。</p>
+<p>如何應對中間人攻擊<br>第一次登入遠端主機時，會提示ECDSA的公鑰fingerprint<br>此時可以比對是否與遠端主機的公鑰fingerprint相同，可以通过 ssh-keyscan 命令结合ssh-keygen 得到</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keyscan -t ECDSA -p 22 laravelacademy.org</span><br><span class="line">ssh-keygen -E sha256 -lf ~/.ssh/known_hosts</span><br></pre></td></tr></table></figure>
+<p>比對完成之後，輸入yes，服务器 SSH 公钥会添加到本地的<code>~/.ssh/known_hosts</code> 文件里面<br><a href="https://github.com/zbinlin/blog/blob/master/resolve-ssh-connect-same-ip-in-diff-host.md" target="_blank" rel="noopener">https://github.com/zbinlin/blog/blob/master/resolve-ssh-connect-same-ip-in-diff-host.md</a></p>
+<p><a href="https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints" target="_blank" rel="noopener">https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints</a></p>
+<h1 id="RPC-Remote-Procedure-Call"><a href="#RPC-Remote-Procedure-Call" class="headerlink" title="RPC(Remote Procedure Call)"></a>RPC(Remote Procedure Call)</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/30/laravel%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" rel="prev" title="laravel資訊安全">
+                  <i class="fa fa-chevron-left"></i> laravel資訊安全
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/21/%E5%BE%AE%E6%9C%8D%E5%8B%99/" rel="next" title="微服務">
+                  微服務 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
