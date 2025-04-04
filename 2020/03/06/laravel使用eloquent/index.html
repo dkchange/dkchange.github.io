@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言eloquent是遵循 active record pattern  ，但你去要資料，違反了 tell dont ask 原則doctrine是遵循 data mapper pattern 表格的default value在migration就設定default value  -&amp;gt;default($value)    Specify a “default” value for the c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel使用eloquent">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;03&#x2F;06&#x2F;laravel%E4%BD%BF%E7%94%A8eloquent&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言eloquent是遵循 active record pattern  ，但你去要資料，違反了 tell dont ask 原則doctrine是遵循 data mapper pattern 表格的default value在migration就設定default value  -&amp;gt;default($value)    Specify a “default” value for the c">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2023-04-18T23:52:52.287Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/03/06/laravel%E4%BD%BF%E7%94%A8eloquent/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>laravel使用eloquent | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表格的default-value"><span class="nav-number">2.</span> <span class="nav-text">表格的default value</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#many-to-many-relationship"><span class="nav-number">3.</span> <span class="nav-text">many to many relationship</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fake-relationship"><span class="nav-number">4.</span> <span class="nav-text">fake relationship</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Laravel数据库操作的三种方式"><span class="nav-number">5.</span> <span class="nav-text">Laravel数据库操作的三种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#laravel-配置MySQL讀寫分離"><span class="nav-number">6.</span> <span class="nav-text">laravel 配置MySQL讀寫分離</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#model如何知道table的欄位"><span class="nav-number">7.</span> <span class="nav-text">model如何知道table的欄位</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/03/06/laravel%E4%BD%BF%E7%94%A8eloquent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          laravel使用eloquent
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-03-06 09:59:50" itemprop="dateCreated datePublished" datetime="2020-03-06T09:59:50+08:00">2020-03-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-04-19 07:52:52" itemprop="dateModified" datetime="2023-04-19T07:52:52+08:00">2023-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>eloquent是遵循 active record pattern  ，但你去要資料，違反了 tell dont ask 原則<br>doctrine是遵循 data mapper pattern</p>
+<h1 id="表格的default-value"><a href="#表格的default-value" class="headerlink" title="表格的default value"></a>表格的default value</h1><p>在migration就設定default value</p>
+<ul>
+<li>-&gt;default($value)    Specify a “default” value for the column<br>或者<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ROLE_PUBLISHER = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $attributes = [</span><br><span class="line">    <span class="string">'role_id'</span> =&gt; <span class="keyword">self</span>::ROLE_PUBLISHER,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model" target="_blank" rel="noopener">https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model</a></p>
+<h1 id="many-to-many-relationship"><a href="#many-to-many-relationship" class="headerlink" title="many to many relationship"></a>many to many relationship</h1><p><a href="https://www.youtube.com/watch?v=akKWC_vP7sE" target="_blank" rel="noopener">https://www.youtube.com/watch?v=akKWC_vP7sE</a></p>
+<h1 id="fake-relationship"><a href="#fake-relationship" class="headerlink" title="fake relationship"></a>fake relationship</h1><p><a href="https://www.youtube.com/watch?v=rx1DQBE01b0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=rx1DQBE01b0</a></p>
+<h1 id="Laravel数据库操作的三种方式"><a href="#Laravel数据库操作的三种方式" class="headerlink" title="Laravel数据库操作的三种方式"></a>Laravel数据库操作的三种方式</h1><p><a href="https://www.youtube.com/watch?v=3TJfR1Ta4GU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=3TJfR1Ta4GU</a></p>
+<h1 id="laravel-配置MySQL讀寫分離"><a href="#laravel-配置MySQL讀寫分離" class="headerlink" title="laravel 配置MySQL讀寫分離"></a>laravel 配置MySQL讀寫分離</h1><p><a href="https://zhuanlan.zhihu.com/p/123092691" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/123092691</a></p>
+<h1 id="model如何知道table的欄位"><a href="#model如何知道table的欄位" class="headerlink" title="model如何知道table的欄位"></a>model如何知道table的欄位</h1><p><a href="https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes" target="_blank" rel="noopener">https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/21/%E8%9B%8B%E7%B2%92%E6%97%A5%E8%A8%98%E9%87%91%E5%8F%A5/" rel="prev" title="蛋粒大兵日記">
+                  <i class="fa fa-chevron-left"></i> 蛋粒大兵日記
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/09/%E4%BD%BF%E7%94%A8mysql/" rel="next" title="使用mysql">
+                  使用mysql <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

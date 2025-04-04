@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言環境設定遭遇案例 Access denied for user ‘root’@’localhost’你只能藉由 sudo mysql -p 來登入資料庫是一件很麻煩的事，你的程式也需要權限來訪問資料庫https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhouyingge1104&#x2F;article&#x2F;details&#x2F;85254895https:&#x2F;&#x2F;www.opencli.com&#x2F;mysql&#x2F;reset-m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用mysql">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;03&#x2F;09&#x2F;%E4%BD%BF%E7%94%A8mysql&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言環境設定遭遇案例 Access denied for user ‘root’@’localhost’你只能藉由 sudo mysql -p 來登入資料庫是一件很麻煩的事，你的程式也需要權限來訪問資料庫https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhouyingge1104&#x2F;article&#x2F;details&#x2F;85254895https:&#x2F;&#x2F;www.opencli.com&#x2F;mysql&#x2F;reset-m">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2023-04-18T23:52:52.289Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/03/09/%E4%BD%BF%E7%94%A8mysql/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>使用mysql | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#環境設定"><span class="nav-number">2.</span> <span class="nav-text">環境設定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遭遇案例"><span class="nav-number">3.</span> <span class="nav-text">遭遇案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分表"><span class="nav-number">4.</span> <span class="nav-text">分表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效能問題"><span class="nav-number">5.</span> <span class="nav-text">效能問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大表遇到的問題"><span class="nav-number">6.</span> <span class="nav-text">大表遇到的問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transation"><span class="nav-number">7.</span> <span class="nav-text">transation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原子性-atomicity"><span class="nav-number">7.1.</span> <span class="nav-text">原子性 atomicity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性-consistency"><span class="nav-number">7.2.</span> <span class="nav-text">一致性(consistency)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隔離性"><span class="nav-number">7.3.</span> <span class="nav-text">隔離性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久性"><span class="nav-number">7.4.</span> <span class="nav-text">持久性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大-transation-遇到的問題"><span class="nav-number">8.</span> <span class="nav-text">大 transation 遇到的問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transation-新手問題"><span class="nav-number">9.</span> <span class="nav-text">transation 新手問題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">10.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#影響數據庫的效能"><span class="nav-number">11.</span> <span class="nav-text">影響數據庫的效能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主從同步"><span class="nav-number">12.</span> <span class="nav-text">主從同步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比較少用的sql語句"><span class="nav-number">13.</span> <span class="nav-text">比較少用的sql語句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找資料庫裡面的欄位名稱"><span class="nav-number">13.1.</span> <span class="nav-text">查找資料庫裡面的欄位名稱</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主從複製-單表複製"><span class="nav-number">14.</span> <span class="nav-text">主從複製-單表複製</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#區分主庫從庫"><span class="nav-number">15.</span> <span class="nav-text">區分主庫從庫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql-in-not-in-優化"><span class="nav-number">16.</span> <span class="nav-text">mysql in not in 優化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#db-塞假資料"><span class="nav-number">17.</span> <span class="nav-text">db 塞假資料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log-before-cascade-delete"><span class="nav-number">18.</span> <span class="nav-text">log before cascade delete</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#opratoin-log-in-mysql"><span class="nav-number">19.</span> <span class="nav-text">opratoin log in mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql單表同步"><span class="nav-number">20.</span> <span class="nav-text">mysql單表同步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主從同步故障排除"><span class="nav-number">21.</span> <span class="nav-text">主從同步故障排除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#foreignkey-命名規則"><span class="nav-number">22.</span> <span class="nav-text">foreignkey 命名規則</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#先join再查詢，先查詢再join"><span class="nav-number">23.</span> <span class="nav-text">先join再查詢，先查詢再join</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/03/09/%E4%BD%BF%E7%94%A8mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用mysql
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-03-09 11:08:30" itemprop="dateCreated datePublished" datetime="2020-03-09T11:08:30+08:00">2020-03-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-04-19 07:52:52" itemprop="dateModified" datetime="2023-04-19T07:52:52+08:00">2023-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h1 id="環境設定"><a href="#環境設定" class="headerlink" title="環境設定"></a>環境設定</h1><h1 id="遭遇案例"><a href="#遭遇案例" class="headerlink" title="遭遇案例"></a>遭遇案例</h1><ol>
+<li><p>Access denied for user ‘root’@’localhost’<br>你只能藉由 sudo mysql -p 來登入資料庫是一件很麻煩的事，你的程式也需要權限來訪問資料庫<br><a href="https://blog.csdn.net/zhouyingge1104/article/details/85254895" target="_blank" rel="noopener">https://blog.csdn.net/zhouyingge1104/article/details/85254895</a><br><a href="https://www.opencli.com/mysql/reset-mysql-mariadb-root-password" target="_blank" rel="noopener">https://www.opencli.com/mysql/reset-mysql-mariadb-root-password</a></p>
+</li>
+<li><p>Display positive and negative values in different column</p>
+</li>
+</ol>
+<p><a href="https://www.c-sharpcorner.com/forums/display-positive-and-negative-values-in-different-column" target="_blank" rel="noopener">https://www.c-sharpcorner.com/forums/display-positive-and-negative-values-in-different-column</a></p>
+<ol start="3">
+<li>MYSQL 查找所有的父级或子级<br><a href="https://segmentfault.com/a/1190000007531328" target="_blank" rel="noopener">https://segmentfault.com/a/1190000007531328</a></li>
+</ol>
+<h1 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h1><p><a href="https://kkc.github.io/2017/07/07/mysql-partitioning/" target="_blank" rel="noopener">https://kkc.github.io/2017/07/07/mysql-partitioning/</a></p>
+<h1 id="效能問題"><a href="#效能問題" class="headerlink" title="效能問題"></a>效能問題</h1><ul>
+<li>server 硬體<ul>
+<li>cpu 要看當前的 mysql 支不支援多核心處理同一語句</li>
+<li>那如果一個核心只能處理一句，那 n 個核心就可以處理 n 句 sql</li>
+<li>在高併發的情況下，多核心會比高頻的 cpu 重要</li>
+<li>64 位元的 cpu 不要用 32 位元版本的軟體</li>
+<li>大記憶體（內存），高頻率記憶體</li>
+<li>傳統硬碟，高容量，高傳輸速度，高轉速，物理尺寸小</li>
+<li>RAID 多個小硬碟組成一個大硬碟<ul>
+<li>RAID0 讀快寫快，沒有修復能力</li>
+<li>RAID1 讀快寫慢，有鏡像備份</li>
+<li>RAID5 讀快寫中，有備份</li>
+<li>RAID10 讀快寫快，有備份</li>
+</ul>
+</li>
+<li>SSD 受限 sata 界面傳輸速度 支援 RAID</li>
+<li>PCIESSD 貴，要裝驅動，但不受限於 sata</li>
+<li>SAN NAS 網路儲存 不如 RAID，只適合做數據備份</li>
+<li>網路，高性能交換機，對多張網卡進行綁定，用以增加頻寬</li>
+</ul>
+</li>
+<li>server 系統<ul>
+<li>windlow 系統下不分大小寫，需要做參數設定讓其能區分</li>
+<li>freebsd</li>
+<li>solaris</li>
+<li>linux 挑選 server 版的</li>
+</ul>
+</li>
+<li>db 儲存引擎選擇<ul>
+<li>MyISAM:5.5 以前的默認引擎，不支持 transation，支援表級鎖，可壓縮表，適合只讀的應用</li>
+<li>InnoDB:5.5 以後的默認引擎，5.6 默認使用獨立表空間儲存數據，支持 transation,支援行級鎖，事務 acid 特性，5.7 之後支援全文索引，空間函數</li>
+<li>csv:非二制文件，是以儲存文本的方式，所以可以直接查看，就是 excel 的文件來當一個表，不支援索引，不支援 null</li>
+</ul>
+</li>
+<li>參數設定<ul>
+<li>centos<ul>
+<li>內核相關參數/etc/sysctl.conf</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>db 結構設計和 sql 語句</li>
+</ul>
+<p>QPS：Queries Per Second 意思是“每秒查詢率” 每秒可以查詢幾句 sql<br>TPS：是 TransactionsPerSecond 的縮寫，也就是事務數/秒<br>併發量：高併發要調高 mysql 連接數 max_connections 默認 100<br>cpu 使用率<br>硬碟 io<br>網卡流量：<br>避免使用 select *</p>
+<h1 id="大表遇到的問題"><a href="#大表遇到的問題" class="headerlink" title="大表遇到的問題"></a>大表遇到的問題</h1><p>主從延遲<br>修改表結構時間長，會鎖表</p>
+<p>解決方法：<br>分庫分表<br>歷史數據歸檔</p>
+<h1 id="transation"><a href="#transation" class="headerlink" title="transation"></a>transation</h1><h2 id="原子性-atomicity"><a href="#原子性-atomicity" class="headerlink" title="原子性 atomicity"></a>原子性 atomicity</h2><p>一筆交易最小的單位，失敗就全部回滾</p>
+<h2 id="一致性-consistency"><a href="#一致性-consistency" class="headerlink" title="一致性(consistency)"></a>一致性(consistency)</h2><p>轉帳前轉帳後，總金額須一樣</p>
+<h2 id="隔離性"><a href="#隔離性" class="headerlink" title="隔離性"></a>隔離性</h2><ul>
+<li>未提交讀</li>
+<li>已提交讀（大多數 rmdb 的預設）</li>
+<li>可重複讀</li>
+<li>可串行化</li>
+</ul>
+<h2 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h2><p>資料不會不見</p>
+<blockquote>
+<p>show variables like ‘%iso%’</p>
+</blockquote>
+<h1 id="大-transation-遇到的問題"><a href="#大-transation-遇到的問題" class="headerlink" title="大 transation 遇到的問題"></a>大 transation 遇到的問題</h1><p>鎖的表太多會造成阻塞<br>rollback 時間長<br>容易造成主從延遲</p>
+<h1 id="transation-新手問題"><a href="#transation-新手問題" class="headerlink" title="transation 新手問題"></a>transation 新手問題</h1><p>在MySQL的InnoDB中，预设的Tansaction isolation level 为REPEATABLE READ（可重读），所以事務的操作除了可以維持原子性，提供的鎖也可以避免髒讀，不重複的讀取</p>
+<p>1.其他 proccess 去 select 在 transaction 中變動的資料 會是變動前還是後？</p>
+<p>要看其他 proccess 怎麼去 select，如果下 nolock 就可以查到未 commit 的資料，而正常情況下因為 update 的資料會使用獨佔鎖，所以其他 proccess 會被鎖住，必需等待交易完成後才能查詢資料。</p>
+<p>2.使用 command 直接 kill 正在 sleep 的 proccess 是會自動rollback嗎？</p>
+<p>會，未 commit 的資料，連線中斷或資料庫當機，都會自動 rollback，這樣才能確保資料是正確可靠的。<br><a href="https://ithelp.ithome.com.tw/questions/10192987?sc=rss.qu" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/questions/10192987?sc=rss.qu</a><br><a href="https://stackoverflow.com/questions/22846438/why-does-select-for-update-works-only-within-a-transaction" target="_blank" rel="noopener">https://stackoverflow.com/questions/22846438/why-does-select-for-update-works-only-within-a-transaction</a></p>
+<p><a href="https://www.cnblogs.com/houweijian/p/5869243.html" target="_blank" rel="noopener">https://www.cnblogs.com/houweijian/p/5869243.html</a></p>
+<p><a href="https://segmentfault.com/a/1190000014133576" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014133576</a></p>
+<p><a href="https://segmentfault.com/a/1190000022732257" target="_blank" rel="noopener">https://segmentfault.com/a/1190000022732257</a></p>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>解决方案：</p>
+<ul>
+<li>把SELECT和UPDATE合成一条SQL</li>
+<li>用一个事务来包裹上面的SELECT+UPDATE操作</li>
+<li>乐观锁，类CAS机制<br><a href="https://blog.csdn.net/dainandainan1/article/details/109120038" target="_blank" rel="noopener">MySQL中SELECT+UPDATE并发更新问题</a></li>
+</ul>
+<h1 id="影響數據庫的效能"><a href="#影響數據庫的效能" class="headerlink" title="影響數據庫的效能"></a>影響數據庫的效能</h1><ul>
+<li><p>表的設計合理化(符合 3NF)</p>
+</li>
+<li><p>添加適當的索引<br>a. 普通索引<br>b. 主鍵索引<br>c. 唯一索引<br>d. 全文索引<br>e. 空間索引</p>
+<ul>
+<li>分表<br>a. 水平分割<br>b. 垂直分割</li>
+<li>讀寫分離</li>
+<li>存儲過程SP 因為不需要再編譯</li>
+<li>配置最大併發數</li>
+<li>硬體升級</li>
+<li>定期清除數據，進行碎片整理</li>
+</ul>
+<h1 id="主從同步"><a href="#主從同步" class="headerlink" title="主從同步"></a>主從同步</h1><p><a href="https://cloud.tencent.com/developer/article/1832929" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1832929</a></p>
+<h1 id="比較少用的sql語句"><a href="#比較少用的sql語句" class="headerlink" title="比較少用的sql語句"></a>比較少用的sql語句</h1><p>sql find_in_set() vs match() against()</p>
+<p>force index</p>
+<p>explain<br><a href="https://www.cnblogs.com/acm-bingzi/p/mysqlExplain.html" target="_blank" rel="noopener">https://www.cnblogs.com/acm-bingzi/p/mysqlExplain.html</a><br><a href="https://smilenicky.blog.csdn.net/article/details/100853310" target="_blank" rel="noopener">https://smilenicky.blog.csdn.net/article/details/100853310</a></p>
+</li>
+</ul>
+<h2 id="查找資料庫裡面的欄位名稱"><a href="#查找資料庫裡面的欄位名稱" class="headerlink" title="查找資料庫裡面的欄位名稱"></a>查找資料庫裡面的欄位名稱</h2><p> select column_name,table_name from informateion_schema.columns where column_name like ‘%ip%’;</p>
+<h1 id="主從複製-單表複製"><a href="#主從複製-單表複製" class="headerlink" title="主從複製-單表複製"></a>主從複製-單表複製</h1><p><a href="https://blog.csdn.net/weixin_67857994/article/details/123546958?spm=1001.2101.3001.6650.7&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-7-123546958-blog-113947355.pc_relevant_aa&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-7-123546958-blog-113947355.pc_relevant_aa&amp;utm_relevant_index=10" target="_blank" rel="noopener">https://blog.csdn.net/weixin_67857994/article/details/123546958?spm=1001.2101.3001.6650.7&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-7-123546958-blog-113947355.pc_relevant_aa&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-7-123546958-blog-113947355.pc_relevant_aa&amp;utm_relevant_index=10</a><br>主從複製單表或多個表</p>
+<h1 id="區分主庫從庫"><a href="#區分主庫從庫" class="headerlink" title="區分主庫從庫"></a>區分主庫從庫</h1><p><a href="http://www.itpub.net/thread-1737186-1-1.html" target="_blank" rel="noopener">http://www.itpub.net/thread-1737186-1-1.html</a></p>
+<p>slave会有relay-log日志文件<br>or</p>
+<p>有没有master.info的信息，有就是从库<br>or<br>show slave status<br>show master status<br>or</p>
+<blockquote>
+<p>show global status like ‘Slave_running’;  </p>
+</blockquote>
+<h1 id="mysql-in-not-in-優化"><a href="#mysql-in-not-in-優化" class="headerlink" title="mysql in not in 優化"></a>mysql in not in 優化</h1><p>用了exist變快<br><a href="https://blog.csdn.net/gua___gua/article/details/47401621" target="_blank" rel="noopener">https://blog.csdn.net/gua___gua/article/details/47401621</a><br>用了exist變慢<br><a href="https://blog.csdn.net/fly910905/article/details/78288685" target="_blank" rel="noopener">https://blog.csdn.net/fly910905/article/details/78288685</a></p>
+<h1 id="db-塞假資料"><a href="#db-塞假資料" class="headerlink" title="db 塞假資料"></a>db 塞假資料</h1><p>產生測試資料(假資料)<br><a href="https://ithelp.ithome.com.tw/articles/10147387?sc=pt" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10147387?sc=pt</a></p>
+<h1 id="log-before-cascade-delete"><a href="#log-before-cascade-delete" class="headerlink" title="log before cascade delete"></a>log before cascade delete</h1><p><a href="https://stackoverflow.com/questions/11496459/can-i-use-a-procedure-to-store-history-log-before-on-delete-cascade" target="_blank" rel="noopener">https://stackoverflow.com/questions/11496459/can-i-use-a-procedure-to-store-history-log-before-on-delete-cascade</a></p>
+<h1 id="opratoin-log-in-mysql"><a href="#opratoin-log-in-mysql" class="headerlink" title="opratoin log in mysql"></a>opratoin log in mysql</h1><p><a href="https://stackoverflow.com/questions/303994/log-all-queries-in-mysql" target="_blank" rel="noopener">https://stackoverflow.com/questions/303994/log-all-queries-in-mysql</a></p>
+<h1 id="mysql單表同步"><a href="#mysql單表同步" class="headerlink" title="mysql單表同步"></a>mysql單表同步</h1><ol>
+<li><p>如果你只是要臨時複製AB表的資料，<br>語法就可以達成:<br>其中主鍵要對應好，不然會有資料遺失的問題<br>insert into A資料庫名稱.A資料表 select * from B資料庫名稱.B資料表<br>where not exists(select * from A資料庫名稱.A資料表 where A資料庫名稱.A資料表.ID = B資料庫名稱.B資料表.ID)</p>
+</li>
+<li><p>創建觸發器<br>trigger</p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> test1</span><br><span class="line"></span><br><span class="line">DELIMITER //</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> Pee_insert_host <span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> host <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span> <span class="keyword">INSERT</span> <span class="keyword">INTO</span> test2.host <span class="keyword">VALUES</span> (new.id,new.host,new.port,new.user,new.pwd); <span class="keyword">END</span>;//</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> Pee_delete_host <span class="keyword">AFTER</span> <span class="keyword">DELETE</span> <span class="keyword">ON</span> host <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span> <span class="keyword">DELETE</span> <span class="keyword">from</span> test2.host <span class="keyword">where</span> test2.host.id=old.id; <span class="keyword">END</span>;//</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> Pee_update_host <span class="keyword">AFTER</span> <span class="keyword">UPDATE</span> <span class="keyword">ON</span> host <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span> <span class="keyword">UPDATE</span> test2.host <span class="keyword">SET</span> host=new.host,port=new.port,<span class="keyword">user</span>=new.user,pwd=new.pwd <span class="keyword">WHERE</span> test2.host.id=new.id; <span class="keyword">END</span>;//</span><br><span class="line"></span><br><span class="line">// 查看触发器：</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> information_schema.<span class="string">`TRIGGERS`</span>;</span><br><span class="line"></span><br><span class="line">// 删除触发器：</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> TRIGGER_NAME;</span><br></pre></td></tr></table></figure>
+
+<p>原文：<a href="https://blog.csdn.net/weixin_39958019/article/details/113634347" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39958019/article/details/113634347</a></p>
+<ol start="3">
+<li>用mysql 同步功能<br>google 搜尋 mysql主从只同步部分库或表</li>
+</ol>
+<p>原文:<a href="https://www.cnblogs.com/weifeng1463/p/8662241.html" target="_blank" rel="noopener">mysql主从只同步部分库或表</a><br>master端：<br>binlog-do-db      二进制日志记录的数据库（多数据库用逗号，隔开）<br>binlog-ignore-db 二进制日志中忽略数据库 （多数据库用逗号，隔开）</p>
+<p>slave端<br>replicate-do-db    设定需要复制的数据库（多数据库使用逗号，隔开）<br>replicate-ignore-db 设定需要忽略的复制数据库 （多数据库使用逗号，隔开）<br>replicate-do-table  设定需要复制的表<br>replicate-ignore-table 设定需要忽略的复制表<br>replicate-wild-do-table 同replication-do-table功能一样，但是可以通配符<br>replicate-wild-ignore-table 同replication-ignore-table功能一样，但是可以加通配符</p>
+<p>原文:<a href="https://blog.51cto.com/yueyinsha/5243070" target="_blank" rel="noopener">MySQL 主从同步：同步相关信息的存储及查询</a></p>
+<h1 id="主從同步故障排除"><a href="#主從同步故障排除" class="headerlink" title="主從同步故障排除"></a>主從同步故障排除</h1><p><a href="https://blog.longwin.com.tw/2013/09/mysql-replication-error-1236-fix-2013/" target="_blank" rel="noopener">https://blog.longwin.com.tw/2013/09/mysql-replication-error-1236-fix-2013/</a><br><a href="https://aws.amazon.com/cn/premiumsupport/knowledge-center/dms-cdc-error-1236-msql/" target="_blank" rel="noopener">https://aws.amazon.com/cn/premiumsupport/knowledge-center/dms-cdc-error-1236-msql/</a></p>
+<h1 id="foreignkey-命名規則"><a href="#foreignkey-命名規則" class="headerlink" title="foreignkey 命名規則"></a>foreignkey 命名規則</h1><p>會注意到這個的原因是因為，資料庫報錯1022<br><a href="https://stackoverflow.com/questions/15014592/mysql-error-1022-when-creating-table" target="_blank" rel="noopener">https://stackoverflow.com/questions/15014592/mysql-error-1022-when-creating-table</a><br><a href="https://stackoverflow.com/questions/199498/foreign-key-naming-scheme" target="_blank" rel="noopener">https://stackoverflow.com/questions/199498/foreign-key-naming-scheme</a></p>
+<h1 id="先join再查詢，先查詢再join"><a href="#先join再查詢，先查詢再join" class="headerlink" title="先join再查詢，先查詢再join"></a>先join再查詢，先查詢再join</h1><p>其實我們不知道DB的行為會是怎樣，所以一切都需要驗證之後才知道<br><a href="https://blog.csdn.net/qq_15329947/article/details/96482433" target="_blank" rel="noopener">https://blog.csdn.net/qq_15329947/article/details/96482433</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/06/laravel%E4%BD%BF%E7%94%A8eloquent/" rel="prev" title="laravel使用eloquent">
+                  <i class="fa fa-chevron-left"></i> laravel使用eloquent
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/10/%E9%96%B1%E8%AE%80PSR/" rel="next" title="閱讀PSR">
+                  閱讀PSR <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

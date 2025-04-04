@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="http1.0http1.1http2.0websocket這一篇解釋 websocket 與長連接和 ajax 輪詢的不同https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;20215561旨在打开连接，尽可能快地处理请求，然后关闭连接。任何实际的 WebSockets 服务器端实现都需要一个异步服务器這篇解釋需需要異步實現 websocket 才不會佔系統資源，以及最大连接数是受 l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web常用的協定">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;10&#x2F;14&#x2F;web%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8D%94%E5%AE%9A&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="http1.0http1.1http2.0websocket這一篇解釋 websocket 與長連接和 ajax 輪詢的不同https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;20215561旨在打开连接，尽可能快地处理请求，然后关闭连接。任何实际的 WebSockets 服务器端实现都需要一个异步服务器這篇解釋需需要異步實現 websocket 才不會佔系統資源，以及最大连接数是受 l">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-07-30T10:11:28.904Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/10/14/web%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8D%94%E5%AE%9A/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>web常用的協定 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#http1-0"><span class="nav-number">1.</span> <span class="nav-text">http1.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http1-1"><span class="nav-number">2.</span> <span class="nav-text">http1.1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http2-0"><span class="nav-number">3.</span> <span class="nav-text">http2.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#websocket"><span class="nav-number">4.</span> <span class="nav-text">websocket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mqtt"><span class="nav-number">5.</span> <span class="nav-text">mqtt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webrtc"><span class="nav-number">6.</span> <span class="nav-text">webrtc</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/10/14/web%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8D%94%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          web常用的協定
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-10-14 15:26:46" itemprop="dateCreated datePublished" datetime="2020-10-14T15:26:46+08:00">2020-10-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="http1-0"><a href="#http1-0" class="headerlink" title="http1.0"></a>http1.0</h1><h1 id="http1-1"><a href="#http1-1" class="headerlink" title="http1.1"></a>http1.1</h1><h1 id="http2-0"><a href="#http2-0" class="headerlink" title="http2.0"></a>http2.0</h1><h1 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h1><p>這一篇解釋 websocket 與長連接和 ajax 輪詢的不同<br><a href="https://www.zhihu.com/question/20215561" target="_blank" rel="noopener">https://www.zhihu.com/question/20215561</a><br>旨在打开连接，尽可能快地处理请求，然后关闭连接。任何实际的 WebSockets 服务器端实现都需要一个异步服务器<br>這篇解釋需需要異步實現 websocket 才不會佔系統資源，以及最大连接数是受 linux 最大可打开文件文件数限制的<br><a href="https://www.zhihu.com/question/20831000" target="_blank" rel="noopener">https://www.zhihu.com/question/20831000</a></p>
+<p>事件驅動適合於 IO 密集型服務，多進程或線程適合於 CPU 密集型服務<br>老张爱喝茶，废话不说，煮开水。關於阻塞非阻塞与同步异步<br><a href="https://www.zhihu.com/question/19732473" target="_blank" rel="noopener">https://www.zhihu.com/question/19732473</a></p>
+<h1 id="mqtt"><a href="#mqtt" class="headerlink" title="mqtt"></a>mqtt</h1><h1 id="webrtc"><a href="#webrtc" class="headerlink" title="webrtc"></a>webrtc</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/05/laravel%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD/" rel="prev" title="laravel進階功能">
+                  <i class="fa fa-chevron-left"></i> laravel進階功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/14/%E5%B8%B8%E8%A6%8B%E7%9A%84api%E8%A6%8F%E7%AF%84/" rel="next" title="常見的api規範">
+                  常見的api規範 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

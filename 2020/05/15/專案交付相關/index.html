@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="專案環境解說 架構圖 各環境版本 語言 框架 資料庫相關套件 資料庫 快取技術 版控軟體   文件 api 文件 傳輸格式 json 協定 ws http status code error code DB Schema 文件    DB Schema 文件專案完成後，再由 DB Schema 轉成文件Postgres SQL 用 SELECT 語法取得 Table Schema 大架構程式設計參">
+<meta property="og:type" content="article">
+<meta property="og:title" content="專案交付相關">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;05&#x2F;15&#x2F;%E5%B0%88%E6%A1%88%E4%BA%A4%E4%BB%98%E7%9B%B8%E9%97%9C&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="專案環境解說 架構圖 各環境版本 語言 框架 資料庫相關套件 資料庫 快取技術 版控軟體   文件 api 文件 傳輸格式 json 協定 ws http status code error code DB Schema 文件    DB Schema 文件專案完成後，再由 DB Schema 轉成文件Postgres SQL 用 SELECT 語法取得 Table Schema 大架構程式設計參">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-07-30T10:11:28.916Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/05/15/%E5%B0%88%E6%A1%88%E4%BA%A4%E4%BB%98%E7%9B%B8%E9%97%9C/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>專案交付相關 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#專案環境解說"><span class="nav-number">1.</span> <span class="nav-text">專案環境解說</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DB-Schema-文件"><span class="nav-number">1.1.</span> <span class="nav-text">DB Schema 文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大架構程式設計"><span class="nav-number">2.</span> <span class="nav-text">大架構程式設計</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分流-Load-Balance（負載平衝）設計"><span class="nav-number">2.1.</span> <span class="nav-text">分流 Load Balance（負載平衝）設計</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共用-session"><span class="nav-number">2.2.</span> <span class="nav-text">共用 session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共用資料庫"><span class="nav-number">2.3.</span> <span class="nav-text">共用資料庫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自動彈性化-auto-scaling"><span class="nav-number">2.4.</span> <span class="nav-text">自動彈性化 auto scaling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例外狀況"><span class="nav-number">3.</span> <span class="nav-text">例外狀況</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/05/15/%E5%B0%88%E6%A1%88%E4%BA%A4%E4%BB%98%E7%9B%B8%E9%97%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          專案交付相關
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-05-15 14:30:58" itemprop="dateCreated datePublished" datetime="2020-05-15T14:30:58+08:00">2020-05-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="專案環境解說"><a href="#專案環境解說" class="headerlink" title="專案環境解說"></a>專案環境解說</h1><ul>
+<li>架構圖</li>
+<li>各環境版本<ul>
+<li>語言</li>
+<li>框架</li>
+<li>資料庫相關套件</li>
+<li>資料庫</li>
+<li>快取技術</li>
+<li>版控軟體</li>
+</ul>
+</li>
+<li>文件<ul>
+<li>api 文件</li>
+<li>傳輸格式 json</li>
+<li>協定 ws http</li>
+<li>status code</li>
+<li>error code</li>
+<li>DB Schema 文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="DB-Schema-文件"><a href="#DB-Schema-文件" class="headerlink" title="DB Schema 文件"></a>DB Schema 文件</h2><p>專案完成後，再由 DB Schema 轉成文件<br><a href="http://akuma1.pixnet.net/blog/post/358796858-postgres-sql-%e7%94%a8-select%e8%aa%9e%e6%b3%95%e5%8f%96%e5%be%97table-schema" target="_blank" rel="noopener">Postgres SQL 用 SELECT 語法取得 Table Schema</a></p>
+<h1 id="大架構程式設計"><a href="#大架構程式設計" class="headerlink" title="大架構程式設計"></a>大架構程式設計</h1><p>參考：<br><a href="http://akuma1.pixnet.net/blog/category/6529490" target="_blank" rel="noopener">大架構程式設計</a><br><a href="https://docs.google.com/document/d/1qsIP6hX0OPkgNQiSxTIJCjvAJNOTi0XrkjbOJ4giJ0M/edit" target="_blank" rel="noopener">Web 開發－資深工程師的經驗</a></p>
+<p>q：當程式寫好之後，可以同時接受多少併發量？<br>a：用 jmeter 測試</p>
+<p>a 測試完之後如何解決？<br>q： 1. 硬體擴充，但是會有硬體限制（實際上擴充的有限，例如一台電腦記憶體插槽就是那幾個） 2. 多台電腦達成服務（大架構的程式設計）</p>
+<p>大架構程式設計</p>
+<ul>
+<li>request : 由於 http 的特性，第一次請求和第二次請求，由不同機器處理是 ok 的</li>
+<li>session : 不同機器如何共用 session</li>
+<li>Application ：應用程式，不會變的資料每台機器都一樣</li>
+</ul>
+<h2 id="分流-Load-Balance（負載平衝）設計"><a href="#分流-Load-Balance（負載平衝）設計" class="headerlink" title="分流 Load Balance（負載平衝）設計"></a>分流 Load Balance（負載平衝）設計</h2><p>由一台 loading balance 的機器來和後端各 server 做溝通，用 cpu 或記憶體用量來判斷 server 是否忙碌，用簡單的網頁做回應看服務是否正常</p>
+<ul>
+<li>persistence 所有請求導到固定的機器會遇到的情況<ul>
+<li>使用情境當分流的 server 已經都滿了，突然增加機器能否把人導到新的機器上？ 無法，因為 loading balance 的機器已經被固定導到這 5 台</li>
+<li>假設其中一台掛掉，使用者被分流到其他機器上的 session 無法運作</li>
+</ul>
+</li>
+<li>affinity 每次請求導到任意一台機器會遇到的情況<ul>
+<li>使用者被分流到其他機器上的 session 無法運作</li>
+</ul>
+</li>
+</ul>
+<h2 id="共用-session"><a href="#共用-session" class="headerlink" title="共用 session"></a>共用 session</h2><p>為了解決上述共用的問題</p>
+<ul>
+<li>Cluster 叢集<br>將多台相同功能的機器，連在一起，webwever 會提供設定，設定完叢集就可以達成 session 共用</li>
+<li>第三方軟體<br>例如：memcached , AWS dynamoDB</li>
+<li>自行設計 session<br>存在資料庫，要知道銷毀的時機,配合語言的建立，更新，查詢</li>
+</ul>
+<h2 id="共用資料庫"><a href="#共用資料庫" class="headerlink" title="共用資料庫"></a>共用資料庫</h2><ul>
+<li>資料庫叢集<br>也需要一台負載平衡<br>由於同時寫入可能會讓資料庫出現問題<br>所以必須確保資料寫都在同 1 台，讀在另外幾台，不能有兩台個別寫的動作，會讓同步的邏輯變複雜，資料先後會有問題，所以由 loading balance 區分讀寫<ul>
+<li>loading balance 可以判斷 sql 語句，</li>
+<li>或者是用連到 loading balance port 號，寫程式來做變更對應不同資料庫,loading balace 再去對應資料庫</li>
+</ul>
+</li>
+<li>異地備援</li>
+</ul>
+<h2 id="自動彈性化-auto-scaling"><a href="#自動彈性化-auto-scaling" class="headerlink" title="自動彈性化 auto scaling"></a>自動彈性化 auto scaling</h2><p>一般來說主機如果是租的，是不會閒閒開個 5 台這那邊燒錢，一定是沒在用就關掉，需要時再開啟</p>
+<ul>
+<li>監看程式</li>
+<li>映像檔<br>因為叢集架構會有 master 和 slaver，所以當一台虛擬機開啟服務時，就要自動化作設定，如果想避免這類的自動化設定，共用 session 可能就要用第三方軟體(redis 之類)，這樣就可以 vm 一開就正常服務</li>
+</ul>
+<h1 id="例外狀況"><a href="#例外狀況" class="headerlink" title="例外狀況"></a>例外狀況</h1><p>流量跟預想的差太多，造成伺服器過度繁忙，甚至排擠到 Load Balance 來確認機器是否正常運行，造成明明機器是正常運行的，但是 Load Balance 判斷機器已掛點，所以 Auto Scaling 自動幫機器重啟，或是閉關此台機器，重新開啟一台新的機器來進行服務<br>因為它的流量是突然發生的，而不是緩緩上昇的，才會造成機器的誤判；所以，一般如果公司要舉辦活動，會預先評估或假設，預計有多少人連線進入、需要有多少台機器先開機等待之類的，一般會先行完成這些事情，來減低使用者在連線上造成的不愉快。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/15/%E8%B3%87%E6%96%99%E5%BA%AB%E7%9B%B8%E9%97%9C/" rel="prev" title="資料庫相關">
+                  <i class="fa fa-chevron-left"></i> 資料庫相關
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/05/21/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" rel="next" title="資料結構與演算法">
+                  資料結構與演算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

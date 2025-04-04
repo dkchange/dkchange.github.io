@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言你需要知道的 yiihttps:&#x2F;&#x2F;easy-yii.github.io&#x2F;2017&#x2F;01&#x2F;09&#x2F;know-PartFive&#x2F; PHP 目前最流行的 2 大框架，Laravel 和 Yii 的對比隨著新興的微服務&#x2F;納米服務體系結構以及對具有獨立維護&#x2F;部署的小型服務的需求，因此不再建議需要做很多事情的大型框架，所以最近框架也將一些非必要的功能拆出。兩大框架用更新速度來看 大概就是青少年 ，對上中年">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用yii2">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;04&#x2F;06&#x2F;%E5%AE%89%E8%A3%9Dyii&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言你需要知道的 yiihttps:&#x2F;&#x2F;easy-yii.github.io&#x2F;2017&#x2F;01&#x2F;09&#x2F;know-PartFive&#x2F; PHP 目前最流行的 2 大框架，Laravel 和 Yii 的對比隨著新興的微服務&#x2F;納米服務體系結構以及對具有獨立維護&#x2F;部署的小型服務的需求，因此不再建議需要做很多事情的大型框架，所以最近框架也將一些非必要的功能拆出。兩大框架用更新速度來看 大概就是青少年 ，對上中年">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-12-31T09:39:34.566Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/04/06/%E5%AE%89%E8%A3%9Dyii/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>使用yii2 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-yii"><span class="nav-number">2.</span> <span class="nav-text">安裝 yii</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-資料夾結構"><span class="nav-number">3.</span> <span class="nav-text">yii 資料夾結構</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yii-basic-大致介紹"><span class="nav-number">3.1.</span> <span class="nav-text">yii basic 大致介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yii-advance"><span class="nav-number">3.2.</span> <span class="nav-text">yii advance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#設置-yii"><span class="nav-number">4.</span> <span class="nav-text">設置 yii</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#uncomment-the-code-of-url-manager"><span class="nav-number">4.1.</span> <span class="nav-text">uncomment the code of url manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yii-basic-遇到的問題"><span class="nav-number">4.2.</span> <span class="nav-text">yii basic 遇到的問題</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#開啟-debug-工具"><span class="nav-number">5.</span> <span class="nav-text">開啟 debug 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遭遇問題"><span class="nav-number">5.1.</span> <span class="nav-text">遭遇問題</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-知識點"><span class="nav-number">6.</span> <span class="nav-text">yii 知識點</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝完之後"><span class="nav-number">7.</span> <span class="nav-text">安裝完之後</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遭遇問題-1"><span class="nav-number">7.1.</span> <span class="nav-text">遭遇問題</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行-yii"><span class="nav-number">8.</span> <span class="nav-text">运行 yii</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行错误"><span class="nav-number">9.</span> <span class="nav-text">运行错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-生命周期"><span class="nav-number">10.</span> <span class="nav-text">yii 生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-console"><span class="nav-number">11.</span> <span class="nav-text">yii console</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-controller"><span class="nav-number">11.1.</span> <span class="nav-text">建立 controller</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-的资料夹结构"><span class="nav-number">12.</span> <span class="nav-text">yii 的资料夹结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-validation"><span class="nav-number">13.</span> <span class="nav-text">yii validation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有关栏位个别更新"><span class="nav-number">13.1.</span> <span class="nav-text">有关栏位个别更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#safe"><span class="nav-number">13.2.</span> <span class="nav-text">safe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何自订验证和参数"><span class="nav-number">13.3.</span> <span class="nav-text">如何自订验证和参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码验证"><span class="nav-number">13.4.</span> <span class="nav-text">密码验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-中学习到的原则"><span class="nav-number">14.</span> <span class="nav-text">yii 中学习到的原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-scenarios"><span class="nav-number">15.</span> <span class="nav-text">yii scenarios</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rule"><span class="nav-number">15.1.</span> <span class="nav-text">rule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栏位验证"><span class="nav-number">15.2.</span> <span class="nav-text">栏位验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-調適"><span class="nav-number">16.</span> <span class="nav-text">yii 調適</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gii"><span class="nav-number">17.</span> <span class="nav-text">gii</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#啟動-server-放文件給同事看"><span class="nav-number">18.</span> <span class="nav-text">啟動 server 放文件給同事看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ERROR-2006-‘MySQL-server-has-gone-away’"><span class="nav-number">19.</span> <span class="nav-text">ERROR : (2006, ‘MySQL server has gone away’</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#phpstorm-shortcut-duplicate-lines"><span class="nav-number">20.</span> <span class="nav-text">phpstorm shortcut duplicate lines</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取資料"><span class="nav-number">21.</span> <span class="nav-text">取資料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-分页"><span class="nav-number">22.</span> <span class="nav-text">yii 分页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#migrate-fresh"><span class="nav-number">23.</span> <span class="nav-text">migrate/fresh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yii-連接-tsql"><span class="nav-number">23.1.</span> <span class="nav-text">yii 連接 tsql</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-多個表-join"><span class="nav-number">24.</span> <span class="nav-text">yii 多個表 join</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#thousands-of-single-SELECTs"><span class="nav-number">25.</span> <span class="nav-text">thousands of single SELECTs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-格式化輸出"><span class="nav-number">26.</span> <span class="nav-text">yii 格式化輸出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用-join-進來的表格做排序"><span class="nav-number">27.</span> <span class="nav-text">用 join 進來的表格做排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何分割-log-档"><span class="nav-number">28.</span> <span class="nav-text">如何分割 log 档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cotroller"><span class="nav-number">29.</span> <span class="nav-text">cotroller</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#render"><span class="nav-number">29.1.</span> <span class="nav-text">render</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#view"><span class="nav-number">30.</span> <span class="nav-text">view</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#render-部份內容"><span class="nav-number">30.1.</span> <span class="nav-text">render 部份內容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#傳資料"><span class="nav-number">30.2.</span> <span class="nav-text">傳資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找出-controller"><span class="nav-number">30.3.</span> <span class="nav-text">找出 controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他標籤"><span class="nav-number">30.4.</span> <span class="nav-text">其他標籤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小技巧"><span class="nav-number">30.5.</span> <span class="nav-text">小技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#model"><span class="nav-number">31.</span> <span class="nav-text">model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#request"><span class="nav-number">32.</span> <span class="nav-text">request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#response"><span class="nav-number">33.</span> <span class="nav-text">response</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#statusCode"><span class="nav-number">33.1.</span> <span class="nav-text">statusCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改變回傳格式"><span class="nav-number">33.2.</span> <span class="nav-text">改變回傳格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重導畫面"><span class="nav-number">33.3.</span> <span class="nav-text">重導畫面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#傳檔案"><span class="nav-number">33.4.</span> <span class="nav-text">傳檔案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#layout"><span class="nav-number">34.</span> <span class="nav-text">layout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#widget"><span class="nav-number">35.</span> <span class="nav-text">widget</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alias"><span class="nav-number">36.</span> <span class="nav-text">alias</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#asset-bundle"><span class="nav-number">37.</span> <span class="nav-text">asset bundle</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dao"><span class="nav-number">38.</span> <span class="nav-text">dao</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#backtick"><span class="nav-number">38.1.</span> <span class="nav-text">backtick</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#active-Record"><span class="nav-number">39.</span> <span class="nav-text">active Record</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#query-bulider"><span class="nav-number">40.</span> <span class="nav-text">query bulider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#設定物件"><span class="nav-number">41.</span> <span class="nav-text">設定物件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#restAPI"><span class="nav-number">42.</span> <span class="nav-text">restAPI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yii-框架-日誌設定"><span class="nav-number">43.</span> <span class="nav-text">yii 框架 日誌設定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#當你的-php-是-5-2x-不支援-sha256"><span class="nav-number">44.</span> <span class="nav-text">當你的 php 是 5.2x 不支援 sha256</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/04/06/%E5%AE%89%E8%A3%9Dyii/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用yii2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-04-06 14:51:59" itemprop="dateCreated datePublished" datetime="2020-04-06T14:51:59+08:00">2020-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-12-31 17:39:34" itemprop="dateModified" datetime="2021-12-31T17:39:34+08:00">2021-12-31</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">後端路線</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index"><span itemprop="name">framework</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/yii2/" itemprop="url" rel="index"><span itemprop="name">yii2</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>你需要知道的 yii<br><a href="https://easy-yii.github.io/2017/01/09/know-PartFive/" target="_blank" rel="noopener">https://easy-yii.github.io/2017/01/09/know-PartFive/</a></p>
+<p>PHP 目前最流行的 2 大框架，Laravel 和 Yii 的對比<br>隨著新興的微服務/納米服務體系結構以及對具有獨立維護/部署的小型服務的需求，因此不再建議需要做很多事情的大型框架，所以最近框架也將一些非必要的功能拆出。<br>兩大框架用更新速度來看 大概就是青少年 ，對上中年男子…<br>工作需求開始學 yii<br><a href="https://www.yii-china.com/" target="_blank" rel="noopener">https://www.yii-china.com/</a><br>文檔可能我還不習慣，頭看得很痛<br><a href="https://yii2-framework.readthedocs.io/en/stable/" target="_blank" rel="noopener">https://yii2-framework.readthedocs.io/en/stable/</a></p>
+<h1 id="安裝-yii"><a href="#安裝-yii" class="headerlink" title="安裝 yii"></a>安裝 yii</h1><p>懶人包影片<br><a href="https://youtu.be/sRJ6GYiCwkI" target="_blank" rel="noopener">https://youtu.be/sRJ6GYiCwkI</a></p>
+<p><a href="http://www.fancyecommerce.com/2016/05/18/yii2-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84bootstrap%E8%BF%87%E7%A8%8B-%E5%BC%95%E5%AF%BC/" target="_blank" rel="noopener">http://www.fancyecommerce.com/2016/05/18/yii2-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84bootstrap%E8%BF%87%E7%A8%8B-%E5%BC%95%E5%AF%BC/</a><br>看起來 yii 分兩種版本，一種是有 init 檔的下面會提到<br>php composer.phar create-project yiisoft/yii2-app-basic basic 2.0.15<br>php composer.phar create-project yiisoft/yii2-app-advanced advanced 2.0.15<br>這兩個專案的資料夾結構完全不同，切記，一開始吃了悶虧在研究，所以公司的專案，並沒有因為 docker 就把 yii 的資料夾結構做修改</p>
+<h1 id="yii-資料夾結構"><a href="#yii-資料夾結構" class="headerlink" title="yii 資料夾結構"></a>yii 資料夾結構</h1><p><a href="https://learnku.com/articles/31435" target="_blank" rel="noopener">https://learnku.com/articles/31435</a></p>
+<h2 id="yii-basic-大致介紹"><a href="#yii-basic-大致介紹" class="headerlink" title="yii basic 大致介紹"></a>yii basic 大致介紹</h2><p>assets 前端打包用<br>commands console 命令用<br>config<br>controller<br>mail email templates<br>model<br>runtime 框架產生的檔案<br>tests<br>vagrant vagrant container system<br>vendor all package<br>view<br>web 入口文件<br>widget 使用者界面的元件</p>
+<h2 id="yii-advance"><a href="#yii-advance" class="headerlink" title="yii advance"></a>yii advance</h2><p>公司的專案大多採用此架構，進而分出其他的專案例如 api 等等<br>如何新增 api 專案就看下面的教學<br><a href="https://blog.csdn.net/post_mans/article/details/72876763" target="_blank" rel="noopener">https://blog.csdn.net/post_mans/article/details/72876763</a></p>
+<h1 id="設置-yii"><a href="#設置-yii" class="headerlink" title="設置 yii"></a>設置 yii</h1><p>all the key in config file are the public properties of the application,<br><a href="https://www.yiiframework.com/doc/guide/2.0/en/structure-applications" target="_blank" rel="noopener">https://www.yiiframework.com/doc/guide/2.0/en/structure-applications</a><br>id<br>name<br>language<br>defaultRoute=&gt;’site/login’ 預設入口<br>layout=&gt;’main view 的預設模板<br>layoutpath=&gt; 改變 layout 路徑<br>on beforeRequest 常數事件<br>all the components are singleton objects<br>component=&gt;你看得到的預設設定都是核心元件<br>像是<br>request cache user errorHandler db log mailer …<br>那有些元件會沒有設定 class 代表，這個元件的 class 是由核心決定傳入的 key 是什，就用哪個 class<br><a href="https://youtu.be/iB-CllQVZTg" target="_blank" rel="noopener">https://youtu.be/iB-CllQVZTg</a><br>再來就是註冊完 component 之後，可用 yii::＄ app-&gt;componentname 來存取，如果沒有存取，就不會實例化這個 class，<br>‘test’=&gt;[<br>class=&gt;’app/component/test’<br>]<br>OR<br>‘test’=&gt;function(){<br>return new app/component/test();<br>}<br>也可以和 boostrap 這個屬性做搭配，註冊在這裡面的一定會被實例化</p>
+<h2 id="uncomment-the-code-of-url-manager"><a href="#uncomment-the-code-of-url-manager" class="headerlink" title="uncomment the code of url manager"></a>uncomment the code of url manager</h2><p>記得記 log 的資料夾和前端 assets 的寫入權限要打開，如果你的專案權限沒設定的話，就打開成 777 吧</p>
+<h2 id="yii-basic-遇到的問題"><a href="#yii-basic-遇到的問題" class="headerlink" title="yii basic 遇到的問題"></a>yii basic 遇到的問題</h2><p>cookieValidationKey must be configured with a secret key<br><a href="https://stackoverflow.com/questions/38824006/error-when-installed-yii2" target="_blank" rel="noopener">https://stackoverflow.com/questions/38824006/error-when-installed-yii2</a></p>
+<p>yii 的設置可能是整個專案最重要的一環，一定要懂的如何設定，<br><a href="https://www.yiiframework.com/doc/guide/2.0/en/concept-configurations" target="_blank" rel="noopener">https://www.yiiframework.com/doc/guide/2.0/en/concept-configurations</a><br>個人覺得英文版的參考文檔要比簡中版本的易懂，所以如果看不懂簡中的，可以試著看看英文版</p>
+<h1 id="開啟-debug-工具"><a href="#開啟-debug-工具" class="headerlink" title="開啟 debug 工具"></a>開啟 debug 工具</h1><h2 id="遭遇問題"><a href="#遭遇問題" class="headerlink" title="遭遇問題"></a>遭遇問題</h2><p>config 的 allowIPs 要設定好<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'bootstrap'</span> =&gt; [<span class="string">'debug'</span>],</span><br><span class="line"><span class="string">'modules'</span> =&gt; [</span><br><span class="line">    <span class="string">'debug'</span> =&gt; [</span><br><span class="line">        <span class="string">'class'</span> =&gt; <span class="string">'yii\debug\Module'</span>,</span><br><span class="line">        <span class="string">'allowedIPs'</span> =&gt; [<span class="string">'127.0.0.1'</span>, <span class="string">'::1'</span>,<span class="string">'172.19.*'</span>],</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>runtime 的資料夾權限記得改為可寫入</p>
+<h1 id="yii-知識點"><a href="#yii-知識點" class="headerlink" title="yii 知識點"></a>yii 知識點</h1><p>Yii2 use “new” everywhere to create models.<br>Why Yii2 use “new” everywhere while pushing their “Dependency Injection Container” feature that is not compatible with “new”<br>Performance mainly.<br><a href="https://forum.yiiframework.com/t/new-vs-yii-createobject/86677" target="_blank" rel="noopener">https://forum.yiiframework.com/t/new-vs-yii-createobject/86677</a></p>
+<h1 id="安裝完之後"><a href="#安裝完之後" class="headerlink" title="安裝完之後"></a>安裝完之後</h1><p><a href="https://github.com/yiisoft/yii2-app-advanced/blob/master/init" target="_blank" rel="noopener">https://github.com/yiisoft/yii2-app-advanced/blob/master/init</a></p>
+<h2 id="遭遇問題-1"><a href="#遭遇問題-1" class="headerlink" title="遭遇問題"></a>遭遇問題</h2><p>to solve problem like<br>Unable to write the file ‘/var/www/yiitest/models/Country.php’<br>php init<br>之後產生出來的檔案 yii 都歸在 ignore<br>然後實驗證明官方的 php init 並不會幫你改其他資料夾的權限，但是 runtime 的資料夾權限會幫你改，才能記 log</p>
+<p>chmod -R 777 -R .<br>為何经由 gii 安装出来的档案 owner 会是 apache,原因是除了 nginx.conf 档要修改以外,php-fpm 底下的 <a href="http://www.conf" target="_blank" rel="noopener">www.conf</a> 档也要改<br>user = nginx<br>group = www-data</p>
+<p>php yii migrate<br>跟 laravel 一样</p>
+<p>sudo chown -R myuser:mygroup myfolder</p>
+<h1 id="运行-yii"><a href="#运行-yii" class="headerlink" title="运行 yii"></a>运行 yii</h1><p>yii 分两入口，一部份是 web，另一部份是 console<br>所以设定档也分成 common 和 console<br>再继续细分為 local 后缀和非真正生产环境的设定档</p>
+<h1 id="运行错误"><a href="#运行错误" class="headerlink" title="运行错误"></a>运行错误</h1><p>运行时可能有遭遇到的错误<br>Fatal error: Cannot use ‘Object’ as class name as it is reserved<br><a href="https://github.com/yiisoft/yii2/issues/14823" target="_blank" rel="noopener">https://github.com/yiisoft/yii2/issues/14823</a></p>
+<h1 id="yii-生命周期"><a href="#yii-生命周期" class="headerlink" title="yii 生命周期"></a>yii 生命周期</h1><p><a href="https://juejin.im/post/5d51056be51d4561c02a250b" target="_blank" rel="noopener">https://juejin.im/post/5d51056be51d4561c02a250b</a></p>
+<h1 id="yii-console"><a href="#yii-console" class="headerlink" title="yii console"></a>yii console</h1><p>This is Yii version 2.0.15.1.<br>The following commands are available:</p>
+<ul>
+<li>asset Allows you to combine and compress your JavaScript and CSS files.</li>
+<li>cache Allows you to flush cache.</li>
+<li>fixture Manages fixture data loading and unloading.</li>
+<li>gii This is the command line version of Gii - a code generator.</li>
+<li>help Provides help information about console commands.</li>
+<li>message Extracts messages to be translated from source files.</li>
+<li>migrate Manages application migrations.</li>
+<li>serve Runs PHP built-in web server.<br>那记得每个指令最好要用之前都先透过 yii help XXXX，会有详细的说明，以及列出其他的指令</li>
+</ul>
+<p>No command ‘yii’ found,<br>./yii migrate/create user</p>
+<p>or<br>add it to the PATH variable in .bashrc:<br>vi ~/.bashrc</p>
+<p>export PATH=”/var/www/yii/framework:$PATH”<br>export PATH=”$HOME/.composer/vender/bin:bin:$PATH”</p>
+<p>就像 nodejs<br>echo ‘export PATH=$PATH:/usr/local/bin’ &gt;&gt; $HOME/.bashrc</p>
+<p>In my case (with ZSH), it was: echo ‘export PATH=$PATH:/usr/local/bin’ &gt;&gt;$HOME/.zshrc …and then I ran: source ~/.zshrc</p>
+<p>or</p>
+<p>create symlink in /usr/bin (UBUNTU)<br>go to /usr/bin and<br>ln -s /data/lib/php/yii/framework/yiic yiic</p>
+<h2 id="建立-controller"><a href="#建立-controller" class="headerlink" title="建立 controller"></a>建立 controller</h2><p>yii gii/controller –controllerClass = app\controllers\TestController</p>
+<p>或者使用 web 界面<br>backend/config/main.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'components'</span> =&gt; [</span><br><span class="line">    <span class="string">'urlManager'</span> =&gt; [</span><br><span class="line">        <span class="string">'enablePrettyUrl'</span> =&gt; <span class="keyword">true</span>,</span><br><span class="line">        <span class="string">'showScriptName'</span> =&gt; <span class="keyword">false</span>,</span><br><span class="line">        <span class="string">'rules'</span> =&gt; [</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://localhost:8088/?r=gii" target="_blank" rel="noopener">http://localhost:8088/?r=gii</a><br>或是<br>url 美化後之後 gii 會提到<br><a href="http://localhost:8088/gii" target="_blank" rel="noopener">http://localhost:8088/gii</a></p>
+<h1 id="yii-的资料夹结构"><a href="#yii-的资料夹结构" class="headerlink" title="yii 的资料夹结构"></a>yii 的资料夹结构</h1><p>yii 的资料夹结构除了 gii 之类的指令会生成档案，大致上就没什么变，大部分都要手动新增，例如你需要手动新增 fixture</p>
+<h1 id="yii-validation"><a href="#yii-validation" class="headerlink" title="yii validation"></a>yii validation</h1><p><a href="https://yii2-framework.readthedocs.io/en/stable/guide/input-validation/" target="_blank" rel="noopener">https://yii2-framework.readthedocs.io/en/stable/guide/input-validation/</a></p>
+<p>yii 在做欄位驗證的時候，<br>可以對整個表單做驗證，<br>$form-&gt;validate()<br>可以對單一欄位做驗證<br>$form-&gt;validate([‘field_name’])</p>
+<p>那如果需要特別指定(Ad hoc)某個驗證規則<br>$validator = new yii\validators\EmailValidator();</p>
+<p>那傳統 form 表單傳過來的資料都是字串，所以如果是數字，php 會自動進行轉換<br>所以 rule integer 就算你是字串他也會給你過，那萬一你是對型別有要求的 json，那傳統表單的驗證規則和 json 的就不能共用<br><a href="https://www.yiiframework.com/doc/api/2.0/yii-validators-numbervalidator" target="_blank" rel="noopener">https://www.yiiframework.com/doc/api/2.0/yii-validators-numbervalidator</a><br>請加上 intergeronly=&gt;true</p>
+<p><a href="https://flamerecca.gitbooks.io/yii-2-0-cookbook-yii2-gitbook-cookbook/forms-validator-multiple-attributes.html" target="_blank" rel="noopener">https://flamerecca.gitbooks.io/yii-2-0-cookbook-yii2-gitbook-cookbook/forms-validator-multiple-attributes.html</a></p>
+<h2 id="有关栏位个别更新"><a href="#有关栏位个别更新" class="headerlink" title="有关栏位个别更新"></a>有关栏位个别更新</h2><p>因為栏位有时需要同意支 api 可更新个别单个栏位，此时要自己在家逻辑看看栏位是否為 null<br>但记得 trim 过后的栏位一定是空字串，此时你会无从判断使用者是否有传值过来，所以如果允许 null 的栏位建议就不要再加 trim 规则，<br>如果要的话，就变成只能判断是否為空字串，就要加上 empty 判断，让你的栏位不能是空字串，但通常云许 null 的栏位都可以是空字串，在此建议可以不用家 trim 以免麻烦</p>
+<h2 id="safe"><a href="#safe" class="headerlink" title="safe"></a>safe</h2><p><a href="https://www.yiichina.com/question/2093" target="_blank" rel="noopener">https://www.yiichina.com/question/2093</a></p>
+<h2 id="如何自订验证和参数"><a href="#如何自订验证和参数" class="headerlink" title="如何自订验证和参数"></a>如何自订验证和参数</h2><p><a href="https://github.com/yiisoft/yii2/issues/1174" target="_blank" rel="noopener">https://github.com/yiisoft/yii2/issues/1174</a></p>
+<p>传参数要用关键字<strong>params</strong> 否则会报错</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        [<span class="string">'test'</span>, <span class="string">'validateTest'</span>, <span class="string">'params'</span> =&gt; [<span class="string">'test'</span> =&gt; <span class="string">'value'</span>]],</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="密码验证"><a href="#密码验证" class="headerlink" title="密码验证"></a>密码验证</h2><p>generatePasswordHash<br>yii 的加密函数和一般的 md5 hash1 不一样，即便事项同的输入也会有不同的输出<br>所以必须透过 yii 的 validatePassword 来验证<br>这点是蛮特别的</p>
+<h1 id="yii-中学习到的原则"><a href="#yii-中学习到的原则" class="headerlink" title="yii 中学习到的原则"></a>yii 中学习到的原则</h1><ol>
+<li>要考虑维护性<br>scenarios ,最好设定常数,不要直接用字串，这样档案之前才可以互相参考和提示</li>
+<li>要划分好职责,就像一般 mvc 会遇到的问题一样，有人会建议在画个 repository</li>
+</ol>
+<ul>
+<li>controller的原則，超過10行就是臃腫的controller</li>
+<li>controller放不會重複的code</li>
+</ul>
+<ol start="3">
+<li>写 code 的时候也要对 function 划分好职责，不需要做的而外判断就不要加上去，就像工程师对 function 参数的输入在外面验证过后，就不要在验证一次了，要相信写 code 的人的输入，至于如果是使用者的输入，就一定要验证，要分清楚工程师和使用者的输入</li>
+</ol>
+<h1 id="yii-scenarios"><a href="#yii-scenarios" class="headerlink" title="yii scenarios"></a>yii scenarios</h1><h2 id="rule"><a href="#rule" class="headerlink" title="rule"></a>rule</h2><p><a href="https://www.yii-china.com/post/detail/40.html" target="_blank" rel="noopener">https://www.yii-china.com/post/detail/40.html</a></p>
+<h2 id="栏位验证"><a href="#栏位验证" class="headerlink" title="栏位验证"></a>栏位验证</h2><p>像再做 api 和后台栏位会有不同的客制化需求，主体的 model 不变，但是验证规则继承下来之后，多半都是需要重写的，若不想要重写，建议设置<strong>on</strong> scenarios,<br>尤其是 required 规则一继承下来大家都吃的到，这样要运用就不是很好运用，非必填变成一定要填，除非你能确定该规则换情况都通用，例如密码格式，长度，这些可以共用就不用设置 scenarios<br>另外就是例如 unique 规则会去访问 db，所以的验证的 form 除了一定要是继承自原本的 model 以外，一定要加上 scenarios,不然查询功能还要验证参数的 username 是否唯一这是蛇鬼</p>
+<h1 id="yii-調適"><a href="#yii-調適" class="headerlink" title="yii 調適"></a>yii 調適</h1><p>show raw sql query<br>$query-&gt;createCommand()-&gt;getRawSql()<br><a href="https://www.yiiframework.com/wiki/857/show-raw-sql-query" target="_blank" rel="noopener">https://www.yiiframework.com/wiki/857/show-raw-sql-query</a><br>或者記下 log<br><a href="https://forum.yiiframework.com/t/is-there-a-log-of-sql-queries/27533" target="_blank" rel="noopener">https://forum.yiiframework.com/t/is-there-a-log-of-sql-queries/27533</a></p>
+<h1 id="gii"><a href="#gii" class="headerlink" title="gii"></a>gii</h1><p>如果开启了 pretty URLs, 则这样访问:<br><a href="http://localhost/path/to/index.php/gii" target="_blank" rel="noopener">http://localhost/path/to/index.php/gii</a></p>
+<p>gii forbidden (#403)<br>如果从除 localhost 之外的 IP 地址访问 gii ，访问将被默认拒绝。 要规避该默认值，则需将允许的 IP 地址添加到配置中：<br>yiitest/config/web.php<br>那如果是進階版， main.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'modules'</span> =&gt; [</span><br><span class="line"><span class="string">'gii'</span> =&gt; [</span><br><span class="line"><span class="string">'class'</span> =&gt; <span class="string">'yii\gii\Module'</span>,</span><br><span class="line"><span class="comment">//'allowedIPs' =&gt; ['127.0.0.1', '::1', '192.168.1.*', 'XXX.XXX.XXX.XXX'] // adjust this to your needs</span></span><br><span class="line"><span class="string">'allowedIPs'</span> =&gt; YII_DEBUG ? [<span class="string">'*'</span>] : [<span class="string">'127.0.0.1'</span>, <span class="string">'::1'</span>],</span><br><span class="line"></span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.yiiframework.com/extension/yiisoft/yii2-gii/doc/guide/2.1/zh-cn/installation" target="_blank" rel="noopener">https://www.yiiframework.com/extension/yiisoft/yii2-gii/doc/guide/2.1/zh-cn/installation</a></p>
+<h1 id="啟動-server-放文件給同事看"><a href="#啟動-server-放文件給同事看" class="headerlink" title="啟動 server 放文件給同事看"></a>啟動 server 放文件給同事看</h1><p>php -S 0.0.0.0:10000 -t mapi/apidoc</p>
+<p>PHP 的 built-in web server 有个 -t 参数可以指定 document root 的路径的，比如这里就可以写成：<br>php -S localhost:8080 -t web<br>这样就能省掉 URL 中的 /web/index.php 这部分了。</p>
+<h1 id="ERROR-2006-‘MySQL-server-has-gone-away’"><a href="#ERROR-2006-‘MySQL-server-has-gone-away’" class="headerlink" title="ERROR : (2006, ‘MySQL server has gone away’"></a>ERROR : (2006, ‘MySQL server has gone away’</h1><p>市因為設定檔忘記將 mysql:改成 pgsql:</p>
+<h1 id="phpstorm-shortcut-duplicate-lines"><a href="#phpstorm-shortcut-duplicate-lines" class="headerlink" title="phpstorm shortcut duplicate lines"></a>phpstorm shortcut duplicate lines</h1><p>(you’d use ctrl+d, but first you have to select many (how? I think they wanted ctrl+w to be used for this))</p>
+<h1 id="取資料"><a href="#取資料" class="headerlink" title="取資料"></a>取資料</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$query = GetGameRecord::find()</span><br><span class="line">    -&gt;select([</span><br><span class="line">        <span class="string">'game_record.*'</span>,</span><br><span class="line"></span><br><span class="line"><span class="string">'game_kind.kind_name'</span></span><br><span class="line">])</span><br><span class="line">-&gt;joinWith(<span class="string">'gameKind'</span>)</span><br><span class="line">-&gt;Where([<span class="string">'board_id'</span> =&gt; $pageForm-&gt;board_id])</span><br><span class="line">-&gt;orderBy(<span class="string">'settle_time desc'</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="yii-分页"><a href="#yii-分页" class="headerlink" title="yii 分页"></a>yii 分页</h1><p>這是 yii orm 內建的子查詢，如果不想要子查詢那麼多<br>可以在下 sql 的時候作 join 像上面一樣</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fields</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $fields = <span class="keyword">parent</span>::fields();</span><br><span class="line">    $fields[<span class="string">'kind_name'</span>] = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;gameKind ? <span class="keyword">$this</span>-&gt;gameKind-&gt;kind_name : <span class="keyword">null</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    $fields[<span class="string">'server_name'</span>] = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;gameServer ? <span class="keyword">$this</span>-&gt;gameServer-&gt;name : <span class="keyword">null</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> $fields;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> $firstQuery= Agent::find()</span><br><span class="line">        -&gt;where([<span class="string">'parent_id'</span> =&gt; <span class="keyword">$this</span>-&gt;agent-&gt;id])</span><br><span class="line">        -&gt;andFilterWhere([</span><br><span class="line">            <span class="string">'id'</span> =&gt; $pageForm-&gt;agent_id,</span><br><span class="line">            <span class="string">'nickname'</span> =&gt; $pageForm-&gt;nickname,</span><br><span class="line">            <span class="string">'username'</span> =&gt; $pageForm-&gt;agent_username,</span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line">    $secondQuery = GameRecord::find()</span><br><span class="line">        -&gt;Where([<span class="string">'&gt;='</span>, <span class="string">'settle_time'</span>, ($pageForm-&gt;start_time != <span class="keyword">null</span>) ? $pageForm-&gt;start_time : <span class="keyword">null</span>])</span><br><span class="line">        -&gt;andWhere([<span class="string">'&lt;='</span>, <span class="string">'settle_time'</span>, ($pageForm-&gt;end_time != <span class="keyword">null</span>) ? ($pageForm-&gt;end_time + <span class="number">86399</span>) : <span class="keyword">null</span>])</span><br><span class="line">        -&gt;andFilterWhere([</span><br><span class="line">            <span class="string">'kind_id'</span> =&gt; $pageForm-&gt;kind_id,</span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    $query = Agent::find()</span><br><span class="line">        -&gt;select([</span><br><span class="line">            <span class="string">'t1.id'</span>,</span><br><span class="line">            <span class="string">'t1.username'</span>,</span><br><span class="line">            <span class="string">'t1.nickname'</span>,</span><br><span class="line">            <span class="string">'t1.parent_rate'</span>,</span><br><span class="line">            <span class="string">'t1.score'</span>,</span><br><span class="line">            <span class="string">'bet'</span> =&gt; <span class="keyword">new</span> Expression(<span class="string">'COALESCE(SUM(valid_bet), 0)'</span>),</span><br><span class="line">            <span class="string">'count'</span> =&gt; <span class="keyword">new</span> Expression(<span class="string">'COUNT(board_id)'</span>),</span><br><span class="line">            <span class="string">'total'</span> =&gt; <span class="keyword">new</span> Expression(<span class="string">'COALESCE(SUM(revenue), 0)'</span>),</span><br><span class="line">        ])</span><br><span class="line">        -&gt;from([<span class="string">'t1'</span> =&gt; $firstQuery])</span><br><span class="line">        -&gt;leftJoin([<span class="string">'t2'</span> =&gt; $secondQuery], <span class="string">'t2.agent_id = t1.id'</span>)</span><br><span class="line">        -&gt;orderBy(<span class="string">'t1.id desc'</span>)</span><br><span class="line">        -&gt;groupBy([<span class="string">'t1.id'</span>, <span class="string">'t2.agent_id'</span>])</span><br><span class="line">        -&gt;asArray();</span><br><span class="line">    <span class="keyword">echo</span> $query-&gt;createCommand()-&gt;getRawSql();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            $subQuery = MemberLoginLog::find()-&gt;select([</span><br><span class="line">        <span class="string">'username'</span>,</span><br><span class="line">        <span class="string">"MAX(created_at) last_time_login"</span>,</span><br><span class="line">    ])-&gt;groupBy(<span class="string">'username'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    $query = Member::find()-&gt;select([</span><br><span class="line">        <span class="string">'member.username'</span>,</span><br><span class="line">        ])</span><br><span class="line">        -&gt;leftJoin([<span class="string">'last_login'</span>=&gt;(<span class="keyword">new</span> \yii\db\Query())</span><br><span class="line">            -&gt;from([<span class="string">'t1'</span>=&gt; $subQuery])</span><br><span class="line">            -&gt;innerJoin([MemberLoginLog::tableName()],<span class="string">'t1.username=member_login_log.username AND t1.last_time_login=member_login_log.created_at'</span>)</span><br><span class="line">        ],<span class="string">'last_login.username=member.username'</span>)</span><br><span class="line">        -&gt;andWhere([<span class="string">'member.agent_id'</span> =&gt; <span class="keyword">$this</span>-&gt;agent-&gt;id])-&gt;orderBy(<span class="string">'created_at desc'</span>)</span><br><span class="line">        -&gt;groupBy(<span class="string">'member.username'</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="migrate-fresh"><a href="#migrate-fresh" class="headerlink" title="migrate/fresh"></a>migrate/fresh</h1><p>資料表在 migration 的時候會合叫加％符號，是因為之後再加前綴才會加到<br>实验后证实，经过 partition 的表，在 fresh 时会失败</p>
+<h2 id="yii-連接-tsql"><a href="#yii-連接-tsql" class="headerlink" title="yii 連接 tsql"></a>yii 連接 tsql</h2><p><a href="https://forum.yiiframework.com/t/odbc-support/42598/6" target="_blank" rel="noopener">https://forum.yiiframework.com/t/odbc-support/42598/6</a></p>
+<h1 id="yii-多個表-join"><a href="#yii-多個表-join" class="headerlink" title="yii 多個表 join"></a>yii 多個表 join</h1><p><a href="https://www.yii-china.com/topic/detail/110" target="_blank" rel="noopener">https://www.yii-china.com/topic/detail/110</a></p>
+<h1 id="thousands-of-single-SELECTs"><a href="#thousands-of-single-SELECTs" class="headerlink" title="thousands of single SELECTs"></a>thousands of single SELECTs</h1><p><a href="https://stackoverflow.com/questions/30195428/why-is-yii2s-activerecord-using-lots-of-single-selects-instead-of-joins" target="_blank" rel="noopener">https://stackoverflow.com/questions/30195428/why-is-yii2s-activerecord-using-lots-of-single-selects-instead-of-joins</a></p>
+<h1 id="yii-格式化輸出"><a href="#yii-格式化輸出" class="headerlink" title="yii 格式化輸出"></a>yii 格式化輸出</h1><p><a href="https://github.com/yiisoft/yii2/issues/10927" target="_blank" rel="noopener">https://github.com/yiisoft/yii2/issues/10927</a></p>
+<h1 id="用-join-進來的表格做排序"><a href="#用-join-進來的表格做排序" class="headerlink" title="用 join 進來的表格做排序"></a>用 join 進來的表格做排序</h1><p><a href="https://forum.yiiframework.com/t/sort-dataprovider-with-count-on-related-field/82810" target="_blank" rel="noopener">https://forum.yiiframework.com/t/sort-dataprovider-with-count-on-related-field/82810</a></p>
+<h1 id="如何分割-log-档"><a href="#如何分割-log-档" class="headerlink" title="如何分割 log 档"></a>如何分割 log 档</h1><p><a href="https://www.jb51.net/article/81094.htm" target="_blank" rel="noopener">https://www.jb51.net/article/81094.htm</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'log'</span> =&gt; [</span><br><span class="line">    <span class="string">'targets'</span> =&gt; [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">'class'</span> =&gt; <span class="string">'yii\log\FileTarget'</span>,</span><br><span class="line">            <span class="string">'logFile'</span> =&gt; <span class="string">'@runtime/logs/'</span> . date(<span class="string">'Y'</span>) . <span class="string">'/'</span> . date(<span class="string">'m'</span>) . <span class="string">'/'</span> . date(<span class="string">'d'</span>) . <span class="string">'/app.log'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<h1 id="cotroller"><a href="#cotroller" class="headerlink" title="cotroller"></a>cotroller</h1><p>controller 介於 veiw 和 model 之間做溝通的橋樑，<br>router 和 functoin 的名字做對應，有大小寫和 dash 的規則<br>public $defaultAction = ‘XXX’;<br>可以改變 router 根目錄/為 index 的預設<br>public $layout = ‘main’;<br>可以改變 view 的 layout 模版<br>public $enableCsrfValidation = false;<br>關掉 csrf 驗證，通常不建議這麼做<br>function actionXXX 的參數可以作為 queryString 參數的接口<br><a href="https://youtu.be/hQr0ce2OvmA" target="_blank" rel="noopener">https://youtu.be/hQr0ce2OvmA</a></p>
+<p>事件註冊：<br>以 on beforeAction 為例，註冊在 config 裡面的會先於個別 controller,</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'on beforeAction'</span>=&gt;<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">beforeAction</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">先於註冊在 controller 的事件例如：</span><br><span class="line">Yii::\$app-&gt;controller-&gt;on(<span class="string">'controller::EVENT_BRFORE_ACTION'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;render(<span class="string">'about'</span>);</span><br><span class="line"><span class="keyword">$this</span>-&gt;renderPartial();<span class="comment">//render html</span></span><br><span class="line"><span class="keyword">$this</span>-&gt;renderFile();</span><br><span class="line"><span class="keyword">$this</span>-&gt;renderAajx();</span><br></pre></td></tr></table></figure>
+
+<h1 id="view"><a href="#view" class="headerlink" title="view"></a>view</h1><h2 id="render-部份內容"><a href="#render-部份內容" class="headerlink" title="render 部份內容"></a>render 部份內容</h2><p>$this-&gt;render(‘footer’);</p>
+<h2 id="傳資料"><a href="#傳資料" class="headerlink" title="傳資料"></a>傳資料</h2><p>在 controller 你可以<br>$this-&gt;render(‘path’,[‘data’=&gt; ‘mydata’);<br>$this-&gt;view-&gt;params[‘data’];<br>在 view 這樣收<br>$data<br>$this-&gt;params[‘data’] or Yii::$app-&gt;view-&gt;params[‘data’]</p>
+<h2 id="找出-controller"><a href="#找出-controller" class="headerlink" title="找出 controller"></a>找出 controller</h2><p>$this-&gt;context-&gt;id</p>
+<h2 id="其他標籤"><a href="#其他標籤" class="headerlink" title="其他標籤"></a>其他標籤</h2><p>$this-&gt;title<br>$this-&gt;registerMetaTag([‘name’=&gt;’keyword’,’content’=&gt;’yii2 , framwork’])</p>
+<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p>在 view 頁面,加上<br>/*_ @var \yii\web\View $this _/<br>PHPstorm 就會知道這個頁面的$this 是 view 的實例</p>
+<h1 id="model"><a href="#model" class="headerlink" title="model"></a>model</h1><p>在 controller 如果你要存取 model 的屬性的話<br>$model-&gt;attributeName<br>$model[‘attributeName’]<br>都可行<br>那如果要大量賦值的話<br>$model-&gt;attriutes = $post;<br>那記得一定要經過$model-&gt;validate()</p>
+<h1 id="request"><a href="#request" class="headerlink" title="request"></a>request</h1><p>在 controller 我們可以<br>Yill::$app-&gt;request-&gt;get();<br>Yill::$app-&gt;request-&gt;get(‘id’,0);<br>或是經由 function actionXXX($id=0)的參數<br>Yill::$app-&gt;request-&gt;getBodyParams()<br>用在你希望收到 put 請求或是 json 格式的參數時<br>阿如果是 json<br>設定檔頁要做設定</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'component'</span>=&gt;[</span><br><span class="line">    <span class="string">'request'</span>=&gt;[</span><br><span class="line">        <span class="string">'parser'</span>=&gt;\yii\web\JsonParser::class</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h1 id="response"><a href="#response" class="headerlink" title="response"></a>response</h1><p><a href="https://youtu.be/omqyY94WVos" target="_blank" rel="noopener">https://youtu.be/omqyY94WVos</a><br>當你在 actionXXX 回傳東西的時候就相當於</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">actionXXX</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">'hello world'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Yii::\$app-&gt;response-&gt;content = <span class="string">'hello world'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="statusCode"><a href="#statusCode" class="headerlink" title="statusCode"></a>statusCode</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yii::\$app-&gt;response-&gt;statusCode = <span class="string">'404'</span></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="comment">// https://www.yiiframework.com/doc/guide/2.0/en/runtime-responses</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> \yii\web\HttpException(<span class="number">404</span>)</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> yii\web\NotFoundHttpException();</span><br></pre></td></tr></table></figure>
+
+<h2 id="改變回傳格式"><a href="#改變回傳格式" class="headerlink" title="改變回傳格式"></a>改變回傳格式</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Yii:$app-&gt;response-&gt;data = [</span><br><span class="line">    <span class="string">'name'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">    <span class="string">'age'</span>=&gt; <span class="number">5</span></span><br><span class="line">];</span><br><span class="line">Yii:$app-&gt;response-&gt;format = Response::FORMAT_XML</span><br><span class="line">Yii:\$app-&gt;response-&gt;format = Response::FORMAT_JSON</span><br></pre></td></tr></table></figure>
+
+<h2 id="重導畫面"><a href="#重導畫面" class="headerlink" title="重導畫面"></a>重導畫面</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">或在 controller</span><br><span class="line">Yii::$app-&gt;response-&gt;redirect(<span class="string">'about'</span>,<span class="number">301</span>);</span><br><span class="line"> <span class="keyword">$this</span>-&gt;redirect(<span class="string">'about'</span>);</span><br><span class="line">在 controller 外</span><br><span class="line">Yii::\$app-&gt;response-&gt;redirect(<span class="string">'about'</span>,<span class="number">301</span>)-&gt;send();</span><br></pre></td></tr></table></figure>
+
+<h2 id="傳檔案"><a href="#傳檔案" class="headerlink" title="傳檔案"></a>傳檔案</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Yii::$app-&gt;reponse-&gt;sendContentAsFile(<span class="string">'hello world'</span>,<span class="string">'test.text'</span>)</span><br><span class="line">Yii::$app-&gt;reponse-&gt;sendFile(<span class="string">'filepath'</span>,<span class="string">'test.text'</span>)</span><br><span class="line">Yii::\$app-&gt;reponse-&gt;sendStreamsFile()<span class="comment">//這個在傳送大檔的時候，特別重要，才不會報出記憶體不夠的錯</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h1><p><a href="https://youtu.be/69zKqHrU5-Y" target="_blank" rel="noopener">https://youtu.be/69zKqHrU5-Y</a></p>
+<p>在 layout 頁面<br>$this-&gt;beginPage()會呼叫 on beforePageBegin 事件</p>
+<h1 id="widget"><a href="#widget" class="headerlink" title="widget"></a>widget</h1><p>UI 元件的製作</p>
+<h1 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h1><p>Yii::setAlias(‘@home’,’/home’);<br>@符號如果忘記加，yii 會幫你加</p>
+<h1 id="asset-bundle"><a href="#asset-bundle" class="headerlink" title="asset bundle"></a>asset bundle</h1><p><a href="https://youtu.be/eJBQeRocRac" target="_blank" rel="noopener">https://youtu.be/eJBQeRocRac</a><br>在你不需要內建的 css 和 js 的時候，你需要自訂義</p>
+<h1 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h1><p>一般來說 yii 提供<br>new Connection([<br>‘dsn’=&gt;’’,<br>‘username’=&gt;’root’,<br>‘password’=&gt;’password’<br>]);<br>來建立資料庫連線，但不推薦這樣做<br>應該用官方的設定 component 的方式，component 都是 singleton,省資源<br>再來存取這個物件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Yii::$app-&gt;db-&gt;createCommand(<span class="string">'select * from user where id = :id'</span>)-&gt;query();</span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;bindValues([<span class="string">'id'</span>=&gt;$id])-&gt;query(); <span class="comment">//用於大量賦值</span></span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;bindParams(<span class="string">'id'</span>,$id)-&gt;query(); <span class="comment">//注意bindParams第二個參數是吃位址不是吃值</span></span><br><span class="line"></span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;insert(<span class="string">'user'</span>,[])-&gt;execute();</span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;batchInsert(<span class="string">'user'</span>,[<span class="string">'username'</span>,<span class="string">'age'</span>],[$dataArr])-&gt;execute();</span><br><span class="line"></span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;update(<span class="string">'user'</span>,$data,[<span class="string">'id'</span>=&gt;<span class="number">5</span>])-&gt;execute();</span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;delete(<span class="string">'user'</span>,[<span class="string">'id'</span>=&gt;<span class="number">5</span>])-&gt;execute();</span><br><span class="line"></span><br><span class="line">Yii::$app-&gt;db-&gt;createCommand()-&gt;upsert(<span class="string">'user'</span>,$data,[<span class="string">'id'</span>=&gt;<span class="number">5</span>])-&gt;execute();</span><br></pre></td></tr></table></figure>
+
+<h2 id="backtick"><a href="#backtick" class="headerlink" title="backtick"></a>backtick</h2><p>框架會自訂幫我們加`<br>但是有的時候框架會因為語句太複雜而加錯地方</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$db-&gt;createCommand(<span class="string">'SELECT IFFULL(email,username) from user'</span>)-&gt;execute();</span><br><span class="line">出來的語句會有錯</span><br><span class="line">所以必須要</span><br><span class="line">$db-&gt;createCommand(<span class="string">'SELECT IFFULL([[email]],[[username]]) from &#123;&#123;%user&#125;&#125;'</span>)-&gt;execute();</span><br></pre></td></tr></table></figure>
+
+<h1 id="active-Record"><a href="#active-Record" class="headerlink" title="active Record"></a>active Record</h1><p>我們的 model 通常都會繼承 active Record<br>Model::findOne($id);<br>update insert用<br>$model-&gt;save();<br>delete 用<br>$model-&gt;delete();</p>
+<h1 id="query-bulider"><a href="#query-bulider" class="headerlink" title="query bulider"></a>query bulider</h1><p>(new Query())-&gt;select([])-&gt;from()-&gt;all();<br>阿因為 ActiveRecord extends ActiveQuery and ActiveQuery extends Query<br>所以等於<br>Model::find()-&gt;select([])-&gt;from-&gt;all();<br>又因為是 ActiveRecord 物件可以省下填寫表格名稱變成<br>Model::find()-&gt;all();</p>
+<h1 id="設定物件"><a href="#設定物件" class="headerlink" title="設定物件"></a>設定物件</h1><p>yii 提供了讓你創建物件的方法<br>例如<br><a href="https://youtu.be/lQaCY8Zza2U" target="_blank" rel="noopener">https://youtu.be/lQaCY8Zza2U</a>.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Yii::Createobject([</span><br><span class="line">    <span class="string">'class'</span>=&gt;Myclass::class,</span><br><span class="line">    <span class="string">'otherproperty'</span>=&gt;<span class="number">10</span>,</span><br><span class="line">    <span class="string">'otherproperty2'</span>=&gt;<span class="number">20</span></span><br><span class="line">]);</span><br><span class="line"><span class="comment">// 等同於</span></span><br><span class="line">$object = <span class="keyword">new</span> Myclass();</span><br><span class="line">Yii::configure($object,[</span><br><span class="line">    <span class="string">'otherproperty'</span>=&gt;<span class="number">10</span>,</span><br><span class="line">    <span class="string">'otherproperty2'</span>=&gt;<span class="number">20</span></span><br><span class="line">]);</span><br><span class="line"><span class="comment">// 就像設定檔的給的陣列一樣</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 我們也可以在設定檔設定容器</span></span><br><span class="line"><span class="string">'container'</span> =&gt; [</span><br><span class="line">    <span class="string">'definitions'</span>=&gt;[</span><br><span class="line">        <span class="string">'NameSpace/Myclass'</span>=&gt;[</span><br><span class="line">            <span class="string">'otherproperty'</span>=&gt;<span class="number">10</span>,</span><br><span class="line">            <span class="string">'otherproperty2'</span>=&gt;<span class="number">20</span></span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然後</span></span><br><span class="line">$object = Yii::Createobject([</span><br><span class="line">    <span class="string">'class'</span>=&gt;Myclass::class,</span><br><span class="line">]);</span><br><span class="line"><span class="comment">// 就可以發現物件的設定值已經改變</span></span><br><span class="line">var_dump($object);</span><br><span class="line">或者</span><br><span class="line">Yii::$container-&gt;set(Myclass::class,[</span><br><span class="line">    <span class="string">'otherProperty'</span> =&gt; <span class="number">10</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h1 id="restAPI"><a href="#restAPI" class="headerlink" title="restAPI"></a>restAPI</h1><p><a href="https://youtu.be/XyHHMvRt6Cw" target="_blank" rel="noopener">https://youtu.be/XyHHMvRt6Cw</a></p>
+<p>yii 支援 restapi，只要做幾個設定，就能輕鬆做出 restful 的 api</p>
+<p>controller extends yii/rest/ActiveController<br>指定 model<br>$modelClass = modelClass::class;</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'request'</span>=&gt;[</span><br><span class="line">    <span class="string">'parser'</span>=&gt;[</span><br><span class="line">        <span class="string">'aplication/json'</span>=&gt;JsonParser::class</span><br><span class="line">    ]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="string">'urlManager'</span>=&gt;[</span><br><span class="line">    <span class="string">'enablePrettyUrl'</span>=&gt;<span class="keyword">true</span>,</span><br><span class="line">    <span class="string">'showScriptName'</span>=&gt;<span class="keyword">false</span>,</span><br><span class="line">    <span class="string">'rules'</span>=&gt;[</span><br><span class="line">        [</span><br><span class="line">         <span class="string">'class'</span>=&gt;UrlRute::class,</span><br><span class="line">         <span class="string">'controller'</span>=&gt; [<span class="string">'contorllerName'</span>,<span class="string">'controllerName2'</span>]</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h1 id="yii-框架-日誌設定"><a href="#yii-框架-日誌設定" class="headerlink" title="yii 框架 日誌設定"></a>yii 框架 日誌設定</h1><p><a href="https://www.jb51.net/article/81094.htm" target="_blank" rel="noopener">https://www.jb51.net/article/81094.htm</a></p>
+<h1 id="當你的-php-是-5-2x-不支援-sha256"><a href="#當你的-php-是-5-2x-不支援-sha256" class="headerlink" title="當你的 php 是 5.2x 不支援 sha256"></a>當你的 php 是 5.2x 不支援 sha256</h1><p><a href="https://stackoverflow.com/questions/10524198/what-version-of-openssl-is-needed-to-sign-with-sha256withrsaencryption" target="_blank" rel="noopener">https://stackoverflow.com/questions/10524198/what-version-of-openssl-is-needed-to-sign-with-sha256withrsaencryption</a><br>此篇像上帝一般，生產環境動不了只好動 code</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/06/%E4%BD%BF%E7%94%A8docker/" rel="prev" title="使用docker">
+                  <i class="fa fa-chevron-left"></i> 使用docker
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/28/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="next" title="常用的快捷键">
+                  常用的快捷键 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

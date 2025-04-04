@@ -13,42 +13,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '複製',
-      copy_success: '複製成功',
-      copy_failure: '複製失敗'
-    },
-    sidebarPadding: 40
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="蛋粒個人網誌">
@@ -57,17 +29,17 @@
 <meta property="og:locale" content="zh-TW">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://dkchange.github.io/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-TW'
   };
 </script>
 
@@ -79,1188 +51,88 @@
 
 
 
-
-
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">蛋粒個人網誌</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切換導航欄">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
-  </li>
-        <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
 
-  </li>
-        <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
-
-  </li>
-  </ul>
-
-</nav>
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-  <a href="https://github.com/dkchange" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/01/20/TravisCI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/TravisCI/" class="post-title-link" itemprop="url">TravisCI</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
-
-              <time title="創建時間：2020-01-20 14:11:20 / 修改時間：22:51:15" itemprop="dateCreated datePublished" datetime="2020-01-20T14:11:20+11:00">2020-01-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">DevOps路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/CI-CD%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">CI/CD工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DevOps%E8%B7%AF%E7%B7%9A/CI-CD%E5%B7%A5%E5%85%B7/travisCI/" itemprop="url" rel="index">
-                    <span itemprop="name">travisCI</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/01/20/TravisCI/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/20/TravisCI/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>太多名詞在網路上飛， 基於<strong>沒用過至少也要聽過</strong>，為了跟得上時代，有些東西還是免不了，這篇整理自<br><a href="https://ithelp.ithome.com.tw/users/20120491/ironman/2538" target="_blank" rel="noopener">就是「懶」才更需要重視DevOps</a><br><a href="https://ithelp.ithome.com.tw/users/20107551/ironman/1906" target="_blank" rel="noopener">從零開始建立自動化發佈的流水線</a><br>的讀後感心得，特別推 <strong>從零開始建立自動化發佈的流水線</strong> </p><h1 id="何謂DevOps"><a href="#何謂DevOps" class="headerlink" title="何謂DevOps"></a>何謂DevOps</h1><p><strong>開發</strong> 與 <strong>維運</strong> 融會貫通後的一種技術能力體現<br>只是，時間終究有限，需要 「自動化」 協助「DevOps」人員</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/20/TravisCI/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/" class="post-title-link" itemprop="url">安裝環境</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-21 20:22:50" itemprop="dateCreated datePublished" datetime="2019-12-21T20:22:50+11:00">2019-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/21/安裝環境/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>事情是這樣子的，以前從windows環境就安裝AppServ、WampServer、Xampp這種快速安裝的安裝包，為什麼呢?<br>因為最後環境還是會在linux上，所以windows上能開發就好，也就不用太講究了，因為有些包在linux沒問題，在windows會出事，<br>心血來潮試著自己安裝一次看看</p><h1 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/21/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/20/%E4%BD%BF%E7%94%A8git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/20/%E4%BD%BF%E7%94%A8git/" class="post-title-link" itemprop="url">使用git</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-20 12:07:16" itemprop="dateCreated datePublished" datetime="2019-12-20T12:07:16+11:00">2019-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BB%BB%E4%BD%95%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">任何路線</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/20/%E4%BD%BF%E7%94%A8git/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/20/使用git/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>版本控制在開發過程占很重要的地位，那團隊裡該如何多人協作?整個專案管理的流程應該要怎樣才不會一天到晚衝突，功能互蓋?</p><h1 id="gitflow是其中一種工作流程"><a href="#gitflow是其中一種工作流程" class="headerlink" title="gitflow是其中一種工作流程"></a>gitflow是其中一種工作流程</h1><p>gitflow是其中一種工作流程，以下是網路上找到的介紹<br><a href="https://gitbook.tw/chapters/gitflow/why-need-git-flow.html" target="_blank" rel="noopener">https://gitbook.tw/chapters/gitflow/why-need-git-flow.html</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/20/%E4%BD%BF%E7%94%A8git/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/19/laravel%E4%BD%BF%E7%94%A8PHPunit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/19/laravel%E4%BD%BF%E7%94%A8PHPunit/" class="post-title-link" itemprop="url">laravel使用PHPunit</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-19 21:44:40" itemprop="dateCreated datePublished" datetime="2019-12-19T21:44:40+11:00">2019-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/19/laravel%E4%BD%BF%E7%94%A8PHPunit/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/19/laravel使用PHPunit/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TDD測試驅動開發，因為測試是自己寫的，所以不會預料到特殊情況，例如你使用者輸入什麼會發生的錯,或是某個時間點會發生的錯，能做的是就是確保程式寫大之後，東改西改<strong><em>某個流程</em></strong>不會壞掉，所以就來寫測試吧</p><h1 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h1><p>如果你有裝Telescope會報錯，在<code>phpunit.xml</code>作修改，那這個檔案時就是PHPunit執行的環境，在上面的修改實際上會覆蓋.env，然後我們希望每次執行測時都是全新的環境，所以也要修改DB的設定檔</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/19/laravel%E4%BD%BF%E7%94%A8PHPunit/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/17/laravel%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E5%92%8C%E7%9B%A3%E8%81%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/17/laravel%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E5%92%8C%E7%9B%A3%E8%81%BD/" class="post-title-link" itemprop="url">laravel使用事件和監聽</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-17 16:03:31" itemprop="dateCreated datePublished" datetime="2019-12-17T16:03:31+11:00">2019-12-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/17/laravel%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E5%92%8C%E7%9B%A3%E8%81%BD/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/17/laravel使用事件和監聽/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用場景這樣的，有的時候controller使用者註冊完之後，除了要發信件給管理者，還有發LINE訊息給管理者，這些眾多需要做的事都塞在controller會讓controller很雜亂，整個不隸屬與該controller的兩件事，寫同一個controller裡面也不對，萬一很多地方要用到呢?</p><h1 id="創建事件建和監聽"><a href="#創建事件建和監聽" class="headerlink" title="創建事件建和監聽"></a>創建事件建和監聽</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/17/laravel%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E5%92%8C%E7%9B%A3%E8%81%BD/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/17/laravel%E4%BD%BF%E7%94%A8middleware/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/17/laravel%E4%BD%BF%E7%94%A8middleware/" class="post-title-link" itemprop="url">laravel使用middleware</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-17 15:13:08" itemprop="dateCreated datePublished" datetime="2019-12-17T15:13:08+11:00">2019-12-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/17/laravel%E4%BD%BF%E7%94%A8middleware/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/17/laravel使用middleware/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>laravel middleware用於驗證登入方面，請見<a href="/2019/11/07/laravel%E6%9C%83%E5%93%A1%E7%99%BB%E5%85%A5%E9%85%8D%E7%BD%AE/" title="會員登入配置">會員登入配置</a></p><h1 id="創建middleware"><a href="#創建middleware" class="headerlink" title="創建middleware"></a>創建middleware</h1><p>php artisan make:middleware AdminMiddleware</p><h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><h2 id="文件介紹"><a href="#文件介紹" class="headerlink" title="文件介紹"></a>文件介紹</h2><p><code>app\Http\Kernel.php</code>屬性介紹<br>每個請求都要經過註冊在<strong><em>$middleware</em></strong>裡面的middleware</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/17/laravel%E4%BD%BF%E7%94%A8middleware/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/16/laravel%E4%BD%BF%E7%94%A8mail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/16/laravel%E4%BD%BF%E7%94%A8mail/" class="post-title-link" itemprop="url">laravel使用mail</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-16 21:20:09" itemprop="dateCreated datePublished" datetime="2019-12-16T21:20:09+11:00">2019-12-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/16/laravel%E4%BD%BF%E7%94%A8mail/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/16/laravel使用mail/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h1 id="開發測試"><a href="#開發測試" class="headerlink" title="開發測試"></a>開發測試</h1><p>laravel預設的網站<a href="https://mailtrap.io/inboxes#" target="_blank" rel="noopener">https://mailtrap.io/inboxes#</a><br>將你的郵件訊息寄到一個「假的」郵箱，而你可以在一個真的郵件客戶端檢視它們。<br>找到頁籤和下拉選單<code>Demo inbox/smtp_settings/Integrations/laravel</code><br>將資料填進.env</p><pre><code>MAIL_USERNAME=
-MAIL_PASSWORD=
-MAIL_ENCRYPTION=</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/16/laravel%E4%BD%BF%E7%94%A8mail/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/12/16/laravel%E4%BD%BF%E7%94%A8model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/16/laravel%E4%BD%BF%E7%94%A8model/" class="post-title-link" itemprop="url">laravel使用model</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-12-16 17:11:47" itemprop="dateCreated datePublished" datetime="2019-12-16T17:11:47+11:00">2019-12-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/12/16/laravel%E4%BD%BF%E7%94%A8model/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/16/laravel使用model/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇重點在紀錄model使用時的幾個知識點<br>youtue上有教學講得很清楚，這邊是看完教學的心得紀錄<br>參考自:<a href="https://youtu.be/L1E_uJxNC3M" target="_blank" rel="noopener">https://youtu.be/L1E_uJxNC3M</a></p><h1 id="路由和model綁定"><a href="#路由和model綁定" class="headerlink" title="路由和model綁定"></a>路由和model綁定</h1><p>Route Model Binding</p><p><code>/customers/{customer}</code>路由的參數只要和founction參數一樣的變數名稱</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/16/laravel%E4%BD%BF%E7%94%A8model/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/11/15/%E4%BD%BF%E7%94%A8vue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/15/%E4%BD%BF%E7%94%A8vue/" class="post-title-link" itemprop="url">使用vue</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-11-15 21:17:46" itemprop="dateCreated datePublished" datetime="2019-11-15T21:17:46+11:00">2019-11-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">前端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/11/15/%E4%BD%BF%E7%94%A8vue/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/15/使用vue/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前學框架都是一點點碰，學都學半套，angular碰不到2個禮拜，reactNative碰不到2個月，學完就忘，現在來主動學vue吧，畢竟是最早跟laravel一起搭的前端框架</p><h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><p>整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架vue-cli來裝會簡單些，等以後有機會再來了解如何配置</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/15/%E4%BD%BF%E7%94%A8vue/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2019/11/15/laravel%E4%BD%BF%E7%94%A8lighthouse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stanley Ke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蛋粒個人網誌">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/15/laravel%E4%BD%BF%E7%94%A8lighthouse/" class="post-title-link" itemprop="url">laravel使用lighthouse</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2019-11-15 20:20:12" itemprop="dateCreated datePublished" datetime="2019-11-15T20:20:12+11:00">2019-11-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 21:02:06" itemprop="dateModified" datetime="2020-01-20T21:02:06+11:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index">
-                    <span itemprop="name">後端路線</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/" itemprop="url" rel="index">
-                    <span itemprop="name">framework</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%B7%9A/framework/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/11/15/laravel%E4%BD%BF%E7%94%A8lighthouse/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/15/laravel使用lighthouse/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>因為graphql太紅，所以要來找找laravel上面如何應用，<a href="https://lighthouse-php.com/" target="_blank" rel="noopener">lighthouse</a>就是其中一款比較熱門的套件，那在應用上就要多看官網的文件了，遇到坑會再更新上來</p><h1 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h1><p>跟著官網做就會成功，除了1G的記憶體composer跑不起來以外，沒什大問題</p><h1 id="客製化查詢"><a href="#客製化查詢" class="headerlink" title="客製化查詢"></a>客製化查詢</h1><p>如果遇到需要太複雜，內建指令無法應付，客製化查詢的語句，就可以建一個class來搭配eloquent做應用</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/15/laravel%E4%BD%BF%E7%94%A8lighthouse/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-  </div>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
         </li>
@@ -1270,110 +142,895 @@ MAIL_ENCRYPTION=</code></pre>
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Stanley Ke"
-    src="/images/avatar.gif">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Stanley Ke</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">24</span>
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-          
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dkchange.nctu.me/" title="https:&#x2F;&#x2F;dkchange.nctu.me" rel="noopener" target="_blank">作品</a>
-        </li>
-    </ul>
-  </div>
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2023/04/20/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F-ft-chatgpt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/04/20/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F-ft-chatgpt/" class="post-title-link" itemprop="url">設計模式(ft chatgpt)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2023-04-20 06:42:23 / 修改時間：07:20:20" itemprop="dateCreated datePublished" datetime="2023-04-20T06:42:23+08:00">2023-04-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>2022年底chatgpt的出現讓AI出現了重大的進展，連帶著我們的學習方式也跟著改變了<br>下面的筆記是和BING聊天後整理出來的</p>
+<h1 id="創建型"><a href="#創建型" class="headerlink" title="創建型"></a>創建型</h1><h2 id="工廠模式"><a href="#工廠模式" class="headerlink" title="工廠模式"></a>工廠模式</h2><p>Q:工廠模式有哪幾種?</p>
+<h3 id="簡單工廠模式"><a href="#簡單工廠模式" class="headerlink" title="簡單工廠模式"></a>簡單工廠模式</h3><p>Q:用最簡單的PHP代碼來實現簡單工廠模式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tesla</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Driving a Tesla car!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Driving a BMW car!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CarFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">($type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($type == <span class="string">'Tesla'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Tesla();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($type == <span class="string">'BMW'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BMW();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">"Invalid car type."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$tesla = CarFactory::createCar(<span class="string">'Tesla'</span>);</span><br><span class="line">$tesla-&gt;drive();</span><br><span class="line"></span><br><span class="line">$bmw = CarFactory::createCar(<span class="string">'BMW'</span>);</span><br><span class="line">$bmw-&gt;drive();</span><br></pre></td></tr></table></figure>
+<p>從上面方法我們看出需要interface定義相同類型的產品<br>需要class的對應來判斷要news哪個class，而這個判斷就是createCar方法</p>
+<p>Q:簡單工廠模式一定要用靜態方法嗎</p>
+<blockquote>
+<p>A:不一定。简单工厂模式有时也被称为静态工厂模式，因为它通常使用静态方法来创建对象。但是，这并不是必须的。您也可以使用非静态方法来实现简单工厂模式。 </p>
+<p>使用静态方法的好处是您可以直接调用该方法而无需创建工厂类的实例。但是，这也意味着您无法通过继承或实现接口来扩展或更改工厂类的行为。</p>
+<p>如果您希望能够扩展或更改工厂类的行为，可以使用非静态方法并创建工厂类的实例来调用该方法。</p>
+</blockquote>
+<p>Q:簡單工廠模式一定要搭配interface嗎</p>
+<blockquote>
+<p>不一定。简单工厂模式并不要求一定要使用接口。它的目的是通过一个工厂类来创建不同类型的对象，而这些对象通常具有相同的基类或实现相同的接口。</p>
+</blockquote>
+<h3 id="工廠方法模式"><a href="#工廠方法模式" class="headerlink" title="工廠方法模式"></a>工廠方法模式</h3><p>Q:用最簡單的PHP代碼來實現工廠方法模式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tesla</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Driving a Tesla car!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Driving a BMW car!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CarFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TeslaFactory</span> <span class="keyword">implements</span> <span class="title">CarFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Tesla();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMWFactory</span> <span class="keyword">implements</span> <span class="title">CarFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BMW();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$teslaFactory = <span class="keyword">new</span> TeslaFactory();</span><br><span class="line">$tesla = $teslaFactory-&gt;createCar();</span><br><span class="line">$tesla-&gt;drive();</span><br><span class="line"></span><br><span class="line">$bmwFactory = <span class="keyword">new</span> BMWFactory();</span><br><span class="line">$bmw = $bmwFactory-&gt;createCar();</span><br><span class="line">$bmw-&gt;drive();</span><br></pre></td></tr></table></figure>
+<p>從上面方法我們看出需要interface定義相同類型的產品，以及相同的的工廠</p>
+<p>依舊需要class的對應來判斷要news哪個class，只不過這次變成new工廠，相當於將簡單工廠再包一層，createCar不再是靜態方法</p>
+<h3 id="抽象工廠模式"><a href="#抽象工廠模式" class="headerlink" title="抽象工廠模式"></a>抽象工廠模式</h3><p>Q:用最簡單的PHP代碼來實現抽象工廠模式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tesla</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Driving a Tesla car!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Driving a BMW car!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Bike</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">ride</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMXBike</span> <span class="keyword">implements</span> <span class="title">Bike</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">ride</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Riding a BMX bike!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoadBike</span> <span class="keyword">implements</span> <span class="title">Bike</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">ride</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Riding a road bike!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">VehicleFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createBike</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TeslaFactory</span> <span class="keyword">implements</span> <span class="title">VehicleFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Tesla();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createBike</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BMXBike();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMWFactory</span> <span class="keyword">implements</span> <span class="title">VehicleFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createCar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BMW();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">createBike</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RoadBike();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$teslaFactory = <span class="keyword">new</span> TeslaFactory();</span><br><span class="line">$tesla = $teslaFactory-&gt;createCar();</span><br><span class="line">$tesla-&gt;drive();</span><br><span class="line">$bmx = $teslaFactory-&gt;createBike();</span><br><span class="line">$bmx-&gt;ride();</span><br><span class="line"></span><br><span class="line">$bmwFactory = <span class="keyword">new</span> BMWFactory();</span><br><span class="line">$bmw = $bmwFactory-&gt;createCar();</span><br><span class="line">$bmw-&gt;drive();</span><br><span class="line">$road = $bmwFactory-&gt;createBike();</span><br><span class="line">$road-&gt;ride();</span><br></pre></td></tr></table></figure>
+<p>從上面方法我們看出需要interface定義相同類型的產品，以及相同的的工廠，只不過這次的工廠產出兩種不同的產品</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2023/03/24/laravel-%E5%A5%97%E4%BB%B6%E9%96%8B%E7%99%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/24/laravel-%E5%A5%97%E4%BB%B6%E9%96%8B%E7%99%BC/" class="post-title-link" itemprop="url">laravel 套件開發</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2023-03-24 06:44:26 / 修改時間：06:54:13" itemprop="dateCreated datePublished" datetime="2023-03-24T06:44:26+08:00">2023-03-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>laravel 的套件開發其實跟一般compser開發差不了多少，符合PSR-4的命名空間，有src資料夾，test資料夾，套件完成之後，就可以跟laravel 來做整合</p>
+<p><a href="https://www.youtube.com/watch?v=LdnYRRpwwTc&amp;list=PLpzy7FIRqpGBQ_aqz_hXDBch1aAA-lmgu&amp;index=11" target="_blank" rel="noopener">https://www.youtube.com/watch?v=LdnYRRpwwTc&amp;list=PLpzy7FIRqpGBQ_aqz_hXDBch1aAA-lmgu&amp;index=11</a></p>
+<h1 id="service-provider"><a href="#service-provider" class="headerlink" title="service provider"></a>service provider</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2023/03/18/css%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/18/css%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" class="post-title-link" itemprop="url">css學習筆記</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2023-03-18 10:34:28 / 修改時間：11:04:40" itemprop="dateCreated datePublished" datetime="2023-03-18T10:34:28+08:00">2023-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/" itemprop="url" rel="index"><span itemprop="name">前端路線</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我一直認為css不是那麼簡單，需多技巧需要熟悉之後才會用，才用得漂亮，舉個例子來說，垂直置中的方法有很多，但我每次用的時候都需要再去查一次，不常用就會記不住，在我是新手期的時候，寫個跳窗遮罩還在想要如何讓背景覆蓋整個畫面，寬度100%，那長度呢?我是不是要每次都動態計算，結果是上下左右position都設成0就好…只能說有些奇巧淫技還是需要經驗啊</p>
+<h1 id="發展"><a href="#發展" class="headerlink" title="發展"></a>發展</h1><p><a href="https://2019.stateofcss.com/tw/" target="_blank" rel="noopener">https://2019.stateofcss.com/tw/</a></p>
+<h1 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h1><p><a href="https://segmentfault.com/a/1190000004454799" target="_blank" rel="noopener">[譯] CSS 載入機制的未來趨勢</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2022/05/21/%E5%BE%AE%E6%9C%8D%E5%8B%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/21/%E5%BE%AE%E6%9C%8D%E5%8B%99/" class="post-title-link" itemprop="url">微服務</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-05-21 16:21:48" itemprop="dateCreated datePublished" datetime="2022-05-21T16:21:48+08:00">2022-05-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-05-22 23:41:02" itemprop="dateModified" datetime="2022-05-22T23:41:02+08:00">2022-05-22</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>微服務的實作無關語言，能做到服務發現、服務註冊，基本是任何語言都可以勝任的，那php的弱勢在於，請求都是一個新的請求，要透過nginx和php-fpm做調用，每次都要重頭跑一次是非常致命的，後來有了swoole便可以克服效能這件事，但既然有了go，我為什麼還要再去學swoole??<br>微服务重构的一大目的是为了提高系统并发和性能，所以有关高性能、高并发、同步 IO 操作都应该通过后端微服务去实现<br>数据库也都是独立的，这样可以保证数据库性能的同时，也能避免某个服务数据库挂掉不影响其它的服务正常使用，提高了系统的可用性</p>
+<h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><p>基本的 RPC 远程服务调用、注册中心、服务发现、负载均衡、API 网关、异步消息队列、多种通信协议和数据序列化</p>
+<h1 id="拆分服務"><a href="#拆分服務" class="headerlink" title="拆分服務"></a>拆分服務</h1><p>幾乎現在所有大型的電商，社群網站都是從單體架構開始的，學會拆分服務便成為服務的重要技能<br>單體架構要面對的就是商業邏輯壯大，主機效能的問題</p>
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><ul>
+<li>多微才叫微，過分拆分粒度，服務太多會造成服務間的邏輯交錯複雜，例如大家都會動用到會員系統</li>
+<li>網路響應問題，本來是本機的調用變成要透過網路來呼叫，有可能變更慢</li>
+<li>管理上會不會過於雜亂，自動化CICD和監控等等</li>
+</ul>
+<h2 id="服務拆分原則"><a href="#服務拆分原則" class="headerlink" title="服務拆分原則"></a>服務拆分原則</h2><p>開發時期:亞馬遜的2個PIZZA理論，一個團隊大致3個人最剛好，不能兩個PIZZA不夠吃，一個服務的邏輯也是大家都能掌握的<br>維護時期:1人即可</p>
+<h2 id="DB的垂直拆分"><a href="#DB的垂直拆分" class="headerlink" title="DB的垂直拆分"></a>DB的垂直拆分</h2><p>##</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2022/03/03/%E7%B6%B2%E8%B7%AF%E5%8D%94%E8%AD%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/03/%E7%B6%B2%E8%B7%AF%E5%8D%94%E8%AD%B0/" class="post-title-link" itemprop="url">網路協議</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-03-03 16:26:22" itemprop="dateCreated datePublished" datetime="2022-03-03T16:26:22+08:00">2022-03-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-04-19 07:51:52" itemprop="dateModified" datetime="2023-04-19T07:51:52+08:00">2023-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h1><p>目前TCP/IP協議泛指現在網路公認使用的所有協議</p>
+<h1 id="7層"><a href="#7層" class="headerlink" title="7層"></a>7層</h1><p>整理來講，為了方便區分這麼多協議的種類，我們將其分成了5層<br>各別舉個例子:<br>應用層 http  需要瀏覽器這種應用程式來拆包<br>傳輸層 TCP   需要三向交握確認連線<br>網路層 IP    需要IP當地址<br>連結層 ARP   需要找出實體MAC<br>物理層 網路線</p>
+<p>這些協議，從瀏覽器發出封包時，經過機器，需要的資料會一層包過一層</p>
+<h1 id="請求"><a href="#請求" class="headerlink" title="請求"></a>請求</h1><p>在傳輸層裡，每一個封包都需要回覆收到，沒收到的話，會將該請求反覆重試，然而使用者自在F12裡面只會看到一次請求，事實上網路線裡面的資料已經來來回回好幾百次</p>
+<h1 id="封包大小"><a href="#封包大小" class="headerlink" title="封包大小"></a>封包大小</h1><p>每一層的協議都有規定其封包大小，其中IPV4最大為 65575 bytes大概就65kb左右</p>
+<p>然後封包又包在幀裡面</p>
+<h1 id="乙太網路"><a href="#乙太網路" class="headerlink" title="乙太網路"></a>乙太網路</h1><p>在數據連結層會用到的技術名，一開始用於區域網路(微星狀或匯流排)的傳輸<br>連結層會用到MAC，知道兩台電腦的MAC就可以互向通信</p>
+<h1 id="網際網路"><a href="#網際網路" class="headerlink" title="網際網路"></a>網際網路</h1><p>從網路層開始，有了IP開始了點對點的傳輸<br>回環地址 127.0.0.1<br>廣播地址 區網內最後一個IP位址，所以沒有一定</p>
+<p>每個路由器會緩存一個到下個IP的路由表<br>有了ARP協議，每個請求有ARP緩存，裡面紀錄了下一個節點IP和MAC對應，這個緩存到了下一個節點就又會變動</p>
+<p>乙太網路使用MAC來傳輸數據，但是光有MAC是無法連到網路上其他MAC地址，因為你沒有IP，不知道去哪找MAC，試想一下，如果當初沒有IP這個設計出現，那要維護全世界的MAC表這個數據量會有多龐大，所以IP和MAC缺一不可</p>
+<h1 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h1><p>ifconfig 命令归属于 net-tools 工具集。net-tools 起源于 BSD，自 2001 年起，Linux 社区已经停止对其进行维护。<br>一些 Linux 发行版已经停止支持 net-tools，只支持 iproute2，在这些 Linux 版本中，只能使用 ip addr 命令查看 IP 地址，使用 ifconfig 会提示命名不存在</p>
+<h1 id="port號"><a href="#port號" class="headerlink" title="port號"></a>port號</h1><p>傳輸層，port號是一個虛擬的概念，並無實際上的硬體做對應，大概來說每個port號可以對應道不同的程序，為什麼有65535的限制是因為TCP當初協定定義是2的16次方-1，並不是有什麼硬體限制<br>标准既定的端口号（静态方法: 例如HTTP 80端口，其他的軟體自定義的就落在1024 到 49151 之间<br>时序分配法（动态方法:例如打開wireshark，你去訪問server80端口，就會看到很多介於49152 到 65535 之间這種由作業系統分配的暫時的port號）</p>
+<h1 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h1><p>是作業系統網路API的名字<br>负责监听的 Socket 和真正用来传数据的 Socket 是两个，一个叫作监听 Socket，一个叫作已连接 Socket，连接建立成功之后，双方开始通过 read 和 write 函数来读写数据<br>如果你留心过 Nginx 里面 PHP-FPM 的配置，就会发现有两种方式将 PHP 动态请求转发给 PHP-FPM，一种是 IP 地址+端口号，例如：127.0.0.1:9000，一种是 Socket 文件，例如：unix:/run/php/php7.1-fpm.sock。这里也可以表明，Socket 在 Linux 中确实以文件形式存在，由于不需要建立额外的网络请求，所以后者效率更高，但是由于是本地文件，所以不能跨机器访问，如果 Nginx 和 PHP-FPM 部署在不同的机器，只能通过前一种方式转发请求</p>
+<h1 id="併發量"><a href="#併發量" class="headerlink" title="併發量"></a>併發量</h1><p>理論上: 最大 TCP 连接数 = 客户端 IP 数 × 客户端端口数。对 IPv4，客户端的 IP 数最多为 2 的 32 次方，客户端的端口数最多为 2 的 16 次方，也就是服务端单机最大 TCP 连接数，约为 2 的 48 次方。<br>實際上: ocket 都是文件，所以首先要通过 ulimit 配置文件描述符的数目；另一个限制是内存，按上面的数据结构，每个 TCP 连接都要占用一定内存，操作系统是有限的。</p>
+<p>姑且不論上述的內存，要如何盡量處理高併發呢?</p>
+<ol>
+<li>多進程</li>
+<li>多線程<br>C10K 问题（一台机器要维护 1 万个连接，就要创建 1 万个进程或者线程，操作系统是无法承受的。<br>维持 1 亿用户在线需要 10 万台服务器，成本太高了</li>
+<li>多路IO复用<br>所谓多路 IO 复用可以简单理解为一个线程维护多个 Socket文件（前面多进程或多线程都是一个进程或线程维护一个 Socket），这也有两种实现方式：轮询和事件通知。<br>所谓轮询就是调用内核的 select 函数监听文件描述符集合是否有变化<br>所谓事件通知，就是某个文件描述符发生变化，调用 epoll 函数主动通知</li>
+</ol>
+<h1 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h1><p>telnet也是一個協定名稱，通常開23port<br>也是早期登入BBS的工具名，所以幾乎所有電腦都有裝，可以用來測PORT，所以跟你server有沒有開23port無關，他就是一個工具可以來測port</p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>相對於telnet比較安全的協議</p>
+<p>中間人攻擊:<br>如果攻击者插在用户与远程主机之间，用伪造的公钥，获取用户的登录密码，再用这个密码登录远程主机，那么 SSH 的安全机制就荡然无存了。<br>因为不像 HTTPS 协议，SSH 协议的公钥是没有认证中心（CA）公证的，也就是说，都是自己签发的。</p>
+<p>如何應對中間人攻擊<br>第一次登入遠端主機時，會提示ECDSA的公鑰fingerprint<br>此時可以比對是否與遠端主機的公鑰fingerprint相同，可以通过 ssh-keyscan 命令结合ssh-keygen 得到</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keyscan -t ECDSA -p 22 laravelacademy.org</span><br><span class="line">ssh-keygen -E sha256 -lf ~/.ssh/known_hosts</span><br></pre></td></tr></table></figure>
+<p>比對完成之後，輸入yes，服务器 SSH 公钥会添加到本地的<code>~/.ssh/known_hosts</code> 文件里面<br><a href="https://github.com/zbinlin/blog/blob/master/resolve-ssh-connect-same-ip-in-diff-host.md" target="_blank" rel="noopener">https://github.com/zbinlin/blog/blob/master/resolve-ssh-connect-same-ip-in-diff-host.md</a></p>
+<p><a href="https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints" target="_blank" rel="noopener">https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints</a></p>
+<h1 id="RPC-Remote-Procedure-Call"><a href="#RPC-Remote-Procedure-Call" class="headerlink" title="RPC(Remote Procedure Call)"></a>RPC(Remote Procedure Call)</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2021/12/30/laravel%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/30/laravel%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">laravel資訊安全</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-12-30 10:24:05" itemprop="dateCreated datePublished" datetime="2021-12-30T10:24:05+08:00">2021-12-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2025-04-04 22:51:37" itemprop="dateModified" datetime="2025-04-04T22:51:37+08:00">2025-04-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%BC%8F%E6%B4%9E/" itemprop="url" rel="index"><span itemprop="name">漏洞</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://www.youtube.com/watch?v=kKGGVGiq2y8" target="_blank" rel="noopener">How your Laravel application can get hacked, and how to prevent that from happening by Antti Rössi</a></p>
+<h1 id="sql-injection"><a href="#sql-injection" class="headerlink" title="sql injection"></a>sql injection</h1><p>如果你用DB::raw裡面直接用unsanitize過的參數，就可以看到整個DB<br>測試工具 sqlmap 幫你測試一段URL的所帶的參數有沒有機會SQL injection</p>
+<h1 id="object-injection"><a href="#object-injection" class="headerlink" title="object injection"></a>object injection</h1><p>測試工具 phpggc 一個生成序列化的工具，例如可以幫你把一段序列化之後的CODE塞進JPG檔，並生成出來<br>反序列化一個物件時，他是從字串轉成物件，當你從字串轉成物件時，就有機會被注入<br>舉個極端的例子<br>gadget : 利用<br>例子1:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">https:<span class="comment">//kylingit.com/blog/%E7%94%B1phpggc%E7%90%86%E8%A7%A3php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</span></span><br><span class="line">https:<span class="comment">//ithelp.ithome.com.tw/articles/10241555</span></span><br><span class="line"><span class="keyword">public</span> $arg = <span class="string">'id'</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;<span class="comment">//php會自動執行</span></span><br><span class="line">    shell_exec(<span class="keyword">$this</span>-&gt;arg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例子2:<br>phar 文件是一種打包格式，通過將許多PHP代碼文件和其他資源（例如圖像，樣式表等）捆綁到一個歸檔文件中來實現應用程式和庫的分發,受到Java的JAR文件格式的影響，，目的在於加快通過FTP部署應用程式的速度<br>phar在使用任何檔案相關的操作時(e.g. filesize())，會將資料反序列化</p>
+<p>例子3:<br>當含有序列化code的圖片被傳至server時，server去讀它的filesize就會有被駭的風險</p>
+<h1 id="laravel漏洞"><a href="#laravel漏洞" class="headerlink" title="laravel漏洞"></a>laravel漏洞</h1><p><a href="https://www.leavesongs.com/PENETRATION/cachet-from-laravel-sqli-to-bug-bounty.html" target="_blank" rel="noopener">CVE-2021-39165 从一个Laravel SQL注入漏洞开始的Bug Bounty之旅</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2021/12/21/%E4%BD%BF%E7%94%A8redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/21/%E4%BD%BF%E7%94%A8redis/" class="post-title-link" itemprop="url">使用redis</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-12-21 15:56:06" itemprop="dateCreated datePublished" datetime="2021-12-21T15:56:06+08:00">2021-12-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2023-03-18 10:29:13" itemprop="dateModified" datetime="2023-03-18T10:29:13+08:00">2023-03-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://segmentfault.com/a/1190000039688578" target="_blank" rel="noopener">【实战问题】– 缓存穿透，缓存击穿和缓存雪崩的区别以及解决方案 </a></p>
+<h1 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h1><h1 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h1><h1 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h1><h1 id="删除redis所有KEY"><a href="#删除redis所有KEY" class="headerlink" title="删除redis所有KEY"></a>删除redis所有KEY</h1><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//删除当前数据库中的所有Key </span><br><span class="line">flushdb</span><br><span class="line">       </span><br><span class="line"> </span><br><span class="line">//删除所有数据库中的key</span><br><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<h1 id="搜尋日期區間"><a href="#搜尋日期區間" class="headerlink" title="搜尋日期區間"></a>搜尋日期區間</h1><p><a href="https://stackoverflow.com/questions/45342453/how-to-get-data-based-on-date-range-in-redis" target="_blank" rel="noopener">how to get data based on date range in redis</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2021/12/14/%E8%A8%AD%E8%A8%88%E8%A6%8F%E7%AF%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/14/%E8%A8%AD%E8%A8%88%E8%A6%8F%E7%AF%84/" class="post-title-link" itemprop="url">設計規範</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-12-14 11:09:52" itemprop="dateCreated datePublished" datetime="2021-12-14T11:09:52+08:00">2021-12-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-03-10 14:13:24" itemprop="dateModified" datetime="2022-03-10T14:13:24+08:00">2022-03-10</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>設計規範也是為了可讀性和可維護性<br>PSR 是 PHP Standard Recommendations 的簡寫，由 PHP FIG 組織制定的 PHP 規範，是 PHP 開發的實踐標準。</p>
+<p>小到命名規則，大到namespace的應用<br><a href="https://www.php-fig.org/personnel/" target="_blank" rel="noopener">https://www.php-fig.org/personnel/</a><br>在上面的網址可以看到一些有名的專案和專案的貢獻者，例如 guzzle</p>
+<h1 id="程序员中的单个方法的行数极限是几行？"><a href="#程序员中的单个方法的行数极限是几行？" class="headerlink" title="程序员中的单个方法的行数极限是几行？"></a>程序员中的单个方法的行数极限是几行？</h1><p>這個問題本質是在於可讀性，和維護性，不要誇張即可<br>与具体语言与业务逻辑相关的，C写一个标准的双层switch状态机实现，80行以内就是不可能的。大函数实现状态机核心逻辑非常常见。<br>但是面向对象的语言可能会要求你用多态类而非双重switch方式实现状态机，这样就可以控制在80行内。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2021/09/02/%E9%9D%A2%E8%A9%A6%E9%A1%8C%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/02/%E9%9D%A2%E8%A9%A6%E9%A1%8C%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">面試題整理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-09-02 13:40:54" itemprop="dateCreated datePublished" datetime="2021-09-02T13:40:54+08:00">2021-09-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-12-14 10:20:52" itemprop="dateModified" datetime="2021-12-14T10:20:52+08:00">2021-12-14</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因為前前後後都有面試一些公司，在此紀錄一下面試題</p>
+<h1 id="系統是如何支撐高併發的"><a href="#系統是如何支撐高併發的" class="headerlink" title="系統是如何支撐高併發的"></a>系統是如何支撐高併發的</h1><h1 id="MySQL的索引為什麼用B-Tree？InnoDB的資料儲存檔案和MyISAM的有何不同？"><a href="#MySQL的索引為什麼用B-Tree？InnoDB的資料儲存檔案和MyISAM的有何不同？" class="headerlink" title="MySQL的索引為什麼用B+Tree？InnoDB的資料儲存檔案和MyISAM的有何不同？"></a>MySQL的索引為什麼用B+Tree？InnoDB的資料儲存檔案和MyISAM的有何不同？</h1><h1 id="Redis的應用場景"><a href="#Redis的應用場景" class="headerlink" title="Redis的應用場景"></a>Redis的應用場景</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2021/03/31/%E6%8E%92%E7%89%88%E6%B3%A8%E6%84%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/31/%E6%8E%92%E7%89%88%E6%B3%A8%E6%84%8F/" class="post-title-link" itemprop="url">排版注意</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-03-31 15:03:49" itemprop="dateCreated datePublished" datetime="2021-03-31T15:03:49+08:00">2021-03-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="flexbox"><a href="#flexbox" class="headerlink" title="flexbox"></a>flexbox</h1><p>flexbox 有幾個坑，如果重頭到尾都用 flexbox 的話<br>滾輪需注意事項，<br>所有付元素都需要設置高度所以一般我會設置 max—height 100％<br>根元素需要用絕對位置</p>
+<p><a href="https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content" target="_blank" rel="noopener">https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
   </div>
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1391,25 +1048,18 @@ MAIL_ENCRYPTION=</code></pre>
 
 
 
+  
+
+
+
+
+
 
 
 
   
 
   
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dkchange.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
 
 </body>
 </html>

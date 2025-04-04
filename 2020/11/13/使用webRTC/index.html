@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="參考資料WebRTC Crash Course30 天之即時網路影音開發攻略 前言webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速 sdp(sesssion description protocol)在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用webRTC">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2020&#x2F;11&#x2F;13&#x2F;%E4%BD%BF%E7%94%A8webRTC&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="參考資料WebRTC Crash Course30 天之即時網路影音開發攻略 前言webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速 sdp(sesssion description protocol)在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-07-30T10:11:28.911Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2020/11/13/%E4%BD%BF%E7%94%A8webRTC/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>使用webRTC | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">1.</span> <span class="nav-text">參考資料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sdp-sesssion-description-protocol"><span class="nav-number">3.</span> <span class="nav-text">sdp(sesssion description protocol)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nat-network-address-translation"><span class="nav-number">4.</span> <span class="nav-text">nat(network address translation)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stun-session-reversal-utilities-for-nat"><span class="nav-number">5.</span> <span class="nav-text">stun (session reversal utilities for nat)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#turn-traversal-using-relays-around-nat"><span class="nav-number">6.</span> <span class="nav-text">turn (traversal using relays around nat)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ice-inteactive-Connectivity-Establishment"><span class="nav-number">7.</span> <span class="nav-text">ice (inteactive Connectivity Establishment)</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2020/11/13/%E4%BD%BF%E7%94%A8webRTC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用webRTC
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2020-11-13 12:41:05" itemprop="dateCreated datePublished" datetime="2020-11-13T12:41:05+08:00">2020-11-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><p><a href="https://youtu.be/FExZvpVvYxA" target="_blank" rel="noopener">WebRTC Crash Course</a><br><a href="https://ithelp.ithome.com.tw/users/20089358/ironman/1923" target="_blank" rel="noopener">30 天之即時網路影音開發攻略</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速</p>
+<h1 id="sdp-sesssion-description-protocol"><a href="#sdp-sesssion-description-protocol" class="headerlink" title="sdp(sesssion description protocol)"></a>sdp(sesssion description protocol)</h1><p>在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作 signaling，而這些資料我們稱為 sdp</p>
+<p>signaling 這個動作可以藉由任何管道，可以已藉由通訊軟體，websocket 只要有辦法傳送給對方即可，那通常大家都會採用 websocket 來建一個 signaling server</p>
+<p>sdp 裡面會包含很多的資料，傳輸的格式，加密的方法，ice candidates 好多好多資料</p>
+<p>A → B A 把 offer(SDP)給 B<br>B ← A B 收到之後，用這個 SDP 在創建一個(SDP)answer 給 B</p>
+<h1 id="nat-network-address-translation"><a href="#nat-network-address-translation" class="headerlink" title="nat(network address translation)"></a>nat(network address translation)</h1><p>如果你有 public ip 一切都變得簡單，但大部分的人都沒有，那我們就需要透過 nat，nat 簡單來說就是一張表，當你要和外部溝通時，他會建立對應的表<br>，那收到回應時，我們就會來查這張表<br>你的 ip | 你的 port | router ip | router port | host ip | host port<br>那不同的 router 有不同的機制</p>
+<ul>
+<li>one to one nat(full-cone nat) 不管你之前有沒有訪問過這 ip 都允許他和你溝通</li>
+<li>address restricted nat 只要你之前有有訪問過這 ip，就允許他和你溝通</li>
+<li>port restricted nat 只要你之前有有訪問過這 ip 爾且 port 是對的，就允許他和你溝通</li>
+<li>symmetric nat 比必須要 router 出去的 port 和 ip，訪問的主機 ip 和 port 這四個東西都相同，我才允許你回應</li>
+</ul>
+<p>然而 webrtc 跟 symmetric nat 相較之下比較沒那麼相容，因為 webrtc 需要有一個 stun server ，照上述規則就只有 stun server 能和你溝通，那何來的點對點溝通呢？<br>這時候要採用 webrtc 大不如就直接用 websocket</p>
+<h1 id="stun-session-reversal-utilities-for-nat"><a href="#stun-session-reversal-utilities-for-nat" class="headerlink" title="stun (session reversal utilities for nat)"></a>stun (session reversal utilities for nat)</h1><p>功用就是，把我的 public ip 和 port 回傳給我，基本上就是根本沒做什麼事，所以 google 免費提供此服務</p>
+<h1 id="turn-traversal-using-relays-around-nat"><a href="#turn-traversal-using-relays-around-nat" class="headerlink" title="turn (traversal using relays around nat)"></a>turn (traversal using relays around nat)</h1><p>stun 進化版，當你的 ip 被 nat 的 symmetric nat 機制擋下來的時候，你就需要一個像代理伺服器的東西，什麼東西都經過他，也沒做什，就是把封包轉送給你，但是這就很貴</p>
+<h1 id="ice-inteactive-Connectivity-Establishment"><a href="#ice-inteactive-Connectivity-Establishment" class="headerlink" title="ice (inteactive Connectivity Establishment)"></a>ice (inteactive Connectivity Establishment)</h1><p>蒐集 ice candidates 可能的端點，有可是 public ip 有可能是 private ip<br>有沒有可能兩個溝通的端點，在同一個內網，這樣舊部需要透過外部 ip 來溝通，也就不須透過 nat，我把這些 ice candidates 蒐集起來所以要走哪一個 ip 都由你選擇，可能一個會通一個不會通</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/14/%E6%B8%AC%E8%A9%A6/" rel="prev" title="測試">
+                  <i class="fa fa-chevron-left"></i> 測試
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/18/%E4%B8%BB%E6%A9%9F%E7%AE%A1%E7%90%86/" rel="next" title="主機管理">
+                  主機管理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

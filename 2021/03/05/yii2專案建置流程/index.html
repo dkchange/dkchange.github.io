@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dkchange.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="前言本篇將紀錄專案從 0 開始的過程參考來源 前置動作 安裝 composer 目前這個時間點已經有 composer2 了  安裝 yii2 12&#x2F;&#x2F;XXX是專案名composer create-project --prefer-dist yiisoft&#x2F;yii2-app-advenced XXX  挑選後台樣板 下載 sb admin  設定網址  後台http:&#x2F;&#x2F;backend.local">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yii2專案建置流程">
+<meta property="og:url" content="http:&#x2F;&#x2F;dkchange.github.io&#x2F;2021&#x2F;03&#x2F;05&#x2F;yii2%E5%B0%88%E6%A1%88%E5%BB%BA%E7%BD%AE%E6%B5%81%E7%A8%8B&#x2F;index.html">
+<meta property="og:site_name" content="蛋粒個人網誌">
+<meta property="og:description" content="前言本篇將紀錄專案從 0 開始的過程參考來源 前置動作 安裝 composer 目前這個時間點已經有 composer2 了  安裝 yii2 12&#x2F;&#x2F;XXX是專案名composer create-project --prefer-dist yiisoft&#x2F;yii2-app-advenced XXX  挑選後台樣板 下載 sb admin  設定網址  後台http:&#x2F;&#x2F;backend.local">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2021-07-30T10:11:28.904Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://dkchange.github.io/2021/03/05/yii2%E5%B0%88%E6%A1%88%E5%BB%BA%E7%BD%AE%E6%B5%81%E7%A8%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>yii2專案建置流程 | 蛋粒個人網誌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">蛋粒個人網誌</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前置動作"><span class="nav-number">2.</span> <span class="nav-text">前置動作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#套用樣板"><span class="nav-number">3.</span> <span class="nav-text">套用樣板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#設計-db-這步驟要仔細想，花時間"><span class="nav-number">4.</span> <span class="nav-text">設計 db(這步驟要仔細想，花時間)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後台表單-關係到-ui-更花時間"><span class="nav-number">5.</span> <span class="nav-text">後台表單(關係到 ui 更花時間)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rest-api"><span class="nav-number">6.</span> <span class="nav-text">rest api</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#authentication"><span class="nav-number">7.</span> <span class="nav-text">authentication</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#authorizaion"><span class="nav-number">8.</span> <span class="nav-text">authorizaion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Role-based-Access-Control"><span class="nav-number">9.</span> <span class="nav-text">Role-based Access Control</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#workerman"><span class="nav-number">10.</span> <span class="nav-text">workerman</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stanley Ke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://dkchange.github.io/2021/03/05/yii2%E5%B0%88%E6%A1%88%E5%BB%BA%E7%BD%AE%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stanley Ke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蛋粒個人網誌">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          yii2專案建置流程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-03-05 10:48:22" itemprop="dateCreated datePublished" datetime="2021-03-05T10:48:22+08:00">2021-03-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-07-30 18:11:28" itemprop="dateModified" datetime="2021-07-30T18:11:28+08:00">2021-07-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇將紀錄專案從 0 開始的過程<br><a href="https://www.youtube.com/watch?v=eQdDBhQpU9o" target="_blank" rel="noopener">參考來源</a></p>
+<h1 id="前置動作"><a href="#前置動作" class="headerlink" title="前置動作"></a>前置動作</h1><ol>
+<li><p>安裝 composer</p>
+<p>目前這個時間點已經有 composer2 了</p>
+</li>
+<li><p>安裝 yii2</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//XXX是專案名</span><br><span class="line">composer create-project --prefer-dist yiisoft/yii2-app-advenced XXX</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>挑選後台樣板</p>
+<p>下載 sb admin</p>
+</li>
+<li><p>設定網址</p>
+<ul>
+<li>後台<a href="http://backend.localhost:8888/" target="_blank" rel="noopener">http://backend.localhost:8888/</a></li>
+<li>前台<a href="http://frontend.localhost:8888/" target="_blank" rel="noopener">http://frontend.localhost:8888/</a></li>
+</ul>
+</li>
+<li><p>初始化專案</p>
+<p>php init</p>
+</li>
+<li><p>註冊使用者</p>
+<p>到前台<a href="http://frontend.localhost:8888/註冊會發現資料庫不存在" target="_blank" rel="noopener">http://frontend.localhost:8888/註冊會發現資料庫不存在</a></p>
+</li>
+<li><p>創建資料庫</p>
+<p>填寫資料庫名 ， 選擇編碼 utf8mb4_general_ci</p>
+</li>
+<li><p>跑 migrate</p>
+<p>跑環系統會新增一個 user 的 table，成功之後便可以正常創建帳號</p>
+</li>
+<li><p>驗證帳號</p>
+<p>yii2 的 mail 設定檔裡面會將驗證的 mail 寫進 frontend/runtime/mail<br>裡面的字串是屬於特殊格式的，他每換一行會多加個=,每次遇到=會多加一個 3D<br>所以去掉多餘的= 3D 之後，將網址貼上 browser 就可以驗證成功</p>
+</li>
+</ol>
+<h1 id="套用樣板"><a href="#套用樣板" class="headerlink" title="套用樣板"></a>套用樣板</h1><p>將資源整合進 AppAsset.php</p>
+<ol>
+<li>共用的資源和 header footer 整合進 layout/main.php</li>
+<li>yii2 預設整合 bootstrap3 如果要關掉預設，要在設定檔</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'assetManager'</span>=&gt;[</span><br><span class="line">    <span class="string">"bundles"</span>=&gt;[</span><br><span class="line">        \yii\bootstrap\BootstrapAsset::class=&gt;<span class="keyword">false</span></span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer remove yiisoft/yii2-bootstrapt</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>yii2 也內建 jquery，如果需要的話</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AppAsset.php</span></span><br><span class="line"><span class="keyword">public</span> $depends=[</span><br><span class="line">    JqueryAsset::class</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>yii2 也提供 bootstrap4 套件</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require yiisoft/yii2-bootstrapt4</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>由於 sbAdmin 的 sb-admin.css 已經把 boostrap4 包進去了，所以我們不需要額外引進 bootstrap4 的 css，我們只需要 bootstrap4 的 js 即可</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AppAsset.php</span></span><br><span class="line"><span class="keyword">public</span> $depends=[</span><br><span class="line">    BootstrapPluginAsset::class <span class="comment">//just js</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>又因為 YiiAsset 包含 bootstrap.css，但我們只需要 js 即可</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'assetManager'</span>=&gt;[</span><br><span class="line">    <span class="string">"bundles"</span>=&gt;[</span><br><span class="line">        \yii\bootstrap\BootstrapAsset4::class=&gt;<span class="keyword">false</span></span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>刪掉多餘的檔案</li>
+<li>開啟 pretty url</li>
+</ol>
+<h1 id="設計-db-這步驟要仔細想，花時間"><a href="#設計-db-這步驟要仔細想，花時間" class="headerlink" title="設計 db(這步驟要仔細想，花時間)"></a>設計 db(這步驟要仔細想，花時間)</h1><ol>
+<li>利用 yii2 的 migratte 工具建立資料表， 如果在使用 docker 要注意權限問題，我新增一個一樣的使用者 stanley 在容器裡面，再切換使用者，讓我可以對 migration 檔案做修改和執行</li>
+<li>用 gii 創建 model 建 query</li>
+<li>用 gii 創建 crud controller search view</li>
+<li>整合 view 頁面</li>
+</ol>
+<h1 id="後台表單-關係到-ui-更花時間"><a href="#後台表單-關係到-ui-更花時間" class="headerlink" title="後台表單(關係到 ui 更花時間)"></a>後台表單(關係到 ui 更花時間)</h1><ol>
+<li>安裝 wysiwyg</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require 2amigos/yii2-ckeditor-widget:2.1.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//form.php</span></span><br><span class="line">    <span class="meta">&lt;?</span>= $form-&gt;field($model, <span class="string">'description'</span>)-&gt;widget(CKEditor::class,[</span><br><span class="line">            <span class="string">'options'</span> =&gt; [<span class="string">'row'</span>=&gt;<span class="number">6</span>],</span><br><span class="line">            <span class="string">"preset"</span>=&gt;<span class="string">"basic"</span></span><br><span class="line">    ]) <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>create_at create_by 欄位</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">behaviors</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        TimestampBehavior::class,</span><br><span class="line">        BlameableBehavior::class</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>表單驗證</li>
+<li>因為採用 bootstrap4 所以需要客製 ActionColumn</li>
+</ol>
+<h1 id="rest-api"><a href="#rest-api" class="headerlink" title="rest api"></a>rest api</h1><p>在 yii2 新增 restapi 的方法大致上有兩種，一種是你採用 yii2-base 的話，你會想要建 api module 來擴展此功能，那如果你是用 yii2-advenced 的話，建議是複製一個新的資料夾，像 backend frontend 一樣可以有自己的設定檔，同時 module 可以當作留存各版本 api 的擴充<br><a href="https://www.youtube.com/watch?v=TPOyQ_W8VdA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=TPOyQ_W8VdA</a><br><a href="https://stackoverflow.com/questions/54009254/yii2-rest-api-location" target="_blank" rel="noopener">https://stackoverflow.com/questions/54009254/yii2-rest-api-location</a></p>
+<ol>
+<li><p>新增欄位<br><a href="https://segmentfault.com/a/1190000017507487" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017507487</a><br><a href="https://www.programmersought.com/article/7422457902/" target="_blank" rel="noopener">https://www.programmersought.com/article/7422457902/</a><br><a href="https://stackoverflow.com/questions/28238595/yii2-authkey-whats-the-purpose" target="_blank" rel="noopener">https://stackoverflow.com/questions/28238595/yii2-authkey-whats-the-purpose</a></p>
+</li>
+<li><p>把前端 frontend 資料夾用來作 api</p>
+</li>
+<li><p>建立 resources 格式化輸出格式</p>
+</li>
+<li><p>//todo CROS 設定的時候卡住了</p>
+</li>
+</ol>
+<h1 id="authentication"><a href="#authentication" class="headerlink" title="authentication"></a>authentication</h1><p>yii 內建了幾種認證方式</p>
+<ol>
+<li>基於 session</li>
+<li>基於 accessToken(適用於 stateless)</li>
+<li>基於 cookie enableAutoLogin 设置为 true，就会使用 cookie 登录，配合 cookieValidationKey 防止 cookie 被串改，</li>
+</ol>
+<p><a href="https://ithelp.ithome.com.tw/articles/10197166" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10197166</a></p>
+<h1 id="authorizaion"><a href="#authorizaion" class="headerlink" title="authorizaion"></a>authorizaion</h1><p><a href="https://www.yiichina.com/doc/guide/2.0/security-authorization" target="_blank" rel="noopener">https://www.yiichina.com/doc/guide/2.0/security-authorization</a><br>@ is the special symbol that was recognized by Yii to identify authenticated users.</p>
+<p>? is used to identify unauthorized users<br>other than @ and ? are considered to be the name of the currently logged in users. so here admin is the name of the user who will holds the permission to do admin and delete actions in your controller.</p>
+<h1 id="Role-based-Access-Control"><a href="#Role-based-Access-Control" class="headerlink" title="Role-based Access Control"></a>Role-based Access Control</h1><p><a href="https://www.youtube.com/watch?v=vLb8YATO-HU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=vLb8YATO-HU</a><br><a href="https://www.youtube.com/watch?v=tMNJi9jaCrY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=tMNJi9jaCrY</a></p>
+<h1 id="workerman"><a href="#workerman" class="headerlink" title="workerman"></a>workerman</h1><p>目前專案想要達成的部份有兩個</p>
+<ol>
+<li>普通聊天</li>
+<li>webrtc</li>
+</ol>
+<p>那 workerman 有提供這兩個範例檔<br>所以就將其做個整合<br><a href="https://github.com/nick-bai/laychat" target="_blank" rel="noopener">https://github.com/nick-bai/laychat</a></p>
+<p>ws = new WebSocket(“wss://localhost:4443/socket”);<br>// 当 socket 连接打开时，输入用户名<br>ws.onopen = function(data){<br>console.log(data)<br>};<br>// 当有消息时根据消息类型显示不同信息<br>ws.onmessage = function(data){<br>console.log(data)<br>};<br>ws.onclose = function() {<br>console.log(“连接关闭，定时重连”);<br>connect();<br>};<br>ws.onerror = function() {<br>console.log(“出现错误”);<br>};</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/05/%E4%BD%BF%E7%94%A8email/" rel="prev" title="使用email">
+                  <i class="fa fa-chevron-left"></i> 使用email
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/31/%E6%8E%92%E7%89%88%E6%B3%A8%E6%84%8F/" rel="next" title="排版注意">
+                  排版注意 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stanley Ke</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
