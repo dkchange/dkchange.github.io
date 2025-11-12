@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用postman | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="基本 api 功能
+https://blog.csdn.net/qq_28284093/article/details/81031670
+使用 postman 进行测试
+https://segmentfault.com/a/1190000014144322
+https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064
+https://github.com/epoberezkin/ajv
+有关官多参数，有填，不填，null 个别的回传需要是什么要做验证，万一有 4 个参数以上交互起来就是 4 就要和每个参数的不同可能相乘
+https://testerhome.com/topics/11744
+发送异步请求
+pm.sendRequest(&ldquo;https://postman-echo.com/get&quot;, function (err, response) {
+console.log(response.json());
+postman 使用测试案例
+因為 postman import file 只能够 同一个 collection 共用 data file
+所以参考
+https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf
+过滤 data 的资料是否是指定给该请求
+if(data.selectItemRequest!==pm.info.requestName){
+postman.setNextRequest();
+}
+上面这样做不会成功，因為 setNextRequest()是在请求后呼叫的，所以写在 prerequest 并没有用，请求还是会被发送
+https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html
+pm.test.skip(&ldquo;Status code is 200&rdquo;, () =&gt; {
+pm.response.to.have.status(200);
+});
+(skipTest ? pm.test.skip : pm.test)(&lsquo;should be valid&rsquo;, function () {
+// do something here
+});
+结论是目前 postman 还没办法针对个别请求设定测试资料，还不能根据资料来略过请求，為了避免麻烦，只好不使用 csv 和 json 的受测资料">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8postman/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8postman/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用postman">
+  <meta property="og:description" content="基本 api 功能 https://blog.csdn.net/qq_28284093/article/details/81031670
+使用 postman 进行测试 https://segmentfault.com/a/1190000014144322
+https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064
+https://github.com/epoberezkin/ajv
+有关官多参数，有填，不填，null 个别的回传需要是什么要做验证，万一有 4 个参数以上交互起来就是 4 就要和每个参数的不同可能相乘 https://testerhome.com/topics/11744
+发送异步请求 pm.sendRequest(“https://postman-echo.com/get&#34;, function (err, response) { console.log(response.json());
+postman 使用测试案例 因為 postman import file 只能够 同一个 collection 共用 data file 所以参考 https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf
+过滤 data 的资料是否是指定给该请求 if(data.selectItemRequest!==pm.info.requestName){ postman.setNextRequest(); } 上面这样做不会成功，因為 setNextRequest()是在请求后呼叫的，所以写在 prerequest 并没有用，请求还是会被发送 https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html
+pm.test.skip(“Status code is 200”, () =&gt; { pm.response.to.have.status(200); });
+(skipTest ? pm.test.skip : pm.test)(‘should be valid’, function () { // do something here }); 结论是目前 postman 还没办法针对个别请求设定测试资料，还不能根据资料来略过请求，為了避免麻烦，只好不使用 csv 和 json 的受测资料">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-04-30T10:37:17+00:00">
+    <meta property="article:modified_time" content="2020-04-30T10:37:17+00:00">
+
+  <meta itemprop="name" content="使用postman">
+  <meta itemprop="description" content="基本 api 功能 https://blog.csdn.net/qq_28284093/article/details/81031670
+使用 postman 进行测试 https://segmentfault.com/a/1190000014144322
+https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064
+https://github.com/epoberezkin/ajv
+有关官多参数，有填，不填，null 个别的回传需要是什么要做验证，万一有 4 个参数以上交互起来就是 4 就要和每个参数的不同可能相乘 https://testerhome.com/topics/11744
+发送异步请求 pm.sendRequest(“https://postman-echo.com/get&#34;, function (err, response) { console.log(response.json());
+postman 使用测试案例 因為 postman import file 只能够 同一个 collection 共用 data file 所以参考 https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf
+过滤 data 的资料是否是指定给该请求 if(data.selectItemRequest!==pm.info.requestName){ postman.setNextRequest(); } 上面这样做不会成功，因為 setNextRequest()是在请求后呼叫的，所以写在 prerequest 并没有用，请求还是会被发送 https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html
+pm.test.skip(“Status code is 200”, () =&gt; { pm.response.to.have.status(200); });
+(skipTest ? pm.test.skip : pm.test)(‘should be valid’, function () { // do something here }); 结论是目前 postman 还没办法针对个别请求设定测试资料，还不能根据资料来略过请求，為了避免麻烦，只好不使用 csv 和 json 的受测资料">
+  <meta itemprop="datePublished" content="2020-04-30T10:37:17+00:00">
+  <meta itemprop="dateModified" content="2020-04-30T10:37:17+00:00">
+  <meta itemprop="wordCount" content="89">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用postman">
+  <meta name="twitter:description" content="基本 api 功能 https://blog.csdn.net/qq_28284093/article/details/81031670
+使用 postman 进行测试 https://segmentfault.com/a/1190000014144322
+https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064
+https://github.com/epoberezkin/ajv
+有关官多参数，有填，不填，null 个别的回传需要是什么要做验证，万一有 4 个参数以上交互起来就是 4 就要和每个参数的不同可能相乘 https://testerhome.com/topics/11744
+发送异步请求 pm.sendRequest(“https://postman-echo.com/get&#34;, function (err, response) { console.log(response.json());
+postman 使用测试案例 因為 postman import file 只能够 同一个 collection 共用 data file 所以参考 https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf
+过滤 data 的资料是否是指定给该请求 if(data.selectItemRequest!==pm.info.requestName){ postman.setNextRequest(); } 上面这样做不会成功，因為 setNextRequest()是在请求后呼叫的，所以写在 prerequest 并没有用，请求还是会被发送 https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html
+pm.test.skip(“Status code is 200”, () =&gt; { pm.response.to.have.status(200); });
+(skipTest ? pm.test.skip : pm.test)(‘should be valid’, function () { // do something here }); 结论是目前 postman 还没办法针对个别请求设定测试资料，还不能根据资料来略过请求，為了避免麻烦，只好不使用 csv 和 json 的受测资料">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用postman</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-04-30T10:37:17Z">April 30, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="基本-api-功能">基本 api 功能</h1>
+<p><a href="https://blog.csdn.net/qq_28284093/article/details/81031670">https://blog.csdn.net/qq_28284093/article/details/81031670</a></p>
+<h1 id="使用-postman-进行测试">使用 postman 进行测试</h1>
+<p><a href="https://segmentfault.com/a/1190000014144322">https://segmentfault.com/a/1190000014144322</a></p>
+<p><a href="https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064">https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064</a></p>
+<p><a href="https://github.com/epoberezkin/ajv">https://github.com/epoberezkin/ajv</a></p>
+<p>有关官多参数，有填，不填，null 个别的回传需要是什么要做验证，万一有 4 个参数以上交互起来就是 4 就要和每个参数的不同可能相乘
+<a href="https://testerhome.com/topics/11744">https://testerhome.com/topics/11744</a></p>
+<p>发送异步请求
+pm.sendRequest(&ldquo;<a href="https://postman-echo.com/get%22">https://postman-echo.com/get&quot;</a>, function (err, response) {
+console.log(response.json());</p>
+<h1 id="postman-使用测试案例">postman 使用测试案例</h1>
+<p>因為 postman import file 只能够 同一个 collection 共用 data file
+所以参考
+<a href="https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf">https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf</a></p>
+<p>过滤 data 的资料是否是指定给该请求
+if(data.selectItemRequest!==pm.info.requestName){
+postman.setNextRequest();
+}
+上面这样做不会成功，因為 setNextRequest()是在请求后呼叫的，所以写在 prerequest 并没有用，请求还是会被发送
+<a href="https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html">https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html</a></p>
+<p>pm.test.skip(&ldquo;Status code is 200&rdquo;, () =&gt; {
+pm.response.to.have.status(200);
+});</p>
+<p>(skipTest ? pm.test.skip : pm.test)(&lsquo;should be valid&rsquo;, function () {
+// do something here
+});
+结论是目前 postman 还没办法针对个别请求设定测试资料，还不能根据资料来略过请求，為了避免麻烦，只好不使用 csv 和 json 的受测资料</p>
+<p><a href="https://community.meraki.com/t5/Developers-APIs/Postman-run-multiple-request-with-different-variable-in-CSV-file/td-p/70234">https://community.meraki.com/t5/Developers-APIs/Postman-run-multiple-request-with-different-variable-in-CSV-file/td-p/70234</a></p>
+<h1 id="测试注意事项">测试注意事项</h1>
+<p>追踪 bug</p>
+<h1 id="offline測試">offline測試</h1>
+<p>因為每間公司的環境不同，有些公司是不允許聯外網的
+settings&raquo;scratch pad
+<a href="https://community.postman.com/t/working-in-offline-mode/20174/79">https://community.postman.com/t/working-in-offline-mode/20174/79</a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

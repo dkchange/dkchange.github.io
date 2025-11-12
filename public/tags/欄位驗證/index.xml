@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>欄位驗證 on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/%E6%AC%84%E4%BD%8D%E9%A9%97%E8%AD%89/</link>
+    <description>Recent content in 欄位驗證 on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 08 Nov 2019 02:15:08 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%AC%84%E4%BD%8D%E9%A9%97%E8%AD%89/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel欄位驗證</title>
+      <link>http://localhost:1313/posts/laravel%E6%AC%84%E4%BD%8D%E9%A9%97%E8%AD%89/</link>
+      <pubDate>Fri, 08 Nov 2019 02:15:08 +0000</pubDate>
+      <guid>http://localhost:1313/posts/laravel%E6%AC%84%E4%BD%8D%E9%A9%97%E8%AD%89/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;欄位驗證一般都放在request裡或controller裡，我偏好放在request裡面就做驗證，&#xA;為什麼欄位驗證要和request綁一起呢?&#xA;因為現在幾乎前後端分離，假如有天同時要做傳統的頁面和分離API頁面，兩個不同的controller才會請求都有被驗證，而且不用進到controller就擋下來，省時&lt;/p&gt;&#xA;&lt;h1 id=&#34;特別規則&#34;&gt;特別規則&lt;/h1&gt;&#xA;&lt;p&gt;*sometimes&#xA;有填的時候再做驗證&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

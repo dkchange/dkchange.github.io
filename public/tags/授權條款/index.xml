@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>授權條款 on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE/</link>
+    <description>Recent content in 授權條款 on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Oct 2019 23:54:08 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>授權條款</title>
+      <link>http://localhost:1313/posts/%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE/</link>
+      <pubDate>Wed, 30 Oct 2019 23:54:08 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE/</guid>
+      <description>&lt;p&gt;這個年代著作權非常的重要，為了怕侵權，我們至少要懂幾個重要的&#xA;直接上阮神的&lt;a href=&#34;http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html&#34;&gt;如何选择开源许可证？&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;參考資訊&#34;&gt;參考資訊&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://noob.tw/open-source-licenses/&#34;&gt;https://noob.tw/open-source-licenses/&lt;/a&gt;&#xA;&lt;a href=&#34;https://progressbar.tw/posts/61&#34;&gt;https://progressbar.tw/posts/61&lt;/a&gt;&#xA;&lt;a href=&#34;https://blog.csdn.net/qq_42768234/article/details/104193778&#34;&gt;https://blog.csdn.net/qq_42768234/article/details/104193778&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;心得&#34;&gt;心得&lt;/h1&gt;&#xA;&lt;p&gt;附註一下子自己的理解，&#xA;github 上項目可以選擇的協議有很多，其中&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;None / No License&#xA;就是作者完全保留這個源碼的所有權，不允許他人進行複製、分發、使用和修改，這時候就千萬不要去動他，用都不要用&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;知名的&lt;strong&gt;開源&lt;/strong&gt;條款，可以修改的意思，但都需要&lt;strong&gt;保留著作權訊息&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;GPL 最有開源精神，有使用就要開源，要說改了什&lt;/li&gt;&#xA;&lt;li&gt;LGPL 沒有修改，只有使用可以不必開源&lt;/li&gt;&#xA;&lt;li&gt;Apache 可不必開源，要說改了什&lt;/li&gt;&#xA;&lt;li&gt;BSD 可不必開源&lt;/li&gt;&#xA;&lt;li&gt;MIT 可不必開源，最自由&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;以上都可以修改，但要怎麼改，要不要備註作者名，要不要註明改什？改完之後你的 code 被強迫為何種 license？ 就要看詳細規定&lt;/p&gt;&#xA;&lt;p&gt;最佛心的&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The Unlicense&#xA;隨便你用&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>學習歷程 on My New Hugo Site</title>
+    <link>http://localhost:1313/categories/%E5%AD%B8%E7%BF%92%E6%AD%B7%E7%A8%8B/</link>
+    <description>Recent content in 學習歷程 on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Oct 2019 23:24:13 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E5%AD%B8%E7%BF%92%E6%AD%B7%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web 開發人員的路線圖</title>
+      <link>http://localhost:1313/posts/web-%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E7%9A%84%E8%B7%AF%E7%B7%9A%E5%9C%96/</link>
+      <pubDate>Wed, 30 Oct 2019 23:24:13 +0000</pubDate>
+      <guid>http://localhost:1313/posts/web-%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E7%9A%84%E8%B7%AF%E7%B7%9A%E5%9C%96/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;開始寫文章記下自己的學習歷程，不知道能不能養成習慣。&lt;/p&gt;&#xA;&lt;h1 id=&#34;目標&#34;&gt;目標&lt;/h1&gt;&#xA;&lt;p&gt;根據&lt;a href=&#34;https://github.com/goodjack/developer-roadmap-chinese&#34;&gt;2019 年成為 Web 開發人員的路線圖&lt;/a&gt;來做標籤，也讓自己有個目標&lt;/p&gt;&#xA;&lt;h1 id=&#34;css-發展路線&#34;&gt;css 發展路線&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://2019.stateofcss.com/tw/&#34;&gt;https://2019.stateofcss.com/tw/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;年薪百萬元以下就不要寫技術文章啦&#34;&gt;年薪百萬元以下就不要寫技術文章啦&lt;/h1&gt;&#xA;&lt;p&gt;基於這個理念，這個 blog 一直都是自己的筆記，有朝一日如果能夠年薪達標，才代表自己有夠格寫文章&lt;/p&gt;&#xA;&lt;h1 id=&#34;資深工程師&#34;&gt;資深工程師&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://jaceju.net/be-a-senior-engineer/&#34;&gt;如何才有資格稱為資深工程師&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;n年經驗&#34;&gt;N年經驗&lt;/h1&gt;&#xA;&lt;p&gt;程式語法經驗(e.g.,JS ,PHP)&#xA;資料庫存儲概念(e.g.,sp,view,split table)&#xA;系統設計經驗(e.g.,session的去留)&#xA;演算法&#xA;工具使用的經驗(e.g.,docker)&#xA;電腦的基礎知識，不會隨著換語言而變，那，我怕換語言的原因是為了什麼?&#xA;語言的生態吧，熟悉的框架(1個框架3個月熟悉的時間)，熟悉的工具，熟悉的語法，光是&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//php 和JS的表現就有不同&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;([]){}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;){}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//php 的全域變數&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;$__GET;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但這都是害怕改變的藉口，仔細看除了語法經驗，大致上的概念是不變的&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

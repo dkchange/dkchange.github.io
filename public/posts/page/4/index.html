@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Posts">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Posts">
+  <meta itemprop="datePublished" content="2025-04-11T16:41:12+00:00">
+  <meta itemprop="dateModified" content="2025-11-12T12:47:49+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Posts">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/" class="link black dim">
+        字元編碼
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p><a href="http://vito-note.blogspot.com/2012/01/blog-post_86.html">http://vito-note.blogspot.com/2012/01/blog-post_86.html</a>
+<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a>
+平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。
+每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950</p>
+<h1 id="unicode">Unicode</h1>
+<p>但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準
+它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。</p>
+<h2 id="16-進制">16 進制</h2>
+<p>因為用二進制來對應所有的字實在太長
+汉字严的 Unicode 是十六进制数 4E25
+转换成二进制数足足有 15 位（100111000100101）
+所以 unicode 採用 16 進制來做對應
+Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。
+你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母
+大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間
+\u4e2d\u6587 這是中文兩個字鎖對應的 unicode</p>
+<h2 id="unicode-衍生出的編碼方式">Unicode 衍生出的編碼方式</h2>
+<p><a href="https://www.branah.com/unicode-converter">https://www.branah.com/unicode-converter</a></p>
+<h3 id="utf-8">UTF-8</h3>
+<p>UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号
+\xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8</p>
+    </div>
+    <a href="/posts/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="link black dim">
+        資料結構與演算法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>這筆記為開放式課程筆記 目的在補足大學時代的不認真
+資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢
+找出最有效率的演算法
+system life cycle</p>
+<ul>
+<li>需求</li>
+<li>分析</li>
+<li>設計</li>
+<li>細分寫 CODE</li>
+<li>驗證</li>
+</ul>
+<h1 id="概述">概述</h1>
+<ul>
+<li>data abstraction</li>
+<li>algorithm specification
+資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？
+演算法就是解決問題的方法，跟你是哪一種語言沒有關係</li>
+</ul>
+<h1 id="最簡單的演算法-sort">最簡單的演算法 sort</h1>
+<ul>
+<li>
+<p>selection sort
+每一次從一堆數字取最大的出來 放在第一個位置&hellip;第二個位置
+那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的</p>
+</li>
+<li>
+<p>bubble sort</p>
+</li>
+<li>
+<p>quick sort</p>
+</li>
+</ul>
+<h1 id="以數字為例作搜索-binary-search">以數字為例作搜索 binary search</h1>
+<p>和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了</p>
+<h1 id="遞迴演算法">遞迴演算法</h1>
+<ul>
+<li>n 階層</li>
+<li>乘法</li>
+</ul>
+<h1 id="作業">作業</h1>
+<ul>
+<li>試著用 recursive 做 abc 排列組合</li>
+<li>試著用 for 做 abc 排列組合</li>
+</ul>
+<h1 id="performance-evaluation">performance evaluation</h1>
+<ul>
+<li>無關機器的評估</li>
+<li>有機器的評估</li>
+</ul>
+<h1 id="效能分析">效能分析</h1>
+<p>這邊蠻重視數學的
+log？ n 次方程式？</p>
+<ul>
+<li>
+<p>時間複雜度
+編譯時間+input 所影響的時間
+一般來講就是程式預計要走幾步</p>
+<ul>
+<li>大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限；</li>
+<li>大寫的希臘字母 Ω (Omega)函數，代表下限；</li>
+<li>大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限
+那我們通常用的是 O
+f(n)&lt;=cg(n)</li>
+</ul>
+</li>
+<li>
+<p>空間複雜度(佔用多少記憶體)
+code 的大小+input 的量所影響的空間</p>
+    </div>
+    <a href="/posts/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%B0%88%E6%A1%88%E4%BA%A4%E4%BB%98%E7%9B%B8%E9%97%9C/" class="link black dim">
+        專案交付相關
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="專案環境解說">專案環境解說</h1>
+<ul>
+<li>架構圖</li>
+<li>各環境版本
+<ul>
+<li>語言</li>
+<li>框架</li>
+<li>資料庫相關套件</li>
+<li>資料庫</li>
+<li>快取技術</li>
+<li>版控軟體</li>
+</ul>
+</li>
+<li>文件
+<ul>
+<li>api 文件</li>
+<li>傳輸格式 json</li>
+<li>協定 ws http</li>
+<li>status code</li>
+<li>error code</li>
+<li>DB Schema 文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="db-schema-文件">DB Schema 文件</h2>
+<p>專案完成後，再由 DB Schema 轉成文件
+<a href="http://akuma1.pixnet.net/blog/post/358796858-postgres-sql-%e7%94%a8-select%e8%aa%9e%e6%b3%95%e5%8f%96%e5%be%97table-schema">Postgres SQL 用 SELECT 語法取得 Table Schema</a></p>
+<h1 id="大架構程式設計">大架構程式設計</h1>
+<p>參考：
+<a href="http://akuma1.pixnet.net/blog/category/6529490">大架構程式設計</a>
+<a href="https://docs.google.com/document/d/1qsIP6hX0OPkgNQiSxTIJCjvAJNOTi0XrkjbOJ4giJ0M/edit">Web 開發－資深工程師的經驗</a></p>
+<p>q：當程式寫好之後，可以同時接受多少併發量？
+a：用 jmeter 測試</p>
+<p>a 測試完之後如何解決？
+q： 1. 硬體擴充，但是會有硬體限制（實際上擴充的有限，例如一台電腦記憶體插槽就是那幾個） 2. 多台電腦達成服務（大架構的程式設計）</p>
+<p>大架構程式設計</p>
+<ul>
+<li>request : 由於 http 的特性，第一次請求和第二次請求，由不同機器處理是 ok 的</li>
+<li>session : 不同機器如何共用 session</li>
+<li>Application ：應用程式，不會變的資料每台機器都一樣</li>
+</ul>
+<h2 id="分流-load-balance負載平衝設計">分流 Load Balance（負載平衝）設計</h2>
+<p>由一台 loading balance 的機器來和後端各 server 做溝通，用 cpu 或記憶體用量來判斷 server 是否忙碌，用簡單的網頁做回應看服務是否正常</p>
+    </div>
+    <a href="/posts/%E5%B0%88%E6%A1%88%E4%BA%A4%E4%BB%98%E7%9B%B8%E9%97%9C/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E8%B3%87%E6%96%99%E5%BA%AB%E7%9B%B8%E9%97%9C/" class="link black dim">
+        資料庫相關
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="何謂資料工程師">何謂資料工程師</h1>
+<p><a href="https://ithelp.ithome.com.tw/articles/10234925">https://ithelp.ithome.com.tw/articles/10234925</a></p>
+<h1 id="索引資料結構">索引資料結構</h1>
+<p>一文了解数据库索引：哈希、B-Tree 与LSM</p>
+<h1 id="mysql的db引擎">Mysql的DB引擎</h1>
+<p>MyISAM與InnoDB</p>
+<h1 id="postgres的命名規則">postgres的命名規則</h1>
+<p>資料表的命名方面，很多框架都依循著資料表的命名應該是單數，這個不成文規定，所以在 yii 框架的資料表 user 資料表是單數命名
+laravel 的 model 也會是單數命名，然後會假設資料表為複數命名</p>
+<p>但是在 postgres 裡面</p>
+<p>user 不能當作 table 的名字，是保留字</p>
+<p>如果要用的話，就一定要加雙引號 &ldquo;user&rdquo; ，所以表的名子如果是 users 情況會簡單些</p>
+<p>所以其實資料表的命名就視情況而定吧</p>
+<p>題外話：restapi 的命名規則，url 呈現的會是複數 users</p>
+<h1 id="如何定義主鍵-primary-key">如何定義主鍵 primary key</h1>
+<p><a href="https://ithelp.ithome.com.tw/questions/10143595">大家都是怎麼定義自己資料庫裡面的 primary key?</a></p>
+<h1 id="正規化normalization">正規化(Normalization)</h1>
+<p>降低資料的「重覆性」與避免「更新異常」的情況發生。
+正規化的精神就是讓資料庫中重複的欄位資料減到最少，並且能快速的找到資料，以提高關聯性資料庫的效能。</p>
+<p>第一考量：簡單就好。通常會先思考資料本身就能做 PK，那當然就用資料欄位。</p>
+<p>第二考量：效率至上。資料量巨大、且有大量 join，那就考慮使用 auto increment 欄位當 PK。</p>
+<p>第三考量：程式單純且易維護。資料本身需要三個以上的欄位才能做 PK，那也考慮用 auto increment 欄位當 PK。</p>
+<p>第四考量：資料庫對 PK 或其它 index 有最佳化，那就看它 prefer 用什麼欄位。</p>
+<ol>
+<li>系統 OO 化.</li>
+<li>小系統用 Int,流水號,不要用字串,int 是電腦處理基礎單位,所以排序,索引..最快</li>
+<li>分散式 DB 用 GUID 全世界每一個資料拋過來都不會沖到,而且是 Client 端,App 端產生</li>
+<li>PK 給 App 給 DB 關聯看,所以只要不重複,容易電腦計算,如果給 Users 識別用,我會再用一組有規律的 Key 讓 Users 記</li>
+</ol>
+<h1 id="正規化規則">正規化規則</h1>
+<p>正規化的解釋名詞都相當晦澀，這個時候有例子，比較容易幫助理解，你會發現你設計資料表的同時，一般都已經符合到第三正規化</p>
+    </div>
+    <a href="/posts/%E8%B3%87%E6%96%99%E5%BA%AB%E7%9B%B8%E9%97%9C/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E9%A1%8C%E7%9B%AE/" class="link black dim">
+        程式設計題目
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="測試資料排列組合">測試資料排列組合</h1>
+<p>目前有個案例是要衣服要件所有可能的排列組合
+輸入範例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;red&#39;</span>,<span style="color:#e6db74">&#39;white&#39;</span>,<span style="color:#e6db74">&#39;blue&#39;</span>],
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;size&#39;</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;s&#39;</span>,<span style="color:#e6db74">&#39;m&#39;</span>,<span style="color:#e6db74">&#39;l&#39;</span>,<span style="color:#e6db74">&#39;xl&#39;</span>],
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>希望結果能輸出
+3*4 種排列組合</p>
+<p>爾且增加衣服的要件依然能運作，例如新增衣服主題 subject</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;red&#39;</span>,<span style="color:#e6db74">&#39;white&#39;</span>,<span style="color:#e6db74">&#39;blue&#39;</span>],
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;size&#39;</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;s&#39;</span>,<span style="color:#e6db74">&#39;m&#39;</span>,<span style="color:#e6db74">&#39;l&#39;</span>,<span style="color:#e6db74">&#39;xl&#39;</span>],
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;subject&#39;</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;cartoon&#39;</span>,<span style="color:#e6db74">&#39;aphabet&#39;</span>,<span style="color:#e6db74">&#39;none&#39;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>希望結果能輸出
+3<em>4</em>3 種排列組合
+輸出範例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;red&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;size&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;s&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;subject&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;cartoon&#39;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;white&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;size&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;s&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;subject&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;cartoon&#39;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    <a href="/posts/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E9%A1%8C%E7%9B%AE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="link black dim">
+        密码学
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>因為工作 api 的呼叫会用到加密解密，所以总是要纪录一下，每个工具光是学要怎么用有的时候就要摸很久，加密解密的更是，有可能照步骤加解密就是得不到一样的结果，花了你大半天的生命</p>
+<p>使用工具网站：
+<a href="https://www.devglan.com/online-tools/aes-encryption-decryption">https://www.devglan.com/online-tools/aes-encryption-decryption</a>
+这个网站的目的是让你知道同样的加密方法，你加解密的结果正不正确</p>
+<h1 id="js">JS</h1>
+<h2 id="cryptojs">CryptoJS</h2>
+<p>工作中会用到 php 和 js 需要加解密的情况，是说这也奇怪，js 一般来说 code 都是可解的，把加密规则写在 js 形同让人加知道你如何加解密，这样有有什么用？
+这点倒是要问一下主管</p>
+<p><a href="http://jser.io/2014/08/19/how-to-use-aes-in-crypto-js-to-encrypt-and-decrypt">http://jser.io/2014/08/19/how-to-use-aes-in-crypto-js-to-encrypt-and-decrypt</a></p>
+<p><a href="https://moln.site/2018/06/22/crypto-js-aes-usage.html">https://moln.site/2018/06/22/crypto-js-aes-usage.html</a></p>
+<p><a href="https://stackoverflow.com/questions/25492179/decode-a-base64-string-using-cryptojs">https://stackoverflow.com/questions/25492179/decode-a-base64-string-using-cryptojs</a></p>
+    </div>
+    <a href="/posts/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/yii%E4%BD%BF%E7%94%A8codeception/" class="link black dim">
+        yii使用codeception
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p><a href="https://juejin.im/entry/588049612f301e00697dcb6a">中文 codeception 的基本設定</a>
+<a href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-testing.md">原文 codeception 的基本設定</a>
+开始之前一定要跟教学建一个测试专用的资料库，因為测试用的资料都会被清除，除非你想要内测的资料每次都被清除，否则只好照做
+<a href="https://segmentfault.com/a/1190000008157520?utm_source=tag-newest">参考惨案:測試資料都被刪光了</a>
+<a href="https://segmentfault.com/u/zebrayoung/articles?sort=vote">https://segmentfault.com/u/zebrayoung/articles?sort=vote</a></p>
+<p>codeception 是一套独立的测试框架，可跟其它 php 框架做搭配，在这我们和 yii 做搭配
+在这裡推荐 kk 的教学文章，个人觉得中文教学难找，他写得很详细，应该说我觉得他写的比官网还要详细，是我看错官网吗
+然后绝对不要再生产环境做测试
+<a href="https://codeception.com/docs/">原文官方文檔</a>
+<a href="https://github.com/kk8686/xoa">KK 測試範例</a>
+<a href="http://www.kkh86.com/it/codeception/guide-leaning-depends.html">KK 中文技術文檔</a></p>
+<h1 id="如何编写测试用例">如何编写测试用例</h1>
+<p>有什么比较好的门道，平衡覆盖率和收益
+<a href="https://www.zhihu.com/question/51558124">如何编写测试用例</a>
+底下的留言有正交表的相關資訊，那由於學習正交表相關理論需要時間，我目前還是用窮舉的方式來做測試
+<a href="https://testerhome.com/topics/11744">接口测试用例到底应该怎么写</a></p>
+<h2 id="waterfall-agile-devops">Waterfall Agile DevOps</h2>
+<p>软件开发并的管理流程 与其框架 实践方法</p>
+<ul>
+<li>Waterfall →CMMI</li>
+<li>Agile → Scrum</li>
+<li>Agile → xp</li>
+<li>Agile → Kanban</li>
+<li>Agile → Lean</li>
+<li>Agile → xp →TDD</li>
+<li>DevOps →TDD
+都有软件开发、测试和部署的阶段。
+然而，敏捷流程在这三个阶段之后会终止。
+相反，DevOps 包括后续持续的运维。</li>
+</ul>
+<p>由以上方法衍生出</p>
+<ul>
+<li>TDD：測試驅動開發（Test-Driven Development）</li>
+<li>BDD：行為驅動開發（Behavior Driven Development）</li>
+<li>ATDD：驗收測試驅動開發（Acceptance Test Driven Development）</li>
+<li>DDD：領域驅動開發（Domain Drive Design）</li>
+</ul>
+<h1 id="為什么要写测试">為什么要写测试</h1>
+<p>即使是一个不成功的项目也是会有规模增长以及复杂度的增加的
+当项目一大，你所写的 code 可能很多地方都有用到，然而人是健忘的，只有在写 code 的当下才会清楚这代码和其他 code 的耦合，那我们能做的就是在当下写测试，确保修改之后的测试报错，能让你回想到写 code 当下的逻辑，避免真正产品上限之后出现改 a 错 b 的情形
+手动能测试的有限，每次改完都要在手动重测一次很累，尔且一定会有测试没复盖到的地方
+测试代码并不能将所有角度都全部测试，因为程序员可能会写漏一些角度的测试代码
+比如数据搜索的测试，搜索条件组合花样百出，如果 1000 个商品分类里有其中 3 个有问题，那为了准确找出这些问题，程序员是不是要写 1000 种不同商品分类的测试代码？
+这不现实，测试代码确实无法完美地测试所有问题，但大部分问题已经写好测试代码后，一旦修改业务逻辑，你不再需要人工访问这里那里的页面测试刷新测试刷新</p>
+    </div>
+    <a href="/posts/yii%E4%BD%BF%E7%94%A8codeception/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8postman/" class="link black dim">
+        使用postman
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="基本-api-功能">基本 api 功能</h1>
+<p><a href="https://blog.csdn.net/qq_28284093/article/details/81031670">https://blog.csdn.net/qq_28284093/article/details/81031670</a></p>
+<h1 id="使用-postman-进行测试">使用 postman 进行测试</h1>
+<p><a href="https://segmentfault.com/a/1190000014144322">https://segmentfault.com/a/1190000014144322</a></p>
+<p><a href="https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064">https://community.postman.com/t/running-a-request-multiple-times-with-different-data-sets/1064</a></p>
+<p><a href="https://github.com/epoberezkin/ajv">https://github.com/epoberezkin/ajv</a></p>
+<p>有关官多参数，有填，不填，null 个别的回传需要是什么要做验证，万一有 4 个参数以上交互起来就是 4 就要和每个参数的不同可能相乘
+<a href="https://testerhome.com/topics/11744">https://testerhome.com/topics/11744</a></p>
+<p>发送异步请求
+pm.sendRequest(&ldquo;<a href="https://postman-echo.com/get%22">https://postman-echo.com/get&quot;</a>, function (err, response) {
+console.log(response.json());</p>
+<h1 id="postman-使用测试案例">postman 使用测试案例</h1>
+<p>因為 postman import file 只能够 同一个 collection 共用 data file
+所以参考
+<a href="https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf">https://blog.travelex.io/automation-with-postman-collection-runner-4a28eb975abf</a></p>
+<p>过滤 data 的资料是否是指定给该请求
+if(data.selectItemRequest!==pm.info.requestName){
+postman.setNextRequest();
+}
+上面这样做不会成功，因為 setNextRequest()是在请求后呼叫的，所以写在 prerequest 并没有用，请求还是会被发送
+<a href="https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html">https://postman-quick-reference-guide.readthedocs.io/en/latest/cheatsheet.html</a></p>
+<p>pm.test.skip(&ldquo;Status code is 200&rdquo;, () =&gt; {
+pm.response.to.have.status(200);
+});</p>
+<p>(skipTest ? pm.test.skip : pm.test)(&lsquo;should be valid&rsquo;, function () {
+// do something here
+});
+结论是目前 postman 还没办法针对个别请求设定测试资料，还不能根据资料来略过请求，為了避免麻烦，只好不使用 csv 和 json 的受测资料</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8postman/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E6%8F%90%E5%8D%87php/" class="link black dim">
+        提升php
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>語言百百種，一開始入門的一個語言是 php，中途又跑去碰了 js，js 演變非常的快，來來回回耗費了許多生命，但是我只有一條命，是該專注於其中一種語言了，
+即便這門語言不是那麼的賺錢</p>
+<ul>
+<li>php 葵花寶典
+<a href="https://www.awaimai.com/php">https://www.awaimai.com/php</a>
+<a href="https://www.cnblogs.com/aiweixiao/p/8202365.html">https://www.cnblogs.com/aiweixiao/p/8202365.html</a>
+<a href="http://t.ti-node.com/thread/6445811931549794305">http://t.ti-node.com/thread/6445811931549794305</a>
+<a href="https://mp.weixin.qq.com/s/NTbS3KtToodhFfdjrBjBsw">https://mp.weixin.qq.com/s/NTbS3KtToodhFfdjrBjBsw</a>
+<a href="https://phper.shujuwajue.com/phpxuan-xiang-he-yun-xing-yuan-li/php-sapi">https://phper.shujuwajue.com/phpxuan-xiang-he-yun-xing-yuan-li/php-sapi</a></li>
+</ul>
+<p><a href="https://imyoungyang.gitbooks.io/php7-study-group-notes/content/packagist.html">https://imyoungyang.gitbooks.io/php7-study-group-notes/content/packagist.html</a></p>
+<p><a href="https://learnku.com/docs/php-internals/php7">https://learnku.com/docs/php-internals/php7</a></p>
+<ul>
+<li>php 进阶探讨
+<a href="https://www.lanqiao.cn/library/advanced-php/">https://www.lanqiao.cn/library/advanced-php/</a></li>
+</ul>
+<h1 id="什麼是-cgifastcgiphp-fpm">什麼是 CGI、FastCGI、PHP-FPM</h1>
+<p>CGI與FPM
+CGI是一種協議，為了保證web server傳過來的資料是標準格式</p>
+<p>比如說，如果請求 index.html，web server會去找到這個文件再丟給瀏覽器，但這個只限於靜態文件而已，如果是index.php呢，就需要去找php解析器來處理了，接下來web service就會把這個請求交給php 解析器處理，那會傳那一些資料呢?像是 post或是url還有http header等，CGI就是規定要傳哪些資料、以及怎麼樣的格式</p>
+<p>FastCGI是什麼?
+接下來又提到那FastCGI是什麼呢? FastCGI是用來提高CGI處理process性能用的</p>
+<p>那FastCGI會怎麼實作呢?
+當php啟動時、會去尋找php.ini、進行環境的初始化，如果不使用FastCGI的情況下，每一個請求都會做這個動作，很明顯浪費系統資源，所以FastCGI會先啟動一個master，解析配置文件用，接下來再啟動worker，當請求過來時、master會遞資訊給worker，然後接下來等下一個請求，有這個機制就不用每一次重新跑一次初始化的動作了</p>
+<p>PHP-FPM
+那PHP-FPM呢? Fastcgi是一個協議，其實是php-fpm實現了這個協議</p>
+<p>php-fpm是管理fastcgi ，大概的關係就是這</p>
+<p>所以最後才會造成如果修改php.ini檔案之後，才需要重新啟動php-fpm，原因就是這個樣子</p>
+<p><a href="https://github.com/UniSharp/blog/blob/master/2017/10/04/Nginx%20%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%88%E4%BA%8C%EF%BC%89FastCGI%20Proxying/index.html">https://github.com/UniSharp/blog/blob/master/2017/10/04/Nginx%20%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%88%E4%BA%8C%EF%BC%89FastCGI%20Proxying/index.html</a>
+<a href="https://www.astralweb.com.tw/what-is-differences-between-fastcgi-php-fpm/">https://www.astralweb.com.tw/what-is-differences-between-fastcgi-php-fpm/</a>
+<a href="https://www.zybuluo.com/phper/note/50231">https://www.zybuluo.com/phper/note/50231</a></p>
+<h1 id="php-請求外部資源">php 請求外部資源</h1>
+<p>可以
+file_get_contents
+fopen
+fsockopen
+curl</p>
+<h1 id="php-開啟服務">php 開啟服務</h1>
+<p>stream_socket_server()
+workerman 的原理</p>
+<h1 id="重構">重構</h1>
+<p><a href="https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit">https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit</a></p>
+<h2 id="避免用-switch">避免用 switch</h2>
+<p><a href="https://www.slideshare.net/kylinfish/php-best-practice-81744253">https://www.slideshare.net/kylinfish/php-best-practice-81744253</a>
+<a href="https://learnku.com/laravel/t/7468/please-keep-your-php-code-neat-and-tidy">https://learnku.com/laravel/t/7468/please-keep-your-php-code-neat-and-tidy</a></p>
+<h1 id="trait">trait</h1>
+<p>官网讲的非常清楚
+<a href="https://www.php.net/manual/zh/language.oop5.traits.php">https://www.php.net/manual/zh/language.oop5.traits.php</a>
+唯一缺的范例是，当 trait 的 function 和要使用的 class 冲突时,你不想复盖，想要拿来用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>	<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">FooTrait</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">bar</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">traitBar</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p><a href="https://andy-carter.com/blog/overriding-extending-a-php-trait-method">https://andy-carter.com/blog/overriding-extending-a-php-trait-method</a></p>
+<h1 id="reflection">Reflection</h1>
+<p>获取档案路径 class function params 等等的详细资料
+还可以用来实例一个物件,而非传统的 new 关键字做出实例</p>
+    </div>
+    <a href="/posts/%E6%8F%90%E5%8D%87php/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="link black dim">
+        常用的快捷键
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>各個 ide 設定可以參考
+<a href="https://curder.gitbooks.io/blog/">https://curder.gitbooks.io/blog/</a></p>
+<h1 id="phpstorm">phpstorm</h1>
+<p>時常會有教學和的快捷建和現在的對不起來
+<a href="https://shortcutworld.com/PhpStorm/win/JetBrains-PhpStorm_Shortcuts">https://shortcutworld.com/PhpStorm/win/JetBrains-PhpStorm_Shortcuts</a>
+<a href="https://shortcutworld.com/PhpStorm/mac/JetBrains-PhpStorm_Shortcuts">https://shortcutworld.com/PhpStorm/mac/JetBrains-PhpStorm_Shortcuts</a>
+<a href="https://shortcutworld.com/PhpStorm/linux/JetBrains-PhpStorm_Shortcuts">https://shortcutworld.com/PhpStorm/linux/JetBrains-PhpStorm_Shortcuts</a>
+交互參考就可以找到答案</p>
+<p>然後你可以發現，這跟其他的編輯器幾乎完全不一樣，你還要在適應新的編輯器嗎？
+所以不要怕，大膽的給他改下去
+或者找 vsc 等等的 keymap 給他用下去</p>
+<p>deployment
+<a href="https://stackoverflow.com/questions/26180982/phpstorm-working-with-git-branches-and-remote-deployment">https://stackoverflow.com/questions/26180982/phpstorm-working-with-git-branches-and-remote-deployment</a></p>
+<ul>
+<li>shift*2 會跳出搜尋框，可以搜尋檔名或 namespace</li>
+<li>ctrl + shift + F 搜尋所有的檔案裡面有相關字串的 記得切換輸入法回英文</li>
+<li>ctrl + shift + R 搜尋所有的檔案裡面有相關字串的並取代</li>
+<li>ctrl + F12 列出 class 裡面的 function</li>
+<li>ctrl + 滑鼠左鍵 會列出這個變數方法類別有用到的地方</li>
+<li>shift + F6 重构名字</li>
+<li>ctrl + D 複製該行</li>
+<li>ctrl + shift + ↑ 移動該行</li>
+<li>shift + click 快速关闭分</li>
+<li>ctrl + shift + backspace 回到上一个编辑的地方</li>
+<li>ctrl + alt + U show 出继承图</li>
+<li>window + alt +click 多鼠标</li>
+<li>ctrl + alt + L 格式化 code (会和 ubuntu 跳到登入页冲突，须去 ubuntu 取消此快捷)</li>
+<li>alt + shift + insert 被选择行多属标</li>
+<li>window + alt + J 选取相同的字串</li>
+<li>跳回上一個滑鼠在的地方(RDP不能正常運作必須自訂https://intellij-support.jetbrains.com/hc/en-us/community/posts/206573029-Way-to-jump-back-to-previous-file-line-after-Ctrl-clicking-function-call-)</li>
+</ul>
+<h2 id="代碼提示">代碼提示</h2>
+<p>例如：</p>
+    </div>
+    <a href="/posts/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/8/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>yii2專案建置流程 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+本篇將紀錄專案從 0 開始的過程
+參考來源
+前置動作
+
+
+安裝 composer
+目前這個時間點已經有 composer2 了
+
+
+安裝 yii2
+//XXX是專案名
+composer create-project --prefer-dist yiisoft/yii2-app-advenced XXX
+
+
+挑選後台樣板
+下載 sb admin
+
+
+設定網址
+
+後台http://backend.localhost:8888/
+前台http://frontend.localhost:8888/
+
+
+
+初始化專案
+php init
+
+
+註冊使用者
+到前台http://frontend.localhost:8888/註冊會發現資料庫不存在
+
+
+創建資料庫
+填寫資料庫名 ， 選擇編碼 utf8mb4_general_ci
+
+
+跑 migrate
+跑環系統會新增一個 user 的 table，成功之後便可以正常創建帳號
+
+
+驗證帳號
+yii2 的 mail 設定檔裡面會將驗證的 mail 寫進 frontend/runtime/mail
+裡面的字串是屬於特殊格式的，他每換一行會多加個=,每次遇到=會多加一個 3D
+所以去掉多餘的= 3D 之後，將網址貼上 browser 就可以驗證成功
+
+
+套用樣板
+將資源整合進 AppAsset.php
+
+共用的資源和 header footer 整合進 layout/main.php
+yii2 預設整合 bootstrap3 如果要關掉預設，要在設定檔
+
+    &#39;assetManager&#39;=&gt;[
+        &#34;bundles&#34;=&gt;[
+            \yii\bootstrap\BootstrapAsset::class=&gt;false
+        ]
+    ]
+    composer remove yiisoft/yii2-bootstrapt
+
+yii2 也內建 jquery，如果需要的話
+
+    //AppAsset.php
+    public $depends=[
+        JqueryAsset::class
+    ]
+
+yii2 也提供 bootstrap4 套件
+
+    composer require yiisoft/yii2-bootstrapt4
+
+由於 sbAdmin 的 sb-admin.css 已經把 boostrap4 包進去了，所以我們不需要額外引進 bootstrap4 的 css，我們只需要 bootstrap4 的 js 即可
+
+    //AppAsset.php
+    public $depends=[
+        BootstrapPluginAsset::class //just js
+    ]
+
+又因為 YiiAsset 包含 bootstrap.css，但我們只需要 js 即可
+
+    &#39;assetManager&#39;=&gt;[
+        &#34;bundles&#34;=&gt;[
+            \yii\bootstrap\BootstrapAsset4::class=&gt;false
+        ]
+    ]
+
+刪掉多餘的檔案
+開啟 pretty url
+
+設計 db(這步驟要仔細想，花時間)
+
+利用 yii2 的 migratte 工具建立資料表， 如果在使用 docker 要注意權限問題，我新增一個一樣的使用者 stanley 在容器裡面，再切換使用者，讓我可以對 migration 檔案做修改和執行
+用 gii 創建 model 建 query
+用 gii 創建 crud controller search view
+整合 view 頁面
+
+後台表單(關係到 ui 更花時間)
+
+安裝 wysiwyg
+
+composer require 2amigos/yii2-ckeditor-widget:2.1.0
+//form.php
+    &lt;?= $form-&gt;field($model, &#39;description&#39;)-&gt;widget(CKEditor::class,[
+            &#39;options&#39; =&gt; [&#39;row&#39;=&gt;6],
+            &#34;preset&#34;=&gt;&#34;basic&#34;
+    ]) ?&gt;
+
+create_at create_by 欄位
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            BlameableBehavior::class
+        ];
+    }
+
+表單驗證
+因為採用 bootstrap4 所以需要客製 ActionColumn
+
+rest api
+在 yii2 新增 restapi 的方法大致上有兩種，一種是你採用 yii2-base 的話，你會想要建 api module 來擴展此功能，那如果你是用 yii2-advenced 的話，建議是複製一個新的資料夾，像 backend frontend 一樣可以有自己的設定檔，同時 module 可以當作留存各版本 api 的擴充
+https://www.youtube.com/watch?v=TPOyQ_W8VdA
+https://stackoverflow.com/questions/54009254/yii2-rest-api-location">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/yii2%E5%B0%88%E6%A1%88%E5%BB%BA%E7%BD%AE%E6%B5%81%E7%A8%8B/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/yii2%E5%B0%88%E6%A1%88%E5%BB%BA%E7%BD%AE%E6%B5%81%E7%A8%8B/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="yii2專案建置流程">
+  <meta property="og:description" content="前言 本篇將紀錄專案從 0 開始的過程 參考來源
+前置動作 安裝 composer
+目前這個時間點已經有 composer2 了
+安裝 yii2
+//XXX是專案名 composer create-project --prefer-dist yiisoft/yii2-app-advenced XXX 挑選後台樣板
+下載 sb admin
+設定網址
+後台http://backend.localhost:8888/ 前台http://frontend.localhost:8888/ 初始化專案
+php init
+註冊使用者
+到前台http://frontend.localhost:8888/註冊會發現資料庫不存在
+創建資料庫
+填寫資料庫名 ， 選擇編碼 utf8mb4_general_ci
+跑 migrate
+跑環系統會新增一個 user 的 table，成功之後便可以正常創建帳號
+驗證帳號
+yii2 的 mail 設定檔裡面會將驗證的 mail 寫進 frontend/runtime/mail 裡面的字串是屬於特殊格式的，他每換一行會多加個=,每次遇到=會多加一個 3D 所以去掉多餘的= 3D 之後，將網址貼上 browser 就可以驗證成功
+套用樣板 將資源整合進 AppAsset.php
+共用的資源和 header footer 整合進 layout/main.php yii2 預設整合 bootstrap3 如果要關掉預設，要在設定檔 &#39;assetManager&#39;=&gt;[ &#34;bundles&#34;=&gt;[ \yii\bootstrap\BootstrapAsset::class=&gt;false ] ] composer remove yiisoft/yii2-bootstrapt yii2 也內建 jquery，如果需要的話 //AppAsset.php public $depends=[ JqueryAsset::class ] yii2 也提供 bootstrap4 套件 composer require yiisoft/yii2-bootstrapt4 由於 sbAdmin 的 sb-admin.css 已經把 boostrap4 包進去了，所以我們不需要額外引進 bootstrap4 的 css，我們只需要 bootstrap4 的 js 即可 //AppAsset.php public $depends=[ BootstrapPluginAsset::class //just js ] 又因為 YiiAsset 包含 bootstrap.css，但我們只需要 js 即可 &#39;assetManager&#39;=&gt;[ &#34;bundles&#34;=&gt;[ \yii\bootstrap\BootstrapAsset4::class=&gt;false ] ] 刪掉多餘的檔案 開啟 pretty url 設計 db(這步驟要仔細想，花時間) 利用 yii2 的 migratte 工具建立資料表， 如果在使用 docker 要注意權限問題，我新增一個一樣的使用者 stanley 在容器裡面，再切換使用者，讓我可以對 migration 檔案做修改和執行 用 gii 創建 model 建 query 用 gii 創建 crud controller search view 整合 view 頁面 後台表單(關係到 ui 更花時間) 安裝 wysiwyg composer require 2amigos/yii2-ckeditor-widget:2.1.0 //form.php &lt;?= $form-&gt;field($model, &#39;description&#39;)-&gt;widget(CKEditor::class,[ &#39;options&#39; =&gt; [&#39;row&#39;=&gt;6], &#34;preset&#34;=&gt;&#34;basic&#34; ]) ?&gt; create_at create_by 欄位 public function behaviors() { return [ TimestampBehavior::class, BlameableBehavior::class ]; } 表單驗證 因為採用 bootstrap4 所以需要客製 ActionColumn rest api 在 yii2 新增 restapi 的方法大致上有兩種，一種是你採用 yii2-base 的話，你會想要建 api module 來擴展此功能，那如果你是用 yii2-advenced 的話，建議是複製一個新的資料夾，像 backend frontend 一樣可以有自己的設定檔，同時 module 可以當作留存各版本 api 的擴充 https://www.youtube.com/watch?v=TPOyQ_W8VdA https://stackoverflow.com/questions/54009254/yii2-rest-api-location">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-03-05T10:48:22+00:00">
+    <meta property="article:modified_time" content="2021-03-05T10:48:22+00:00">
+
+  <meta itemprop="name" content="yii2專案建置流程">
+  <meta itemprop="description" content="前言 本篇將紀錄專案從 0 開始的過程 參考來源
+前置動作 安裝 composer
+目前這個時間點已經有 composer2 了
+安裝 yii2
+//XXX是專案名 composer create-project --prefer-dist yiisoft/yii2-app-advenced XXX 挑選後台樣板
+下載 sb admin
+設定網址
+後台http://backend.localhost:8888/ 前台http://frontend.localhost:8888/ 初始化專案
+php init
+註冊使用者
+到前台http://frontend.localhost:8888/註冊會發現資料庫不存在
+創建資料庫
+填寫資料庫名 ， 選擇編碼 utf8mb4_general_ci
+跑 migrate
+跑環系統會新增一個 user 的 table，成功之後便可以正常創建帳號
+驗證帳號
+yii2 的 mail 設定檔裡面會將驗證的 mail 寫進 frontend/runtime/mail 裡面的字串是屬於特殊格式的，他每換一行會多加個=,每次遇到=會多加一個 3D 所以去掉多餘的= 3D 之後，將網址貼上 browser 就可以驗證成功
+套用樣板 將資源整合進 AppAsset.php
+共用的資源和 header footer 整合進 layout/main.php yii2 預設整合 bootstrap3 如果要關掉預設，要在設定檔 &#39;assetManager&#39;=&gt;[ &#34;bundles&#34;=&gt;[ \yii\bootstrap\BootstrapAsset::class=&gt;false ] ] composer remove yiisoft/yii2-bootstrapt yii2 也內建 jquery，如果需要的話 //AppAsset.php public $depends=[ JqueryAsset::class ] yii2 也提供 bootstrap4 套件 composer require yiisoft/yii2-bootstrapt4 由於 sbAdmin 的 sb-admin.css 已經把 boostrap4 包進去了，所以我們不需要額外引進 bootstrap4 的 css，我們只需要 bootstrap4 的 js 即可 //AppAsset.php public $depends=[ BootstrapPluginAsset::class //just js ] 又因為 YiiAsset 包含 bootstrap.css，但我們只需要 js 即可 &#39;assetManager&#39;=&gt;[ &#34;bundles&#34;=&gt;[ \yii\bootstrap\BootstrapAsset4::class=&gt;false ] ] 刪掉多餘的檔案 開啟 pretty url 設計 db(這步驟要仔細想，花時間) 利用 yii2 的 migratte 工具建立資料表， 如果在使用 docker 要注意權限問題，我新增一個一樣的使用者 stanley 在容器裡面，再切換使用者，讓我可以對 migration 檔案做修改和執行 用 gii 創建 model 建 query 用 gii 創建 crud controller search view 整合 view 頁面 後台表單(關係到 ui 更花時間) 安裝 wysiwyg composer require 2amigos/yii2-ckeditor-widget:2.1.0 //form.php &lt;?= $form-&gt;field($model, &#39;description&#39;)-&gt;widget(CKEditor::class,[ &#39;options&#39; =&gt; [&#39;row&#39;=&gt;6], &#34;preset&#34;=&gt;&#34;basic&#34; ]) ?&gt; create_at create_by 欄位 public function behaviors() { return [ TimestampBehavior::class, BlameableBehavior::class ]; } 表單驗證 因為採用 bootstrap4 所以需要客製 ActionColumn rest api 在 yii2 新增 restapi 的方法大致上有兩種，一種是你採用 yii2-base 的話，你會想要建 api module 來擴展此功能，那如果你是用 yii2-advenced 的話，建議是複製一個新的資料夾，像 backend frontend 一樣可以有自己的設定檔，同時 module 可以當作留存各版本 api 的擴充 https://www.youtube.com/watch?v=TPOyQ_W8VdA https://stackoverflow.com/questions/54009254/yii2-rest-api-location">
+  <meta itemprop="datePublished" content="2021-03-05T10:48:22+00:00">
+  <meta itemprop="dateModified" content="2021-03-05T10:48:22+00:00">
+  <meta itemprop="wordCount" content="361">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="yii2專案建置流程">
+  <meta name="twitter:description" content="前言 本篇將紀錄專案從 0 開始的過程 參考來源
+前置動作 安裝 composer
+目前這個時間點已經有 composer2 了
+安裝 yii2
+//XXX是專案名 composer create-project --prefer-dist yiisoft/yii2-app-advenced XXX 挑選後台樣板
+下載 sb admin
+設定網址
+後台http://backend.localhost:8888/ 前台http://frontend.localhost:8888/ 初始化專案
+php init
+註冊使用者
+到前台http://frontend.localhost:8888/註冊會發現資料庫不存在
+創建資料庫
+填寫資料庫名 ， 選擇編碼 utf8mb4_general_ci
+跑 migrate
+跑環系統會新增一個 user 的 table，成功之後便可以正常創建帳號
+驗證帳號
+yii2 的 mail 設定檔裡面會將驗證的 mail 寫進 frontend/runtime/mail 裡面的字串是屬於特殊格式的，他每換一行會多加個=,每次遇到=會多加一個 3D 所以去掉多餘的= 3D 之後，將網址貼上 browser 就可以驗證成功
+套用樣板 將資源整合進 AppAsset.php
+共用的資源和 header footer 整合進 layout/main.php yii2 預設整合 bootstrap3 如果要關掉預設，要在設定檔 &#39;assetManager&#39;=&gt;[ &#34;bundles&#34;=&gt;[ \yii\bootstrap\BootstrapAsset::class=&gt;false ] ] composer remove yiisoft/yii2-bootstrapt yii2 也內建 jquery，如果需要的話 //AppAsset.php public $depends=[ JqueryAsset::class ] yii2 也提供 bootstrap4 套件 composer require yiisoft/yii2-bootstrapt4 由於 sbAdmin 的 sb-admin.css 已經把 boostrap4 包進去了，所以我們不需要額外引進 bootstrap4 的 css，我們只需要 bootstrap4 的 js 即可 //AppAsset.php public $depends=[ BootstrapPluginAsset::class //just js ] 又因為 YiiAsset 包含 bootstrap.css，但我們只需要 js 即可 &#39;assetManager&#39;=&gt;[ &#34;bundles&#34;=&gt;[ \yii\bootstrap\BootstrapAsset4::class=&gt;false ] ] 刪掉多餘的檔案 開啟 pretty url 設計 db(這步驟要仔細想，花時間) 利用 yii2 的 migratte 工具建立資料表， 如果在使用 docker 要注意權限問題，我新增一個一樣的使用者 stanley 在容器裡面，再切換使用者，讓我可以對 migration 檔案做修改和執行 用 gii 創建 model 建 query 用 gii 創建 crud controller search view 整合 view 頁面 後台表單(關係到 ui 更花時間) 安裝 wysiwyg composer require 2amigos/yii2-ckeditor-widget:2.1.0 //form.php &lt;?= $form-&gt;field($model, &#39;description&#39;)-&gt;widget(CKEditor::class,[ &#39;options&#39; =&gt; [&#39;row&#39;=&gt;6], &#34;preset&#34;=&gt;&#34;basic&#34; ]) ?&gt; create_at create_by 欄位 public function behaviors() { return [ TimestampBehavior::class, BlameableBehavior::class ]; } 表單驗證 因為採用 bootstrap4 所以需要客製 ActionColumn rest api 在 yii2 新增 restapi 的方法大致上有兩種，一種是你採用 yii2-base 的話，你會想要建 api module 來擴展此功能，那如果你是用 yii2-advenced 的話，建議是複製一個新的資料夾，像 backend frontend 一樣可以有自己的設定檔，同時 module 可以當作留存各版本 api 的擴充 https://www.youtube.com/watch?v=TPOyQ_W8VdA https://stackoverflow.com/questions/54009254/yii2-rest-api-location">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">yii2專案建置流程</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-03-05T10:48:22Z">March 5, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>本篇將紀錄專案從 0 開始的過程
+<a href="https://www.youtube.com/watch?v=eQdDBhQpU9o">參考來源</a></p>
+<h1 id="前置動作">前置動作</h1>
+<ol>
+<li>
+<p>安裝 composer</p>
+<p>目前這個時間點已經有 composer2 了</p>
+</li>
+<li>
+<p>安裝 yii2</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>//XXX是專案名
+</span></span><span style="display:flex;"><span>composer create-project --prefer-dist yiisoft/yii2-app-advenced XXX
+</span></span></code></pre></div></li>
+<li>
+<p>挑選後台樣板</p>
+<p>下載 sb admin</p>
+</li>
+<li>
+<p>設定網址</p>
+<ul>
+<li>後台http://backend.localhost:8888/</li>
+<li>前台http://frontend.localhost:8888/</li>
+</ul>
+</li>
+<li>
+<p>初始化專案</p>
+<p>php init</p>
+</li>
+<li>
+<p>註冊使用者</p>
+<p>到前台http://frontend.localhost:8888/註冊會發現資料庫不存在</p>
+</li>
+<li>
+<p>創建資料庫</p>
+<p>填寫資料庫名 ， 選擇編碼 utf8mb4_general_ci</p>
+</li>
+<li>
+<p>跑 migrate</p>
+<p>跑環系統會新增一個 user 的 table，成功之後便可以正常創建帳號</p>
+</li>
+<li>
+<p>驗證帳號</p>
+<p>yii2 的 mail 設定檔裡面會將驗證的 mail 寫進 frontend/runtime/mail
+裡面的字串是屬於特殊格式的，他每換一行會多加個=,每次遇到=會多加一個 3D
+所以去掉多餘的= 3D 之後，將網址貼上 browser 就可以驗證成功</p>
+</li>
+</ol>
+<h1 id="套用樣板">套用樣板</h1>
+<p>將資源整合進 AppAsset.php</p>
+<ol>
+<li>共用的資源和 header footer 整合進 layout/main.php</li>
+<li>yii2 預設整合 bootstrap3 如果要關掉預設，要在設定檔</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;assetManager&#39;</span><span style="color:#f92672">=&gt;</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;bundles&#34;</span><span style="color:#f92672">=&gt;</span>[
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">\yii\bootstrap\BootstrapAsset</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span><span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    ]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    composer remove yiisoft/yii2-bootstrapt
+</span></span></code></pre></div><ol start="3">
+<li>yii2 也內建 jquery，如果需要的話</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">//AppAsset.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> $depends<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">JqueryAsset</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span></code></pre></div><ol start="4">
+<li>yii2 也提供 bootstrap4 套件</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    composer require yiisoft/yii2-bootstrapt4
+</span></span></code></pre></div><ol start="5">
+<li>由於 sbAdmin 的 sb-admin.css 已經把 boostrap4 包進去了，所以我們不需要額外引進 bootstrap4 的 css，我們只需要 bootstrap4 的 js 即可</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">//AppAsset.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> $depends<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">BootstrapPluginAsset</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span> <span style="color:#75715e">//just js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ]
+</span></span></code></pre></div><ol start="6">
+<li>又因為 YiiAsset 包含 bootstrap.css，但我們只需要 js 即可</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;assetManager&#39;</span><span style="color:#f92672">=&gt;</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;bundles&#34;</span><span style="color:#f92672">=&gt;</span>[
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">\yii\bootstrap\BootstrapAsset4</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span><span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    ]
+</span></span></code></pre></div><ol start="7">
+<li>刪掉多餘的檔案</li>
+<li>開啟 pretty url</li>
+</ol>
+<h1 id="設計-db這步驟要仔細想花時間">設計 db(這步驟要仔細想，花時間)</h1>
+<ol>
+<li>利用 yii2 的 migratte 工具建立資料表， 如果在使用 docker 要注意權限問題，我新增一個一樣的使用者 stanley 在容器裡面，再切換使用者，讓我可以對 migration 檔案做修改和執行</li>
+<li>用 gii 創建 model 建 query</li>
+<li>用 gii 創建 crud controller search view</li>
+<li>整合 view 頁面</li>
+</ol>
+<h1 id="後台表單關係到-ui-更花時間">後台表單(關係到 ui 更花時間)</h1>
+<ol>
+<li>安裝 wysiwyg</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>composer require 2amigos/yii2-ckeditor-widget:2.1.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">//form.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">&lt;?=</span> $form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">field</span>($model, <span style="color:#e6db74">&#39;description&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">widget</span>(<span style="color:#a6e22e">CKEditor</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,[
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;options&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;row&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;preset&#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;basic&#34;</span>
+</span></span><span style="display:flex;"><span>    ]) <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><ol start="2">
+<li>create_at create_by 欄位</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">behaviors</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">TimestampBehavior</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">BlameableBehavior</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ol start="3">
+<li>表單驗證</li>
+<li>因為採用 bootstrap4 所以需要客製 ActionColumn</li>
+</ol>
+<h1 id="rest-api">rest api</h1>
+<p>在 yii2 新增 restapi 的方法大致上有兩種，一種是你採用 yii2-base 的話，你會想要建 api module 來擴展此功能，那如果你是用 yii2-advenced 的話，建議是複製一個新的資料夾，像 backend frontend 一樣可以有自己的設定檔，同時 module 可以當作留存各版本 api 的擴充
+<a href="https://www.youtube.com/watch?v=TPOyQ_W8VdA">https://www.youtube.com/watch?v=TPOyQ_W8VdA</a>
+<a href="https://stackoverflow.com/questions/54009254/yii2-rest-api-location">https://stackoverflow.com/questions/54009254/yii2-rest-api-location</a></p>
+<ol>
+<li>
+<p>新增欄位
+<a href="https://segmentfault.com/a/1190000017507487">https://segmentfault.com/a/1190000017507487</a>
+<a href="https://www.programmersought.com/article/7422457902/">https://www.programmersought.com/article/7422457902/</a>
+<a href="https://stackoverflow.com/questions/28238595/yii2-authkey-whats-the-purpose">https://stackoverflow.com/questions/28238595/yii2-authkey-whats-the-purpose</a></p>
+</li>
+<li>
+<p>把前端 frontend 資料夾用來作 api</p>
+</li>
+<li>
+<p>建立 resources 格式化輸出格式</p>
+</li>
+<li>
+<p>//todo CROS 設定的時候卡住了</p>
+</li>
+</ol>
+<h1 id="authentication">authentication</h1>
+<p>yii 內建了幾種認證方式</p>
+<ol>
+<li>基於 session</li>
+<li>基於 accessToken(適用於 stateless)</li>
+<li>基於 cookie enableAutoLogin 设置为 true，就会使用 cookie 登录，配合 cookieValidationKey 防止 cookie 被串改，</li>
+</ol>
+<p><a href="https://ithelp.ithome.com.tw/articles/10197166">https://ithelp.ithome.com.tw/articles/10197166</a></p>
+<h1 id="authorizaion">authorizaion</h1>
+<p><a href="https://www.yiichina.com/doc/guide/2.0/security-authorization">https://www.yiichina.com/doc/guide/2.0/security-authorization</a>
+@ is the special symbol that was recognized by Yii to identify authenticated users.</p>
+<p>? is used to identify unauthorized users
+other than @ and ? are considered to be the name of the currently logged in users. so here admin is the name of the user who will holds the permission to do admin and delete actions in your controller.</p>
+<h1 id="role-based-access-control">Role-based Access Control</h1>
+<p><a href="https://www.youtube.com/watch?v=vLb8YATO-HU">https://www.youtube.com/watch?v=vLb8YATO-HU</a>
+<a href="https://www.youtube.com/watch?v=tMNJi9jaCrY">https://www.youtube.com/watch?v=tMNJi9jaCrY</a></p>
+<h1 id="workerman">workerman</h1>
+<p>目前專案想要達成的部份有兩個</p>
+<ol>
+<li>普通聊天</li>
+<li>webrtc</li>
+</ol>
+<p>那 workerman 有提供這兩個範例檔
+所以就將其做個整合
+<a href="https://github.com/nick-bai/laychat">https://github.com/nick-bai/laychat</a></p>
+<p>ws = new WebSocket(&ldquo;wss://localhost:4443/socket&rdquo;);
+// 当 socket 连接打开时，输入用户名
+ws.onopen = function(data){
+console.log(data)
+};
+// 当有消息时根据消息类型显示不同信息
+ws.onmessage = function(data){
+console.log(data)
+};
+ws.onclose = function() {
+console.log(&ldquo;连接关闭，定时重连&rdquo;);
+connect();
+};
+ws.onerror = function() {
+console.log(&ldquo;出现错误&rdquo;);
+};</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

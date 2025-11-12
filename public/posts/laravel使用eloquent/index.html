@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>laravel使用eloquent | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+eloquent是遵循 active record pattern  ，但你去要資料，違反了 tell dont ask 原則
+doctrine是遵循 data mapper pattern
+表格的default value
+在migration就設定default value
+
+-&gt;default($value)	Specify a &ldquo;default&rdquo; value for the column
+或者
+
+    const ROLE_PUBLISHER = 1;
+
+    protected $attributes = [
+        &#39;role_id&#39; =&gt; self::ROLE_PUBLISHER,
+    ];
+https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model
+many to many relationship
+https://www.youtube.com/watch?v=akKWC_vP7sE
+fake relationship
+https://www.youtube.com/watch?v=rx1DQBE01b0
+Laravel数据库操作的三种方式
+https://www.youtube.com/watch?v=3TJfR1Ta4GU
+laravel 配置MySQL讀寫分離
+https://zhuanlan.zhihu.com/p/123092691
+model如何知道table的欄位
+https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8eloquent/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8eloquent/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="laravel使用eloquent">
+  <meta property="og:description" content="前言 eloquent是遵循 active record pattern ，但你去要資料，違反了 tell dont ask 原則 doctrine是遵循 data mapper pattern
+表格的default value 在migration就設定default value
+-&gt;default($value)	Specify a “default” value for the column 或者 const ROLE_PUBLISHER = 1; protected $attributes = [ &#39;role_id&#39; =&gt; self::ROLE_PUBLISHER, ]; https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model
+many to many relationship https://www.youtube.com/watch?v=akKWC_vP7sE
+fake relationship https://www.youtube.com/watch?v=rx1DQBE01b0
+Laravel数据库操作的三种方式 https://www.youtube.com/watch?v=3TJfR1Ta4GU
+laravel 配置MySQL讀寫分離 https://zhuanlan.zhihu.com/p/123092691
+model如何知道table的欄位 https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-03-06T09:59:50+00:00">
+    <meta property="article:modified_time" content="2020-03-06T09:59:50+00:00">
+
+  <meta itemprop="name" content="laravel使用eloquent">
+  <meta itemprop="description" content="前言 eloquent是遵循 active record pattern ，但你去要資料，違反了 tell dont ask 原則 doctrine是遵循 data mapper pattern
+表格的default value 在migration就設定default value
+-&gt;default($value)	Specify a “default” value for the column 或者 const ROLE_PUBLISHER = 1; protected $attributes = [ &#39;role_id&#39; =&gt; self::ROLE_PUBLISHER, ]; https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model
+many to many relationship https://www.youtube.com/watch?v=akKWC_vP7sE
+fake relationship https://www.youtube.com/watch?v=rx1DQBE01b0
+Laravel数据库操作的三种方式 https://www.youtube.com/watch?v=3TJfR1Ta4GU
+laravel 配置MySQL讀寫分離 https://zhuanlan.zhihu.com/p/123092691
+model如何知道table的欄位 https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes">
+  <meta itemprop="datePublished" content="2020-03-06T09:59:50+00:00">
+  <meta itemprop="dateModified" content="2020-03-06T09:59:50+00:00">
+  <meta itemprop="wordCount" content="55">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="laravel使用eloquent">
+  <meta name="twitter:description" content="前言 eloquent是遵循 active record pattern ，但你去要資料，違反了 tell dont ask 原則 doctrine是遵循 data mapper pattern
+表格的default value 在migration就設定default value
+-&gt;default($value)	Specify a “default” value for the column 或者 const ROLE_PUBLISHER = 1; protected $attributes = [ &#39;role_id&#39; =&gt; self::ROLE_PUBLISHER, ]; https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model
+many to many relationship https://www.youtube.com/watch?v=akKWC_vP7sE
+fake relationship https://www.youtube.com/watch?v=rx1DQBE01b0
+Laravel数据库操作的三种方式 https://www.youtube.com/watch?v=3TJfR1Ta4GU
+laravel 配置MySQL讀寫分離 https://zhuanlan.zhihu.com/p/123092691
+model如何知道table的欄位 https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">laravel使用eloquent</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-03-06T09:59:50Z">March 6, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>eloquent是遵循 active record pattern  ，但你去要資料，違反了 tell dont ask 原則
+doctrine是遵循 data mapper pattern</p>
+<h1 id="表格的default-value">表格的default value</h1>
+<p>在migration就設定default value</p>
+<ul>
+<li>-&gt;default($value)	Specify a &ldquo;default&rdquo; value for the column
+或者</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">ROLE_PUBLISHER</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> $attributes <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;role_id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">ROLE_PUBLISHER</span>,
+</span></span><span style="display:flex;"><span>    ];
+</span></span></code></pre></div><p><a href="https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model">https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model</a></p>
+<h1 id="many-to-many-relationship">many to many relationship</h1>
+<p><a href="https://www.youtube.com/watch?v=akKWC_vP7sE">https://www.youtube.com/watch?v=akKWC_vP7sE</a></p>
+<h1 id="fake-relationship">fake relationship</h1>
+<p><a href="https://www.youtube.com/watch?v=rx1DQBE01b0">https://www.youtube.com/watch?v=rx1DQBE01b0</a></p>
+<h1 id="laravel数据库操作的三种方式">Laravel数据库操作的三种方式</h1>
+<p><a href="https://www.youtube.com/watch?v=3TJfR1Ta4GU">https://www.youtube.com/watch?v=3TJfR1Ta4GU</a></p>
+<h1 id="laravel-配置mysql讀寫分離">laravel 配置MySQL讀寫分離</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/123092691">https://zhuanlan.zhihu.com/p/123092691</a></p>
+<h1 id="model如何知道table的欄位">model如何知道table的欄位</h1>
+<p><a href="https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes">https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes</a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

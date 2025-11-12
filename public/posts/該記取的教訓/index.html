@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>該記取的教訓 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="事情是這樣的，當初在買這台$20000筆電的前一台筆電是$13000，買這兩次朋友都翻我白眼，$13000那台只用了2年，因為慢到我受不鳥，所以就換了$20000 這台，一切就平安順利，也用了快兩年了，以前也沒想要開虛擬機，今天想說來玩玩 docker 容器
+結果安裝時遇到問題
+
+沒關係，努力爬完文之後，修改註冊檔，上網找指令終於安裝成功!!
+一執行
+
+乾!!!把時間還來啊
+寫 code 還是有門檻的，下次還是買貴一點吧…
+欄後在 EC2 主機上用 composer 裝東西報錯
+Fatal error: Out of memory (allocated 788537344) (tried to allocate 33554440 bytes) in phar:///usr/local/bin/cmposer/DependencyResolver/RuleSet.php on line 84
+ubuntu@ip-172-31-35-32:/var/www/html/myproject$ free -h
+            total        used        free      shared  buff/cache   available
+Mem:           983M        139M        682M         19M        162M        686M
+Swap:            0B          0B          0B
+
+猜猜我怎解決?
+
+在本機的電腦跑完 composer，vender 再壓縮成一包丟進 AWS 主機
+composer.json
+也丟
+sudo tar -zxvf vendor.tar.gz
+sudo chown -R www-data:www-data vendor
+composer dump-autoload">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E8%A9%B2%E8%A8%98%E5%8F%96%E7%9A%84%E6%95%99%E8%A8%93/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E8%A9%B2%E8%A8%98%E5%8F%96%E7%9A%84%E6%95%99%E8%A8%93/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="該記取的教訓">
+  <meta property="og:description" content="事情是這樣的，當初在買這台$20000筆電的前一台筆電是$13000，買這兩次朋友都翻我白眼，$13000那台只用了2年，因為慢到我受不鳥，所以就換了$20000 這台，一切就平安順利，也用了快兩年了，以前也沒想要開虛擬機，今天想說來玩玩 docker 容器 結果安裝時遇到問題 沒關係，努力爬完文之後，修改註冊檔，上網找指令終於安裝成功!! 一執行 乾!!!把時間還來啊 寫 code 還是有門檻的，下次還是買貴一點吧…
+欄後在 EC2 主機上用 composer 裝東西報錯 Fatal error: Out of memory (allocated 788537344) (tried to allocate 33554440 bytes) in phar:///usr/local/bin/cmposer/DependencyResolver/RuleSet.php on line 84
+ubuntu@ip-172-31-35-32:/var/www/html/myproject$ free -htotal used free shared buff/cache availableMem: 983M 139M 682M 19M 162M 686MSwap: 0B 0B 0B猜猜我怎解決?
+在本機的電腦跑完 composer，vender 再壓縮成一包丟進 AWS 主機 composer.json 也丟 sudo tar -zxvf vendor.tar.gz sudo chown -R www-data:www-data vendor composer dump-autoload">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-02T23:24:47+00:00">
+    <meta property="article:modified_time" content="2019-11-02T23:24:47+00:00">
+    <meta property="article:tag" content="日記">
+
+  <meta itemprop="name" content="該記取的教訓">
+  <meta itemprop="description" content="事情是這樣的，當初在買這台$20000筆電的前一台筆電是$13000，買這兩次朋友都翻我白眼，$13000那台只用了2年，因為慢到我受不鳥，所以就換了$20000 這台，一切就平安順利，也用了快兩年了，以前也沒想要開虛擬機，今天想說來玩玩 docker 容器 結果安裝時遇到問題 沒關係，努力爬完文之後，修改註冊檔，上網找指令終於安裝成功!! 一執行 乾!!!把時間還來啊 寫 code 還是有門檻的，下次還是買貴一點吧…
+欄後在 EC2 主機上用 composer 裝東西報錯 Fatal error: Out of memory (allocated 788537344) (tried to allocate 33554440 bytes) in phar:///usr/local/bin/cmposer/DependencyResolver/RuleSet.php on line 84
+ubuntu@ip-172-31-35-32:/var/www/html/myproject$ free -htotal used free shared buff/cache availableMem: 983M 139M 682M 19M 162M 686MSwap: 0B 0B 0B猜猜我怎解決?
+在本機的電腦跑完 composer，vender 再壓縮成一包丟進 AWS 主機 composer.json 也丟 sudo tar -zxvf vendor.tar.gz sudo chown -R www-data:www-data vendor composer dump-autoload">
+  <meta itemprop="datePublished" content="2019-11-02T23:24:47+00:00">
+  <meta itemprop="dateModified" content="2019-11-02T23:24:47+00:00">
+  <meta itemprop="wordCount" content="87">
+  <meta itemprop="keywords" content="日記">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="該記取的教訓">
+  <meta name="twitter:description" content="事情是這樣的，當初在買這台$20000筆電的前一台筆電是$13000，買這兩次朋友都翻我白眼，$13000那台只用了2年，因為慢到我受不鳥，所以就換了$20000 這台，一切就平安順利，也用了快兩年了，以前也沒想要開虛擬機，今天想說來玩玩 docker 容器 結果安裝時遇到問題 沒關係，努力爬完文之後，修改註冊檔，上網找指令終於安裝成功!! 一執行 乾!!!把時間還來啊 寫 code 還是有門檻的，下次還是買貴一點吧…
+欄後在 EC2 主機上用 composer 裝東西報錯 Fatal error: Out of memory (allocated 788537344) (tried to allocate 33554440 bytes) in phar:///usr/local/bin/cmposer/DependencyResolver/RuleSet.php on line 84
+ubuntu@ip-172-31-35-32:/var/www/html/myproject$ free -htotal used free shared buff/cache availableMem: 983M 139M 682M 19M 162M 686MSwap: 0B 0B 0B猜猜我怎解決?
+在本機的電腦跑完 composer，vender 再壓縮成一包丟進 AWS 主機 composer.json 也丟 sudo tar -zxvf vendor.tar.gz sudo chown -R www-data:www-data vendor composer dump-autoload">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">該記取的教訓</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-02T23:24:47Z">November 2, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>事情是這樣的，當初在買這台$20000筆電的前一台筆電是$13000，買這兩次朋友都翻我白眼，$13000那台只用了2年，因為慢到我受不鳥，所以就換了$20000 這台，一切就平安順利，也用了快兩年了，以前也沒想要開虛擬機，今天想說來玩玩 docker 容器
+結果安裝時遇到問題
+<img src="/images/%E7%89%88%E6%9C%AC%E4%B8%8D%E5%B0%8D.PNG" alt="版本不對">
+沒關係，努力爬完文之後，修改註冊檔，上網找指令終於安裝成功!!
+一執行
+<img src="/images/%E4%B8%8D%E6%94%AF%E6%8F%B4.PNG" alt="不支援">
+乾!!!把時間還來啊
+寫 code 還是有門檻的，下次還是買貴一點吧…</p>
+<p>欄後在 EC2 主機上用 composer 裝東西報錯
+Fatal error: Out of memory (allocated 788537344) (tried to allocate 33554440 bytes) in phar:///usr/local/bin/cmposer/DependencyResolver/RuleSet.php on line 84</p>
+<pre><code>ubuntu@ip-172-31-35-32:/var/www/html/myproject$ free -h
+            total        used        free      shared  buff/cache   available
+Mem:           983M        139M        682M         19M        162M        686M
+Swap:            0B          0B          0B
+</code></pre>
+<p>猜猜我怎解決?</p>
+<blockquote>
+<p>在本機的電腦跑完 composer，vender 再壓縮成一包丟進 AWS 主機
+composer.json
+也丟
+sudo tar -zxvf vendor.tar.gz
+sudo chown -R www-data:www-data vendor
+composer dump-autoload</p>
+</blockquote>
+<p>我 484 窮得很沒格調</p>
+<p>結果有解決方法</p>
+<blockquote>
+<p>sudo fallocate -l 1G /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile</p>
+</blockquote>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/%E6%97%A5%E8%A8%98/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">日記</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

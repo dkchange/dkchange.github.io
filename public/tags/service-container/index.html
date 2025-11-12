@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/service-container/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/service-container/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/service-container/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/service-container/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Service Container">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Service Container">
+  <meta itemprop="datePublished" content="2020-10-05T11:02:05+00:00">
+  <meta itemprop="dateModified" content="2020-10-05T11:02:05+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Service Container">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Service Container
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Service Container”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD/" class="link black dim">
+        laravel進階功能
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="symfony">symfony</h1>
+<p>一個開源的框架，因為致力於做出PHP比較底層的原件，所以很多php框架都底層都用他，laravel也不例外，其中尤其重要的是
+http-kernel這個元件</p>
+<h1 id="生命週期">生命週期</h1>
+<p><a href="https://learnku.com/articles/54613">Laravel 執行原理分析與原始碼分析,底層看這篇足矣</a></p>
+<h1 id="service-container">Service Container</h1>
+<p>laravel 服務容器管理 class 的依賴關係的一種方式，例如 route model binding，讓你可以依賴注入，
+好處是當你的建構子需要改東西時，你不用在個別有 new 他的地方改 code，你只需要改一個地方</p>
+<p><a href="https://laracasts.com/series/laravel-6-from-scratch/episodes/39?autoplay=true">https://laracasts.com/series/laravel-6-from-scratch/episodes/39?autoplay=true</a></p>
+<p>那由於 laravel 最自動幫你找命名空間下的 class,有的話他就會幫你注入，你不必自己去綁定進 app 這個 container，但是如果你是個 interface，laravel 就不能幫你實體化了</p>
+<p>在 AppServiceProvider</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>(){
+</span></span><span style="display:flex;"><span>    $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">app</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">PaymentGateway</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,<span style="color:#66d9ef">function</span>($app){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PaymentGateway</span>(<span style="color:#e6db74">&#39;usd&#39;</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="view-composer">View Composer</h1>
+<p>解決的痛點是，如果各個 controller 都需要用到某個 model 的資料來應用在各個 view 上面，
+就不需要在每個 controller 上面都都進行 query，而且當 query 語句要變，你只需要改一個地方</p>
+<p>在 AppServiceProvider</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// option1 每一個view都進行query耗效能
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">View</span><span style="color:#f92672">::</span><span style="color:#a6e22e">share</span>(<span style="color:#e6db74">&#39;channels&#39;</span>,<span style="color:#a6e22e">Channel</span><span style="color:#f92672">::</span><span style="color:#a6e22e">orderBy</span>(<span style="color:#e6db74">&#39;name&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// option2 指定view進行query
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">View</span><span style="color:#f92672">::</span><span style="color:#a6e22e">composer</span>([<span style="color:#e6db74">&#39;post.*&#39;</span>,<span style="color:#e6db74">&#39;channel.index&#39;</span>],<span style="color:#66d9ef">function</span>($view){
+</span></span><span style="display:flex;"><span>        $view<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">with</span>(<span style="color:#e6db74">&#39;channels&#39;</span>,<span style="color:#a6e22e">Channel</span><span style="color:#f92672">::</span><span style="color:#a6e22e">orderBy</span>(<span style="color:#e6db74">&#39;name&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>());
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="polymorphic-relationships">Polymorphic Relationships</h1>
+<p><a href="https://www.itdaan.com/blog/2011/03/22/1861cf1574aa7995b47010f2e11f87e2.html">https://www.itdaan.com/blog/2011/03/22/1861cf1574aa7995b47010f2e11f87e2.html</a></p>
+    </div>
+    <a href="/posts/laravel%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

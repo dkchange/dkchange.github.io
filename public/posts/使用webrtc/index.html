@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用webRTC | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="參考資料
+WebRTC Crash Course
+30 天之即時網路影音開發攻略
+前言
+webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速
+sdp(sesssion description protocol)
+在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作 signaling，而這些資料我們稱為 sdp
+signaling 這個動作可以藉由任何管道，可以已藉由通訊軟體，websocket 只要有辦法傳送給對方即可，那通常大家都會採用 websocket 來建一個 signaling server
+sdp 裡面會包含很多的資料，傳輸的格式，加密的方法，ice candidates 好多好多資料
+A → B A 把 offer(SDP)給 B
+B ← A B 收到之後，用這個 SDP 在創建一個(SDP)answer 給 B
+nat(network address translation)
+如果你有 public ip 一切都變得簡單，但大部分的人都沒有，那我們就需要透過 nat，nat 簡單來說就是一張表，當你要和外部溝通時，他會建立對應的表
+，那收到回應時，我們就會來查這張表
+你的 ip | 你的 port | router ip | router port | host ip | host port
+那不同的 router 有不同的機制">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8webrtc/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8webrtc/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用webRTC">
+  <meta property="og:description" content="參考資料 WebRTC Crash Course 30 天之即時網路影音開發攻略
+前言 webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速
+sdp(sesssion description protocol) 在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作 signaling，而這些資料我們稱為 sdp
+signaling 這個動作可以藉由任何管道，可以已藉由通訊軟體，websocket 只要有辦法傳送給對方即可，那通常大家都會採用 websocket 來建一個 signaling server
+sdp 裡面會包含很多的資料，傳輸的格式，加密的方法，ice candidates 好多好多資料
+A → B A 把 offer(SDP)給 B B ← A B 收到之後，用這個 SDP 在創建一個(SDP)answer 給 B
+nat(network address translation) 如果你有 public ip 一切都變得簡單，但大部分的人都沒有，那我們就需要透過 nat，nat 簡單來說就是一張表，當你要和外部溝通時，他會建立對應的表 ，那收到回應時，我們就會來查這張表 你的 ip | 你的 port | router ip | router port | host ip | host port 那不同的 router 有不同的機制">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-11-13T12:41:05+00:00">
+    <meta property="article:modified_time" content="2020-11-13T12:41:05+00:00">
+
+  <meta itemprop="name" content="使用webRTC">
+  <meta itemprop="description" content="參考資料 WebRTC Crash Course 30 天之即時網路影音開發攻略
+前言 webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速
+sdp(sesssion description protocol) 在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作 signaling，而這些資料我們稱為 sdp
+signaling 這個動作可以藉由任何管道，可以已藉由通訊軟體，websocket 只要有辦法傳送給對方即可，那通常大家都會採用 websocket 來建一個 signaling server
+sdp 裡面會包含很多的資料，傳輸的格式，加密的方法，ice candidates 好多好多資料
+A → B A 把 offer(SDP)給 B B ← A B 收到之後，用這個 SDP 在創建一個(SDP)answer 給 B
+nat(network address translation) 如果你有 public ip 一切都變得簡單，但大部分的人都沒有，那我們就需要透過 nat，nat 簡單來說就是一張表，當你要和外部溝通時，他會建立對應的表 ，那收到回應時，我們就會來查這張表 你的 ip | 你的 port | router ip | router port | host ip | host port 那不同的 router 有不同的機制">
+  <meta itemprop="datePublished" content="2020-11-13T12:41:05+00:00">
+  <meta itemprop="dateModified" content="2020-11-13T12:41:05+00:00">
+  <meta itemprop="wordCount" content="181">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用webRTC">
+  <meta name="twitter:description" content="參考資料 WebRTC Crash Course 30 天之即時網路影音開發攻略
+前言 webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速
+sdp(sesssion description protocol) 在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作 signaling，而這些資料我們稱為 sdp
+signaling 這個動作可以藉由任何管道，可以已藉由通訊軟體，websocket 只要有辦法傳送給對方即可，那通常大家都會採用 websocket 來建一個 signaling server
+sdp 裡面會包含很多的資料，傳輸的格式，加密的方法，ice candidates 好多好多資料
+A → B A 把 offer(SDP)給 B B ← A B 收到之後，用這個 SDP 在創建一個(SDP)answer 給 B
+nat(network address translation) 如果你有 public ip 一切都變得簡單，但大部分的人都沒有，那我們就需要透過 nat，nat 簡單來說就是一張表，當你要和外部溝通時，他會建立對應的表 ，那收到回應時，我們就會來查這張表 你的 ip | 你的 port | router ip | router port | host ip | host port 那不同的 router 有不同的機制">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用webRTC</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-11-13T12:41:05Z">November 13, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="參考資料">參考資料</h1>
+<p><a href="https://youtu.be/FExZvpVvYxA">WebRTC Crash Course</a>
+<a href="https://ithelp.ithome.com.tw/users/20089358/ironman/1923">30 天之即時網路影音開發攻略</a></p>
+<h1 id="前言">前言</h1>
+<p>webrtc(web realtime communication) 可以讓兩個瀏覽器之間 p2p 直接溝通，而中間不需要在透過 server，達到的目的就是快速</p>
+<h1 id="sdpsesssion-description-protocol">sdp(sesssion description protocol)</h1>
+<p>在兩個瀏覽器溝通之前，必須先傳給對方用 webrtc 溝通所需資料，這個過程我們稱作 signaling，而這些資料我們稱為 sdp</p>
+<p>signaling 這個動作可以藉由任何管道，可以已藉由通訊軟體，websocket 只要有辦法傳送給對方即可，那通常大家都會採用 websocket 來建一個 signaling server</p>
+<p>sdp 裡面會包含很多的資料，傳輸的格式，加密的方法，ice candidates 好多好多資料</p>
+<p>A → B A 把 offer(SDP)給 B
+B ← A B 收到之後，用這個 SDP 在創建一個(SDP)answer 給 B</p>
+<h1 id="natnetwork-address-translation">nat(network address translation)</h1>
+<p>如果你有 public ip 一切都變得簡單，但大部分的人都沒有，那我們就需要透過 nat，nat 簡單來說就是一張表，當你要和外部溝通時，他會建立對應的表
+，那收到回應時，我們就會來查這張表
+你的 ip | 你的 port | router ip | router port | host ip | host port
+那不同的 router 有不同的機制</p>
+<ul>
+<li>one to one nat(full-cone nat) 不管你之前有沒有訪問過這 ip 都允許他和你溝通</li>
+<li>address restricted nat 只要你之前有有訪問過這 ip，就允許他和你溝通</li>
+<li>port restricted nat 只要你之前有有訪問過這 ip 爾且 port 是對的，就允許他和你溝通</li>
+<li>symmetric nat 比必須要 router 出去的 port 和 ip，訪問的主機 ip 和 port 這四個東西都相同，我才允許你回應</li>
+</ul>
+<p>然而 webrtc 跟 symmetric nat 相較之下比較沒那麼相容，因為 webrtc 需要有一個 stun server ，照上述規則就只有 stun server 能和你溝通，那何來的點對點溝通呢？
+這時候要採用 webrtc 大不如就直接用 websocket</p>
+<h1 id="stun-session-reversal-utilities-for-nat">stun (session reversal utilities for nat)</h1>
+<p>功用就是，把我的 public ip 和 port 回傳給我，基本上就是根本沒做什麼事，所以 google 免費提供此服務</p>
+<h1 id="turn-traversal-using-relays-around-nat">turn (traversal using relays around nat)</h1>
+<p>stun 進化版，當你的 ip 被 nat 的 symmetric nat 機制擋下來的時候，你就需要一個像代理伺服器的東西，什麼東西都經過他，也沒做什，就是把封包轉送給你，但是這就很貴</p>
+<h1 id="ice-inteactive-connectivity-establishment">ice (inteactive Connectivity Establishment)</h1>
+<p>蒐集 ice candidates 可能的端點，有可是 public ip 有可能是 private ip
+有沒有可能兩個溝通的端點，在同一個內網，這樣舊部需要透過外部 ip 來溝通，也就不須透過 nat，我把這些 ice candidates 蒐集起來所以要走哪一個 ip 都由你選擇，可能一個會通一個不會通</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

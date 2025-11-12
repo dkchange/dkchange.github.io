@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用vue | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架
+安裝
+整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置
+sudo npm install -g @vue/cli
+
+vue create myvue
+
+自選安裝的項目或者用高級的 GUI 來裝也行
+Check the features needed for your project:
+◉ Babel
+◯ TypeScript
+◯ Progressive Web App (PWA) Support
+◉ Router
+◉ Vuex
+◯ CSS Pre-processors
+◉ Linter / Formatter
+◯ Unit Testing
+◯ E2E Testing
+難過的是即便用腳手架來裝問題還是會一堆
+error Found incompatible module.
+ERROR command failed: yarn &ndash;registry=https://registry.npm.taobao.org
+user 底下.vuerc 改
+{
+&ldquo;useTaobaoRegistry&rdquo;: false,
+&ldquo;packageManager&rdquo;: &ldquo;npm&rdquo;,
+}
+https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8vue/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8vue/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用vue">
+  <meta property="og:description" content="前言 之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架
+安裝 整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置
+sudo npm install -g @vue/clivue create myvue自選安裝的項目或者用高級的 GUI 來裝也行
+Check the features needed for your project: ◉ Babel ◯ TypeScript ◯ Progressive Web App (PWA) Support ◉ Router ◉ Vuex ◯ CSS Pre-processors ◉ Linter / Formatter ◯ Unit Testing ◯ E2E Testing
+難過的是即便用腳手架來裝問題還是會一堆
+error Found incompatible module. ERROR command failed: yarn –registry=https://registry.npm.taobao.org user 底下.vuerc 改 { “useTaobaoRegistry”: false, “packageManager”: “npm”, } https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-15T21:17:46+00:00">
+    <meta property="article:modified_time" content="2019-11-15T21:17:46+00:00">
+    <meta property="article:tag" content="Vue">
+
+  <meta itemprop="name" content="使用vue">
+  <meta itemprop="description" content="前言 之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架
+安裝 整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置
+sudo npm install -g @vue/clivue create myvue自選安裝的項目或者用高級的 GUI 來裝也行
+Check the features needed for your project: ◉ Babel ◯ TypeScript ◯ Progressive Web App (PWA) Support ◉ Router ◉ Vuex ◯ CSS Pre-processors ◉ Linter / Formatter ◯ Unit Testing ◯ E2E Testing
+難過的是即便用腳手架來裝問題還是會一堆
+error Found incompatible module. ERROR command failed: yarn –registry=https://registry.npm.taobao.org user 底下.vuerc 改 { “useTaobaoRegistry”: false, “packageManager”: “npm”, } https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829">
+  <meta itemprop="datePublished" content="2019-11-15T21:17:46+00:00">
+  <meta itemprop="dateModified" content="2019-11-15T21:17:46+00:00">
+  <meta itemprop="wordCount" content="234">
+  <meta itemprop="keywords" content="Vue">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用vue">
+  <meta name="twitter:description" content="前言 之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架
+安裝 整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置
+sudo npm install -g @vue/clivue create myvue自選安裝的項目或者用高級的 GUI 來裝也行
+Check the features needed for your project: ◉ Babel ◯ TypeScript ◯ Progressive Web App (PWA) Support ◉ Router ◉ Vuex ◯ CSS Pre-processors ◉ Linter / Formatter ◯ Unit Testing ◯ E2E Testing
+難過的是即便用腳手架來裝問題還是會一堆
+error Found incompatible module. ERROR command failed: yarn –registry=https://registry.npm.taobao.org user 底下.vuerc 改 { “useTaobaoRegistry”: false, “packageManager”: “npm”, } https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用vue</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-15T21:17:46Z">November 15, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架</p>
+<h1 id="安裝">安裝</h1>
+<p>整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置</p>
+<pre><code>sudo npm install -g @vue/cli
+
+vue create myvue
+</code></pre>
+<p>自選安裝的項目或者用高級的 GUI 來裝也行</p>
+<p>Check the features needed for your project:
+◉ Babel
+◯ TypeScript
+◯ Progressive Web App (PWA) Support
+◉ Router
+◉ Vuex
+◯ CSS Pre-processors
+◉ Linter / Formatter
+◯ Unit Testing
+◯ E2E Testing</p>
+<p>難過的是即便用腳手架來裝問題還是會一堆</p>
+<p>error Found incompatible module.
+ERROR command failed: yarn &ndash;registry=https://registry.npm.taobao.org
+user 底下.vuerc 改
+{
+&ldquo;useTaobaoRegistry&rdquo;: false,
+&ldquo;packageManager&rdquo;: &ldquo;npm&rdquo;,
+}
+<a href="https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829">https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829</a></p>
+<p>linux 環境還是失敗，windows 環境倒是成功了，先在本機開發吧</p>
+<h1 id="安裝-vue-apollo">安裝 vue-apollo</h1>
+<pre><code>vue add apollo
+</code></pre>
+<p>error: &lsquo;vue-cli-plugin-apollo&rsquo; should be listed in the project&rsquo;s dependencies, not devDependencies</p>
+<pre><code>npm install vue-cli-plugin-apollo --save-prod
+</code></pre>
+<p>error: &lsquo;graphql-tag&rsquo; should be listed in the project&rsquo;s dependencies, not devDependencies (import/no-extraneous-dependencies)</p>
+<pre><code>npm cache clean --force
+
+npm install graphql-tag --save-prod
+</code></pre>
+<h1 id="設置-ide">設置 IDE</h1>
+<p>可以發現專案在儲存時不會 autofix，
+<a href="https://juejin.im/post/5b39f274f265da59a07c5836">https://juejin.im/post/5b39f274f265da59a07c5836</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;eslint.autoFixOnSave&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;eslint.validate&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;javascript&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;javascriptreact&#34;</span>,
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;html&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;autoFix&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vue&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;autoFix&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ],
+</span></span></code></pre></div><h1 id="vue-冷知識">vue 冷知識</h1>
+<p>你知道路徑裡的@為什麼是 src 嗎?
+<a href="https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack">https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// @ is an alias to /src
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Home</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@/components/Home&#34;</span>;
+</span></span></code></pre></div><p><a href="https://github.com/vuejs/vue-apollo/issues/263">https://github.com/vuejs/vue-apollo/issues/263</a></p>
+<p>Expected linebreaks to be &lsquo;LF&rsquo; but found &lsquo;CRLF&rsquo;.
+最簡單的方法就是 VSC 右下角切換成 LF</p>
+<h1 id="gql-檔案上傳">gql 檔案上傳</h1>
+<p>不用設定什麼就可以上傳檔案
+遇到的問題:請求回傳
+&ldquo;message&rdquo;: &ldquo;Undefined index: File&rdquo;,
+&ldquo;exception&rdquo;: &ldquo;ErrorException&rdquo;,
+&ldquo;file&rdquo;: &ldquo;/var/www/html/myproject/vendor/nuwave/lighthouse/src/Schema/TypeRegistry.php&rdquo;,
+然後看 header 那邊多了字串</p>
+<pre><code>fragment file on File
+</code></pre>
+<p>真的是搞死我，gql 檔不要有空白或註解~~#import &ldquo;./FileFragment.gql&rdquo;~~刪掉就沒事了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gql" data-lang="gql"><span style="display:flex;"><span><span style="color:#75715e">#import &#34;./FileFragment.gql&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">mutation</span>($file: <span style="color:#a6e22e">Upload</span>!) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">upload</span>(file: $file)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="測試">測試</h1>
+<p>遭遇問題
+Q:npm ERR! peer dep missing: canvas
+A:Just upgrade your npm version to the latest.
+<a href="https://github.com/vuejs/vue-cli/issues/4869">https://github.com/vuejs/vue-cli/issues/4869</a></p>
+<h1 id="關於-yii-觸控事件">關於 yii 觸控事件</h1>
+<p>自己實作
+九宮格相關
+<a href="https://stackoverflow.com/questions/57723142/handling-touchstart-touchmove-touchend-the-same-way-as-mousedown-mousemove-mouse">https://stackoverflow.com/questions/57723142/handling-touchstart-touchmove-touchend-the-same-way-as-mousedown-mousemove-mouse</a>
+長按事件
+<a href="https://segmentfault.com/a/1190000013922322">https://segmentfault.com/a/1190000013922322</a></p>
+<p>相關的庫</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/vue/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Vue</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

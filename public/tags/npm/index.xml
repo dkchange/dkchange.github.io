@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Npm on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/npm/</link>
+    <description>Recent content in Npm on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 31 Oct 2019 23:53:26 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用npm</title>
+      <link>http://localhost:1313/posts/%E4%BD%BF%E7%94%A8npm/</link>
+      <pubDate>Thu, 31 Oct 2019 23:53:26 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E4%BD%BF%E7%94%A8npm/</guid>
+      <description>&lt;h1 id=&#34;安裝nodejs&#34;&gt;安裝nodejs&lt;/h1&gt;&#xA;&lt;p&gt;windows環境去官網下載安裝檔安裝&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;node -v&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;如果成功看到版本號就是安裝成功&lt;/p&gt;&#xA;&lt;h1 id=&#34;nodejs-版本問題&#34;&gt;nodejs 版本問題&lt;/h1&gt;&#xA;&lt;p&gt;建議安裝nvm，windows就裝nvm-windows&#xA;指令都一樣，只是windows記得在CMD底下運行&#xA;情境:&#xA;What&amp;rsquo;s your nodejs version? jsdom requires node &amp;gt;= 10.&#xA;node -e &amp;ldquo;try {} catch {}&amp;rdquo;&#xA;node -v&lt;/p&gt;&#xA;&lt;h1 id=&#34;npm常用指令&#34;&gt;npm常用指令&lt;/h1&gt;&#xA;&lt;p&gt;初始化一個專案&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm init &amp;quot;專案名&amp;quot;&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm install -g &amp;quot;package的名字&amp;quot;&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;上面-g代表global&lt;strong&gt;全局安裝&lt;/strong&gt;，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm install &amp;quot;package的名字&amp;quot;&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;這就直接安裝在專案底下，&lt;strong&gt;本地安裝&lt;/strong&gt;會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的&lt;strong&gt;根目錄&lt;/strong&gt;就是在這&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm install --save-dev &amp;quot;package的名字&amp;quot; &#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，&lt;strong&gt;本地安裝&lt;/strong&gt;會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝&#xA;&lt;a href=&#34;https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program&#34;&gt;https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program&lt;/a&gt;&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm uninstall --save webpack&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;加上&amp;ndash;save移除時才會順便更新package.json檔&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm update &amp;quot;package的名字&amp;quot;&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;更新某package&lt;/p&gt;&#xA;&lt;h1 id=&#34;指定版本號&#34;&gt;指定版本號&lt;/h1&gt;&#xA;&lt;pre&gt;&lt;code&gt;nodejs採用semver版本號規範，這版本號的命名規則再去看看&#xD;&#xA;&#xD;&#xA;npm install webpack@^1.*&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;符號號代表什麼再上網查語意吧&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

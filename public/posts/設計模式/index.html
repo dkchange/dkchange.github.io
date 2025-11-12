@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>設計模式 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="初衷
+人最麻煩
+有人說物件導向是大公司的陰謀論，扼殺掉發展更先進的程式語言的可能
+你可以發現其實整個物件導向發展會讓你的 code 變得越來越複雜，但一切又是為了管理，人一多，我們變又開始遵循這 1970 年代留下來的模式
+為了讓你工作多一點效率，所謂的效率是指
+https://www.ptt.cc/bbs/Soft_Job/M.1603008934.A.569.html
+
+降低維護成本
+e.g.單元測試，unit test 就是規格的全部，來降低維護成本，可（易於）測試的代碼，一定是「低耦合」的)
+降低開發成本
+e.g.Functional programming
+
+為了達成以上的兩個目的，我們有許多方面需要思考
+
+資料方面
+e.g. Avoid state, Using immutable data
+架構方面
+e.g. session的應用
+程式方面
+維運方面
+
+現實面:
+維運成本和開發成本不可能兩個兼顧，你只能選個折衷方案，例如TDD可以降低維護成本，但你可能需要花2~3倍的時間(開發成本)來寫測試，市場千變萬化，你的專案能撐到那時候嗎??如果有信心，那TDD就值得投資
+維護成本與效能也是成反比的，有效率的CODE 可讀性可能很差
+Object oriented programming
+那設計模式講的就是程式方面，我們遵守許多原則降低開發維護成本
+
+SOLID
+Design Pattern
+如果遇到必要的複雜設計 design pattern 可以降低溝通成本 (通常會增加維護成本)
+Inheritance
+Polymorphism
+KISS
+etc.
+
+目的:
+
+讓團隊可以 10 秒內看懂你的 code，讓你可以 10 秒內看懂別人的 code
+讓你可以少寫一點 code
+
+然而莫忘初衷，不要為了用設計模式而用，不要走火入魔增加維運的難度
+設計模式是藥，沒病就不要亂吃藥，藥是需要成本的
+參考：比物件導向更先進的程式設計思想 by herrowui
+前言
+重構的考量
+https://www.ptt.cc/bbs/Soft_Job/M.1645890217.A.B0F.html
+各個語言對設計模式的詮釋不同，因為我是寫PHP的，所以看PHP的範例會比較容易了解
+https://github.com/DesignPatternsPHP/DesignPatternsPHP
+https://learnku.com/docs/php-design-patterns/2018/php-design-pattern-reading-list/1525
+https://laravelacademy.org/post/2680
+菜鳥教程列出場景和應用
+https://www.runoob.com/design-pattern/design-pattern-tutorial.html
+https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="設計模式">
+  <meta property="og:description" content="初衷 人最麻煩 有人說物件導向是大公司的陰謀論，扼殺掉發展更先進的程式語言的可能 你可以發現其實整個物件導向發展會讓你的 code 變得越來越複雜，但一切又是為了管理，人一多，我們變又開始遵循這 1970 年代留下來的模式 為了讓你工作多一點效率，所謂的效率是指
+https://www.ptt.cc/bbs/Soft_Job/M.1603008934.A.569.html
+降低維護成本 e.g.單元測試，unit test 就是規格的全部，來降低維護成本，可（易於）測試的代碼，一定是「低耦合」的) 降低開發成本 e.g.Functional programming 為了達成以上的兩個目的，我們有許多方面需要思考
+資料方面 e.g. Avoid state, Using immutable data 架構方面 e.g. session的應用 程式方面 維運方面 現實面: 維運成本和開發成本不可能兩個兼顧，你只能選個折衷方案，例如TDD可以降低維護成本，但你可能需要花2~3倍的時間(開發成本)來寫測試，市場千變萬化，你的專案能撐到那時候嗎??如果有信心，那TDD就值得投資 維護成本與效能也是成反比的，有效率的CODE 可讀性可能很差
+Object oriented programming 那設計模式講的就是程式方面，我們遵守許多原則降低開發維護成本
+SOLID Design Pattern 如果遇到必要的複雜設計 design pattern 可以降低溝通成本 (通常會增加維護成本) Inheritance Polymorphism KISS etc. 目的:
+讓團隊可以 10 秒內看懂你的 code，讓你可以 10 秒內看懂別人的 code 讓你可以少寫一點 code 然而莫忘初衷，不要為了用設計模式而用，不要走火入魔增加維運的難度 設計模式是藥，沒病就不要亂吃藥，藥是需要成本的
+參考：比物件導向更先進的程式設計思想 by herrowui
+前言 重構的考量 https://www.ptt.cc/bbs/Soft_Job/M.1645890217.A.B0F.html
+各個語言對設計模式的詮釋不同，因為我是寫PHP的，所以看PHP的範例會比較容易了解 https://github.com/DesignPatternsPHP/DesignPatternsPHP https://learnku.com/docs/php-design-patterns/2018/php-design-pattern-reading-list/1525 https://laravelacademy.org/post/2680
+菜鳥教程列出場景和應用 https://www.runoob.com/design-pattern/design-pattern-tutorial.html
+https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-05T22:52:50+00:00">
+    <meta property="article:modified_time" content="2019-11-05T22:52:50+00:00">
+
+  <meta itemprop="name" content="設計模式">
+  <meta itemprop="description" content="初衷 人最麻煩 有人說物件導向是大公司的陰謀論，扼殺掉發展更先進的程式語言的可能 你可以發現其實整個物件導向發展會讓你的 code 變得越來越複雜，但一切又是為了管理，人一多，我們變又開始遵循這 1970 年代留下來的模式 為了讓你工作多一點效率，所謂的效率是指
+https://www.ptt.cc/bbs/Soft_Job/M.1603008934.A.569.html
+降低維護成本 e.g.單元測試，unit test 就是規格的全部，來降低維護成本，可（易於）測試的代碼，一定是「低耦合」的) 降低開發成本 e.g.Functional programming 為了達成以上的兩個目的，我們有許多方面需要思考
+資料方面 e.g. Avoid state, Using immutable data 架構方面 e.g. session的應用 程式方面 維運方面 現實面: 維運成本和開發成本不可能兩個兼顧，你只能選個折衷方案，例如TDD可以降低維護成本，但你可能需要花2~3倍的時間(開發成本)來寫測試，市場千變萬化，你的專案能撐到那時候嗎??如果有信心，那TDD就值得投資 維護成本與效能也是成反比的，有效率的CODE 可讀性可能很差
+Object oriented programming 那設計模式講的就是程式方面，我們遵守許多原則降低開發維護成本
+SOLID Design Pattern 如果遇到必要的複雜設計 design pattern 可以降低溝通成本 (通常會增加維護成本) Inheritance Polymorphism KISS etc. 目的:
+讓團隊可以 10 秒內看懂你的 code，讓你可以 10 秒內看懂別人的 code 讓你可以少寫一點 code 然而莫忘初衷，不要為了用設計模式而用，不要走火入魔增加維運的難度 設計模式是藥，沒病就不要亂吃藥，藥是需要成本的
+參考：比物件導向更先進的程式設計思想 by herrowui
+前言 重構的考量 https://www.ptt.cc/bbs/Soft_Job/M.1645890217.A.B0F.html
+各個語言對設計模式的詮釋不同，因為我是寫PHP的，所以看PHP的範例會比較容易了解 https://github.com/DesignPatternsPHP/DesignPatternsPHP https://learnku.com/docs/php-design-patterns/2018/php-design-pattern-reading-list/1525 https://laravelacademy.org/post/2680
+菜鳥教程列出場景和應用 https://www.runoob.com/design-pattern/design-pattern-tutorial.html
+https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/">
+  <meta itemprop="datePublished" content="2019-11-05T22:52:50+00:00">
+  <meta itemprop="dateModified" content="2019-11-05T22:52:50+00:00">
+  <meta itemprop="wordCount" content="902">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="設計模式">
+  <meta name="twitter:description" content="初衷 人最麻煩 有人說物件導向是大公司的陰謀論，扼殺掉發展更先進的程式語言的可能 你可以發現其實整個物件導向發展會讓你的 code 變得越來越複雜，但一切又是為了管理，人一多，我們變又開始遵循這 1970 年代留下來的模式 為了讓你工作多一點效率，所謂的效率是指
+https://www.ptt.cc/bbs/Soft_Job/M.1603008934.A.569.html
+降低維護成本 e.g.單元測試，unit test 就是規格的全部，來降低維護成本，可（易於）測試的代碼，一定是「低耦合」的) 降低開發成本 e.g.Functional programming 為了達成以上的兩個目的，我們有許多方面需要思考
+資料方面 e.g. Avoid state, Using immutable data 架構方面 e.g. session的應用 程式方面 維運方面 現實面: 維運成本和開發成本不可能兩個兼顧，你只能選個折衷方案，例如TDD可以降低維護成本，但你可能需要花2~3倍的時間(開發成本)來寫測試，市場千變萬化，你的專案能撐到那時候嗎??如果有信心，那TDD就值得投資 維護成本與效能也是成反比的，有效率的CODE 可讀性可能很差
+Object oriented programming 那設計模式講的就是程式方面，我們遵守許多原則降低開發維護成本
+SOLID Design Pattern 如果遇到必要的複雜設計 design pattern 可以降低溝通成本 (通常會增加維護成本) Inheritance Polymorphism KISS etc. 目的:
+讓團隊可以 10 秒內看懂你的 code，讓你可以 10 秒內看懂別人的 code 讓你可以少寫一點 code 然而莫忘初衷，不要為了用設計模式而用，不要走火入魔增加維運的難度 設計模式是藥，沒病就不要亂吃藥，藥是需要成本的
+參考：比物件導向更先進的程式設計思想 by herrowui
+前言 重構的考量 https://www.ptt.cc/bbs/Soft_Job/M.1645890217.A.B0F.html
+各個語言對設計模式的詮釋不同，因為我是寫PHP的，所以看PHP的範例會比較容易了解 https://github.com/DesignPatternsPHP/DesignPatternsPHP https://learnku.com/docs/php-design-patterns/2018/php-design-pattern-reading-list/1525 https://laravelacademy.org/post/2680
+菜鳥教程列出場景和應用 https://www.runoob.com/design-pattern/design-pattern-tutorial.html
+https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">設計模式</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-05T22:52:50Z">November 5, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="初衷">初衷</h1>
+<p>人最麻煩
+有人說物件導向是大公司的陰謀論，扼殺掉發展更先進的程式語言的可能
+你可以發現其實整個物件導向發展會讓你的 code 變得越來越複雜，但一切又是為了<strong>管理</strong>，人一多，我們變又開始遵循這 1970 年代留下來的模式
+為了讓你工作多一點效率，所謂的效率是指</p>
+<p><a href="https://www.ptt.cc/bbs/Soft_Job/M.1603008934.A.569.html">https://www.ptt.cc/bbs/Soft_Job/M.1603008934.A.569.html</a></p>
+<ol>
+<li>降低維護成本
+e.g.單元測試，unit test 就是規格的全部，來降低維護成本，可（易於）測試的代碼，一定是「低耦合」的)</li>
+<li>降低開發成本
+e.g.Functional programming</li>
+</ol>
+<p>為了達成以上的兩個目的，我們有許多方面需要思考</p>
+<ol>
+<li>資料方面
+e.g. Avoid state, Using immutable data</li>
+<li>架構方面
+e.g. session的應用</li>
+<li>程式方面</li>
+<li>維運方面</li>
+</ol>
+<p>現實面:
+維運成本和開發成本不可能兩個兼顧，你只能選個折衷方案，例如TDD可以降低維護成本，但你可能需要花2~3倍的時間(開發成本)來寫測試，市場千變萬化，你的專案能撐到那時候嗎??如果有信心，那TDD就值得投資
+維護成本與效能也是成反比的，有效率的CODE 可讀性可能很差</p>
+<p>Object oriented programming
+那設計模式講的就是程式方面，我們遵守許多原則降低開發維護成本</p>
+<ol>
+<li>SOLID</li>
+<li>Design Pattern
+如果遇到必要的複雜設計 design pattern 可以降低溝通成本 (通常會增加維護成本)</li>
+<li>Inheritance</li>
+<li>Polymorphism</li>
+<li>KISS</li>
+<li>etc.</li>
+</ol>
+<p>目的:</p>
+<ul>
+<li>讓團隊可以 10 秒內看懂你的 code，讓你可以 10 秒內看懂別人的 code</li>
+<li>讓你可以少寫一點 code</li>
+</ul>
+<p>然而莫忘初衷，不要為了用設計模式而用，不要走火入魔增加維運的難度
+設計模式是藥，沒病就不要亂吃藥，藥是需要成本的</p>
+<p>參考：比物件導向更先進的程式設計思想 by herrowui</p>
+<h1 id="前言">前言</h1>
+<p>重構的考量
+<a href="https://www.ptt.cc/bbs/Soft_Job/M.1645890217.A.B0F.html">https://www.ptt.cc/bbs/Soft_Job/M.1645890217.A.B0F.html</a></p>
+<p>各個語言對設計模式的詮釋不同，因為我是寫PHP的，所以看PHP的範例會比較容易了解
+<a href="https://github.com/DesignPatternsPHP/DesignPatternsPHP">https://github.com/DesignPatternsPHP/DesignPatternsPHP</a>
+<a href="https://learnku.com/docs/php-design-patterns/2018/php-design-pattern-reading-list/1525">https://learnku.com/docs/php-design-patterns/2018/php-design-pattern-reading-list/1525</a>
+<a href="https://laravelacademy.org/post/2680">https://laravelacademy.org/post/2680</a></p>
+<p>菜鳥教程列出場景和應用
+<a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html">https://www.runoob.com/design-pattern/design-pattern-tutorial.html</a></p>
+<p><a href="https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/">https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/</a></p>
+<p>软件设计模式：模式是在软件开发过程中总结得出的一些可重用的解决方案，它能解决一些实际的问题。一些常见的模式，比如工厂模式、单例模式等等。</p>
+<p>設計模式有很多種場景，最知名的就是 gof 人幫的 23 种设计模式，那目前這些設計模式都是為了解決<strong>物件導向</strong>程式設計的場景
+设计模式提供了一个标准的<strong>术语系统</strong>，且具体到特定的情景，當你提到這個名詞時，別人就知道你在說什麼</p>
+<p>创建型模式(creattional patterns) ： 我們不管物件如何被實例，不管他背後的邏輯 共 5 种：工厂方法模式(factory)、抽象工厂模式、单例模式(singleton)、建造者模式(builder)、原型模式。
+结构型模式(structural patterns)： 物件之間的關係（繼承？） 共 7 种：适配器模式(adapter)、装饰器模式(decorator)、代理模式(proxy)、外观模式(facade)、桥接模式、组合模式、享元模式。
+行为型模式共(behavioural patterns) ：物件之間如何溝通 11 种：策略模式(stratege pattern)、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。
+當然後續還有許多設計模式一一誕生，<strong>不只這 23 種</strong>
+不要為了用而用設計模式，在某方面來說設計模式也許反應了語言不足之處</p>
+<p><a href="https://medium.com/fcamels-notes/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E5%85%B6%E5%AF%A6%E6%98%AF%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80%E7%9A%84%E7%BC%BA%E9%99%B7-ee45364783cf">https://medium.com/fcamels-notes/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E5%85%B6%E5%AF%A6%E6%98%AF%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80%E7%9A%84%E7%BC%BA%E9%99%B7-ee45364783cf</a></p>
+<p>設計模式其實是程式語言的缺陷？
+任何一種設計模式都有其應用的場景，那生在應用框架的年代，用這平凡的腦袋試著去理解常出現的場景，看看多久能理解完吧，可能努力一輩子都沒有別人學的好學得快，但就這樣慢慢來吧，看看子己能活到什程度</p>
+<p><a href="https://github.com/flyingalex/design-patterns-by-php">https://github.com/flyingalex/design-patterns-by-php</a></p>
+<h1 id="设计模式">设计模式</h1>
+<h2 id="5大創建型">5大創建型</h2>
+<p>依照創建的方法，位置不同來做區別</p>
+<h3 id="簡單工廠模式factory-pattern">簡單工廠模式（Factory Pattern）</h3>
+<p>定義: 講一系列需要new個過程，用方法包起來，這個方法我們稱之為工廠</p>
+<p>目的：讓創建同類的過程在工廠進行</p>
+<p>優點:</p>
+<ul>
+<li>decouples code (解耦)</li>
+<li>factory is responsible for creating objects , not the client</li>
+<li>multiple client call the same factory , one place for changes</li>
+<li>easier to test,easy to mock and isolate</li>
+</ul>
+<p>缺點：每次增加產品就需要增加類，類變多複雜度也變高，工廠也需要再加判斷邏輯</p>
+<p>使用場景：數據庫切換只需要在工廠輸入 mysql 或 mssql，即可得到其object</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>  <span style="color:#66d9ef">Class</span> <span style="color:#a6e22e">DbFactory</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>($driver){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">switch</span>($driver){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;mysql&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          $db <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Mysql</span>();
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;mssql&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          $db <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Mssql</span>();
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  $driver <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mysql&#39;</span>;
+</span></span><span style="display:flex;"><span>  $dbFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DbFactory</span>();
+</span></span><span style="display:flex;"><span>  $db <span style="color:#f92672">=</span> $dbFactory<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make</span>(<span style="color:#e6db74">&#39;mssql&#39;</span>);
+</span></span></code></pre></div><h3 id="工廠方法模式">工廠方法模式</h3>
+<p>定義: 將工廠class抽象出一個interface，使同<strong>同產品</strong>依賴這interface，簡單來說就是將工廠分類</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">Interface</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MysqlFactory</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MySql</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MssqlFactory</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MsSql</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$driver <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mysql&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span>($driver){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;mysql&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    $factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MysqlFactory</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;mssql&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    $factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MssqlFactory</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>$db <span style="color:#f92672">=</span> $factory<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make</span>();
+</span></span></code></pre></div><h3 id="抽象工廠模式abstract-factory-pattern">抽象工廠模式（Abstract Factory Pattern）</h3>
+<p>定義: 將工廠class抽象出一個interface，使同<strong>一系列產品</strong>依賴這interface，簡單來說就是將工廠分類</p>
+<p>目的：抽象出工廠，讓創建工廠的的過程在 producer 進行，整個變成超大型工廠</p>
+<p>優點：工廠模式優點，連工廠都納入</p>
+<p>缺點：更複雜，增加新一類產品，要新增工廠，抽象類也要新增方法，producer 也要新增判斷，在加上工廠模式的缺點</p>
+<p>場景: 你不知道使用者會用哪個資料庫</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">Interface</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OracleFactory</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeDB</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MySql</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeCloud</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">OracleCloud</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MsFactory</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeDB</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MsSql</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeCloud</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Azure</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$driver <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;oracle&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span>($driver){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;oracle&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    $factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">OracleFactory</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;ms&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    $factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MsFactory</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$db <span style="color:#f92672">=</span> $factory<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">makeDB</span>();
+</span></span><span style="display:flex;"><span>$cloud <span style="color:#f92672">=</span> $factory<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">makeCloud</span>();
+</span></span></code></pre></div><h3 id="單例模式singleton-pattern">單例模式（Singleton Pattern）</h3>
+<p>定義: 一個Class已經實例過一個物件時，再次new時，會回傳同一個物件，不再new新的</p>
+<p>目的：確保整個生命週期該 class 只有<strong>一個實例被創建</strong>，並可以全局訪問該實例</p>
+<p>需要：判斷實例是否存在即可</p>
+<p>優點：省資源</p>
+<p>缺點：不能被繼承，不能有 interface，因此違反 srp,一個類不該擔心外面是如何創建它的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Db</span>{
+</span></span><span style="display:flex;"><span>  $instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getInstance</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">instance</span><span style="color:#f92672">===</span><span style="color:#66d9ef">null</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">self</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">instance</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>$db <span style="color:#f92672">=</span> <span style="color:#a6e22e">Db</span><span style="color:#f92672">::</span><span style="color:#a6e22e">getInstance</span>();
+</span></span></code></pre></div><h3 id="建造者生產者模式buildermanager-pattern">建造者(生產者)模式（Builder(Manager) Pattern）</h3>
+<p>定義: 將<strong>一系列方法</strong>抽成interface，每個factory實做這個interface，然後再用一個創建者的類按流程呼叫這<strong>一系列方法</strong>包起來，再回傳這個大物件，簡單來說就是將大物件的建造集合各個factory，流程再抽出一個class來管理</p>
+<p>目的：將多個有<strong>一系列創建流程</strong>的 code 包在個別方法，然後再用一個創建者的類包起來，此時可以用同一個創建者類創建不同工廠的實體</p>
+<p>優點：</p>
+<ul>
+<li>decouples code</li>
+<li>focuses on building complex objects step by step and returns them</li>
+<li>has functionality to decide which objects should be returned</li>
+</ul>
+<p>缺點：
+需要搞懂 class 之間的關係，因為 new 的地點不統一，產品各有相依性，產品必須要有共通點，否則難以包裝，由於強型別的關係，很多簡單的事都要一層包過一層，像是要使用陣列就要同一型別，包裝不易</p>
+<p>與抽象工廠模式的差別是，抽象工廠模式注重<strong>產品集中創建</strong>，建造者模式更<strong>注重流程</strong>，便於控制細節流程，適合屬性互相有流程依賴的 class，又多包了一層導演層</p>
+<p>與外觀模式的不同點在於，創造者著重在創建物件流程包起來，可以簡單調用，外觀模式則是對統合所有CLASS，使其有一定的使用方法，使系統使用上更簡單</p>
+<p>場景: 你不知道使用者會用哪個資料庫，但這一系列創造過程相似</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">Interface</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doSomething</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doOtherthing</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MysqlFactory</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">DbFactoryInterface</span>{
+</span></span><span style="display:flex;"><span>  $myslq;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doSomething</span>(){
+</span></span><span style="display:flex;"><span>    $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">mysql</span> <span style="color:#f92672">=</span>  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MySql</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">mysql</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doOtherthing</span>(){
+</span></span><span style="display:flex;"><span>    $mysql<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setOtherthing</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">mysql</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>(){
+</span></span><span style="display:flex;"><span>    $mysql<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setMorething</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">mysql</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DbBuilder</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">make</span>(<span style="color:#a6e22e">DbFactoryInterface</span> $db){
+</span></span><span style="display:flex;"><span>    $db<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">doSomething</span>();
+</span></span><span style="display:flex;"><span>    $db<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">doOtherthing</span>();
+</span></span><span style="display:flex;"><span>    $db<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $db;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$dbBulder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DbBuilder</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span>($driver){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;mysql&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    $db <span style="color:#f92672">=</span> $dbBulder<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MysqlFactory</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;mssql&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    $db <span style="color:#f92672">=</span> $dbBulder<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MsSqlFactory</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="原型模式prototype-pattern">原型模式（Prototype Pattern）</h3>
+<p>目的：建一個可拷貝的類，其被實例之後，可以供人做拷貝
+需要：</p>
+<ul>
+<li>語言有 cloneable interface</li>
+</ul>
+<p>優點：class 初使化消耗很多資源，採用拷貝的方式可以節省資源，當類建構子需要做很多動作時，也省資源，對一個物件要多人存取的場景也有用</p>
+<p>缺點：需要對類的功能作多方面的考慮，對新 class 的沒問題，對已有的 class 有一定程度的</p>
+<p>困難，要多實現 cloneable 的 interface</p>
+<h2 id="7大結構型n">7大結構型+N</h2>
+<h3 id="適配器模式adpter-wrapper-pattern">適配器模式(adpter (wrapper) Pattern)</h3>
+<p>目的：作为A B两个不兼容的接口之间的桥梁，使得原本由于接口不兼容的类可以一起工作，生出一個 adapter 類</p>
+<p>需要：額外多個adapter類，對A或B其中一個再包一層，例如實作了B interface裡面的function對進行A的方法調用</p>
+<p>優點：1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。</p>
+<p>缺點：1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，如果不是很有必要，可以不使用适配器，而是直接对系统进行重构，例如橋接模式</p>
+<h3 id="桥接bridge">桥接（Bridge）</h3>
+<p>目的：因為避免後人繼承太多層，愈繼承愈發散，愈多層，解開需要繼承的耦合
+例如: 預留參數注入物件的方式擴充功能，因為不能修改父類，這種父類一開始用interface來當作依賴，過考慮擴充的可能，我們稱為橋接
+需要：</p>
+<ul>
+<li>
+<p>產品細節功能系列的 interface 當作橋樑</p>
+</li>
+<li>
+<p>產品的細節功能 class</p>
+</li>
+<li>
+<p>抽象類注入實例化的產品的細節功能，把橋樑搭進來</p>
+</li>
+<li>
+<p>繼承抽像類的產品 class，必須注入實例化後的產品細節功能，好處是這些功能和產品分開了
+雖然沒有繼承，但我覺得可以看成是子類的注入</p>
+<p>優點： 将类的功能层次结构和实现层次结构相分离，使二者能够独立地变化，并在两者之间搭建桥梁，实现桥接
+缺点：桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程</p>
+</li>
+</ul>
+<p>後續我認為 trait 可以很好的解決這件事</p>
+<p>跟adaper pattern很像，一樣是抽出一個interface,只是一個是在設計階段coding之前就抽出，一個是在coding之後來抽</p>
+<h3 id="组合模式composite-pattern">组合模式（Composite Pattern）</h3>
+<p>目的：把一组相似的对象当作一个单一的对象，解決树型结构的问题中，模糊了简单元素和复杂元素的概念
+需要：單一個 class
+優點：很好的實踐<strong>樹狀結構</strong>
+缺點：單一個類，實現多個層級身份，沒有用 interface 違反 dip</p>
+<h3 id="装饰器模式decorator-pattern">装饰器模式（Decorator Pattern）</h3>
+<p>在開放關閉原則下，你不修改原本的類，你能用的就只有繼承，但你又不想要繼承，裝飾器新增了一個額外的關係，可以讓你對原有的物件進行擴充，好處就是不會為了增加方法就一直繼承，繼承太多很可怕
+我是認為如果有機會可以修改原本的CODE就改啦。
+目的：向一个现有的对象添加新的功能，同时又不改变其结构，可以<strong>动态扩展</strong>一个实现类的功能
+需要：</p>
+<ul>
+<li>系列產品的 interface</li>
+<li>裝飾的抽象 class 實作系列產品的 interface，提供產品的注入</li>
+<li>繼承裝飾抽象 class 的裝飾類，可實作擴充方法，須注入產品
+雖然沒有繼承，但我覺得可以看成是父類的注入</li>
+</ul>
+<p>缺點：多层装饰比较复杂
+可能會認為跟 trait 很像，不同點是這是動態擴充，想添加在添加就型，依賴不在要擴充的類之上
+<a href="https://segmentfault.com/a/1190000006919258">https://segmentfault.com/a/1190000006919258</a>
+<a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/214999/">https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/214999/</a></p>
+<h3 id="外观模式facade-pattern">外观模式（Facade Pattern）</h3>
+<p>目的：隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口
+需要：</p>
+<ul>
+<li>
+<p>一個接待者的 class 創建所有依賴，不只是負責創建對象，也實現了所有所需的方法，<strong>整個包過一層</strong></p>
+<p>优点： 1、减少系统相互依赖。 2、提高灵活性。 3、提高了安全性。
+缺点：不符合 OCP，如果要改东西很麻烦，继承重写都不合适。
+和代理模式的不同點在於，方法都不一樣了，整個簡化包過</p>
+</li>
+</ul>
+<h3 id="享元模式flyweight-pattern">享元模式（Flyweight Pattern）</h3>
+<p>目的：以减少内存占用和提高性能
+需要：</p>
+<ul>
+<li>
+<p>hash table 來存實例的物件</p>
+</li>
+<li>
+<p>factory class 來分派實例後的物件
+优点：大大减少对象的创建，降低系统的内存，使效率提高。
+缺点：提高了系统的复杂度，需要分离出外部状态和内部状态。要封裝好，不能讓物件輕易受影響
+與 clone 不同，是回傳同一個物件</p>
+<p>與單例模式的不同點在於，單例减少创建对象的数量，但享元操作更細緻，就是他不限制你主物件創建的數量，但是你底下屬性的物件會限制你，真的就是享<strong>元</strong>，讓你一個class就要拆出會與其他class共用的屬性出來</p>
+</li>
+</ul>
+<h3 id="代理模式proxy-pattern">代理模式（Proxy Pattern）</h3>
+<p>目的：有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），所以创建具有现有对象的对象，以便向外界提供功能接，也就是說我們可能要對某段邏輯做額外的處理，此時不修改現有的function，多一個代理function來做處理，不需要代理時，代理function丟掉也沒關係，因為接口一樣
+需要：</p>
+<ul>
+<li>interface</li>
+<li>一個代理的 class，裡面創建真正產品的類再調用
+优点： 1、职责清晰。 2、高扩展性。 3、智能化。
+缺点： 1、可能会造成请求的处理速度变慢。 2、实现代理模式需要额外的工作，有些代理模式的实现非常复杂。</li>
+</ul>
+<h3 id="过滤器模式filter-pattern或标准模式criteria-pattern">过滤器模式（Filter Pattern）或标准模式（Criteria Pattern）</h3>
+<p>不隸屬23種</p>
+<p>目的：一系列的過濾方法，來達成過濾的邏輯，通过<strong>逻辑运算</strong>以解耦的方式把它们连接起来，结合多个标准来获得单一标准
+需要：</p>
+<ul>
+<li>標準的 interface</li>
+<li>各個標準的 class</li>
+<li>產品的 class 內含各個標準所需要過濾的屬性</li>
+</ul>
+<p>實際情況:
+現實生活中，我們總是運用sql語句來查詢，加上一些and or 來組成sql語句，那如果有天sql語句失效，需要你組合出<strong>特定條件的資料</strong>，此時就派得上了</p>
+<h3 id="流接口模式fluent-interface">流接口模式（Fluent Interface）</h3>
+<p>不隸屬23種</p>
+<p>目的：是指实现一种面向对象的、能提高代码可读性的 API 的方法，其目的就是可以编写具有自然语言一样可读性的代码
+舉例：laravel 的  querybuilder就像是這樣，你可以用select()、where()來組出sql語句</p>
+<h3 id="注册模式registry">注册模式（Registry）</h3>
+<p>不隸屬23種</p>
+<p>目的：注册模式（Registry）也叫做注册树模式，注册器模式。注册模式为应用中经常使用的对象创建一个中央存储器来存放这些对象 —— 通常通过一个只包含静态方法的抽象类来实现（或者通过单例模式）。
+舉例：我認為falcon框架的容器就是這個模式的演化</p>
+<h2 id="111大行為型">11+1大行為型</h2>
+<p>資料的流程控制場景,有些場景會很少用</p>
+<h3 id="責任鏈模式chain-of-responsibility-pattern">責任鏈模式（Chain of Responsibility Pattern）</h3>
+<p>目的：避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求
+需要：</p>
+<ul>
+<li>一個接受者的抽象 class,裡面要設定下一個接收者</li>
+<li>各個接收者的 class</li>
+<li>在使用的 demo 裡面 new 各種接收者，並設定下個接收者
+優點：發送者只需要知道职责链上即可，无须关心请求的处理细节和请求的传递
+缺点： 1、不能保证请求一定被接收。 2、系统性能将受到一定影响，而且在进行代码调试时不太方便，可能会造成循环调用。 3、可能不容易观察运行时的特征，有碍于除错。
+舉例:面試流程(一面二面三面)，filter
+變體:pipeline設計模式(管道模式，流水線模式)
+與創造者模式的差別在於，創造者著也是對流程做包裝，但是無法有效地把流程做無痛的抽換，且流水線的流程通常比較大，創造者的流程比較小</li>
+</ul>
+<h3 id="命令模式command-pattern">命令模式（Command Pattern）</h3>
+<p>目的：有點像是事件觸發和綁定的處理
+需要：</p>
+<ul>
+<li>一個發送者的 class，定義觸發的事件</li>
+<li>個別事件用 class 包裝成命令，會注入事件的 class</li>
+<li>一系列命令的 interface</li>
+<li>處理命令的 class
+最後執行事件的由處理命令的 class</li>
+</ul>
+<p>优点： 1、降低了系统耦合度。 2、新的命令可以很容易添加到系统中去。
+缺点：使用命令模式可能会导致某些系统有过多的具体命令类。</p>
+<h3 id="解释器模式interpreter-pattern">解释器模式（Interpreter Pattern）</h3>
+<p>应用实例：编译器、运算表达式计算。</p>
+<h3 id="迭代器模式iterator-pattern">迭代器模式（Iterator Pattern）</h3>
+<p>意图：提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。</p>
+<h3 id="策略模式strategy-pattern">策略模式（Strategy Pattern）</h3>
+<p>目的： 不管策略為何怎麼換，達到的目的是一樣的即可(此模式符合開閉原則，我們就不改 interface 了，所以要確定好，所有的策略都從這裡來)，可以說用 interface 定義的都可被叫做策略模式，簡單來說就是把商業邏輯拆到個別class
+目的:</p>
+<ol>
+<li>避免ifelse太長</li>
+<li>負責控管的程式碼職責要分開，他只負責分配策略</li>
+</ol>
+<p>需要:</p>
+<ol>
+<li>拆分邏輯和管理分配中心的function或class</li>
+<li>減少if/else/switch的使用</li>
+<li>以維護的角度來看，分配中心是需要的，不然難以統整Code</li>
+</ol>
+<ul>
+<li>definde a familiy of algorithms thata are interchangeable</li>
+<li>program to an interface , not an implementation</li>
+</ul>
+<h3 id="中介者模式mediator-pattern">中介者模式（Mediator Pattern）</h3>
+<p>目的：用一个中介对象来封装一系列的对象交互
+优点： 1、降低了类的复杂度，将一对多转化成了一对一。 2、各个类之间的解耦。 3、符合迪米特原则。
+缺点：中介者会庞大，变得复杂难以维护。
+例子: MVC裡面的controller</p>
+<h3 id="观察者模式observer-pattern">观察者模式（Observer Pattern）</h3>
+<p>觀察者模式像是callback應用
+發布訂閱模式
+我認為是高級的callback應用，有個管理中心管理這些事件的handler，定义对象间一种一对多的依赖关系</p>
+<h3 id="状态模式state-pattern">状态模式（State Pattern）</h3>
+<p>所有可能状态新建一个类， 然后将所有状态的对应行为抽取到这些类中
+看上去与策略模式相似， 但有一个关键性的不同——在状态模式中， 特定状态知道其他所有状态的存在， 且能触发从一个状态到另一个状态的转换； 策略则几乎完全不知道其他策略的存在。就是這些狀態彼此有耦合。
+目的: 減少if else底下複雜的程式碼</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>($isAdmin){
+</span></span><span style="display:flex;"><span>  $document<span style="color:#f92672">.</span><span style="color:#a6e22e">changeState</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Opened</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="模板模式template-pattern">模板模式（Template Pattern）</h3>
+<p>需要: 父class調用子class的方法</p>
+<h3 id="访问者模式visitor-pattern">访问者模式（Visitor Pattern）</h3>
+<p>與裝飾器模式的不同點在於，裝飾器模式是擴展物件，完全不去動原本的Class，訪問者模式會需要擴展原本的class,加上accept方法，然後再去呼叫額外class裡面的方法，將this當作參數傳進去</p>
+<p><a href="https://refactoringguru.cn/design-patterns/visitor">https://refactoringguru.cn/design-patterns/visitor</a></p>
+<h3 id="备忘录模式memento-pattern">备忘录模式（Memento Pattern）</h3>
+<p>当你需要创建对象状态快照来恢复其之前的状态时， 可以使用备忘录模式。
+編輯器的還原，資料庫的transation</p>
+<h3 id="空对象模式null-object-pattern">空对象模式（Null Object Pattern）</h3>
+<p>不隸屬23種
+使用 Null Object 模式將符合 Tell, don&rsquo;t Ask 原則
+<a href="https://www.muzilong.cn/storage/html/16/oomusou.io/dp/dp-nullobject/index.html">https://www.muzilong.cn/storage/html/16/oomusou.io/dp/dp-nullobject/index.html</a></p>
+<h2 id="j2ee型">J2EE型</h2>
+<h3 id="mvc-模式mvc-pattern">MVC 模式（MVC Pattern）</h3>
+<h3 id="业务代表模式business-delegate-pattern">业务代表模式（Business Delegate Pattern）</h3>
+<h3 id="组合实体模式composite-entity-pattern">组合实体模式（Composite Entity Pattern）</h3>
+<h3 id="数据访问对象模式data-access-object-pattern">数据访问对象模式（Data Access Object Pattern）</h3>
+<h3 id="前端控制器模式front-controller-pattern">前端控制器模式（Front Controller Pattern）</h3>
+<h3 id="拦截过滤器模式intercepting-filter-pattern">拦截过滤器模式（Intercepting Filter Pattern）</h3>
+<h3 id="服务定位器模式service-locator-pattern">服务定位器模式（Service Locator Pattern）</h3>
+<h3 id="传输对象模式transfer-object-pattern">传输对象模式（Transfer Object Pattern）</h3>
+<h1 id="未歸類">未歸類</h1>
+<h3 id="provider-pattern">provider pattern</h3>
+<p>目的： 整合所有的服務進容器 (符合 tell don&rsquo;t ask principle)</p>
+<h3 id="服务定位器模式-service-locator-pattern">服务定位器模式 Service Locator Pattern</h3>
+<p>下面的例子是falcon框架的服務定位器，達成了依賴注入，為什麼拿這個當例子，因為laravel和yii的都是運用反射的依賴注入，比較自動化，比較高級，但太複雜
+<a href="http://docs.iphalcon.cn/reference/di-explained.html">http://docs.iphalcon.cn/reference/di-explained.html</a></p>
+<h3 id="null-object-模式">Null Object 模式</h3>
+<p>什麼時候會用到這個呢?
+當你總是有條件要判斷某個值是否存在，如果存在接下來do something，此時就可以把此條件抽出來，設置一個預設的NULL TYPE 的物件，那如果使用者沒選擇值，那預設就是 new 這個NULL的CLASS，當然這個NEW出來的NULL OBJECT裡面實作的方法，被替換之後也可以正常執行。</p>
+<h3 id="ioc--inversion-of-control控制反轉一种反转流依赖和接口的方式dip的具体实现方式">IoC — Inversion of Control，控制反轉，一种反转流、依赖和接口的方式（DIP的具体实现方式）</h3>
+<p>IoC则是一种 软件设计模式，它告诉你应该如何做，来解除相互依赖模块的耦合。
+<a href="https://notfalse.net/3/ioc-di">https://notfalse.net/3/ioc-di</a>
+目的:
+系统更柔韧：可以修改一部分代码而不影响其他模块。</p>
+<p>系统更健壮：可以修改一部分代码而不会让系统崩溃。</p>
+<p>系统更高效：组件松耦合，且可复用，提高开发效率。</p>
+<p>需要:
+控制反转（IoC），它为相互依赖的组件提供抽象，将依赖（低层模块）对象的获得交给第三方（系统）来控制，即依赖对象不在被依赖模块的类中直接通过new来获取。
+IoC 提倡者，給予其實作方式一個更具體的名稱</p>
+<p>IoC有2种常见的实现方式：依赖注入和服务定位。</p>
+<p>由此衍生出一種設計模式叫做依賴注入
+— — &ldquo;Dependency Injection (依賴注入)&quot;。
+<a href="https://notfalse.net/3/ioc-di">https://notfalse.net/3/ioc-di</a></p>
+<p>所谓的依赖注入，举个例子，假如我需要依赖 db 的实例，我不要在自己的类裡面 new 一个 db，而是物件用传参数的方式传进来，那就可以分為
+<a href="https://learnku.com/laravel/t/26721">https://learnku.com/laravel/t/26721</a>
+依賴注入是個花俏的名詞，事實上是指：類別的依賴透過建構子「注入」，或在某些情況下透過「setter」方法注入。大致分為列三种
+构造方法注入
+Setter 方法注入
+接口注入
+php 回調注入
+那不就是传一个物件当参数尔以？？為何说的那么高级
+因為通常让容器帮你 new 一个物件,所以高级
+搭配容器才会有高级感
+php 如何实现基本的容器操作
+<a href="https://learnku.com/articles/37162">https://learnku.com/articles/37162</a>
+容器的实现是借由语言提供的反射来达成，就是可以注册一个东西，当我需要实例一个物件，这个类 a 对其他类 b 有依赖，只要这些其他类 b 有在容器注册过，
+我要实例 a，只要用 container 提供的方式来 make 物件，a 类也设计成可以备注入的方式，就可以不用管 b 类实例需要蛇鬼参数，因為已经在容器注册过了，直接简单实例化 a</p>
+<p>依照 class 之間依賴，new 的地方不同，實作的界面不同來達成，做結構上的調整,應付不同的情境</p>
+<h3 id="軟體分層設計模式-software-layered-architecture-pattern">軟體分層設計模式 (Software Layered Architecture Pattern)</h3>
+<h3 id="簡單工廠模式-simple-factory-patternstatic-factory-method">簡單工廠模式 (Simple Factory Pattern)(Static Factory Method)</h3>
+<h3 id="respository-模式-respository-pattern">Respository 模式 (Respository Pattern)</h3>
+<h3 id="雙重檢查鎖定模式-double-checked-locking-pattern">雙重檢查鎖定模式 (Double-Checked Locking Pattern)</h3>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

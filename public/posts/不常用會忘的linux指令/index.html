@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>不常用會忘的linux指令 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="改變資料夾底下檔案的預設權限
+使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增
+如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000
+此時你需要在container增加user
+
+useradd -u 1000 stanley
+此時我們可以把www-data加到stanley的group
+usermod -a -G stanley www-data
+加完之後確認是否有在群組內
+getent group stanley
+帳號重登一次電腦，如果是container就restart
+之後www-data就有權限創檔案了
+但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改
+因為檔案的user和group都是www-data
+此時我們在透過網頁創建檔案之前
+chmod g&#43;s .;
+This command sets the group ID (setgid) on the current directory, written as ..
+This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory.
+g&#43;s affects the file&rsquo;s group ID but does not affect the owner ID.">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="不常用會忘的linux指令">
+  <meta property="og:description" content="改變資料夾底下檔案的預設權限 使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增 如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000 此時你需要在container增加user
+useradd -u 1000 stanley 此時我們可以把www-data加到stanley的group usermod -a -G stanley www-data 加完之後確認是否有在群組內 getent group stanley 帳號重登一次電腦，如果是container就restart 之後www-data就有權限創檔案了 但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改 因為檔案的user和group都是www-data 此時我們在透過網頁創建檔案之前 chmod g&#43;s .; This command sets the group ID (setgid) on the current directory, written as .. This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory. g&#43;s affects the file’s group ID but does not affect the owner ID.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-07T16:17:32+00:00">
+    <meta property="article:modified_time" content="2019-11-07T16:17:32+00:00">
+    <meta property="article:tag" content="Linux">
+
+  <meta itemprop="name" content="不常用會忘的linux指令">
+  <meta itemprop="description" content="改變資料夾底下檔案的預設權限 使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增 如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000 此時你需要在container增加user
+useradd -u 1000 stanley 此時我們可以把www-data加到stanley的group usermod -a -G stanley www-data 加完之後確認是否有在群組內 getent group stanley 帳號重登一次電腦，如果是container就restart 之後www-data就有權限創檔案了 但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改 因為檔案的user和group都是www-data 此時我們在透過網頁創建檔案之前 chmod g&#43;s .; This command sets the group ID (setgid) on the current directory, written as .. This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory. g&#43;s affects the file’s group ID but does not affect the owner ID.">
+  <meta itemprop="datePublished" content="2019-11-07T16:17:32+00:00">
+  <meta itemprop="dateModified" content="2019-11-07T16:17:32+00:00">
+  <meta itemprop="wordCount" content="767">
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="不常用會忘的linux指令">
+  <meta name="twitter:description" content="改變資料夾底下檔案的預設權限 使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增 如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000 此時你需要在container增加user
+useradd -u 1000 stanley 此時我們可以把www-data加到stanley的group usermod -a -G stanley www-data 加完之後確認是否有在群組內 getent group stanley 帳號重登一次電腦，如果是container就restart 之後www-data就有權限創檔案了 但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改 因為檔案的user和group都是www-data 此時我們在透過網頁創建檔案之前 chmod g&#43;s .; This command sets the group ID (setgid) on the current directory, written as .. This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory. g&#43;s affects the file’s group ID but does not affect the owner ID.">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">不常用會忘的linux指令</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-07T16:17:32Z">November 7, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="改變資料夾底下檔案的預設權限">改變資料夾底下檔案的預設權限</h1>
+<p>使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增
+如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000
+此時你需要在container增加user</p>
+<blockquote>
+<p>useradd -u 1000 stanley
+此時我們可以把www-data加到stanley的group
+usermod -a -G stanley www-data
+加完之後確認是否有在群組內
+getent group stanley
+帳號重登一次電腦，如果是container就restart
+之後www-data就有權限創檔案了
+但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改
+因為檔案的user和group都是www-data
+此時我們在透過網頁創建檔案之前
+chmod g+s .;
+This command sets the group ID (setgid) on the current directory, written as ..
+This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory.
+g+s affects the file&rsquo;s group ID but does not affect the owner ID.</p>
+</blockquote>
+<p>Note that this applies only to newly-created files. Files that are moved (mv) into the directory are unaffected by the setgid setting. Files that are copied with cp -p are also unaffected.
+chmod g+s <!-- raw HTML omitted --> //set gid</p>
+<p>特殊權限</p>
+<blockquote>
+<p>setfacl -m u:stanley:rwx /www/index.php
+setfacl -d -m g::rwx /<!-- raw HTML omitted --> //set group to rwx default
+setfacl -d -m o::rx /<!-- raw HTML omitted --> //set other
+setfacl 命令是用来在命令行里设置 ACL（访问控制列表)
+getfacl /<!-- raw HTML omitted -->
+getfacl 來查看檔案的所有權限，也會把特殊權限的使用者列出來</p>
+</blockquote>
+<h1 id="不存在的使用者">不存在的使用者</h1>
+<p><a href="https://unix.stackexchange.com/questions/305170/is-it-ok-to-have-files-owned-by-a-non-existent-user">Is it ok to have files owned by a non-existent user?</a>
+Yes, it&rsquo;s fine.
+在掛載 docker volume 的時候就會發現檔案的 user 是 1001 這個 uid</p>
+<h1 id="hitory-儲存指令">hitory 儲存指令</h1>
+<p>有的時候你有沒有想過為什麼 git bash 沒有儲存你之前打的指令，
+因為你沒有打 exit 或是 ctrl + c ，你直接就跳離開，這樣他不會儲存
+.bash_history 這個檔案</p>
+<h1 id="window-打開檔案縂管">window 打開檔案縂管</h1>
+<p>要在 window 打開檔案縂管</p>
+<blockquote>
+<p>start .</p>
+</blockquote>
+<h1 id="环境变数">环境变数</h1>
+<p>有的时候我们软体不是安装在全局的资料夹，系统在全局资料夹底下就找不到该软体，那我们可以怎么做？
+就是设定环境变数，这样以后下程式指令就不会找不到 command 了，所以
+设定取决于你是用那一款 shell 软体
+<a href="https://stackoverflow.com/questions/25373188/how-to-place-the-composer-vendor-bin-directory-in-your-path">https://stackoverflow.com/questions/25373188/how-to-place-the-composer-vendor-bin-directory-in-your-path</a></p>
+<h2 id="linux-變數設定">linux 變數設定</h2>
+<p>linux
+<a href="https://www.cnblogs.com/flying-tiger/p/5616934.html">https://www.cnblogs.com/flying-tiger/p/5616934.html</a>
+<a href="https://blog.csdn.net/GYQJN/article/details/50818231">https://blog.csdn.net/GYQJN/article/details/50818231</a></p>
+<h2 id="windows-變數設定">windows 變數設定</h2>
+<p>假如在环境变量新增了
+变量名 stanley
+变量值 php D:\stanley.phar
+那 CMD 呼叫时
+%stanley% run
+相当于
+php D:\stanley.phar run</p>
+<p><a href="http://batcheero.blogspot.com/2008/02/set-and-setx.html">http://batcheero.blogspot.com/2008/02/set-and-setx.html</a>
+<a href="https://www.mobile01.com/topicdetail.php?f=300&amp;t=723300">https://www.mobile01.com/topicdetail.php?f=300&amp;t=723300</a></p>
+<h1 id="安裝-gd-graphics-library">安裝 GD Graphics Library</h1>
+<p>GD Library extension not available with this PHP installation Ubuntu Nginx
+<a href="https://stackoverflow.com/questions/34009844/gd-library-extension-not-available-with-this-php-installation-ubuntu-nginx">https://stackoverflow.com/questions/34009844/gd-library-extension-not-available-with-this-php-installation-ubuntu-nginx</a></p>
+<h1 id="找-ip">找 ip</h1>
+<p>ifconfig | grep 192</p>
+<p>ifconfig: command not found
+netstat command not found
+這是因為在 RHEL / CentOS 7 開始, 最小化安裝不會包括 ifconfig 及 netstat 等工具, 以前在 CentOS 5 及 6 都是預設安裝的.
+yum install net-tools</p>
+<h1 id="查看網路使用狀態">查看網路使用狀態</h1>
+<p>netstat -natpe</p>
+<h1 id="列出被程序開啟的檔案">列出被程序開啟的檔案</h1>
+<p>lsof -i
+COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+nginx 9 root 8u IPv4 10172200 0t0 TCP *:http (LISTEN)
+php-fpm 12 root 9u IPv4 10171176 0t0 TCP localhost:cslistener (LISTEN)</p>
+<h1 id="删除资料夹和檔案">删除资料夹和檔案</h1>
+<p>rm -rf letters/</p>
+<h1 id="查看已安装套件">查看已安装套件</h1>
+<p>apt-get 也是 dpkg 的包装
+直接使用 dpkg -l 来查看已经安装了的软件</p>
+<blockquote>
+<p>dpkg -l | grep php</p>
+</blockquote>
+<h1 id="查询安装路径">查询安装路径</h1>
+<blockquote>
+<p>dpkg -L 软件名
+whereis php7.3</p>
+</blockquote>
+<h1 id="切换-php-版本">切换 PHP 版本</h1>
+<p>php cli 可以透過 update-alternatives 來進行版本切換
+<a href="https://xenby.com/b/169-%E6%95%99%E5%AD%B8-%E5%9C%A8ubuntu%E5%AE%89%E8%A3%9D%E5%A4%9A%E7%89%88%E6%9C%ACphp-apache">在 ubuntu 安裝多版本 PHP</a></p>
+<blockquote>
+<p>sudo update-alternatives &ndash;set php /usr/bin/php7.3
+sudo update-alternatives &ndash;set php /usr/bin/php5.6</p>
+</blockquote>
+<h1 id="查看-linux-版本">查看 linux 版本</h1>
+<blockquote>
+<p>ls -l /etc/*release
+lsb_release -a
+uname -a
+cat /proc/version</p>
+</blockquote>
+<h1 id="查看权限">查看权限</h1>
+<blockquote>
+<p>ls -la /root</p>
+</blockquote>
+<h1 id="關閉-xwindow-的視窗">關閉 xwindow 的視窗</h1>
+<p>之後點選對應的視窗 x 按鈕</p>
+<blockquote>
+<p>xkill</p>
+</blockquote>
+<h1 id="看文件最後幾行">看文件最後幾行</h1>
+<p>tail -n 1000 看最後 1000 行
+tail -n +1000 看 1000 行之後的內容</p>
+<h1 id="linux-如何找出佔用較大空間的檔案">Linux 如何找出佔用較大空間的檔案</h1>
+<p>最近家中的 linux 突然磁碟空間爆增!!!</p>
+<p>到底是什麼檔案佔用了這些空間?</p>
+<p>在找出大檔案時,又怎麼知道 Linux 剩餘磁碟空間呢?</p>
+<p>df -h 就可以很清楚知道目前磁碟空間是使用多少了</p>
+<p>至於如何找到佔用的檔案,可以利用以下指令</p>
+<p>du: 計算目錄所使用的空間
+sort: 將輸入的資料排序
+head: 將輸入資料的最開頭幾行資料輸出</p>
+<p>像如要找到 home 下最大前 5 名如下</p>
+<p>du -a /home | sort -n -r | head -n 5</p>
+<p>至於要找到磁碟佔用最大的檔案呢?</p>
+<p>方式有好幾種:</p>
+<p>第一種方式:</p>
+<p>像是我們可以先至根目錄下利用</p>
+<p>指令 du -h &ndash;max-depth=1</p>
+<p>–max-depth 是表示查詢子目錄的層級</p>
+<p>就可查到目錄佔用的情形,再到較大的目錄,重覆利用此指令去找出佔用較大的檔案</p>
+<p>第二種方式:</p>
+<p>利用 find 指令如</p>
+<p>find / -type f -size +5G</p>
+<p>我們可以利用此種方式找出大於 5G 的檔案</p>
+<p>第三種方式:</p>
+<p>find / -type f -exec du {} ; 2&gt;/dev/null |
+sort -n | tail -n 10 | xargs -n 1 du -h 2&gt;/dev/null
+&ldquo;find / -type f&rdquo; 的意思是「搜尋根目錄中的所有檔案」。</p>
+<p>-exec du {} ;&quot; 代表「每個找到的檔案都用 du 指令執行以取得以 bytes 為單位的檔案大小資訊」。</p>
+<p>&ldquo;2&gt;/dev/null&rdquo; 是指將所有的錯誤訊息丟棄。</p>
+<p>&ldquo;sort -n&rdquo; 會將所有的檔案依大小列出，</p>
+<p>&ldquo;tail -n 10&rdquo; 則是顯示最後 10 筆，兩個指令合起來就會顯示出依大小排序的前 10 大檔案</p>
+<h1 id="symlink">symlink</h1>
+<p>ln -s /var/www /home/stanley/sites/www</p>
+<h1 id="cat">cat</h1>
+<p>將一個文件合併到另一個文件
+cat a.sh &raquo; b.py</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>cat &lt;&lt;EOF &gt;file2
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#ae81ff">111</span>
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#ae81ff">5555</span>
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#ae81ff">333</span>
+</span></span><span style="display:flex;"><span>&gt; EOF
+</span></span></code></pre></div><h1 id="cd-回上一頁">cd 回上一頁</h1>
+<blockquote>
+<p>cd -</p>
+</blockquote>
+<h1 id="目前所在終端">目前所在終端</h1>
+<p>tty</p>
+<h1 id="背景執行">背景執行</h1>
+<p>sleep 5000 &amp;
+但終端機管掉就會消失
+nohup sleep 5000 &amp;
+終端機關掉也不會消失</p>
+<h1 id="查詢進程">查詢進程</h1>
+<p>ps aux | grep sleep</p>
+<h1 id="暫時切換前後台">暫時切換前後台</h1>
+<p>bg
+fg
+那如果是 vim 編輯到一半可以^+Z 到背景
+fg 繼續回來編輯</p>
+<h1 id="-一個命令的輸出是下一個命令的輸入">| 一個命令的輸出是下一個命令的輸入</h1>
+<h2 id="tee-把內容複製到某文件">|tee 把內容複製到某文件</h2>
+<p>會覆蓋掉檔案
+例如
+date &gt; date.txt
+date |tee date.txt</p>
+<h2 id="-把內容複製到某文件的最後一行">&raquo; 把內容複製到某文件的最後一行</h2>
+<p>例如
+date &raquo; date.txt</p>
+<h1 id="ssh-複製檔案">SSH 複製檔案</h1>
+<p>scp <a href="mailto:ubuntu@168.138.40.82">ubuntu@168.138.40.82</a>:/srv/www/happypanda.subnet.vcn.oraclevcn.com/current/happypanda_subnet_vcn_oraclevcn_com_production-2020-08-30-5a26f48.sql /home/stanley/Downloads</p>
+<p><a href="https://discourse.roots.io/t/migration-from-bedrock-to-a-normal-install/12551">https://discourse.roots.io/t/migration-from-bedrock-to-a-normal-install/12551</a></p>
+<h1 id="unprotected-private-key-file">UNPROTECTED PRIVATE KEY FILE</h1>
+<p><a href="https://stackabuse.com/how-to-fix-warning-unprotected-private-key-file-on-mac-and-linux/">https://stackabuse.com/how-to-fix-warning-unprotected-private-key-file-on-mac-and-linux/</a></p>
+<p>把權限改一下即可
+sudo chmod 600 /path/to/my/key.pem</p>
+<h1 id="匯入-匯出-sql">匯入 匯出 sql</h1>
+<p>sudo wp db export &ndash;add-drop-table &ndash;allow-root</p>
+<p>docker-compose run &ndash;rm wordpress-cli db import happypanda_subnet_vcn_oraclevcn_com_production-2020-08-30-7da1ec2.sql</p>
+<h1 id="開機就會執行的指令">開機就會執行的指令</h1>
+<p><a href="https://www.cnblogs.com/nerxious/archive/2013/01/18/2866548.HTML">Linux中设置服务自启动的三种方式</a></p>
+<p>會放在 /etc/rc.local 這個檔案裡面</p>
+<p>大多時候我們可以在/etc/rc.local 中寫一些命令來啓動自己的程序或服務，但是配置後無法啓動，查看了下是 rc-local.service 未啓動
+ConditionFileIsExecutable=/etc/rc.d/rc.local was not met
+默認情況下，使用上面的命令無法啓動 rc-local.service 服務，原因是需要兩處文件都設置可執行權限，但是 /etc/rc.d/rc.local 默認沒有可執行權限
+<a href="https://stackoverflow.com/questions/43671482/how-to-run-docker-compose-up-d-at-system-start-up">https://stackoverflow.com/questions/43671482/how-to-run-docker-compose-up-d-at-system-start-up</a></p>
+<h2 id="設置可執行權限">設置可執行權限</h2>
+<p>[root@master ~]# chmod +x /etc/rc.d/rc.local
+[root@master ~]# chmod +x /etc/rc.local</p>
+<h1 id="檢查-tcp-port-有沒有開">檢查 TCP port 有沒有開</h1>
+<p>telnet 域名 port 號</p>
+<h1 id="檢查域名對應-ip">檢查域名對應 ip</h1>
+<p>ping 域名</p>
+<h1 id="iptable-規則必須按順序放-然後重啟">iptable 規則必須按順序放 然後重啟</h1>
+<p><a href="https://www.itread01.com/articles/1487665153.html">https://www.itread01.com/articles/1487665153.html</a>
+端口放行條目，請放在下列條目之前，然後修改後，重啟防火墻服務
+-A INPUT -j REJECT &ndash;reject-with icmp-host-prohibited -A FORWARD -j REJECT &ndash;reject-with icmp-host-prohibited</p>
+<p>service iptables restart</p>
+<p>阿如果不想電腦重開機規則不見的話
+可以修改以下檔案
+/etc/sysconfig/iptables
+或
+service iptables save
+也會存進去
+/etc/sysconfig/iptables</p>
+<p>在不然就是
+保存规则：#iptables-save &gt;/etc/iptables-script
+恢复规则：#iptables-restore&gt;/etc/iptables-script
+开机自动恢复规则，把恢复命令添加到启动脚本：echo &lsquo;/sbin/iptables-restore /etc/iptables-script&rsquo; &raquo;/etc/rc.d/rc.local</p>
+<h1 id="查看服務列表">查看服務列表</h1>
+<p>service &ndash;status-all
+chkconfig &ndash;list</p>
+<p>systemctl list-units &ndash;type=service</p>
+<h1 id="查看硬碟用量">查看硬碟用量</h1>
+<p><a href="https://blog.csdn.net/qq_35076663/article/details/103556988?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/qq_35076663/article/details/103556988?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
+<p>du -hsx /data/www/lotteryhub/daemon/* | sort -hr | head</p>
+<h1 id="修改使用者群組">修改使用者群組</h1>
+<p>當你修改使用者群組時，記得要將使用者登出後再登入，這樣才會成功被納入該群組
+要知道有沒有被列入群組之中，用<code>id</code>指令即可查看</p>
+<h1 id="掛載硬碟">掛載硬碟</h1>
+<p>mount /dev/sda1 /media/stanley/hdd</p>
+<h1 id="找出重疊的指令">找出重疊的指令</h1>
+<p>grep -r listen /etc/nginx/*</p>
+<h1 id="cron-自己的日誌">cron 自己的日誌</h1>
+<p><a href="https://serverfault.com/questions/136461/how-to-check-cron-logs-in-ubuntu?rq=1">https://serverfault.com/questions/136461/how-to-check-cron-logs-in-ubuntu?rq=1</a></p>
+<h1 id="cron-log-分檔">cron log 分檔</h1>
+<p>logrotate
+<a href="https://stackoverflow.com/questions/53366062/creating-cron-job-that-sends-output-to-file-every-day-and-overwrites-this-file-e">https://stackoverflow.com/questions/53366062/creating-cron-job-that-sends-output-to-file-every-day-and-overwrites-this-file-e</a></p>
+<h1 id="linux-查看环境变量和修改环境变量">linux 查看环境变量和修改环境变量</h1>
+<p>“/etc/profile”对系统里所有用户都有效，用户主目录下的“.bash_profile”只对这个用户有效。
+<a href="https://blog.csdn.net/w6028819321/article/details/21600423">https://blog.csdn.net/w6028819321/article/details/21600423</a></p>
+<h1 id="搬移檔案包括隱藏檔">搬移檔案，包括隱藏檔</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find . -maxdepth <span style="color:#ae81ff">1</span> -exec mv <span style="color:#f92672">{}</span> .. <span style="color:#ae81ff">\;</span>
+</span></span></code></pre></div><h1 id="新增加的群組組員無法在有群組權限的資料夾新增檔案">新增加的群組組員無法在有群組權限的資料夾新增檔案</h1>
+<ol>
+<li>登出後重登</li>
+<li><a href="https://superuser.com/questions/1620868/user-added-to-group-cant-create-files-or-folders-inside-group-owned-folder">https://superuser.com/questions/1620868/user-added-to-group-cant-create-files-or-folders-inside-group-owned-folder</a></li>
+</ol>
+<p><a href="https://superuser.com/questions/665057/group-member-cannot-create-files-directories-in-folder">https://superuser.com/questions/665057/group-member-cannot-create-files-directories-in-folder</a></p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/linux/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Linux</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

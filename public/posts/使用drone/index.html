@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用Drone | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有
+代碼提交
+代碼測試
+代碼審核
+代碼合併
+代碼佈署
+環境建制
+代碼編譯
+那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？
+git 提交
+ftp 手動上傳 10 台？
+代碼測試
+每一台環境手動重新安裝？
+在不同環境下不同指令編譯
+寫許多腳本來環境安裝
+太多名詞在網路上飛， 基於沒用過至少也要聽過，為了跟得上時代，有些東西還是免不了，這篇整理自
+就是「懶」才更需要重視 DevOps
+從零開始建立自動化發佈的流水線
+用 Drone 打造 CI/CD flow
+的讀後感心得，特別推 從零開始建立自動化發佈的流水線
+play with docker
+https://labs.play-with-docker.com/
+可以免費玩 docker 4hr 的服務
+何謂 DevOps
+開發 與 維運 融會貫通後的一種技術能力體現
+只是，時間終究有限，需要 「自動化」 協助「DevOps」人員
+是現代敏捷開發所秉持的精神
+版本控制系統( Version Control System, VCS)
+大致上分為兩種類型，集中式與分散式
+代表案例：
+Subversion 就是集中式版本控制系統
+Git、Mercurial 則是分散式版本控制系統。
+品牌認識:GitHub、BitBucket、Azure DevOps、GitLab
+git 開發流程（工作流程）
+團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。
+團隊間可以自行協調出工作流程或是根據知名的規範走
+規範認識:git flow、Github flow、Gitlab flow">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8drone/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8drone/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用Drone">
+  <meta property="og:description" content="前言 對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有 代碼提交 代碼測試 代碼審核 代碼合併 代碼佈署 環境建制 代碼編譯
+那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？ git 提交 ftp 手動上傳 10 台？ 代碼測試 每一台環境手動重新安裝？ 在不同環境下不同指令編譯 寫許多腳本來環境安裝
+太多名詞在網路上飛， 基於沒用過至少也要聽過，為了跟得上時代，有些東西還是免不了，這篇整理自 就是「懶」才更需要重視 DevOps 從零開始建立自動化發佈的流水線 用 Drone 打造 CI/CD flow 的讀後感心得，特別推 從零開始建立自動化發佈的流水線
+play with docker https://labs.play-with-docker.com/ 可以免費玩 docker 4hr 的服務
+何謂 DevOps 開發 與 維運 融會貫通後的一種技術能力體現 只是，時間終究有限，需要 「自動化」 協助「DevOps」人員 是現代敏捷開發所秉持的精神
+版本控制系統( Version Control System, VCS) 大致上分為兩種類型，集中式與分散式 代表案例： Subversion 就是集中式版本控制系統 Git、Mercurial 則是分散式版本控制系統。
+品牌認識:GitHub、BitBucket、Azure DevOps、GitLab
+git 開發流程（工作流程） 團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。 團隊間可以自行協調出工作流程或是根據知名的規範走 規範認識:git flow、Github flow、Gitlab flow">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-20T14:11:20+00:00">
+    <meta property="article:modified_time" content="2020-01-20T14:11:20+00:00">
+    <meta property="article:tag" content="TravisCI">
+
+  <meta itemprop="name" content="使用Drone">
+  <meta itemprop="description" content="前言 對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有 代碼提交 代碼測試 代碼審核 代碼合併 代碼佈署 環境建制 代碼編譯
+那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？ git 提交 ftp 手動上傳 10 台？ 代碼測試 每一台環境手動重新安裝？ 在不同環境下不同指令編譯 寫許多腳本來環境安裝
+太多名詞在網路上飛， 基於沒用過至少也要聽過，為了跟得上時代，有些東西還是免不了，這篇整理自 就是「懶」才更需要重視 DevOps 從零開始建立自動化發佈的流水線 用 Drone 打造 CI/CD flow 的讀後感心得，特別推 從零開始建立自動化發佈的流水線
+play with docker https://labs.play-with-docker.com/ 可以免費玩 docker 4hr 的服務
+何謂 DevOps 開發 與 維運 融會貫通後的一種技術能力體現 只是，時間終究有限，需要 「自動化」 協助「DevOps」人員 是現代敏捷開發所秉持的精神
+版本控制系統( Version Control System, VCS) 大致上分為兩種類型，集中式與分散式 代表案例： Subversion 就是集中式版本控制系統 Git、Mercurial 則是分散式版本控制系統。
+品牌認識:GitHub、BitBucket、Azure DevOps、GitLab
+git 開發流程（工作流程） 團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。 團隊間可以自行協調出工作流程或是根據知名的規範走 規範認識:git flow、Github flow、Gitlab flow">
+  <meta itemprop="datePublished" content="2020-01-20T14:11:20+00:00">
+  <meta itemprop="dateModified" content="2020-01-20T14:11:20+00:00">
+  <meta itemprop="wordCount" content="151">
+  <meta itemprop="keywords" content="TravisCI">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用Drone">
+  <meta name="twitter:description" content="前言 對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有 代碼提交 代碼測試 代碼審核 代碼合併 代碼佈署 環境建制 代碼編譯
+那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？ git 提交 ftp 手動上傳 10 台？ 代碼測試 每一台環境手動重新安裝？ 在不同環境下不同指令編譯 寫許多腳本來環境安裝
+太多名詞在網路上飛， 基於沒用過至少也要聽過，為了跟得上時代，有些東西還是免不了，這篇整理自 就是「懶」才更需要重視 DevOps 從零開始建立自動化發佈的流水線 用 Drone 打造 CI/CD flow 的讀後感心得，特別推 從零開始建立自動化發佈的流水線
+play with docker https://labs.play-with-docker.com/ 可以免費玩 docker 4hr 的服務
+何謂 DevOps 開發 與 維運 融會貫通後的一種技術能力體現 只是，時間終究有限，需要 「自動化」 協助「DevOps」人員 是現代敏捷開發所秉持的精神
+版本控制系統( Version Control System, VCS) 大致上分為兩種類型，集中式與分散式 代表案例： Subversion 就是集中式版本控制系統 Git、Mercurial 則是分散式版本控制系統。
+品牌認識:GitHub、BitBucket、Azure DevOps、GitLab
+git 開發流程（工作流程） 團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。 團隊間可以自行協調出工作流程或是根據知名的規範走 規範認識:git flow、Github flow、Gitlab flow">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用Drone</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-01-20T14:11:20Z">January 20, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有
+代碼提交
+代碼測試
+代碼審核
+代碼合併
+代碼佈署
+環境建制
+代碼編譯</p>
+<p>那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？
+git 提交
+ftp 手動上傳 10 台？
+代碼測試
+每一台環境手動重新安裝？
+在不同環境下不同指令編譯
+寫許多腳本來環境安裝</p>
+<p>太多名詞在網路上飛， 基於<strong>沒用過至少也要聽過</strong>，為了跟得上時代，有些東西還是免不了，這篇整理自
+<a href="https://ithelp.ithome.com.tw/users/20120491/ironman/2538">就是「懶」才更需要重視 DevOps</a>
+<a href="https://ithelp.ithome.com.tw/users/20107551/ironman/1906">從零開始建立自動化發佈的流水線</a>
+<a href="https://medium.com/asiayo-engineering/%E7%94%A8-drone-%E6%89%93%E9%80%A0-ci-cd-flow-36b9d14c7620">用 Drone 打造 CI/CD flow</a>
+的讀後感心得，特別推 <strong>從零開始建立自動化發佈的流水線</strong></p>
+<h1 id="play-with-docker">play with docker</h1>
+<p><a href="https://labs.play-with-docker.com/">https://labs.play-with-docker.com/</a>
+可以免費玩 docker 4hr 的服務</p>
+<h1 id="何謂-devops">何謂 DevOps</h1>
+<p><strong>開發</strong> 與 <strong>維運</strong> 融會貫通後的一種技術能力體現
+只是，時間終究有限，需要 「自動化」 協助「DevOps」人員
+是現代敏捷開發所秉持的精神</p>
+<h1 id="版本控制系統-version-control-system-vcs">版本控制系統( Version Control System, VCS)</h1>
+<p>大致上分為兩種類型，集中式與分散式
+代表案例：
+Subversion 就是集中式版本控制系統
+<strong>Git</strong>、Mercurial 則是分散式版本控制系統。</p>
+<p>品牌認識:GitHub、BitBucket、Azure DevOps、GitLab</p>
+<h1 id="git-開發流程工作流程">git 開發流程（工作流程）</h1>
+<p>團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。
+團隊間可以自行協調出工作流程或是根據知名的規範走
+規範認識:git flow、Github flow、Gitlab flow</p>
+<h1 id="何謂-cicd">何謂 CI/CD</h1>
+<p>CI(Continuous integration)，持續整合，利用頻繁地<strong>提交</strong>新功能的變更，觸發自動化建置和測試
+CD(Continuous Deployment)，持續佈署，快速而自動的<strong>部署</strong>，任何版本的軟體到不同的環境
+CD(Continuous Delivery)，持續交付，儘快將最新版本的軟體，交付到最終使用者(end-user)手中</p>
+<h2 id="ci-server">CI server</h2>
+<p>可以自己架，或者使用線上平台提供架好的 CI 應用程式，這可以用來整合其他應用
+知名品牌:Drone ,Jenkins, travisCI ,GitLab CI, CircleCI ,github action
+以 drone 為例，其流程大致為：
+clone git repo
+run linter
+run unit test
+prepare bulid
+publish docker
+deploy
+nofity</p>
+<p>github ations <a href="https://www.youtube.com/watch?v=kuRhHaumEtE">https://www.youtube.com/watch?v=kuRhHaumEtE</a></p>
+<h2 id="自動訊息通知">自動訊息通知</h2>
+<p>CI server 發 mail 或與現有的知名通訊軟體做整合，或寫 API</p>
+<h2 id="自動單元測試">自動單元測試</h2>
+<p>被測試的物件，商業邏輯的是否正確、輸出入的結果是否符合預期
+單元測試的運用與觀念，非常重視 物件導向的特性 與 SOLID 原則。所以，假若不常用或不熟悉物件導向的開發者，初期不容易切入單元測試的世界。
+單元測試，真正發揮它的 POWER 的時間點，在於軟體後續長期維護、需求變動、重構時，才能真正的明白為什麼需要單元測試。
+自己寫腳本</p>
+<h2 id="自動部屬">自動部屬</h2>
+<p>自己寫腳本與現有的知名雲端平台做整合</p>
+<h2 id="部屬完的環境設定">部屬完的環境設定</h2>
+<p>如果每次部屬一台機器就要設定一次是很煩的事，服
+所以就有了容器這項技術
+直接針對 應用程式層下手，將 應用程式本身與相關的函式庫、環境配置檔，打包成映像檔 (Image)
+知名專案:Docker</p>
+<h2 id="容器的集群管理平台">容器的集群管理平台</h2>
+<p>服務編排的功能
+可讓您執行 Docker 容器和工作負載，並協助您解決在調整跨多部伺服器部署之多個容器規模時的一些複雜作業
+知名專案:Mesos,Docker Swarm,K8S</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/travisci/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">TravisCI</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

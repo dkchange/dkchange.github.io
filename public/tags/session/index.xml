@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Session on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/session/</link>
+    <description>Recent content in Session on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Nov 2019 20:46:04 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/session/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel使用使用者認證</title>
+      <link>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/</link>
+      <pubDate>Thu, 07 Nov 2019 20:46:04 +0000</pubDate>
+      <guid>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/2Zu4XVhomoPjM6mAj1dFIw&#34;&gt;聊聊 Web API 认证方案那点儿事&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢?&#xA;laravel 內建有種驗證方式，可參考&lt;a href=&#34;https://learnku.com/articles/17867&#34;&gt;简聊 Session 与 Token 身份验证&lt;/a&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;seesion&lt;/li&gt;&#xA;&lt;li&gt;token&#xA;可以外掛&lt;/li&gt;&#xA;&lt;li&gt;jwt 可參考&lt;a href=&#34;https://learnku.com/articles/13592/api-development-can-choose-to-pass-a-pit-encountered-by-token-interface&#34;&gt;API 开发中可选择传递 token 接口遇到的一个坑&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;passport&#xA;session就不贅述，這邊主要介紹api_token和passport的方式&#xA;那官網一直到laravel 5.8 才有對&lt;a href=&#34;https://laravel.com/docs/5.8/api-authentication&#34;&gt;api API Authentication&lt;/a&gt; 的token做出獨立的文件，&#xA;之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;token&#34;&gt;token&lt;/h1&gt;&#xA;&lt;h2 id=&#34;內建token缺什麼&#34;&gt;內建token缺什麼?&lt;/h2&gt;&#xA;&lt;p&gt;官方並沒有提供api_token的更新方式，也就是說，&#xA;以session為例，你web用session登出sessionID會失效，&#xA;那按照這道理，你api登出api_token也要失效，&#xA;否則你的api還是可以被訪問的，這樣大不如api也用session來guard?&#xA;要怎解決這問題?&#xA;用jwt或passport&#xA;或&#xA;實作登入登出刷新token 可參考&lt;a href=&#34;https://learnku.com/articles/11006/detailed-explanation-of-laravels-own-api-guard-drive-token&#34;&gt;Laravel 自带的 API 守卫驱动 token 使用详解&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;passport&#34;&gt;passport&lt;/h1&gt;&#xA;&lt;p&gt;laravel 的API驗證API Authentication(passport)官網推薦&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;composer require laravel/passport&#xD;&#xA;php artisan passport:install --force&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;先把預設相關的表建到資料庫&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;php artisan migrate&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;然後跟著官網&lt;/p&gt;&#xA;&lt;h1 id=&#34;遭遇問題&#34;&gt;遭遇問題&lt;/h1&gt;&#xA;&lt;p&gt;Encryption keys already exist. Use the &amp;ndash;force option to overwrite them.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

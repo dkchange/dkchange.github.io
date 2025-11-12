@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/linux/</link>
+    <description>Recent content in Linux on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Nov 2020 14:38:24 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>主機管理</title>
+      <link>http://localhost:1313/posts/%E4%B8%BB%E6%A9%9F%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 18 Nov 2020 14:38:24 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E4%B8%BB%E6%A9%9F%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;實體的機器&#xA;要考慮作業系統，資料庫管理工具，提供的服務，那當要在同一台機器提供需要不同環境(例如升級新版的資料庫)的服務時，兩個服務就不能同時存在同一台機器了&#xA;虛擬機&#xA;我們開始想辦法在作業系統上再裝一個作業系統，這樣環境就不會衝突，然而這樣會非常的消耗資源&#xA;容器&#xA;我們開始把現有的作業系統的使用最大化，讓每一個服務都是一個進程，這樣就可以省掉很多資源了&lt;/p&gt;&#xA;&lt;h1 id=&#34;掛載nfs硬碟解決權限問題&#34;&gt;掛載NFS硬碟解決權限問題&lt;/h1&gt;&#xA;&lt;p&gt;Change your configuration so that&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;mount -t cifs -o username=someuser,password=somepass //192.168.0.110/backup /var/backup&#xA;Then in /etc/fstab add&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;//192.168.0.110/backup /var/backup cifs username=someuser,password=somepass,network,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://unix.stackexchange.com/questions/98707/how-do-i-mount-a-cifs-share-so-i-can-fully-control-the-mounted-volume-on-the-cli&#34;&gt;https://unix.stackexchange.com/questions/98707/how-do-i-mount-a-cifs-share-so-i-can-fully-control-the-mounted-volume-on-the-cli&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://superuser.com/questions/744384/allow-chmod-on-cifs-mount&#34;&gt;https://superuser.com/questions/744384/allow-chmod-on-cifs-mount&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://superuser.com/questions/451475/chmod-doesnt-work&#34;&gt;https://superuser.com/questions/451475/chmod-doesnt-work&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>不常用會忘的linux指令</title>
+      <link>http://localhost:1313/posts/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Thu, 07 Nov 2019 16:17:32 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/</guid>
+      <description>&lt;h1 id=&#34;改變資料夾底下檔案的預設權限&#34;&gt;改變資料夾底下檔案的預設權限&lt;/h1&gt;&#xA;&lt;p&gt;使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增&#xA;如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000&#xA;此時你需要在container增加user&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;useradd -u 1000 stanley&#xA;此時我們可以把www-data加到stanley的group&#xA;usermod -a -G stanley www-data&#xA;加完之後確認是否有在群組內&#xA;getent group stanley&#xA;帳號重登一次電腦，如果是container就restart&#xA;之後www-data就有權限創檔案了&#xA;但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改&#xA;因為檔案的user和group都是www-data&#xA;此時我們在透過網頁創建檔案之前&#xA;chmod g+s .;&#xA;This command sets the group ID (setgid) on the current directory, written as ..&#xA;This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory.&#xA;g+s affects the file&amp;rsquo;s group ID but does not affect the owner ID.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

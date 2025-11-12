@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Typescript on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/typescript/</link>
+    <description>Recent content in Typescript on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Oct 2019 22:59:11 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安裝typescript</title>
+      <link>http://localhost:1313/posts/%E5%AE%89%E8%A3%9Dtypescript/</link>
+      <pubDate>Wed, 30 Oct 2019 22:59:11 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%AE%89%E8%A3%9Dtypescript/</guid>
+      <description>&lt;h1 id=&#34;用npm安裝typescript&#34;&gt;用npm安裝typescript&lt;/h1&gt;&#xA;&lt;pre&gt;&lt;code&gt;npm install -g typescript&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;接著&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;tsc -v&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;看到版本號就是安裝成功&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

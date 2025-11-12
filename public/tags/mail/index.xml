@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mail on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/mail/</link>
+    <description>Recent content in Mail on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Dec 2019 21:20:09 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mail/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel使用mail</title>
+      <link>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8mail/</link>
+      <pubDate>Mon, 16 Dec 2019 21:20:09 +0000</pubDate>
+      <guid>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8mail/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;h1 id=&#34;開發測試&#34;&gt;開發測試&lt;/h1&gt;&#xA;&lt;p&gt;laravel預設的網站https://mailtrap.io/inboxes#&#xA;將你的郵件訊息寄到一個「假的」郵箱，而你可以在一個真的郵件客戶端檢視它們。&#xA;找到頁籤和下拉選單&lt;code&gt;Demo inbox/smtp_settings/Integrations/laravel&lt;/code&gt;&#xA;將資料填進.env&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;MAIL_USERNAME=&#xD;&#xA;MAIL_PASSWORD=&#xD;&#xA;MAIL_ENCRYPTION=&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h1 id=&#34;指令&#34;&gt;指令&lt;/h1&gt;&#xA;&lt;p&gt;下指令會在view底下建資料夾&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;php artisan make:mail ContactFormMail --markdown=email.contact.contact-form&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;建完之後在要用的controller裡面&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Mail&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test@test.com&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;send&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ContactFormMail&lt;/span&gt;($data));&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在ContactFormMail裡面修改，這樣資料才傳的進view&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; $data;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__construct&lt;/span&gt;($data)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        $this&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; $data;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

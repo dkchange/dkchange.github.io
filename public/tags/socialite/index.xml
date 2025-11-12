@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Socialite on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/socialite/</link>
+    <description>Recent content in Socialite on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Jan 2020 21:07:04 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/socialite/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel使用Socialite</title>
+      <link>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8socialite/</link>
+      <pubDate>Fri, 24 Jan 2020 21:07:04 +0000</pubDate>
+      <guid>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8socialite/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;pre&gt;&lt;code&gt;因為你如果不用第三方登入，沒有人要輸入帳密給新網站，會有安全疑慮&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h1 id=&#34;注意&#34;&gt;注意&lt;/h1&gt;&#xA;&lt;p&gt;以github為例，如果你申請時填的是localhost， 記得本機上就不要用127.0.0.1來登入了，要不然會&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/30660847/laravel-socialite-invalidstateexception&#34;&gt;Laravel Socialite: InvalidStateException&lt;/a&gt;&#xA;![github申請oAuth畫面]](/images/github申請oAuth畫面.PNG)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

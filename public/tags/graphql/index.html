@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/graphql/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/graphql/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/graphql/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/graphql/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Graphql">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Graphql">
+  <meta itemprop="datePublished" content="2019-11-15T20:20:12+00:00">
+  <meta itemprop="dateModified" content="2019-11-15T20:20:12+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Graphql">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Graphql
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Graphql”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8lighthouse/" class="link black dim">
+        laravel使用lighthouse
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="介紹">介紹</h1>
+<p>因為graphql太紅，所以要來找找laravel上面如何應用，<a href="https://lighthouse-php.com/">lighthouse</a>就是其中一款比較熱門的套件，那在應用上就要多看官網的文件了，遇到坑會再更新上來</p>
+<h1 id="安裝步驟">安裝步驟</h1>
+<p>跟著官網做就會成功，除了1G的記憶體composer跑不起來以外，沒什大問題</p>
+<h1 id="客製化查詢">客製化查詢</h1>
+<p>如果遇到需要太複雜，內建指令無法應付，客製化查詢的語句，就可以建一個class來搭配eloquent做應用</p>
+<pre><code>php artisan lighthouse:query customerQuery
+</code></pre>
+<h1 id="測試工具">測試工具</h1>
+<p>神器postman支援graphql囉，如果本機是6.X的版本要煮度上網去下載7.X的，自動更新不會幫你更到7.X</p>
+<h1 id="laravel-跨站設定">laravel 跨站設定</h1>
+<p>最簡單的方法就是</p>
+<pre><code>composer require barryvdh/laravel-cors
+</code></pre>
+<p>然後進到</p>
+<pre><code>config\lighthouse.php
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;middleware&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">\Nuwave\Lighthouse\Support\Http\Middleware\AcceptJson</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">\Barryvdh\Cors\HandleCors</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span></code></pre></div><h1 id="文件上傳設定">文件上傳設定</h1>
+<p>跟著lighthouse官網做，其中測試檔案上傳 -k允許不安全連線</p>
+<pre><code>curl -k https://dkchange.nctu.me/graphql   -F operations='{ &quot;query&quot;: &quot;mutation ($file: Upload!) { upload(file: $file) }&quot;, &quot;variables&quot;: { &quot;file&quot;: null } }'   -F map='{ &quot;0&quot;: [&quot;variables.file&quot;] }'   -F 0=@my_file.txt
+</code></pre>
+<p>resolver那邊laravel
+$file-&gt;storePublicly(&lsquo;uploads&rsquo;)會出現在<code>myproject/storage/app/uploads/</code>
+那使用者怎麼存取?
+artisan 提供一個指令</p>
+<p>php artisan storage:link
+下完之後就會把sotrage的public資料夾複製一分到public底下，阿記得這種方式沒有權限控管</p>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8lighthouse/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

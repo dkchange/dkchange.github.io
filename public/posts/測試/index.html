@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>測試 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="cypress
+e2e 的測試
+壓力測試
+通常伴隨著 apache 會有裝，如果沒有的話就額外下載
+yum install httpd_tools
+ab n10000 c10000 -k http://localhost
+-k 長連接
+寫測試該注意些什麼
+你的程式要可以被測試
+
+時間，假如你的程式有用到now這類的時間函數，那會導致你的測試案例受影響，例如測試案例需要在昨天做什麼事情，會讓你的測試案例受限有系統時間擺布
+我們可以怎麼做
+
+模擬系統時間:安裝第三方的庫例如https://github.com/rezzza/TimeTraveler，這個庫會對原生的time()動手腳
+你也可以用Carbon：setTestNow()，但你要確保你測試的程式都使用Carbon
+或是日期改用注入的方式，不寫死在function裡面
+
+
+">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E6%B8%AC%E8%A9%A6/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E6%B8%AC%E8%A9%A6/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="測試">
+  <meta property="og:description" content="cypress e2e 的測試
+壓力測試 通常伴隨著 apache 會有裝，如果沒有的話就額外下載 yum install httpd_tools ab n10000 c10000 -k http://localhost -k 長連接
+寫測試該注意些什麼 你的程式要可以被測試
+時間，假如你的程式有用到now這類的時間函數，那會導致你的測試案例受影響，例如測試案例需要在昨天做什麼事情，會讓你的測試案例受限有系統時間擺布 我們可以怎麼做 模擬系統時間:安裝第三方的庫例如https://github.com/rezzza/TimeTraveler，這個庫會對原生的time()動手腳 你也可以用Carbon：setTestNow()，但你要確保你測試的程式都使用Carbon 或是日期改用注入的方式，不寫死在function裡面">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-10-14T16:24:44+00:00">
+    <meta property="article:modified_time" content="2020-10-14T16:24:44+00:00">
+
+  <meta itemprop="name" content="測試">
+  <meta itemprop="description" content="cypress e2e 的測試
+壓力測試 通常伴隨著 apache 會有裝，如果沒有的話就額外下載 yum install httpd_tools ab n10000 c10000 -k http://localhost -k 長連接
+寫測試該注意些什麼 你的程式要可以被測試
+時間，假如你的程式有用到now這類的時間函數，那會導致你的測試案例受影響，例如測試案例需要在昨天做什麼事情，會讓你的測試案例受限有系統時間擺布 我們可以怎麼做 模擬系統時間:安裝第三方的庫例如https://github.com/rezzza/TimeTraveler，這個庫會對原生的time()動手腳 你也可以用Carbon：setTestNow()，但你要確保你測試的程式都使用Carbon 或是日期改用注入的方式，不寫死在function裡面">
+  <meta itemprop="datePublished" content="2020-10-14T16:24:44+00:00">
+  <meta itemprop="dateModified" content="2020-10-14T16:24:44+00:00">
+  <meta itemprop="wordCount" content="24">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="測試">
+  <meta name="twitter:description" content="cypress e2e 的測試
+壓力測試 通常伴隨著 apache 會有裝，如果沒有的話就額外下載 yum install httpd_tools ab n10000 c10000 -k http://localhost -k 長連接
+寫測試該注意些什麼 你的程式要可以被測試
+時間，假如你的程式有用到now這類的時間函數，那會導致你的測試案例受影響，例如測試案例需要在昨天做什麼事情，會讓你的測試案例受限有系統時間擺布 我們可以怎麼做 模擬系統時間:安裝第三方的庫例如https://github.com/rezzza/TimeTraveler，這個庫會對原生的time()動手腳 你也可以用Carbon：setTestNow()，但你要確保你測試的程式都使用Carbon 或是日期改用注入的方式，不寫死在function裡面">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">測試</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-10-14T16:24:44Z">October 14, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="cypress">cypress</h1>
+<p>e2e 的測試</p>
+<h1 id="壓力測試">壓力測試</h1>
+<p>通常伴隨著 apache 會有裝，如果沒有的話就額外下載
+yum install httpd_tools
+ab n10000 c10000 -k http://localhost
+-k 長連接</p>
+<h1 id="寫測試該注意些什麼">寫測試該注意些什麼</h1>
+<p>你的程式要可以被測試</p>
+<ul>
+<li>時間，假如你的程式有用到now這類的時間函數，那會導致你的測試案例受影響，例如測試案例需要在昨天做什麼事情，會讓你的測試案例受限有系統時間擺布
+我們可以怎麼做
+<ul>
+<li>模擬系統時間:安裝第三方的庫例如https://github.com/rezzza/TimeTraveler，這個庫會對原生的time()動手腳
+你也可以用Carbon：setTestNow()，但你要確保你測試的程式都使用Carbon</li>
+<li>或是日期改用注入的方式，不寫死在function裡面</li>
+</ul>
+</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

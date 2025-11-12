@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/passport/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/passport/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/passport/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/passport/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Passport">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Passport">
+  <meta itemprop="datePublished" content="2019-11-07T20:46:04+00:00">
+  <meta itemprop="dateModified" content="2019-11-07T20:46:04+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Passport">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Passport
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Passport”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" class="link black dim">
+        laravel使用使用者認證
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p><a href="https://mp.weixin.qq.com/s/2Zu4XVhomoPjM6mAj1dFIw">聊聊 Web API 认证方案那点儿事</a></p>
+<p>前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢?
+laravel 內建有種驗證方式，可參考<a href="https://learnku.com/articles/17867">简聊 Session 与 Token 身份验证</a></p>
+<ul>
+<li>seesion</li>
+<li>token
+可以外掛</li>
+<li>jwt 可參考<a href="https://learnku.com/articles/13592/api-development-can-choose-to-pass-a-pit-encountered-by-token-interface">API 开发中可选择传递 token 接口遇到的一个坑</a></li>
+<li>passport
+session就不贅述，這邊主要介紹api_token和passport的方式
+那官網一直到laravel 5.8 才有對<a href="https://laravel.com/docs/5.8/api-authentication">api API Authentication</a> 的token做出獨立的文件，
+之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位</li>
+</ul>
+<h1 id="token">token</h1>
+<h2 id="內建token缺什麼">內建token缺什麼?</h2>
+<p>官方並沒有提供api_token的更新方式，也就是說，
+以session為例，你web用session登出sessionID會失效，
+那按照這道理，你api登出api_token也要失效，
+否則你的api還是可以被訪問的，這樣大不如api也用session來guard?
+要怎解決這問題?
+用jwt或passport
+或
+實作登入登出刷新token 可參考<a href="https://learnku.com/articles/11006/detailed-explanation-of-laravels-own-api-guard-drive-token">Laravel 自带的 API 守卫驱动 token 使用详解</a></p>
+<h1 id="passport">passport</h1>
+<p>laravel 的API驗證API Authentication(passport)官網推薦</p>
+<pre><code>composer require laravel/passport
+php artisan passport:install --force
+</code></pre>
+<p>先把預設相關的表建到資料庫</p>
+<pre><code>php artisan migrate
+</code></pre>
+<p>然後跟著官網</p>
+<h1 id="遭遇問題">遭遇問題</h1>
+<p>Encryption keys already exist. Use the &ndash;force option to overwrite them.</p>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>安裝webpack4 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學
+用npm安裝webpack
+使用nodejs內建的npm來安裝
+npm install -g webpack
+npm install -g webpack-cli
+
+以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷
+接著
+webpack -v
+
+一樣如果看到版本號就是安裝成功
+運行webpack
+預設編譯src目錄底下的文件
+mkdir src
+建index.js檔，在裏面寫js
+webpack
+不填參數預設生產環境，編譯出來的code會看不懂，壓縮過
+成功運行
+webpack &ndash;mode=development
+開發環境的main.js就可讀了
+webpack配置文件
+因為不想指令后面一堆參數，所以配置文件是必需的
+默認webpack.config.js
+const path  = require(&#39;path&#39;);
+module.exports={
+    entry:&#39;./src/index.js&#39;,
+    output:{
+        path:  path.resolve(__dirname,&#39;dist&#39;),
+        filename:&#39;main.js&#39;,
+    },
+    mode:&#39;development&#39;
+}
+npm run指令
+專案需要客制化指令給使用者
+package.json
+{
+    &#39;script&#39;:{
+        &#39;dev&#39;:&#39;npx webpack&#39; //可以不用加--development這個參數了^^
+    }
+}
+//npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找
+使用者執行
+npm run dev
+編譯成功
+結合html文件
+創建index.html
+&lt;script src=&#34;../dist/main.js&#34;&gt;&lt;/script&gt;
+結合多入口html文件
+一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求
+module.exports={
+    entry:{
+        main:&#39;./src/index.js&#39;,
+        hello:&#39;./src/hello.js&#39;
+    },
+    output:{
+        path:  path.resolve(__dirname,&#39;dist&#39;),
+        filename:&#39;[name].js&#39;,
+    },
+    mode:&#39;development&#39;
+}
+loader
+前言
+webpack和各大工具合作的包叫作loader">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E5%AE%89%E8%A3%9Dwebpack4/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E5%AE%89%E8%A3%9Dwebpack4/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="安裝webpack4">
+  <meta property="og:description" content="前言 webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學
+用npm安裝webpack 使用nodejs內建的npm來安裝
+npm install -g webpacknpm install -g webpack-cli以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷 接著
+webpack -v一樣如果看到版本號就是安裝成功
+運行webpack 預設編譯src目錄底下的文件 mkdir src 建index.js檔，在裏面寫js webpack 不填參數預設生產環境，編譯出來的code會看不懂，壓縮過 成功運行 webpack –mode=development 開發環境的main.js就可讀了
+webpack配置文件 因為不想指令后面一堆參數，所以配置文件是必需的 默認webpack.config.js
+const path = require(&#39;path&#39;); module.exports={ entry:&#39;./src/index.js&#39;, output:{ path: path.resolve(__dirname,&#39;dist&#39;), filename:&#39;main.js&#39;, }, mode:&#39;development&#39; } npm run指令 專案需要客制化指令給使用者 package.json
+{ &#39;script&#39;:{ &#39;dev&#39;:&#39;npx webpack&#39; //可以不用加--development這個參數了^^ } } //npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找 使用者執行 npm run dev 編譯成功
+結合html文件 創建index.html
+&lt;script src=&#34;../dist/main.js&#34;&gt;&lt;/script&gt; 結合多入口html文件 一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求
+module.exports={ entry:{ main:&#39;./src/index.js&#39;, hello:&#39;./src/hello.js&#39; }, output:{ path: path.resolve(__dirname,&#39;dist&#39;), filename:&#39;[name].js&#39;, }, mode:&#39;development&#39; } loader 前言 webpack和各大工具合作的包叫作loader">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-10-30T22:45:46+00:00">
+    <meta property="article:modified_time" content="2019-10-30T22:45:46+00:00">
+    <meta property="article:tag" content="Webpack">
+    <meta property="article:tag" content="Loader">
+    <meta property="article:tag" content="Plugin">
+
+  <meta itemprop="name" content="安裝webpack4">
+  <meta itemprop="description" content="前言 webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學
+用npm安裝webpack 使用nodejs內建的npm來安裝
+npm install -g webpacknpm install -g webpack-cli以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷 接著
+webpack -v一樣如果看到版本號就是安裝成功
+運行webpack 預設編譯src目錄底下的文件 mkdir src 建index.js檔，在裏面寫js webpack 不填參數預設生產環境，編譯出來的code會看不懂，壓縮過 成功運行 webpack –mode=development 開發環境的main.js就可讀了
+webpack配置文件 因為不想指令后面一堆參數，所以配置文件是必需的 默認webpack.config.js
+const path = require(&#39;path&#39;); module.exports={ entry:&#39;./src/index.js&#39;, output:{ path: path.resolve(__dirname,&#39;dist&#39;), filename:&#39;main.js&#39;, }, mode:&#39;development&#39; } npm run指令 專案需要客制化指令給使用者 package.json
+{ &#39;script&#39;:{ &#39;dev&#39;:&#39;npx webpack&#39; //可以不用加--development這個參數了^^ } } //npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找 使用者執行 npm run dev 編譯成功
+結合html文件 創建index.html
+&lt;script src=&#34;../dist/main.js&#34;&gt;&lt;/script&gt; 結合多入口html文件 一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求
+module.exports={ entry:{ main:&#39;./src/index.js&#39;, hello:&#39;./src/hello.js&#39; }, output:{ path: path.resolve(__dirname,&#39;dist&#39;), filename:&#39;[name].js&#39;, }, mode:&#39;development&#39; } loader 前言 webpack和各大工具合作的包叫作loader">
+  <meta itemprop="datePublished" content="2019-10-30T22:45:46+00:00">
+  <meta itemprop="dateModified" content="2019-10-30T22:45:46+00:00">
+  <meta itemprop="wordCount" content="329">
+  <meta itemprop="keywords" content="Webpack,Loader,Plugin">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="安裝webpack4">
+  <meta name="twitter:description" content="前言 webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學
+用npm安裝webpack 使用nodejs內建的npm來安裝
+npm install -g webpacknpm install -g webpack-cli以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷 接著
+webpack -v一樣如果看到版本號就是安裝成功
+運行webpack 預設編譯src目錄底下的文件 mkdir src 建index.js檔，在裏面寫js webpack 不填參數預設生產環境，編譯出來的code會看不懂，壓縮過 成功運行 webpack –mode=development 開發環境的main.js就可讀了
+webpack配置文件 因為不想指令后面一堆參數，所以配置文件是必需的 默認webpack.config.js
+const path = require(&#39;path&#39;); module.exports={ entry:&#39;./src/index.js&#39;, output:{ path: path.resolve(__dirname,&#39;dist&#39;), filename:&#39;main.js&#39;, }, mode:&#39;development&#39; } npm run指令 專案需要客制化指令給使用者 package.json
+{ &#39;script&#39;:{ &#39;dev&#39;:&#39;npx webpack&#39; //可以不用加--development這個參數了^^ } } //npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找 使用者執行 npm run dev 編譯成功
+結合html文件 創建index.html
+&lt;script src=&#34;../dist/main.js&#34;&gt;&lt;/script&gt; 結合多入口html文件 一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求
+module.exports={ entry:{ main:&#39;./src/index.js&#39;, hello:&#39;./src/hello.js&#39; }, output:{ path: path.resolve(__dirname,&#39;dist&#39;), filename:&#39;[name].js&#39;, }, mode:&#39;development&#39; } loader 前言 webpack和各大工具合作的包叫作loader">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">安裝webpack4</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-10-30T22:45:46Z">October 30, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學</p>
+<h1 id="用npm安裝webpack">用npm安裝webpack</h1>
+<p>使用nodejs內建的npm來安裝</p>
+<pre><code>npm install -g webpack
+npm install -g webpack-cli
+</code></pre>
+<p>以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷
+接著</p>
+<pre><code>webpack -v
+</code></pre>
+<p>一樣如果看到版本號就是安裝成功</p>
+<h1 id="運行webpack">運行webpack</h1>
+<p>預設編譯src目錄底下的文件
+mkdir src
+建index.js檔，在裏面寫js
+webpack
+不填參數預設生產環境，編譯出來的code會看不懂，壓縮過
+成功運行
+webpack &ndash;mode=development
+開發環境的main.js就可讀了</p>
+<h1 id="webpack配置文件">webpack配置文件</h1>
+<p>因為不想指令后面一堆參數，所以配置文件是必需的
+默認<code>webpack.config.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;main.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="npm-run指令">npm run指令</h1>
+<p>專案需要客制化指令給使用者
+package.json</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;script&#39;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;dev&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;npx webpack&#39;</span> <span style="color:#75715e">//可以不用加--development這個參數了^^
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找
+</span></span></span></code></pre></div><p>使用者執行
+npm run dev
+編譯成功</p>
+<h1 id="結合html文件">結合html文件</h1>
+<p>創建index.html</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;../dist/main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h1 id="結合多入口html文件">結合多入口html文件</h1>
+<p>一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">hello</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/hello.js&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name].js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="loader">loader</h1>
+<h2 id="前言-1">前言</h2>
+<p>webpack和各大工具合作的包叫作loader</p>
+<h2 id="babel">babel</h2>
+<p>ecma每年都會發展新標准，為了配合跟不上的browser，我們就必需引入babel，將code轉成舊版本的code
+舊版的babel安裝名沒有 <strong>@babel</strong>的前綴，新版的有，主要是為了分類
+那我們現在就來安裝babel</p>
+<pre><code>npm install --save-dev @babel/core
+</code></pre>
+<h2 id="babel結合webpack">babel結合webpack</h2>
+<pre><code>npm install -D babel-loader
+</code></pre>
+<p>babel提供轉換的功能很多，例如箭頭涵數</p>
+<pre><code>npm install --save-dev @babel/plugin-transform-arrow-functions
+</code></pre>
+<p>接著把関網的設定(<a href="https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions">https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions</a>)貼進<code>webpack.config.js</code>即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.m?js$/</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/(node_modules|bower_components)/</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;babel-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">//presets: [&#39;@babel/preset-env&#39;],
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;@babel/plugin-transform-arrow-functions&#34;</span>]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>或是<code>.babelrc</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;plugins&#34;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;@babel/plugin-transform-arrow-functions&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>但是每次作新專案都要選plugin是很煩的事，所以有人作好了presets(<a href="https://babeljs.io/docs/en/presets">https://babeljs.io/docs/en/presets</a>)</p>
+<pre><code>npm install --save-dev @babel/preset-env
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.m?js$/</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/(node_modules|bower_components)/</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;babel-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">presets</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#39;@babel/preset-env&#39;</span>,{<span style="color:#e6db74">&#39;debug&#39;</span><span style="color:#f92672">:</span><span style="color:#66d9ef">true</span>}]],<span style="color:#75715e">//debug可以列出所有引入的plugin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>或是<code>.babelrc</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;presets&#34;</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#39;@babel/preset-env&#39;</span>]]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="polyfill">polyfill</h2>
+<p>babel的功能是轉換語法   e.g.箭頭函數轉換，
+polyfill是加強功能   e.g.加入promise這個api
+各司其職來應付舊瀏覽器</p>
+<pre><code>npm install @babel/polyfill
+</code></pre>
+<p>在此說明一下，polyfill是運行時會執行的code，所以要放在產品依賴下
+而且要記得壓縮進js</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;@babel/polyfill&#39;</span>,<span style="color:#e6db74">&#39;./src/index.js&#39;</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name].js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>或是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.m?js$/</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/(node_modules|bower_components)/</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;babel-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">presets</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#39;@babel/preset-env&#39;</span>,{<span style="color:#e6db74">&#39;debug&#39;</span><span style="color:#f92672">:</span><span style="color:#66d9ef">true</span>,<span style="color:#e6db74">&#39;useBuiltIns&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;entry&#39;</span>}]],<span style="color:#75715e">//useBuiltIns應用在entry上，然后在js裏面import
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>在index.js裏面import</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//index.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;@babel/polyfill&#39;</span>
+</span></span></code></pre></div><p>那能否按需加載?不然編譯后的檔案太大</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>    <span style="color:#a6e22e">presets</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#39;@babel/preset-env&#39;</span>,{<span style="color:#e6db74">&#39;debug&#39;</span><span style="color:#f92672">:</span><span style="color:#66d9ef">true</span>,<span style="color:#e6db74">&#39;useBuiltIns&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;usage&#39;</span>}]],<span style="color:#75715e">//useBuiltIns改成usage就能按需加載了
+</span></span></span></code></pre></div><h2 id="polyfill的缺點">polyfill的缺點</h2>
+<p>polyfill本身是透過全侷變量的方式來添加api
+這樣會汙染全侷，可能會和其他plugin形成冲突</p>
+<h2 id="runtime">runtime</h2>
+<p>用來取代polyfill的，有sanbox機制，不會汙染全侷</p>
+<pre><code>npm install @babel/runtime
+npm install @babel/plugin-transform-runtime
+npm install @babel/runtime-corejs2
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@babel/plugin-transform-runtime&#34;</span>,
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;absoluteRuntime&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;corejs&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;helpers&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;regenerator&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;useESModules&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;7.0.0-beta.0&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h1 id="plugin">plugin</h1>
+<h2 id="前言-2">前言</h2>
+<p>plugin就是爾外功能的添加</p>
+<h2 id="js檔添加hash">js檔添加hash</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">hello</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/hello.js&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name]-[hash].js&#39;</span>,<span style="color:#75715e">//hash值會隨文件改變而變動
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="動態生成html">動態生成html</h2>
+<p>因爲不想每次生成hash要手動更改html(<a href="https://github.com/jantimon/html-webpack-plugin">https://github.com/jantimon/html-webpack-plugin</a>)</p>
+<pre><code>npm install html-webpack-plugin -D
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HtmlWebpackPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;html-webpack-plugin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HtmlWebpackPlugin</span>(
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;My App&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./public/index.html&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">hash</span><span style="color:#f92672">:</span><span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">title</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= htmlWebpackPlugin.options.title %&gt;&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span></code></pre></div><p>因爲此plugin預設webpack裝在local，所以報錯Cannot find module &lsquo;webpack/lib/node/NodeTemplatePlugin&rsquo;</p>
+<p>修改環境變量</p>
+<p><a href="https://stackoverflow.com/questions/9587665/nodejs-cannot-find-installed-module-on-windows">windows</a>
+set NODE_PATH= /usr/lib/node_modules
+mac or linux
+export NODE_PATH=&quot;/usr/lib/node_modules&quot;</p>
+<p>或執行時</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//windows
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;dev&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;set NODE_PATH=/usr/lib/node_modules npx webpack&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//mac
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;dev&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;NODE_PATH=/usr/lib/node_modules npx webpack&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>那最正常的作法，local裝一下就行</p>
+<pre><code>npm install webpack webpack-cli -D
+</code></pre>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/webpack/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Webpack</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/loader/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Loader</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/plugin/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Plugin</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

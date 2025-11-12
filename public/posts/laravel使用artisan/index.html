@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>laravel使用artisan | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="介紹
+artisan 是 laravel 的 cli 工具，這種框架自帶的工具，在中國那邊都稱作腳手架，整個專案製作過程都離不開它，我們會用它來建 model、建 controller
+諸如:
+網站進入維修
+php artisan down
+
+本機啟動 server
+php artisan serve 類似於php -S localhost:8000
+
+建 controller
+php artisan make:controller Admin/AdminController
+
+要看所有指令
+php artisan help
+
+目前是把常用的另列出來，之後再一一分開來筆記
+常用指令
+資料庫遷移
+用在專案初始化時
+php artisan migrate
+
+下這個指令之後，就可以將database\migrations裡面 laravel 預設的三張表新增到資料庫
+遭遇狀況:
+PDOException::(&quot;SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes&quot;)
+
+解決辦法:(https://laravel-news.com/laravel-5-4-key-too-long-error)
+//app/Providers/AppServiceProvider.php
+    public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+或是改config\database.php裡面的字符集">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8artisan/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8artisan/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="laravel使用artisan">
+  <meta property="og:description" content="介紹 artisan 是 laravel 的 cli 工具，這種框架自帶的工具，在中國那邊都稱作腳手架，整個專案製作過程都離不開它，我們會用它來建 model、建 controller 諸如:
+網站進入維修
+php artisan down本機啟動 server
+php artisan serve 類似於php -S localhost:8000建 controller
+php artisan make:controller Admin/AdminController要看所有指令
+php artisan help目前是把常用的另列出來，之後再一一分開來筆記
+常用指令 資料庫遷移 用在專案初始化時
+php artisan migrate下這個指令之後，就可以將database\migrations裡面 laravel 預設的三張表新增到資料庫 遭遇狀況:
+PDOException::(&#34;SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes&#34;)解決辦法:(https://laravel-news.com/laravel-5-4-key-too-long-error)
+//app/Providers/AppServiceProvider.php public function boot() { Schema::defaultStringLength(191); } 或是改config\database.php裡面的字符集">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-04T20:30:13+00:00">
+    <meta property="article:modified_time" content="2019-11-04T20:30:13+00:00">
+    <meta property="article:tag" content="Artisan">
+
+  <meta itemprop="name" content="laravel使用artisan">
+  <meta itemprop="description" content="介紹 artisan 是 laravel 的 cli 工具，這種框架自帶的工具，在中國那邊都稱作腳手架，整個專案製作過程都離不開它，我們會用它來建 model、建 controller 諸如:
+網站進入維修
+php artisan down本機啟動 server
+php artisan serve 類似於php -S localhost:8000建 controller
+php artisan make:controller Admin/AdminController要看所有指令
+php artisan help目前是把常用的另列出來，之後再一一分開來筆記
+常用指令 資料庫遷移 用在專案初始化時
+php artisan migrate下這個指令之後，就可以將database\migrations裡面 laravel 預設的三張表新增到資料庫 遭遇狀況:
+PDOException::(&#34;SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes&#34;)解決辦法:(https://laravel-news.com/laravel-5-4-key-too-long-error)
+//app/Providers/AppServiceProvider.php public function boot() { Schema::defaultStringLength(191); } 或是改config\database.php裡面的字符集">
+  <meta itemprop="datePublished" content="2019-11-04T20:30:13+00:00">
+  <meta itemprop="dateModified" content="2019-11-04T20:30:13+00:00">
+  <meta itemprop="wordCount" content="431">
+  <meta itemprop="keywords" content="Artisan">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="laravel使用artisan">
+  <meta name="twitter:description" content="介紹 artisan 是 laravel 的 cli 工具，這種框架自帶的工具，在中國那邊都稱作腳手架，整個專案製作過程都離不開它，我們會用它來建 model、建 controller 諸如:
+網站進入維修
+php artisan down本機啟動 server
+php artisan serve 類似於php -S localhost:8000建 controller
+php artisan make:controller Admin/AdminController要看所有指令
+php artisan help目前是把常用的另列出來，之後再一一分開來筆記
+常用指令 資料庫遷移 用在專案初始化時
+php artisan migrate下這個指令之後，就可以將database\migrations裡面 laravel 預設的三張表新增到資料庫 遭遇狀況:
+PDOException::(&#34;SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes&#34;)解決辦法:(https://laravel-news.com/laravel-5-4-key-too-long-error)
+//app/Providers/AppServiceProvider.php public function boot() { Schema::defaultStringLength(191); } 或是改config\database.php裡面的字符集">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">laravel使用artisan</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-04T20:30:13Z">November 4, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="介紹">介紹</h1>
+<p>artisan 是 laravel 的 cli 工具，這種框架自帶的工具，在中國那邊都稱作腳手架，整個專案製作過程都離不開它，我們會用它來建 model、建 controller
+諸如:</p>
+<p>網站進入維修</p>
+<pre><code>php artisan down
+</code></pre>
+<p>本機啟動 server</p>
+<pre><code>php artisan serve 類似於php -S localhost:8000
+</code></pre>
+<p>建 controller</p>
+<pre><code>php artisan make:controller Admin/AdminController
+</code></pre>
+<p>要看<strong>所有指令</strong></p>
+<pre><code>php artisan help
+</code></pre>
+<p>目前是把常用的另列出來，之後再一一分開來筆記</p>
+<h1 id="常用指令">常用指令</h1>
+<h2 id="資料庫遷移">資料庫遷移</h2>
+<p>用在專案初始化時</p>
+<pre><code>php artisan migrate
+</code></pre>
+<p>下這個指令之後，就可以將<code>database\migrations</code>裡面 laravel 預設的三張表新增到資料庫
+遭遇狀況:</p>
+<pre><code>PDOException::(&quot;SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes&quot;)
+</code></pre>
+<p>解決辦法:(<a href="https://laravel-news.com/laravel-5-4-key-too-long-error">https://laravel-news.com/laravel-5-4-key-too-long-error</a>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">//app/Providers/AppServiceProvider.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Schema</span><span style="color:#f92672">::</span><span style="color:#a6e22e">defaultStringLength</span>(<span style="color:#ae81ff">191</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>或是改<code>config\database.php</code>裡面的字符集</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;mysql&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;charset&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;utf8&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;collation&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;utf8_unicode_ci&#39;</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span></code></pre></div><p>然後要刪掉 migration 檔案之前，要先做一次
+php artisan migration:reset
+把 DB 的 migration 資料表清空不然就會遭遇
+Migration not found: 2020_03_04_064053_create_user_power_table
+此時就要去資料庫排刪掉這一行來排錯
+<a href="https://github.com/laravel/framework/issues/2105#issuecomment-22701759">https://github.com/laravel/framework/issues/2105#issuecomment-22701759</a>
+If you deleted the file you should delete the matching row from the migrations table in your DB. Don&rsquo;t delete a migration without doing migrate:reset first.</p>
+<h2 id="建立資料表">建立資料表</h2>
+<p>將 Admin 表新增到<code>database\migrations</code>裡面</p>
+<pre><code>php artisan make:migration admin
+</code></pre>
+<p>或者新增一個 model 加參數-m，推薦這個，會幫忙建 migration，並且有表格基礎欄位
+或者新增一個 model 加參數-a，會幫忙建 migrantion controller factory
+那麼在以前 4.X 的 laravel 版本呢，我們會有個 model 資料夾，現在沒有了，原因是因為不想混淆使用者，詳情請看<a href="http://blog.turn.tw/?p=1541">框架不應該有「MODELS」資料夾</a></p>
+<pre><code>php artisan make:model Model/Admin -a
+</code></pre>
+<p>然後一樣</p>
+<pre><code>php artisan migrate
+</code></pre>
+<p>就會幫忙建表進去了，已經有的表就不會重複建</p>
+<p>剩下看文檔(<a href="https://laravel.tw/docs/5.2/migrations">https://laravel.tw/docs/5.2/migrations</a>)</p>
+<h2 id="塞假資料">塞假資料</h2>
+<p>阿如果要塞假資料，記得將該 model 的假資料規則加進<code>database\factories\AdminFactory</code>，就可以用工廠批量生產資料，用來測試用</p>
+<pre><code>php artisan make:factory AdminFactory
+</code></pre>
+<p>我們可以怎麼做呢?</p>
+<ol>
+<li>
+<p>手動打指令
+使用 tinker 來打 php 程式碼，tinker 就會執行，說是一種 read-eval-print-loop
+要確定在建完 factory 之後在打開此命令行，不然會找不到</p>
+<pre><code>Class 'App/Model/Admin' not found in /var/www/html/lighthouse-tutorial/vendor/laravel/framework/src/Illuminate/Database/Eloquent/FactoryBuilder.php on
+
+php artisan tinker 類似於 php --interactive php -a
+</code></pre>
+<p>接著打上 php 的 code，可以操作資料庫，立即看到結果，不用在那邊<strong>var_dump</strong>，阿如果要塞假資料，記得將該 model 的假資料規則加進<code>database\factories</code>，之後就可以用</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">//看看多少使用者
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">App\User</span><span style="color:#f92672">::</span><span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//新增使用者
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">factory</span>(<span style="color:#e6db74">&#39;App\User&#39;</span>,<span style="color:#ae81ff">10</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//打印
+</span></span></span></code></pre></div><ol start="2">
+<li>
+<p>用 seeder
+seeder 可以個別或引入工廠的方法來塞假資料，跟上面不同的是，以個是重新手打，一個記在程式碼後執行一次執行，有什麼好處呢?因為資料庫總是有一些要初始化的資料，例如標籤阿、管理員等</p>
+<pre><code>php artisan make:seeder AdminTableSeeder
+</code></pre>
+</li>
+</ol>
+<p>個別塞</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">run</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">DB</span><span style="color:#f92672">::</span><span style="color:#a6e22e">table</span>(<span style="color:#e6db74">&#39;admin&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">insert</span>([
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">str_random</span>(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;email&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">str_random</span>(<span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;@gmail.com&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;password&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">bcrypt</span>(<span style="color:#e6db74">&#39;secret&#39;</span>),
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>工廠批量塞，這邊要注意文章和使用者是有關連性的，一定要有使用者才會有文章</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">//AdminTableSeeder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">run</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">factory</span>(<span style="color:#a6e22e">App\User</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>, <span style="color:#ae81ff">10</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">create</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">each</span>(<span style="color:#66d9ef">function</span>($u) {
+</span></span><span style="display:flex;"><span>            $u<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">posts</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">factory</span>(<span style="color:#a6e22e">App\Post</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make</span>());
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>或者</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">//PostFactory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    $factory<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">define</span>(<span style="color:#a6e22e">Post</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Faker</span> $faker) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;user_id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">factory</span>(<span style="color:#a6e22e">User</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">create</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;title&#39;</span> <span style="color:#f92672">=&gt;</span> $faker<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">sentence</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;content&#39;</span> <span style="color:#f92672">=&gt;</span> $faker<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">text</span>
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//DatabaseSeeder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">AdminTableSeeder</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
+</span></span></code></pre></div><p>執行
+php artisan db:seed &ndash;class=AdminsTableSeeder
+或
+php artisan db:seed</p>
+<h2 id="初始化會員系統">初始化會員系統</h2>
+<p>laravel 內建一個會員系統，可能是因為太普遍，所以他直接幫你內建一個</p>
+<pre><code>php artisan make:auth
+</code></pre>
+<p>下完指令之後，內建的會員相關檔案都會建好，484 很方便呢
+<img src="/images/%E6%9C%83%E5%93%A1%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2.png" alt="會員登入畫面"></p>
+<p>laravel 在 6.0 之後把這功能抽出來</p>
+<pre><code>composer require laravel/ui
+php artisan ui vue --auth
+</code></pre>
+<p>執行之後的效果是一樣的</p>
+<h2 id="自製指令">自製指令</h2>
+<pre><code>php artisan help make:command
+php artisan make:command AddCompanyCommand
+</code></pre>
+<p>接著在<code>app\Console\Commands\AddCompanyCommand.php</code>修改</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">// 加上?代表該參數可選
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// protected $signature = &#39;contact:{name} {phone?}&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// protected $signature = &#39;contact:{name} {phone=N/A}&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">protected</span> $signature <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;contact:conpany&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> $description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;add new company&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handle</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $name <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">ask</span>(<span style="color:#e6db74">&#39;What is the company name?&#39;</span>);
+</span></span><span style="display:flex;"><span>        $phone <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">ask</span>(<span style="color:#e6db74">&#39;What is the company\&#39;s phone number?&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">confirm</span>(<span style="color:#e6db74">&#39;Are you ready to insert &#34;&#39;</span> <span style="color:#f92672">.</span> $name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;&#34;?&#39;</span>)) {
+</span></span><span style="display:flex;"><span>            $company <span style="color:#f92672">=</span> <span style="color:#a6e22e">Company</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>([
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $name,
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// &#39;phone&#39; =&gt;$this-&gt;argument(&#39;name&#39;) ?? &#39;N/A&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;phone&#39;</span> <span style="color:#f92672">=&gt;</span> $phone,
+</span></span><span style="display:flex;"><span>            ]);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#39;Added: &#39;</span> <span style="color:#f92672">.</span> $company<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#39;No new company was added.&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>下 artisan 指令之後就會發現新的 command 出現在列表了
+php artisan</p>
+<p>contact
+contact:company add new company</p>
+<h2 id="簡單指令">簡單指令</h2>
+<p><code>routes\console.php</code>用於簡單的指令，盡量不要超過 10 行，最多就像下面的範例</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">Artisan</span><span style="color:#f92672">::</span><span style="color:#a6e22e">command</span>(<span style="color:#e6db74">&#39;contact:company-clean&#39;</span>, <span style="color:#66d9ef">function</span> (){
+</span></span><span style="display:flex;"><span>    $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#39;Cleaning!&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Company</span><span style="color:#f92672">::</span><span style="color:#a6e22e">whereDoesntHave</span>(<span style="color:#e6db74">&#39;customers&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">each</span>(<span style="color:#66d9ef">function</span> ($company) {
+</span></span><span style="display:flex;"><span>            $company<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">delete</span>();
+</span></span><span style="display:flex;"><span>            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#39;Deleted: &#39;</span> <span style="color:#f92672">.</span> $company<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>})<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;Cleans Up Unused Companies&#39;</span>);
+</span></span></code></pre></div><h2 id="符號連結-symbolic-link指令">符號連結 (Symbolic link)指令</h2>
+<p>會將/storage/app/public 和/public/storage 做連結，
+切忌路徑就這這兩個，如果要連接其他的路徑，請去網路上找連結的指令
+php artisan storage:link</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/artisan/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Artisan</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

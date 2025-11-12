@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>安裝環境 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢?
+因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事，
+心血來潮試著自己安裝一次看看
+名詞解釋
+
+
+X86 X32
+我們要安裝 PHP 時就會看到一些不懂的名詞
+x86 等於 32 位元
+X64 等於 64 位元
+為何這樣奇怪的命名就是歷史因素了
+
+
+Thread Safe
+
+
+None Thread Safe
+線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看https://www.awaimai.com/88.html
+阿因為我們開發機，先不考慮線程安全和效能，任 1 種皆可
+
+
+php.ini 時區設定的問題
+如果你是跑 php-fpm 那設定在/etc/php.ini 的時區你會吃不到，此時就要跑去
+/etc/php-fpm.d/www.conf 加上
+php_admin_value[date.timezone] = Europe/Berlin
+遭遇問題
+今天打開 Xampp 試著開啟 mysql 服務的時候，程序出錯
+Error: MySQL shutdown unexpectedly.
+打開日誌看不出個什麼鬼，只知道突然中斷
+日誌都是正常的紀錄
+然後就開始爬文
+https://blog.csdn.net/yuer_xiao/article/details/79236719
+在mysql/bin/my.ini 文件 加一个：
+[mysqld]
+innodb_force_recovery = 4
+
+失敗">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="安裝環境">
+  <meta property="og:description" content="前言 事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢? 因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事， 心血來潮試著自己安裝一次看看
+名詞解釋 X86 X32 我們要安裝 PHP 時就會看到一些不懂的名詞 x86 等於 32 位元 X64 等於 64 位元 為何這樣奇怪的命名就是歷史因素了
+Thread Safe
+None Thread Safe 線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看https://www.awaimai.com/88.html 阿因為我們開發機，先不考慮線程安全和效能，任 1 種皆可
+php.ini 時區設定的問題 如果你是跑 php-fpm 那設定在/etc/php.ini 的時區你會吃不到，此時就要跑去 /etc/php-fpm.d/www.conf 加上
+php_admin_value[date.timezone] = Europe/Berlin 遭遇問題 今天打開 Xampp 試著開啟 mysql 服務的時候，程序出錯 Error: MySQL shutdown unexpectedly.
+打開日誌看不出個什麼鬼，只知道突然中斷 日誌都是正常的紀錄 然後就開始爬文 https://blog.csdn.net/yuer_xiao/article/details/79236719
+在mysql/bin/my.ini 文件 加一个：[mysqld]innodb_force_recovery = 4失敗">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-12-21T20:22:50+00:00">
+    <meta property="article:modified_time" content="2019-12-21T20:22:50+00:00">
+
+  <meta itemprop="name" content="安裝環境">
+  <meta itemprop="description" content="前言 事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢? 因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事， 心血來潮試著自己安裝一次看看
+名詞解釋 X86 X32 我們要安裝 PHP 時就會看到一些不懂的名詞 x86 等於 32 位元 X64 等於 64 位元 為何這樣奇怪的命名就是歷史因素了
+Thread Safe
+None Thread Safe 線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看https://www.awaimai.com/88.html 阿因為我們開發機，先不考慮線程安全和效能，任 1 種皆可
+php.ini 時區設定的問題 如果你是跑 php-fpm 那設定在/etc/php.ini 的時區你會吃不到，此時就要跑去 /etc/php-fpm.d/www.conf 加上
+php_admin_value[date.timezone] = Europe/Berlin 遭遇問題 今天打開 Xampp 試著開啟 mysql 服務的時候，程序出錯 Error: MySQL shutdown unexpectedly.
+打開日誌看不出個什麼鬼，只知道突然中斷 日誌都是正常的紀錄 然後就開始爬文 https://blog.csdn.net/yuer_xiao/article/details/79236719
+在mysql/bin/my.ini 文件 加一个：[mysqld]innodb_force_recovery = 4失敗">
+  <meta itemprop="datePublished" content="2019-12-21T20:22:50+00:00">
+  <meta itemprop="dateModified" content="2019-12-21T20:22:50+00:00">
+  <meta itemprop="wordCount" content="247">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="安裝環境">
+  <meta name="twitter:description" content="前言 事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢? 因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事， 心血來潮試著自己安裝一次看看
+名詞解釋 X86 X32 我們要安裝 PHP 時就會看到一些不懂的名詞 x86 等於 32 位元 X64 等於 64 位元 為何這樣奇怪的命名就是歷史因素了
+Thread Safe
+None Thread Safe 線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看https://www.awaimai.com/88.html 阿因為我們開發機，先不考慮線程安全和效能，任 1 種皆可
+php.ini 時區設定的問題 如果你是跑 php-fpm 那設定在/etc/php.ini 的時區你會吃不到，此時就要跑去 /etc/php-fpm.d/www.conf 加上
+php_admin_value[date.timezone] = Europe/Berlin 遭遇問題 今天打開 Xampp 試著開啟 mysql 服務的時候，程序出錯 Error: MySQL shutdown unexpectedly.
+打開日誌看不出個什麼鬼，只知道突然中斷 日誌都是正常的紀錄 然後就開始爬文 https://blog.csdn.net/yuer_xiao/article/details/79236719
+在mysql/bin/my.ini 文件 加一个：[mysqld]innodb_force_recovery = 4失敗">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">安裝環境</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-12-21T20:22:50Z">December 21, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>事情是這樣子的，以前從 windows 環境就安裝 AppServ、WampServer、Xampp 這種快速安裝的安裝包，為什麼呢?
+因為最後環境還是會在 linux 上，所以 windows 上能開發就好，也就不用太講究了，因為有些包在 linux 沒問題，在 windows 會出事，
+心血來潮試著自己安裝一次看看</p>
+<h1 id="名詞解釋">名詞解釋</h1>
+<ul>
+<li>
+<p>X86 X32
+我們要安裝 PHP 時就會看到一些不懂的名詞
+x86 等於 32 位元
+X64 等於 64 位元
+為何這樣奇怪的命名就是歷史因素了</p>
+</li>
+<li>
+<p>Thread Safe</p>
+</li>
+<li>
+<p>None Thread Safe
+線程安全和非線程安全，這就牽扯到比較複雜的因素了，有時間看看https://www.awaimai.com/88.html
+阿因為我們開發機，先不考慮線程安全和效能，任 1 種皆可</p>
+</li>
+</ul>
+<h1 id="phpini-時區設定的問題">php.ini 時區設定的問題</h1>
+<p>如果你是跑 php-fpm 那設定在/etc/php.ini 的時區你會吃不到，此時就要跑去
+/etc/php-fpm.d/www.conf 加上</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">php_admin_value[date.timezone] = Europe/Berlin
+</code></pre><h1 id="遭遇問題">遭遇問題</h1>
+<p>今天打開 Xampp 試著開啟 mysql 服務的時候，程序出錯
+Error: MySQL shutdown unexpectedly.</p>
+<p>打開日誌看不出個什麼鬼，只知道突然中斷
+日誌都是正常的紀錄
+然後就開始爬文
+<a href="https://blog.csdn.net/yuer_xiao/article/details/79236719">https://blog.csdn.net/yuer_xiao/article/details/79236719</a></p>
+<pre><code>在mysql/bin/my.ini 文件 加一个：
+[mysqld]
+innodb_force_recovery = 4
+</code></pre>
+<p>失敗</p>
+<pre><code>把xampp\mysql\data下的ibdata1文件删掉
+這有人說這文件很重要，但是我還是試試看
+</code></pre>
+<p>失敗</p>
+<pre><code>用管理员启动命令行，进入mysql的bin目录，输入
+mysqld --install，回车
+net start mysql ，可以正常启动
+</code></pre>
+<p>失敗</p>
+<pre><code>將ib_logfile0以及ib_logfile1這兩個日誌黨刪除,
+</code></pre>
+<p>失敗
+把 xampp/mysql/backup/ 底下所有檔案，複製取代到 xampp/mysql/data/ &hellip;
+成功
+<a href="https://dotblogs.com.tw/mepowerlmay/2019/12/19/085908">https://dotblogs.com.tw/mepowerlmay/2019/12/19/085908</a></p>
+<h1 id="403-forbidden">403 forbidden</h1>
+<p>除了在 nginx 有設定以外，如果本身資料加權限 84nginx 的進程使用者也會報錯</p>
+<h1 id="noinput-file-specified">Noinput file specified</h1>
+<p>找不到檔案，很可能就是 nginx 的正則錯了</p>
+<h1 id="xdebug-環境配置">XDebug 環境配置</h1>
+<p><a href="https://segmentfault.com/a/1190000011907425">https://segmentfault.com/a/1190000011907425</a></p>
+<p>ubutu 安裝 php xdebug
+sudo apt-get install php-xdebug
+sudo phpenmod xdebug
+sudo gedit /etc/php/7.3/mods-available/xdebug.ini
+重啟 webserver</p>
+<p><a href="https://youtu.be/3idASlzGTg4">Debugging PHP on Linux with Xdebug and PHPStorm</a>
+有三種方式</p>
+<ol>
+<li>在瀏覽器 url 打上參數</li>
+<li>用 phpstorm 網站提供的書籤</li>
+<li>安裝 chrome 插件
+<a href="https://stackoverflow.com/questions/46263043/how-to-setup-docker-phpstorm-xdebug-on-ubuntu-16-04">https://stackoverflow.com/questions/46263043/how-to-setup-docker-phpstorm-xdebug-on-ubuntu-16-04</a>
+<a href="https://www.youtube.com/watch?v=mahIIF0c8Zo">https://www.youtube.com/watch?v=mahIIF0c8Zo</a>
+use &lsquo;xdebug.remote_host=host.docker.internal&rsquo; better than hard code IP address.
+但是 linux 版本要看有沒有支援
+xdebug.remote_host=docker.for.mac.localhost ，我是这样配置的可以调用成功
+這個方法也是要看 mac 版本
+Docker on Linux allows Xdebug to automatically connect back to the host system so you can just set xdebug.remote_connect_back=1 and leave out the xdebug.remote_host in your xdebug.ini.
+這個方法沒事過</li>
+</ol>
+<p>linux 不支援 host.docker.internal 可以看這裡
+<a href="https://dev.to/bufferings/access-host-from-a-docker-container-4099">https://dev.to/bufferings/access-host-from-a-docker-container-4099</a></p>
+<h1 id="nginx-设定">nginx 设定</h1>
+<p><a href="https://blog.51cto.com/13930997/2311716">https://blog.51cto.com/13930997/2311716</a></p>
+<p><a href="https://regex101.com/">https://regex101.com/</a></p>
+<h2 id="domain-name">domain name</h2>
+<p>如果你記自己的測試機是以 xxx.localhost 來當 domain 的話，那你的 hosts 的檔就可以不用改了，因為他自己會幫你導向本機</p>
+<h2 id="indexphp-failed-13-permission-denied">index.php failed (13: Permission denied)</h2>
+<p>關閉 selinux 即可</p>
+<p>setenforce 0</p>
+<h1 id="apache-設定">apache 設定</h1>
+<h2 id="vhost">vhost</h2>
+<p>site-available 來設定 vhost
+site-enabled 是 apache 自己產生的，不要手動去改他</p>
+<blockquote>
+<p>sudo a2ensite vhost_domain_name
+site-enabled 就會產生出對應的檔案了</p>
+</blockquote>
+<h1 id="502-bad-gateway">502 Bad Gateway</h1>
+<p><a href="https://www.centos.bz/2017/07/nginx-php-fpm-502-error/">https://www.centos.bz/2017/07/nginx-php-fpm-502-error/</a></p>
+<p><a href="https://serverfault.com/questions/457911/nginx-php-fpm-502-bad-gateway">https://serverfault.com/questions/457911/nginx-php-fpm-502-bad-gateway</a>
+發生這個問題的原因有很多，之前還有可能是 cdn 快取導致頁面一直出現這個錯誤</p>
+<h1 id="apache2-conf-設定檔中文版">Apache2 conf 設定檔中文版</h1>
+<p><a href="https://sites.google.com/site/linuxcooltea/apache2/a">https://sites.google.com/site/linuxcooltea/apache2/a</a>
+這篇詳細解釋 conf 內容，對於我們這種非網管人員幫助很大</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

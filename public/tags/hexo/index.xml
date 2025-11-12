@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hexo on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/hexo/</link>
+    <description>Recent content in Hexo on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Oct 2019 18:31:48 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>創建github網誌</title>
+      <link>http://localhost:1313/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/</link>
+      <pubDate>Sun, 27 Oct 2019 18:31:48 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/</guid>
+      <description>&lt;h1 id=&#34;使用工具&#34;&gt;使用工具&lt;/h1&gt;&#xA;&lt;p&gt;網路上有三套靜態網頁的產生工具&#xA;Jekyll、Hexo、Hugo&#xA;那我選擇&lt;strong&gt;Hexo&lt;/strong&gt;是因為，用 nodejs 感覺比較不會陌生&lt;/p&gt;&#xA;&lt;h1 id=&#34;使用主題&#34;&gt;使用主題&lt;/h1&gt;&#xA;&lt;p&gt;Hexo 有不少免費主題，我喜歡 NexT&lt;/p&gt;&#xA;&lt;h1 id=&#34;附加價值&#34;&gt;附加價值&lt;/h1&gt;&#xA;&lt;p&gt;希望能讓自己熟悉 markdown&lt;/p&gt;&#xA;&lt;h1 id=&#34;注意&#34;&gt;注意&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://blog.moli.rocks/2018/07/11/how-to-set-custom-domain-and-cloudflare-ssl-to-github-pages/&#34;&gt;如何將 GitHub Pages 套上個人網域&lt;/a&gt;&#xA;如果是專案頁面請發佈到專案的 gh-page 分支&#xA;如果是個人或公司頁面請發佈到 XXXXX.github.io 底下的 master&lt;/p&gt;&#xA;&lt;h1 id=&#34;gitbook&#34;&gt;gitbook&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github&#34;&gt;https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;markdown&#34;&gt;markdown&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown&#34;&gt;https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;markdown-技巧-diff&#34;&gt;markdown 技巧 diff&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/yzeVMecydCE?t=1485&#34;&gt;https://youtu.be/yzeVMecydCE?t=1485&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

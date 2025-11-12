@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>申請SSL | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="自簽名
+因為開發環境沒有 domain，可有些技術又強制要走 ssl，像是 webrtc 的其中一個環節
+https://help.fanruan.com/finereport/doc-view-2662.html
+yum install openssl openssl-devel
+openssl version -a
+openssl genrsa -des3 -out server.key 2048
+openssl rsa -in server.key -out server.key
+openssl req -new -key server.key -out server.csr
+openssl req -new -x509 -key server.key -out ca.crt -days 3650
+openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt
+之後在 nginx 做相關的設定
+在 Chrome 的設定中，匯入憑證，再啟動 Chrom，就大功告成了
+https://ithelp.ithome.com.tw/articles/10230157
+憑證取得方法
+憑證有分等級，最簡單的就是驗證網域 484 你的(傳檔案驗證 OR DNS 驗證)然後就發給你憑證，
+阿高級一點的就須要人工的身份證明之類的東西
+我們申請簡單的憑證，幾個方法">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E7%94%B3%E8%AB%8Bssl/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E7%94%B3%E8%AB%8Bssl/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="申請SSL">
+  <meta property="og:description" content="自簽名 因為開發環境沒有 domain，可有些技術又強制要走 ssl，像是 webrtc 的其中一個環節 https://help.fanruan.com/finereport/doc-view-2662.html
+yum install openssl openssl-devel openssl version -a openssl genrsa -des3 -out server.key 2048 openssl rsa -in server.key -out server.key openssl req -new -key server.key -out server.csr openssl req -new -x509 -key server.key -out ca.crt -days 3650 openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt 之後在 nginx 做相關的設定
+在 Chrome 的設定中，匯入憑證，再啟動 Chrom，就大功告成了 https://ithelp.ithome.com.tw/articles/10230157
+憑證取得方法 憑證有分等級，最簡單的就是驗證網域 484 你的(傳檔案驗證 OR DNS 驗證)然後就發給你憑證， 阿高級一點的就須要人工的身份證明之類的東西 我們申請簡單的憑證，幾個方法">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-06T18:31:21+00:00">
+    <meta property="article:modified_time" content="2019-11-06T18:31:21+00:00">
+    <meta property="article:tag" content="Https">
+
+  <meta itemprop="name" content="申請SSL">
+  <meta itemprop="description" content="自簽名 因為開發環境沒有 domain，可有些技術又強制要走 ssl，像是 webrtc 的其中一個環節 https://help.fanruan.com/finereport/doc-view-2662.html
+yum install openssl openssl-devel openssl version -a openssl genrsa -des3 -out server.key 2048 openssl rsa -in server.key -out server.key openssl req -new -key server.key -out server.csr openssl req -new -x509 -key server.key -out ca.crt -days 3650 openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt 之後在 nginx 做相關的設定
+在 Chrome 的設定中，匯入憑證，再啟動 Chrom，就大功告成了 https://ithelp.ithome.com.tw/articles/10230157
+憑證取得方法 憑證有分等級，最簡單的就是驗證網域 484 你的(傳檔案驗證 OR DNS 驗證)然後就發給你憑證， 阿高級一點的就須要人工的身份證明之類的東西 我們申請簡單的憑證，幾個方法">
+  <meta itemprop="datePublished" content="2019-11-06T18:31:21+00:00">
+  <meta itemprop="dateModified" content="2019-11-06T18:31:21+00:00">
+  <meta itemprop="wordCount" content="297">
+  <meta itemprop="keywords" content="Https">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="申請SSL">
+  <meta name="twitter:description" content="自簽名 因為開發環境沒有 domain，可有些技術又強制要走 ssl，像是 webrtc 的其中一個環節 https://help.fanruan.com/finereport/doc-view-2662.html
+yum install openssl openssl-devel openssl version -a openssl genrsa -des3 -out server.key 2048 openssl rsa -in server.key -out server.key openssl req -new -key server.key -out server.csr openssl req -new -x509 -key server.key -out ca.crt -days 3650 openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt 之後在 nginx 做相關的設定
+在 Chrome 的設定中，匯入憑證，再啟動 Chrom，就大功告成了 https://ithelp.ithome.com.tw/articles/10230157
+憑證取得方法 憑證有分等級，最簡單的就是驗證網域 484 你的(傳檔案驗證 OR DNS 驗證)然後就發給你憑證， 阿高級一點的就須要人工的身份證明之類的東西 我們申請簡單的憑證，幾個方法">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">申請SSL</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-06T18:31:21Z">November 6, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="自簽名">自簽名</h1>
+<p>因為開發環境沒有 domain，可有些技術又強制要走 ssl，像是 webrtc 的其中一個環節
+<a href="https://help.fanruan.com/finereport/doc-view-2662.html">https://help.fanruan.com/finereport/doc-view-2662.html</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>yum install openssl openssl-devel
+</span></span><span style="display:flex;"><span>openssl version -a
+</span></span><span style="display:flex;"><span>openssl genrsa -des3 -out server.key 2048
+</span></span><span style="display:flex;"><span>openssl rsa -in server.key -out server.key
+</span></span><span style="display:flex;"><span>openssl req -new -key server.key -out server.csr
+</span></span><span style="display:flex;"><span>openssl req -new -x509 -key server.key -out ca.crt -days 3650
+</span></span><span style="display:flex;"><span>openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt
+</span></span></code></pre></div><p>之後在 nginx 做相關的設定</p>
+<p>在 Chrome 的設定中，匯入憑證，再啟動 Chrom，就大功告成了
+<a href="https://ithelp.ithome.com.tw/articles/10230157">https://ithelp.ithome.com.tw/articles/10230157</a></p>
+<h1 id="憑證取得方法">憑證取得方法</h1>
+<p>憑證有分等級，最簡單的就是<strong>驗證網域 484 你的</strong>(傳檔案驗證 OR DNS 驗證)然後就發給你憑證，
+阿高級一點的就須要人工的身份證明之類的東西
+我們申請簡單的憑證，幾個方法</p>
+<ol>
+<li>手動生出 <strong>密鑰</strong> 密鑰再用來生成<strong>憑證簽屬請求檔</strong>，再拿這請求檔去跟各大平台，驗證網域 484 你的之後，拿<strong>憑證</strong>和<strong>中繼憑證</strong>回來</li>
+<li>最簡單的方法，就是網路上有人做跟各憑證平台串接，做了方法 1 的事，生出 <strong>密鑰、憑證、中繼憑證</strong> 之後我們再載回來用，像是https://free.com.tw/ssl-for-free/</li>
+<li>用像是集成方法 2 功能的軟體，缺點是要打指令，優點是他可以自動排程更新憑證，DNS 驗證網域使用域名解析商提供的 API 來添加 TXT 達成驗證，像是 acme.sh</li>
+</ol>
+<h1 id="lets-encrypt">Let&rsquo;s Encrypt</h1>
+<p>Let’s Encrypt ，沒有開放直接從網站輸入私密金鑰、CSR 檔案來取得憑證的介面
+Let&rsquo;s Encrypt 免費 SSL 憑證只有三個月的有效期
+所以看來只能採第三種方法</p>
+<h1 id="acmesh">acme.sh</h1>
+<p>ACME(Automated Certificate Management Environment)自動證書管理環境
+官網也有推別款，但我找到的<a href="https://magiclen.org/simple-ssl-acme-cloudflare/">如何在 Linux 作業系統上免費申請 Let&rsquo;s Encrypt 的 SSL 憑證，並實現自動化申請和套用</a>介紹的是這個</p>
+<h1 id="安裝-acmesh">安裝 acme.sh</h1>
+<p>接下來記錄安裝過程，因為有遇到困難，所以才有這篇 XD
+跟著<a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E">說明書</a>做</p>
+<p>在做這些動作之前，請切到 root，不然會有權限問題，也不要加 sudo 直接做，路徑會不在 root 底下，而且作者這樣說</p>
+<blockquote>
+<p><a href="https://github.com/Neilpang/acme.sh/issues/2124">do not run as sudo</a></p>
+</blockquote>
+<pre><code>sudo su
+下載
+curl https://get.acme.sh | sh
+更新
+acme.sh --upgrade --auto-upgrade
+出現問題**acme.sh: command not found**
+解決辦法:https://github.com/Neilpang/acme.sh/issues/2149
+source  ~/.bashrc
+
+acme.sh --issue --nginx -d dkchange.nctu.me
+
+手動更新，因為我的DNS是小家nctu.me沒人作API
+acme.sh --issue -d dkchange.nctu.me --dns --yes-I-know-dns-manual-mode-enough-go-ahead-please
+然後憑證就出來了
+
+
+下次手動更新的時間，我們給他記起乃
+[Wed Nov  6 11:26:47 UTC 2019] Skip, Next renewal time is: Sun Jan  5 11:05:26 UTC 2020
+[Wed Nov  6 11:26:47 UTC 2019] Add '--force' to force to renew.
+接著下次就醬
+acme.sh --renew -d dkchange.nctu.me  --yes-I-know-dns-manual-mode-enough-go-ahead-please
+</code></pre>
+<h1 id="nginx-設定">nginx 設定</h1>
+<p>先把這兩個檔案搬到讀的到的目錄</p>
+<pre><code>cp fullchain.cer /home/fullchain.cer
+cp dkchange.nctu.me.key /home/dkchange.nctu.me.key
+</code></pre>
+<p>接著設定 nginx 設定檔</p>
+<pre><code>server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    ssl_certificate /home/fullchain.cer;
+    ssl_certificate_key /home/dkchange.nctu.me.key;
+}
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name dkchange.nctu.me;
+        return  301 https://$host$request_uri;
+}
+</code></pre>
+<p>服務重啟</p>
+<pre><code>sudo systemctl restart nginx
+</code></pre>
+<p>AWS 記得開 443port</p>
+<p>Let’s Encrypt 也支援萬用 SSL 憑證，不限個數的子網域 但是<a href="https://github.com/Neilpang/acme.sh/issues/1433#issuecomment-377242752">只支援 dns 驗證</a></p>
+<pre><code>補憑證時下面這行因為通配符的子網域驗證只適用於-dns 伺服器-nginx 和檔案位置-w都不能用
+acme.sh --issue -w /var/www/html/lighthouse-tutorial/public/  -d *.dkchange.nctu.me
+
+所以nginx的conf檔也要改
+server_name dkchange.nctu.me *.dkchange.nctu.me;
+改成寫死的admin 驗證方式也要改，因為有設定301重導和https了，所以走模擬server請求的nginx結果會不同
+acme.sh --issue -w /var/www/html/lighthouse-tutorial/public/  -d admin.dkchange.nctu.me
+server_name dkchange.nctu.me admin.dkchange.nctu.me;
+</code></pre>
+<p>哪天有閒錢再來買 godaddy 之類的，像<a href="https://footmark.info/linux/centos/acmesh-godaddy-letsencrypt-wildcard/">這篇</a>和https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert#3-multiple-domains-san-mode&ndash;hybrid-mode</p>
+<h1 id="相關副檔名">相關副檔名</h1>
+<p>實在很令人混亂的東西，有時後叫 pem，有時後叫 crt，也有 cert 等等，結論就是我把 crt / key / ca 塞入的就叫 pem</p>
+<p><a href="https://ssorc.tw/7142/openssl-%E6%8C%87%E4%BB%A4-command-line-%E8%BD%89%E6%AA%94-pem-der-p7b-pfx-cer/">https://ssorc.tw/7142/openssl-%E6%8C%87%E4%BB%A4-command-line-%E8%BD%89%E6%AA%94-pem-der-p7b-pfx-cer/</a></p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/https/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Https</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

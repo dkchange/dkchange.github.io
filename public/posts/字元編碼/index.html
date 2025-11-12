@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>字元編碼 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+http://vito-note.blogspot.com/2012/01/blog-post_86.html
+http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
+平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。
+每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950
+Unicode
+但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準
+它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。
+16 進制
+因為用二進制來對應所有的字實在太長
+汉字严的 Unicode 是十六进制数 4E25
+转换成二进制数足足有 15 位（100111000100101）
+所以 unicode 採用 16 進制來做對應
+Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。
+你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母
+大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間
+\u4e2d\u6587 這是中文兩個字鎖對應的 unicode
+Unicode 衍生出的編碼方式
+https://www.branah.com/unicode-converter
+UTF-8
+UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号
+\xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="字元編碼">
+  <meta property="og:description" content="前言 http://vito-note.blogspot.com/2012/01/blog-post_86.html http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html 平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。 每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950
+Unicode 但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準 它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。
+16 進制 因為用二進制來對應所有的字實在太長 汉字严的 Unicode 是十六进制数 4E25 转换成二进制数足足有 15 位（100111000100101） 所以 unicode 採用 16 進制來做對應 Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。 你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母 大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間 \u4e2d\u6587 這是中文兩個字鎖對應的 unicode
+Unicode 衍生出的編碼方式 https://www.branah.com/unicode-converter
+UTF-8 UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号 \xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-21T14:47:06+00:00">
+    <meta property="article:modified_time" content="2020-05-21T14:47:06+00:00">
+
+  <meta itemprop="name" content="字元編碼">
+  <meta itemprop="description" content="前言 http://vito-note.blogspot.com/2012/01/blog-post_86.html http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html 平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。 每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950
+Unicode 但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準 它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。
+16 進制 因為用二進制來對應所有的字實在太長 汉字严的 Unicode 是十六进制数 4E25 转换成二进制数足足有 15 位（100111000100101） 所以 unicode 採用 16 進制來做對應 Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。 你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母 大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間 \u4e2d\u6587 這是中文兩個字鎖對應的 unicode
+Unicode 衍生出的編碼方式 https://www.branah.com/unicode-converter
+UTF-8 UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号 \xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8">
+  <meta itemprop="datePublished" content="2020-05-21T14:47:06+00:00">
+  <meta itemprop="dateModified" content="2020-05-21T14:47:06+00:00">
+  <meta itemprop="wordCount" content="160">
+  <meta itemprop="keywords" content="任何路線">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="字元編碼">
+  <meta name="twitter:description" content="前言 http://vito-note.blogspot.com/2012/01/blog-post_86.html http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html 平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。 每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950
+Unicode 但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準 它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。
+16 進制 因為用二進制來對應所有的字實在太長 汉字严的 Unicode 是十六进制数 4E25 转换成二进制数足足有 15 位（100111000100101） 所以 unicode 採用 16 進制來做對應 Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。 你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母 大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間 \u4e2d\u6587 這是中文兩個字鎖對應的 unicode
+Unicode 衍生出的編碼方式 https://www.branah.com/unicode-converter
+UTF-8 UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号 \xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">字元編碼</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-05-21T14:47:06Z">May 21, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p><a href="http://vito-note.blogspot.com/2012/01/blog-post_86.html">http://vito-note.blogspot.com/2012/01/blog-post_86.html</a>
+<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a>
+平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。
+每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950</p>
+<h1 id="unicode">Unicode</h1>
+<p>但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準
+它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。</p>
+<h2 id="16-進制">16 進制</h2>
+<p>因為用二進制來對應所有的字實在太長
+汉字严的 Unicode 是十六进制数 4E25
+转换成二进制数足足有 15 位（100111000100101）
+所以 unicode 採用 16 進制來做對應
+Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。
+你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母
+大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間
+\u4e2d\u6587 這是中文兩個字鎖對應的 unicode</p>
+<h2 id="unicode-衍生出的編碼方式">Unicode 衍生出的編碼方式</h2>
+<p><a href="https://www.branah.com/unicode-converter">https://www.branah.com/unicode-converter</a></p>
+<h3 id="utf-8">UTF-8</h3>
+<p>UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号
+\xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8</p>
+<h3 id="utf-16">UTF-16</h3>
+<p>UTF-16 是 Unicode 的实现方式之一，字符用两个字节或四个字节表示
+\u{4e2d}\u{6587} 這是中文兩個字鎖對應的 UTF-16</p>
+<h3 id="utf-32">UTF-32</h3>
+<p>UTF-32 是 Unicode 的实现方式之一，字符用四个字节表示</p>
+<p>那由以上來看，utf-8 要筆其他兩種方式都省空間
+U+00004e2dU+00006587 這是中文兩個字鎖對應的 UTF-16</p>
+<h1 id="資料庫字元編碼相關">資料庫字元編碼相關</h1>
+<h2 id="whats-the-difference-between-utf8_general_ci-and-utf8_unicode_ci">What&rsquo;s the difference between utf8_general_ci and utf8_unicode_ci?</h2>
+<p>這個連結出現在 yii 官方 migration 的檔案裡面
+<a href="https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci">https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci</a></p>
+<h1 id="相關技巧">相關技巧</h1>
+<h2 id="16-進位的轉換">16 進位的轉換</h2>
+<p>假設你有一個 string str=&ldquo;12345&rdquo;
+你想要加一個字元 enter 他的 16 進位編碼是 0A
+&ldquo;x31\x32\x33\x34\x35\x0A&quot;貼在瀏覽器會變成</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JS" data-lang="JS"><span style="display:flex;"><span><span style="color:#e6db74">&#34;x312345
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h2 id="查看">查看</h2>
+<p>$ od -xc &ldquo;filename&rdquo; | head</p>
+<p>a ：利用預設的字元來輸出；
+c ：使用 ASCII 字元來輸出
+d[size] ：利用十進位(decimal)來輸出資料，每個整數佔用 size bytes ；
+f[size] ：利用浮點數值(floating)來輸出資料，每個數佔用 size bytes ；
+o[size] ：利用八進位(octal)來輸出資料，每個整數佔用 size bytes ；
+x[size] ：利用十六進位(hexadecimal)來輸出資料，每個整數佔用 size bytes ；</p>
+<h2 id="亂碼轉換">亂碼轉換</h2>
+<p>在UTF8還沒普及之前，大家都習慣有各自語言的編碼
+例如big5和gbk
+所以當你切換編碼時，編輯器在顯示時就會出現亂碼，此時你又按下了儲存鍵
+這樣原本的gbk編碼的內容就會流失，要還原可能只能還原一部份了&hellip;.</p>
+<p><a href="https://www.modb.pro/db/106751">GBK与UTF-8互转乱码详解</a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用npm | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="安裝nodejs
+windows環境去官網下載安裝檔安裝
+node -v
+
+如果成功看到版本號就是安裝成功
+nodejs 版本問題
+建議安裝nvm，windows就裝nvm-windows
+指令都一樣，只是windows記得在CMD底下運行
+情境:
+What&rsquo;s your nodejs version? jsdom requires node &gt;= 10.
+node -e &ldquo;try {} catch {}&rdquo;
+node -v
+npm常用指令
+初始化一個專案
+npm init &quot;專案名&quot;
+
+然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案
+npm install -g &quot;package的名字&quot;
+
+上面-g代表global全局安裝，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具
+npm install &quot;package的名字&quot;
+
+這就直接安裝在專案底下，本地安裝會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的根目錄就是在這
+npm install --save-dev &quot;package的名字&quot; 
+
+一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，本地安裝會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝
+https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program
+npm uninstall --save webpack
+
+加上&ndash;save移除時才會順便更新package.json檔
+npm update &quot;package的名字&quot;
+
+更新某package
+指定版本號
+nodejs採用semver版本號規範，這版本號的命名規則再去看看
+
+npm install webpack@^1.*
+
+符號號代表什麼再上網查語意吧">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8npm/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8npm/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用npm">
+  <meta property="og:description" content="安裝nodejs windows環境去官網下載安裝檔安裝
+node -v如果成功看到版本號就是安裝成功
+nodejs 版本問題 建議安裝nvm，windows就裝nvm-windows 指令都一樣，只是windows記得在CMD底下運行 情境: What’s your nodejs version? jsdom requires node &gt;= 10. node -e “try {} catch {}” node -v
+npm常用指令 初始化一個專案
+npm init &#34;專案名&#34;然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案
+npm install -g &#34;package的名字&#34;上面-g代表global全局安裝，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具
+npm install &#34;package的名字&#34;這就直接安裝在專案底下，本地安裝會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的根目錄就是在這
+npm install --save-dev &#34;package的名字&#34; 一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，本地安裝會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝 https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program
+npm uninstall --save webpack加上–save移除時才會順便更新package.json檔
+npm update &#34;package的名字&#34;更新某package
+指定版本號 nodejs採用semver版本號規範，這版本號的命名規則再去看看npm install webpack@^1.*符號號代表什麼再上網查語意吧">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-10-31T23:53:26+00:00">
+    <meta property="article:modified_time" content="2019-10-31T23:53:26+00:00">
+    <meta property="article:tag" content="Npm">
+
+  <meta itemprop="name" content="使用npm">
+  <meta itemprop="description" content="安裝nodejs windows環境去官網下載安裝檔安裝
+node -v如果成功看到版本號就是安裝成功
+nodejs 版本問題 建議安裝nvm，windows就裝nvm-windows 指令都一樣，只是windows記得在CMD底下運行 情境: What’s your nodejs version? jsdom requires node &gt;= 10. node -e “try {} catch {}” node -v
+npm常用指令 初始化一個專案
+npm init &#34;專案名&#34;然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案
+npm install -g &#34;package的名字&#34;上面-g代表global全局安裝，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具
+npm install &#34;package的名字&#34;這就直接安裝在專案底下，本地安裝會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的根目錄就是在這
+npm install --save-dev &#34;package的名字&#34; 一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，本地安裝會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝 https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program
+npm uninstall --save webpack加上–save移除時才會順便更新package.json檔
+npm update &#34;package的名字&#34;更新某package
+指定版本號 nodejs採用semver版本號規範，這版本號的命名規則再去看看npm install webpack@^1.*符號號代表什麼再上網查語意吧">
+  <meta itemprop="datePublished" content="2019-10-31T23:53:26+00:00">
+  <meta itemprop="dateModified" content="2019-10-31T23:53:26+00:00">
+  <meta itemprop="wordCount" content="131">
+  <meta itemprop="keywords" content="Npm">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用npm">
+  <meta name="twitter:description" content="安裝nodejs windows環境去官網下載安裝檔安裝
+node -v如果成功看到版本號就是安裝成功
+nodejs 版本問題 建議安裝nvm，windows就裝nvm-windows 指令都一樣，只是windows記得在CMD底下運行 情境: What’s your nodejs version? jsdom requires node &gt;= 10. node -e “try {} catch {}” node -v
+npm常用指令 初始化一個專案
+npm init &#34;專案名&#34;然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案
+npm install -g &#34;package的名字&#34;上面-g代表global全局安裝，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具
+npm install &#34;package的名字&#34;這就直接安裝在專案底下，本地安裝會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的根目錄就是在這
+npm install --save-dev &#34;package的名字&#34; 一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，本地安裝會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝 https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program
+npm uninstall --save webpack加上–save移除時才會順便更新package.json檔
+npm update &#34;package的名字&#34;更新某package
+指定版本號 nodejs採用semver版本號規範，這版本號的命名規則再去看看npm install webpack@^1.*符號號代表什麼再上網查語意吧">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用npm</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-10-31T23:53:26Z">October 31, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="安裝nodejs">安裝nodejs</h1>
+<p>windows環境去官網下載安裝檔安裝</p>
+<pre><code>node -v
+</code></pre>
+<p>如果成功看到版本號就是安裝成功</p>
+<h1 id="nodejs-版本問題">nodejs 版本問題</h1>
+<p>建議安裝nvm，windows就裝nvm-windows
+指令都一樣，只是windows記得在CMD底下運行
+情境:
+What&rsquo;s your nodejs version? jsdom requires node &gt;= 10.
+node -e &ldquo;try {} catch {}&rdquo;
+node -v</p>
+<h1 id="npm常用指令">npm常用指令</h1>
+<p>初始化一個專案</p>
+<pre><code>npm init &quot;專案名&quot;
+</code></pre>
+<p>然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案</p>
+<pre><code>npm install -g &quot;package的名字&quot;
+</code></pre>
+<p>上面-g代表global<strong>全局安裝</strong>，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具</p>
+<pre><code>npm install &quot;package的名字&quot;
+</code></pre>
+<p>這就直接安裝在專案底下，<strong>本地安裝</strong>會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的<strong>根目錄</strong>就是在這</p>
+<pre><code>npm install --save-dev &quot;package的名字&quot; 
+</code></pre>
+<p>一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，<strong>本地安裝</strong>會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝
+<a href="https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program">https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program</a></p>
+<pre><code>npm uninstall --save webpack
+</code></pre>
+<p>加上&ndash;save移除時才會順便更新package.json檔</p>
+<pre><code>npm update &quot;package的名字&quot;
+</code></pre>
+<p>更新某package</p>
+<h1 id="指定版本號">指定版本號</h1>
+<pre><code>nodejs採用semver版本號規範，這版本號的命名規則再去看看
+
+npm install webpack@^1.*
+</code></pre>
+<p>符號號代表什麼再上網查語意吧</p>
+<h1 id="npm-run">npm run</h1>
+<p>在package.json檔裡面有個屬性叫作scripts，裡面可以對這個專案自訂指令，簡單的說就是讓你把一長串系統指令讓你取個別名，不用打那長串系統指令
+<code>寫指令時記得要考慮使用者的系統環境，linux和windows命令不一樣</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;clean&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;rm -r dist &amp;&amp; mkdir dist&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>像上面這樣，使用者要清空dist(通常這是發佈到生產環境的資料夾)資料夾時，只要在命令行下npm run clean</p>
+<h1 id="檢查">檢查</h1>
+<pre><code>npm list --depth=0
+列出第一層的包，有依賴錯誤顯示出來
+
+情境:
+npm ERR! peer dep missing: canvas@^2.5.0, required by jsdom@15.2.1
+Just upgrade your npm version to the latest.
+</code></pre>
+<p>canvas is an optional peer dependency of jsdom and npm has supported this feature since 6.11.
+npm install npm@latest -g</p>
+<pre><code>npm install 
+npm list --depth=0
+重裝後搞定
+</code></pre>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/npm/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Npm</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TravisCI on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/travisci/</link>
+    <description>Recent content in TravisCI on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jan 2020 14:11:20 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/travisci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Drone</title>
+      <link>http://localhost:1313/posts/%E4%BD%BF%E7%94%A8drone/</link>
+      <pubDate>Mon, 20 Jan 2020 14:11:20 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E4%BD%BF%E7%94%A8drone/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;對於現代化的開發來說，你想要達到的自動化是什麼？最好是我 code 提交上去之後，一切都成功的佈署好，中間的過程有&#xA;代碼提交&#xA;代碼測試&#xA;代碼審核&#xA;代碼合併&#xA;代碼佈署&#xA;環境建制&#xA;代碼編譯&lt;/p&gt;&#xA;&lt;p&gt;那這中間的過程，如果沒有導入 ci\cd 我們原本是怎麼做的？&#xA;git 提交&#xA;ftp 手動上傳 10 台？&#xA;代碼測試&#xA;每一台環境手動重新安裝？&#xA;在不同環境下不同指令編譯&#xA;寫許多腳本來環境安裝&lt;/p&gt;&#xA;&lt;p&gt;太多名詞在網路上飛， 基於&lt;strong&gt;沒用過至少也要聽過&lt;/strong&gt;，為了跟得上時代，有些東西還是免不了，這篇整理自&#xA;&lt;a href=&#34;https://ithelp.ithome.com.tw/users/20120491/ironman/2538&#34;&gt;就是「懶」才更需要重視 DevOps&lt;/a&gt;&#xA;&lt;a href=&#34;https://ithelp.ithome.com.tw/users/20107551/ironman/1906&#34;&gt;從零開始建立自動化發佈的流水線&lt;/a&gt;&#xA;&lt;a href=&#34;https://medium.com/asiayo-engineering/%E7%94%A8-drone-%E6%89%93%E9%80%A0-ci-cd-flow-36b9d14c7620&#34;&gt;用 Drone 打造 CI/CD flow&lt;/a&gt;&#xA;的讀後感心得，特別推 &lt;strong&gt;從零開始建立自動化發佈的流水線&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;play-with-docker&#34;&gt;play with docker&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://labs.play-with-docker.com/&#34;&gt;https://labs.play-with-docker.com/&lt;/a&gt;&#xA;可以免費玩 docker 4hr 的服務&lt;/p&gt;&#xA;&lt;h1 id=&#34;何謂-devops&#34;&gt;何謂 DevOps&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;開發&lt;/strong&gt; 與 &lt;strong&gt;維運&lt;/strong&gt; 融會貫通後的一種技術能力體現&#xA;只是，時間終究有限，需要 「自動化」 協助「DevOps」人員&#xA;是現代敏捷開發所秉持的精神&lt;/p&gt;&#xA;&lt;h1 id=&#34;版本控制系統-version-control-system-vcs&#34;&gt;版本控制系統( Version Control System, VCS)&lt;/h1&gt;&#xA;&lt;p&gt;大致上分為兩種類型，集中式與分散式&#xA;代表案例：&#xA;Subversion 就是集中式版本控制系統&#xA;&lt;strong&gt;Git&lt;/strong&gt;、Mercurial 則是分散式版本控制系統。&lt;/p&gt;&#xA;&lt;p&gt;品牌認識:GitHub、BitBucket、Azure DevOps、GitLab&lt;/p&gt;&#xA;&lt;h1 id=&#34;git-開發流程工作流程&#34;&gt;git 開發流程（工作流程）&lt;/h1&gt;&#xA;&lt;p&gt;團隊合作如何避免衝突、覆蓋，分支如何合併等等的工作流程。&#xA;團隊間可以自行協調出工作流程或是根據知名的規範走&#xA;規範認識:git flow、Github flow、Gitlab flow&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

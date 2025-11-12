@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/categories/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/categories/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/categories/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/categories/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Categories">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Categories">
+  <meta itemprop="datePublished" content="2020-05-21T14:47:06+00:00">
+  <meta itemprop="dateModified" content="2020-05-21T14:47:06+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Categories">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Categories
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+    
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="ph4">
+      
+        <h2 class="f1">
+          <a href="/categories/%E4%BB%BB%E4%BD%95%E8%B7%AF%E7%B7%9A/" class="link blue hover-black">
+            Category: 任何路線
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/" class="link black dim">
+        字元編碼
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p><a href="http://vito-note.blogspot.com/2012/01/blog-post_86.html">http://vito-note.blogspot.com/2012/01/blog-post_86.html</a>
+<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a>
+平常在 coding 的我們，最常接觸的東西，就是打字啦，每一種編碼標準都是為了轉換 byte value 與 character，使用不同的編碼方式，同一个二进制数字可以被解释成不同的符號。
+每一種特定的語言，都存在一種或數種的字集碼，每一種字集碼就是一個代碼頁 ( code page )。例如：big5 的 code page = 950</p>
+<h1 id="unicode">Unicode</h1>
+<p>但卻無法在同一個文件裏面同時支援多個語系。 Unicode 是為了解決傳統的字元編碼方案的侷限所產生的一項業界標準
+它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。</p>
+<h2 id="16-進制">16 進制</h2>
+<p>因為用二進制來對應所有的字實在太長
+汉字严的 Unicode 是十六进制数 4E25
+转换成二进制数足足有 15 位（100111000100101）
+所以 unicode 採用 16 進制來做對應
+Unicode 当然是一个很大的集合，现在的规模可以容纳 100 多万个符号。
+你覺得字元要用多少 bit 才夠，如何有辦法對應所有的語言的字母
+大概 2 的 21 次方就可以容納 1999999 個字，也就是 2bytes 到 3bytes 之間
+\u4e2d\u6587 這是中文兩個字鎖對應的 unicode</p>
+<h2 id="unicode-衍生出的編碼方式">Unicode 衍生出的編碼方式</h2>
+<p><a href="https://www.branah.com/unicode-converter">https://www.branah.com/unicode-converter</a></p>
+<h3 id="utf-8">UTF-8</h3>
+<p>UTF-8 是 Unicode 的实现方式之一，最大的一个特点，就是它是一种变长的编码方式。它可以使用 1~4 个字节表示一个符号
+\xE4\xB8\xAD\xE6\x96\x87 這是中文兩個字鎖對應的 UTF-8</p>
+    </div>
+    <a href="/posts/%E5%AD%97%E5%85%83%E7%B7%A8%E7%A2%BC/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="link black dim">
+        資料結構與演算法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>這筆記為開放式課程筆記 目的在補足大學時代的不認真
+資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢
+找出最有效率的演算法
+system life cycle</p>
+<ul>
+<li>需求</li>
+<li>分析</li>
+<li>設計</li>
+<li>細分寫 CODE</li>
+<li>驗證</li>
+</ul>
+<h1 id="概述">概述</h1>
+<ul>
+<li>data abstraction</li>
+<li>algorithm specification
+資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？
+演算法就是解決問題的方法，跟你是哪一種語言沒有關係</li>
+</ul>
+<h1 id="最簡單的演算法-sort">最簡單的演算法 sort</h1>
+<ul>
+<li>
+<p>selection sort
+每一次從一堆數字取最大的出來 放在第一個位置&hellip;第二個位置
+那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的</p>
+</li>
+<li>
+<p>bubble sort</p>
+</li>
+<li>
+<p>quick sort</p>
+</li>
+</ul>
+<h1 id="以數字為例作搜索-binary-search">以數字為例作搜索 binary search</h1>
+<p>和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了</p>
+<h1 id="遞迴演算法">遞迴演算法</h1>
+<ul>
+<li>n 階層</li>
+<li>乘法</li>
+</ul>
+<h1 id="作業">作業</h1>
+<ul>
+<li>試著用 recursive 做 abc 排列組合</li>
+<li>試著用 for 做 abc 排列組合</li>
+</ul>
+<h1 id="performance-evaluation">performance evaluation</h1>
+<ul>
+<li>無關機器的評估</li>
+<li>有機器的評估</li>
+</ul>
+<h1 id="效能分析">效能分析</h1>
+<p>這邊蠻重視數學的
+log？ n 次方程式？</p>
+<ul>
+<li>
+<p>時間複雜度
+編譯時間+input 所影響的時間
+一般來講就是程式預計要走幾步</p>
+<ul>
+<li>大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限；</li>
+<li>大寫的希臘字母 Ω (Omega)函數，代表下限；</li>
+<li>大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限
+那我們通常用的是 O
+f(n)&lt;=cg(n)</li>
+</ul>
+</li>
+<li>
+<p>空間複雜度(佔用多少記憶體)
+code 的大小+input 的量所影響的空間</p>
+    </div>
+    <a href="/posts/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E8%88%87%E8%A8%AD%E5%AE%9A/" class="link black dim">
+        好用工具,插件與設定
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>太多好用的插件，當你換工作或電腦壞掉時會後悔沒有把名字記下來</p>
+<h1 id="tool">tool</h1>
+<h1 id="ngrok">ngrok</h1>
+<p><a href="https://blog.techbridge.cc/2018/05/24/ngrok/">https://blog.techbridge.cc/2018/05/24/ngrok/</a>
+平常要測試東西不可能無端生出一個 domain 給你，這個時候你就需要
+一個可以把你 localhost 對應到 https public domain 的服務</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>./ngrok http 10000
+</span></span><span style="display:flex;"><span>或是指定virtual host
+</span></span><span style="display:flex;"><span>./ngrok http -host-header=rewrite home.dev:80
+</span></span></code></pre></div><h1 id="mremoteng">mRemoteNG</h1>
+<p>開源的集中式管理軟體</p>
+<h1 id="hunting-dog">Hunting Dog</h1>
+<p>Sql Server Management Studio 上的插件，不然要找一隻 sp 真的有點麻煩</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> o.name, <span style="color:#66d9ef">c</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> syscomments <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> sysobjects o <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">c</span>.id<span style="color:#f92672">=</span>o.id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> (o.xtype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;P&#39;</span>           <span style="color:#75715e">--查SP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">OR</span> o.xtype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;V&#39;</span>)              <span style="color:#75715e">--查View
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">And</span> (o.name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%特定文字%&#39;</span>  <span style="color:#75715e">--查SP或View名稱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">c</span>.text <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%特定文字%&#39;</span>)   <span style="color:#75715e">--查SP或View內含文字
+</span></span></span></code></pre></div><h1 id="how-to-track-the-program">How to track the program?</h1>
+<p>Highly recommend <a href="http://www.rohitab.com">http://www.rohitab.com</a> and <a href="http://www.sandboxie.com">http://www.sandboxie.com</a>. Both utilities are free. Description of more than 10,000 api functions is included in the Api Monitor program by default. For example, you can install hooks for networking functions (I don&rsquo;t remember which ones, see msdn). And as soon as the program sends or receives something to the network, monitor will pause it. Then see what parameters and data are passed to these functions. By the way, all parameters that are passed to the function can be changed in the api monitor</p>
+    </div>
+    <a href="/posts/%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E8%88%87%E8%A8%AD%E5%AE%9A/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8git/" class="link black dim">
+        使用git
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>版本控制在開發過程占很重要的地位，那團隊裡該如何多人協作?整個專案管理的流程應該要怎樣才不會一天到晚衝突，功能互蓋?
+參考：為你自己學 git <a href="https://gitbook.tw/">https://gitbook.tw/</a> 非常推荐，基本上工作需要的东西在<strong>為你自己學 git</strong>都可以找到解答
+<a href="https://zlargon.gitbooks.io/git-tutorial/content/file/ignore.html">https://zlargon.gitbooks.io/git-tutorial/content/file/ignore.html</a>
+<a href="https://zlargon.gitbooks.io/git-tutorial/content/file/recover.html">https://zlargon.gitbooks.io/git-tutorial/content/file/recover.html</a></p>
+<h1 id="約定俗成">約定俗成</h1>
+<p>請儘量不要在已經 Push 出去之後再修改提交，否則可能會造成其它人的困擾
+Git 在計算、產生物件的時候，是根據「檔案的內容」去做計算的，所以光是新增一個目錄，Git 是沒辦法處理它的。慣例上可以放一個名為 “.keep” 或 “.gitkeep” 的空檔案，讓 Git 能「感應」到這個目錄的存在</p>
+<p>切好每一次的功能，有空就提交，但前提示提交的 code 都是可以 work 的，獨立且可正常運作的 code</p>
+<h1 id="免帳密-ssh-key-登入">免帳密 ssh key 登入</h1>
+<p><a href="https://aben20807.blogspot.com/2018/03/1070302-git-push-ssh-key.html">https://aben20807.blogspot.com/2018/03/1070302-git-push-ssh-key.html</a></p>
+<h1 id="git-基本指令">git 基本指令</h1>
+<h2 id="git-init">git init</h2>
+<h2 id="git-status">git status</h2>
+<h2 id="git-add">git add</h2>
+<p>檔案放到暫存區（Staging Area）</p>
+<pre><code>$ git add *.html
+</code></pre>
+<h2 id="git-commit">git commit</h2>
+<p>把暫存區的東西存放到儲存庫（Repository）裡</p>
+<h3 id="使用情境">使用情境</h3>
+<p>能增加新 add 到暫存區的檔案，和修改提交訊息，但只能修改前一次的提交
+$git commit &ndash;amend -m &ldquo;Welcome To Facebook&rdquo;</p>
+<h2 id="git-log">git log</h2>
+<p>只 show 一行資訊和版本路線
+$ git log &ndash;oneline &ndash;graph</p>
+<h3 id="使用情境-1">使用情境</h3>
+<p>找某個人或某些人的 Commit
+<a href="https://gitbook.tw/chapters/using-git/log.html">https://gitbook.tw/chapters/using-git/log.html</a>
+特定檔案的 Commit 紀錄
+$ git log welcome.html
+詳細內容
+$ git log -p welcome.html</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8git/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE/" class="link black dim">
+        授權條款
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>這個年代著作權非常的重要，為了怕侵權，我們至少要懂幾個重要的
+直接上阮神的<a href="http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html">如何选择开源许可证？</a></p>
+<h1 id="參考資訊">參考資訊</h1>
+<p><a href="https://noob.tw/open-source-licenses/">https://noob.tw/open-source-licenses/</a>
+<a href="https://progressbar.tw/posts/61">https://progressbar.tw/posts/61</a>
+<a href="https://blog.csdn.net/qq_42768234/article/details/104193778">https://blog.csdn.net/qq_42768234/article/details/104193778</a></p>
+<h1 id="心得">心得</h1>
+<p>附註一下子自己的理解，
+github 上項目可以選擇的協議有很多，其中</p>
+<ul>
+<li>None / No License
+就是作者完全保留這個源碼的所有權，不允許他人進行複製、分發、使用和修改，這時候就千萬不要去動他，用都不要用</li>
+</ul>
+<p>知名的<strong>開源</strong>條款，可以修改的意思，但都需要<strong>保留著作權訊息</strong></p>
+<ul>
+<li>GPL 最有開源精神，有使用就要開源，要說改了什</li>
+<li>LGPL 沒有修改，只有使用可以不必開源</li>
+<li>Apache 可不必開源，要說改了什</li>
+<li>BSD 可不必開源</li>
+<li>MIT 可不必開源，最自由</li>
+</ul>
+<p>以上都可以修改，但要怎麼改，要不要備註作者名，要不要註明改什？改完之後你的 code 被強迫為何種 license？ 就要看詳細規定</p>
+<p>最佛心的</p>
+<ul>
+<li>The Unlicense
+隨便你用</li>
+</ul>
+    </div>
+    <a href="/posts/%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/%E6%97%A5%E8%A8%98/" class="link blue hover-black">
+            Category: 日記
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E8%9B%8B%E7%B2%92%E6%97%A5%E8%A8%98%E9%87%91%E5%8F%A5/" class="link black dim">
+        蛋粒大兵日記
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>今天在整理抽屜，發現當兵時的日記，紙頁已逐漸得殘破不堪，過了 6 年了吧
+裏頭的語氣還是像中二小鬼一樣，列出幾個覺得有價值的句子就把這不堪的日記扔了吧
+正因為笨所以用功要比別人多，做的要比別人多
+為什麼鳥大便是白色的
+每個人都應該要有努力的目標，為什麼努力，為誰努力，不想成為只會讓人墮落、傷心的人
+你和我可以為這個國家做什麼?沒有人可以預見國家的未來，我們不是可以決定台灣方向的少數人，但是我們是可以改變台灣方向的一群人，你會願意做什麼讓國家往更好的方向走
+我不想信民主自由的台灣，生活會有多痛苦
+再過 100 天就可以擺脫次等公民的身份
+黃榮彥問我說寫日記寫完會看嗎?說不定會吧!日記記錄我當兵的心情起伏、抱怨、思考模式、轉變、領悟、計畫、白日夢、光說不練的事
+軍官要 15 年內當到少校才會有終身俸
+國外漫遊要如何區分電信公司?頻率?電話?
+人容易被情緒左右，收假前沒來由的情緒失落無力，大概是假日費太久，顯得什麼都沒有做
+別再想要簽自願役，會扼殺掉自己的思想和進步空間，請努力往自己想成為的方向邁進
+幫助別人最大的收穫是自己也會得到幫助
+志豪和我都是屬於比較不喜歡叫別人做事的人，然而很多事情都是需要大家的分工，要改要改
+0~99 分的人都有，領一樣的錢做一樣的事是誰會想要認真當兵
+一層幹過一層，你以為他願意嗎?這樣被連帶懲處，軍官覺得被騙，阿兵覺得不甘願，現在還招的到人是因為正規生要簽 10 年，每年也都有人被騙 4 年，快改革吧，總不能每年都這樣騙</p>
+    </div>
+    <a href="/posts/%E8%9B%8B%E7%B2%92%E6%97%A5%E8%A8%98%E9%87%91%E5%8F%A5/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E8%A9%B2%E8%A8%98%E5%8F%96%E7%9A%84%E6%95%99%E8%A8%93/" class="link black dim">
+        該記取的教訓
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>事情是這樣的，當初在買這台$20000筆電的前一台筆電是$13000，買這兩次朋友都翻我白眼，$13000那台只用了2年，因為慢到我受不鳥，所以就換了$20000 這台，一切就平安順利，也用了快兩年了，以前也沒想要開虛擬機，今天想說來玩玩 docker 容器
+結果安裝時遇到問題
+<img src="/images/%E7%89%88%E6%9C%AC%E4%B8%8D%E5%B0%8D.PNG" alt="版本不對">
+沒關係，努力爬完文之後，修改註冊檔，上網找指令終於安裝成功!!
+一執行
+<img src="/images/%E4%B8%8D%E6%94%AF%E6%8F%B4.PNG" alt="不支援">
+乾!!!把時間還來啊
+寫 code 還是有門檻的，下次還是買貴一點吧…</p>
+<p>欄後在 EC2 主機上用 composer 裝東西報錯
+Fatal error: Out of memory (allocated 788537344) (tried to allocate 33554440 bytes) in phar:///usr/local/bin/cmposer/DependencyResolver/RuleSet.php on line 84</p>
+<pre><code>ubuntu@ip-172-31-35-32:/var/www/html/myproject$ free -h
+            total        used        free      shared  buff/cache   available
+Mem:           983M        139M        682M         19M        162M        686M
+Swap:            0B          0B          0B
+</code></pre>
+<p>猜猜我怎解決?</p>
+<blockquote>
+<p>在本機的電腦跑完 composer，vender 再壓縮成一包丟進 AWS 主機
+composer.json
+也丟
+sudo tar -zxvf vendor.tar.gz
+sudo chown -R www-data:www-data vendor
+composer dump-autoload</p>
+    </div>
+    <a href="/posts/%E8%A9%B2%E8%A8%98%E5%8F%96%E7%9A%84%E6%95%99%E8%A8%93/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/package-manager/" class="link blue hover-black">
+            Category: Package Manager
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8npm/" class="link black dim">
+        使用npm
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="安裝nodejs">安裝nodejs</h1>
+<p>windows環境去官網下載安裝檔安裝</p>
+<pre><code>node -v
+</code></pre>
+<p>如果成功看到版本號就是安裝成功</p>
+<h1 id="nodejs-版本問題">nodejs 版本問題</h1>
+<p>建議安裝nvm，windows就裝nvm-windows
+指令都一樣，只是windows記得在CMD底下運行
+情境:
+What&rsquo;s your nodejs version? jsdom requires node &gt;= 10.
+node -e &ldquo;try {} catch {}&rdquo;
+node -v</p>
+<h1 id="npm常用指令">npm常用指令</h1>
+<p>初始化一個專案</p>
+<pre><code>npm init &quot;專案名&quot;
+</code></pre>
+<p>然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案</p>
+<pre><code>npm install -g &quot;package的名字&quot;
+</code></pre>
+<p>上面-g代表global<strong>全局安裝</strong>，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具</p>
+<pre><code>npm install &quot;package的名字&quot;
+</code></pre>
+<p>這就直接安裝在專案底下，<strong>本地安裝</strong>會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的<strong>根目錄</strong>就是在這</p>
+<pre><code>npm install --save-dev &quot;package的名字&quot; 
+</code></pre>
+<p>一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，<strong>本地安裝</strong>會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝
+<a href="https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program">https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program</a></p>
+<pre><code>npm uninstall --save webpack
+</code></pre>
+<p>加上&ndash;save移除時才會順便更新package.json檔</p>
+<pre><code>npm update &quot;package的名字&quot;
+</code></pre>
+<p>更新某package</p>
+<h1 id="指定版本號">指定版本號</h1>
+<pre><code>nodejs採用semver版本號規範，這版本號的命名規則再去看看
+
+npm install webpack@^1.*
+</code></pre>
+<p>符號號代表什麼再上網查語意吧</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8npm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/" class="link blue hover-black">
+            Category: 前端路線
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8npm/" class="link black dim">
+        使用npm
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="安裝nodejs">安裝nodejs</h1>
+<p>windows環境去官網下載安裝檔安裝</p>
+<pre><code>node -v
+</code></pre>
+<p>如果成功看到版本號就是安裝成功</p>
+<h1 id="nodejs-版本問題">nodejs 版本問題</h1>
+<p>建議安裝nvm，windows就裝nvm-windows
+指令都一樣，只是windows記得在CMD底下運行
+情境:
+What&rsquo;s your nodejs version? jsdom requires node &gt;= 10.
+node -e &ldquo;try {} catch {}&rdquo;
+node -v</p>
+<h1 id="npm常用指令">npm常用指令</h1>
+<p>初始化一個專案</p>
+<pre><code>npm init &quot;專案名&quot;
+</code></pre>
+<p>然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案</p>
+<pre><code>npm install -g &quot;package的名字&quot;
+</code></pre>
+<p>上面-g代表global<strong>全局安裝</strong>，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具</p>
+<pre><code>npm install &quot;package的名字&quot;
+</code></pre>
+<p>這就直接安裝在專案底下，<strong>本地安裝</strong>會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的<strong>根目錄</strong>就是在這</p>
+<pre><code>npm install --save-dev &quot;package的名字&quot; 
+</code></pre>
+<p>一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，<strong>本地安裝</strong>會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝
+<a href="https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program">https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program</a></p>
+<pre><code>npm uninstall --save webpack
+</code></pre>
+<p>加上&ndash;save移除時才會順便更新package.json檔</p>
+<pre><code>npm update &quot;package的名字&quot;
+</code></pre>
+<p>更新某package</p>
+<h1 id="指定版本號">指定版本號</h1>
+<pre><code>nodejs採用semver版本號規範，這版本號的命名規則再去看看
+
+npm install webpack@^1.*
+</code></pre>
+<p>符號號代表什麼再上網查語意吧</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8npm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="link black dim">
+        安裝webpack4
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學</p>
+<h1 id="用npm安裝webpack">用npm安裝webpack</h1>
+<p>使用nodejs內建的npm來安裝</p>
+<pre><code>npm install -g webpack
+npm install -g webpack-cli
+</code></pre>
+<p>以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷
+接著</p>
+<pre><code>webpack -v
+</code></pre>
+<p>一樣如果看到版本號就是安裝成功</p>
+<h1 id="運行webpack">運行webpack</h1>
+<p>預設編譯src目錄底下的文件
+mkdir src
+建index.js檔，在裏面寫js
+webpack
+不填參數預設生產環境，編譯出來的code會看不懂，壓縮過
+成功運行
+webpack &ndash;mode=development
+開發環境的main.js就可讀了</p>
+<h1 id="webpack配置文件">webpack配置文件</h1>
+<p>因為不想指令后面一堆參數，所以配置文件是必需的
+默認<code>webpack.config.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;main.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="npm-run指令">npm run指令</h1>
+<p>專案需要客制化指令給使用者
+package.json</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;script&#39;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;dev&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;npx webpack&#39;</span> <span style="color:#75715e">//可以不用加--development這個參數了^^
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找
+</span></span></span></code></pre></div><p>使用者執行
+npm run dev
+編譯成功</p>
+<h1 id="結合html文件">結合html文件</h1>
+<p>創建index.html</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;../dist/main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h1 id="結合多入口html文件">結合多入口html文件</h1>
+<p>一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">hello</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/hello.js&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name].js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="loader">loader</h1>
+<h2 id="前言-1">前言</h2>
+<p>webpack和各大工具合作的包叫作loader</p>
+    </div>
+    <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/" class="link black dim">
+        創建github網誌
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="使用工具">使用工具</h1>
+<p>網路上有三套靜態網頁的產生工具
+Jekyll、Hexo、Hugo
+那我選擇<strong>Hexo</strong>是因為，用 nodejs 感覺比較不會陌生</p>
+<h1 id="使用主題">使用主題</h1>
+<p>Hexo 有不少免費主題，我喜歡 NexT</p>
+<h1 id="附加價值">附加價值</h1>
+<p>希望能讓自己熟悉 markdown</p>
+<h1 id="注意">注意</h1>
+<p><a href="https://blog.moli.rocks/2018/07/11/how-to-set-custom-domain-and-cloudflare-ssl-to-github-pages/">如何將 GitHub Pages 套上個人網域</a>
+如果是專案頁面請發佈到專案的 gh-page 分支
+如果是個人或公司頁面請發佈到 XXXXX.github.io 底下的 master</p>
+<h1 id="gitbook">gitbook</h1>
+<p><a href="https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github">https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github</a></p>
+<h1 id="markdown">markdown</h1>
+<p><a href="https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown">https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown</a></p>
+<h1 id="markdown-技巧-diff">markdown 技巧 diff</h1>
+<p><a href="https://youtu.be/yzeVMecydCE?t=1485">https://youtu.be/yzeVMecydCE?t=1485</a></p>
+    </div>
+    <a href="/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/%E5%AD%B8%E7%BF%92%E6%AD%B7%E7%A8%8B/" class="link blue hover-black">
+            Category: 學習歷程
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/web-%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E7%9A%84%E8%B7%AF%E7%B7%9A%E5%9C%96/" class="link black dim">
+        Web 開發人員的路線圖
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>開始寫文章記下自己的學習歷程，不知道能不能養成習慣。</p>
+<h1 id="目標">目標</h1>
+<p>根據<a href="https://github.com/goodjack/developer-roadmap-chinese">2019 年成為 Web 開發人員的路線圖</a>來做標籤，也讓自己有個目標</p>
+<h1 id="css-發展路線">css 發展路線</h1>
+<p><a href="https://2019.stateofcss.com/tw/">https://2019.stateofcss.com/tw/</a></p>
+<h1 id="年薪百萬元以下就不要寫技術文章啦">年薪百萬元以下就不要寫技術文章啦</h1>
+<p>基於這個理念，這個 blog 一直都是自己的筆記，有朝一日如果能夠年薪達標，才代表自己有夠格寫文章</p>
+<h1 id="資深工程師">資深工程師</h1>
+<p><a href="https://jaceju.net/be-a-senior-engineer/">如何才有資格稱為資深工程師</a></p>
+<h1 id="n年經驗">N年經驗</h1>
+<p>程式語法經驗(e.g.,JS ,PHP)
+資料庫存儲概念(e.g.,sp,view,split table)
+系統設計經驗(e.g.,session的去留)
+演算法
+工具使用的經驗(e.g.,docker)
+電腦的基礎知識，不會隨著換語言而變，那，我怕換語言的原因是為了什麼?
+語言的生態吧，熟悉的框架(1個框架3個月熟悉的時間)，熟悉的工具，熟悉的語法，光是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">//php 和JS的表現就有不同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span>([]){}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(<span style="color:#e6db74">&#39;&#39;</span>){}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//php 的全域變數
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$__GET;
+</span></span></code></pre></div><p>但這都是害怕改變的藉口，仔細看除了語法經驗，大致上的概念是不變的</p>
+    </div>
+    <a href="/posts/web-%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E7%9A%84%E8%B7%AF%E7%B7%9A%E5%9C%96/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/bulid-tool/" class="link blue hover-black">
+            Category: Bulid Tool
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="link black dim">
+        安裝webpack4
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學</p>
+<h1 id="用npm安裝webpack">用npm安裝webpack</h1>
+<p>使用nodejs內建的npm來安裝</p>
+<pre><code>npm install -g webpack
+npm install -g webpack-cli
+</code></pre>
+<p>以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷
+接著</p>
+<pre><code>webpack -v
+</code></pre>
+<p>一樣如果看到版本號就是安裝成功</p>
+<h1 id="運行webpack">運行webpack</h1>
+<p>預設編譯src目錄底下的文件
+mkdir src
+建index.js檔，在裏面寫js
+webpack
+不填參數預設生產環境，編譯出來的code會看不懂，壓縮過
+成功運行
+webpack &ndash;mode=development
+開發環境的main.js就可讀了</p>
+<h1 id="webpack配置文件">webpack配置文件</h1>
+<p>因為不想指令后面一堆參數，所以配置文件是必需的
+默認<code>webpack.config.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;main.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="npm-run指令">npm run指令</h1>
+<p>專案需要客制化指令給使用者
+package.json</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;script&#39;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;dev&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;npx webpack&#39;</span> <span style="color:#75715e">//可以不用加--development這個參數了^^
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找
+</span></span></span></code></pre></div><p>使用者執行
+npm run dev
+編譯成功</p>
+<h1 id="結合html文件">結合html文件</h1>
+<p>創建index.html</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;../dist/main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h1 id="結合多入口html文件">結合多入口html文件</h1>
+<p>一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">hello</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/hello.js&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name].js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="loader">loader</h1>
+<h2 id="前言-1">前言</h2>
+<p>webpack和各大工具合作的包叫作loader</p>
+    </div>
+    <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/module-bundler/" class="link blue hover-black">
+            Category: Module Bundler
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="link black dim">
+        安裝webpack4
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學</p>
+<h1 id="用npm安裝webpack">用npm安裝webpack</h1>
+<p>使用nodejs內建的npm來安裝</p>
+<pre><code>npm install -g webpack
+npm install -g webpack-cli
+</code></pre>
+<p>以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷
+接著</p>
+<pre><code>webpack -v
+</code></pre>
+<p>一樣如果看到版本號就是安裝成功</p>
+<h1 id="運行webpack">運行webpack</h1>
+<p>預設編譯src目錄底下的文件
+mkdir src
+建index.js檔，在裏面寫js
+webpack
+不填參數預設生產環境，編譯出來的code會看不懂，壓縮過
+成功運行
+webpack &ndash;mode=development
+開發環境的main.js就可讀了</p>
+<h1 id="webpack配置文件">webpack配置文件</h1>
+<p>因為不想指令后面一堆參數，所以配置文件是必需的
+默認<code>webpack.config.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;main.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="npm-run指令">npm run指令</h1>
+<p>專案需要客制化指令給使用者
+package.json</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;script&#39;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;dev&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;npx webpack&#39;</span> <span style="color:#75715e">//可以不用加--development這個參數了^^
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找
+</span></span></span></code></pre></div><p>使用者執行
+npm run dev
+編譯成功</p>
+<h1 id="結合html文件">結合html文件</h1>
+<p>創建index.html</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;../dist/main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h1 id="結合多入口html文件">結合多入口html文件</h1>
+<p>一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">hello</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/hello.js&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name].js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="loader">loader</h1>
+<h2 id="前言-1">前言</h2>
+<p>webpack和各大工具合作的包叫作loader</p>
+    </div>
+    <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/%E7%B6%B2%E8%AA%8C%E6%A1%86%E6%9E%B6/" class="link blue hover-black">
+            Category: 網誌框架
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/" class="link black dim">
+        創建github網誌
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="使用工具">使用工具</h1>
+<p>網路上有三套靜態網頁的產生工具
+Jekyll、Hexo、Hugo
+那我選擇<strong>Hexo</strong>是因為，用 nodejs 感覺比較不會陌生</p>
+<h1 id="使用主題">使用主題</h1>
+<p>Hexo 有不少免費主題，我喜歡 NexT</p>
+<h1 id="附加價值">附加價值</h1>
+<p>希望能讓自己熟悉 markdown</p>
+<h1 id="注意">注意</h1>
+<p><a href="https://blog.moli.rocks/2018/07/11/how-to-set-custom-domain-and-cloudflare-ssl-to-github-pages/">如何將 GitHub Pages 套上個人網域</a>
+如果是專案頁面請發佈到專案的 gh-page 分支
+如果是個人或公司頁面請發佈到 XXXXX.github.io 底下的 master</p>
+<h1 id="gitbook">gitbook</h1>
+<p><a href="https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github">https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github</a></p>
+<h1 id="markdown">markdown</h1>
+<p><a href="https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown">https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown</a></p>
+<h1 id="markdown-技巧-diff">markdown 技巧 diff</h1>
+<p><a href="https://youtu.be/yzeVMecydCE?t=1485">https://youtu.be/yzeVMecydCE?t=1485</a></p>
+    </div>
+    <a href="/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

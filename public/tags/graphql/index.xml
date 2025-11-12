@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graphql on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/graphql/</link>
+    <description>Recent content in Graphql on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Nov 2019 20:20:12 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/graphql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel使用lighthouse</title>
+      <link>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8lighthouse/</link>
+      <pubDate>Fri, 15 Nov 2019 20:20:12 +0000</pubDate>
+      <guid>http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8lighthouse/</guid>
+      <description>&lt;h1 id=&#34;介紹&#34;&gt;介紹&lt;/h1&gt;&#xA;&lt;p&gt;因為graphql太紅，所以要來找找laravel上面如何應用，&lt;a href=&#34;https://lighthouse-php.com/&#34;&gt;lighthouse&lt;/a&gt;就是其中一款比較熱門的套件，那在應用上就要多看官網的文件了，遇到坑會再更新上來&lt;/p&gt;&#xA;&lt;h1 id=&#34;安裝步驟&#34;&gt;安裝步驟&lt;/h1&gt;&#xA;&lt;p&gt;跟著官網做就會成功，除了1G的記憶體composer跑不起來以外，沒什大問題&lt;/p&gt;&#xA;&lt;h1 id=&#34;客製化查詢&#34;&gt;客製化查詢&lt;/h1&gt;&#xA;&lt;p&gt;如果遇到需要太複雜，內建指令無法應付，客製化查詢的語句，就可以建一個class來搭配eloquent做應用&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;php artisan lighthouse:query customerQuery&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h1 id=&#34;測試工具&#34;&gt;測試工具&lt;/h1&gt;&#xA;&lt;p&gt;神器postman支援graphql囉，如果本機是6.X的版本要煮度上網去下載7.X的，自動更新不會幫你更到7.X&lt;/p&gt;&#xA;&lt;h1 id=&#34;laravel-跨站設定&#34;&gt;laravel 跨站設定&lt;/h1&gt;&#xA;&lt;p&gt;最簡單的方法就是&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;composer require barryvdh/laravel-cors&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;然後進到&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;config\lighthouse.php&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;middleware&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&amp;gt;&lt;/span&gt; [&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;\Nuwave\Lighthouse\Support\Http\Middleware\AcceptJson&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;\Barryvdh\Cors\HandleCors&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;文件上傳設定&#34;&gt;文件上傳設定&lt;/h1&gt;&#xA;&lt;p&gt;跟著lighthouse官網做，其中測試檔案上傳 -k允許不安全連線&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;curl -k https://dkchange.nctu.me/graphql   -F operations=&#39;{ &amp;quot;query&amp;quot;: &amp;quot;mutation ($file: Upload!) { upload(file: $file) }&amp;quot;, &amp;quot;variables&amp;quot;: { &amp;quot;file&amp;quot;: null } }&#39;   -F map=&#39;{ &amp;quot;0&amp;quot;: [&amp;quot;variables.file&amp;quot;] }&#39;   -F 0=@my_file.txt&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;resolver那邊laravel&#xA;$file-&amp;gt;storePublicly(&amp;lsquo;uploads&amp;rsquo;)會出現在&lt;code&gt;myproject/storage/app/uploads/&lt;/code&gt;&#xA;那使用者怎麼存取?&#xA;artisan 提供一個指令&lt;/p&gt;&#xA;&lt;p&gt;php artisan storage:link&#xA;下完之後就會把sotrage的public資料夾複製一分到public底下，阿記得這種方式沒有權限控管&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

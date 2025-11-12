@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/git-flow/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/git-flow/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/git-flow/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/git-flow/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Git Flow">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Git Flow">
+  <meta itemprop="datePublished" content="2020-03-12T16:35:30+00:00">
+  <meta itemprop="dateModified" content="2020-03-12T16:35:30+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Git Flow">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Git Flow
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Git Flow”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E8%88%87%E8%A8%AD%E5%AE%9A/" class="link black dim">
+        好用工具,插件與設定
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>太多好用的插件，當你換工作或電腦壞掉時會後悔沒有把名字記下來</p>
+<h1 id="tool">tool</h1>
+<h1 id="ngrok">ngrok</h1>
+<p><a href="https://blog.techbridge.cc/2018/05/24/ngrok/">https://blog.techbridge.cc/2018/05/24/ngrok/</a>
+平常要測試東西不可能無端生出一個 domain 給你，這個時候你就需要
+一個可以把你 localhost 對應到 https public domain 的服務</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>./ngrok http 10000
+</span></span><span style="display:flex;"><span>或是指定virtual host
+</span></span><span style="display:flex;"><span>./ngrok http -host-header=rewrite home.dev:80
+</span></span></code></pre></div><h1 id="mremoteng">mRemoteNG</h1>
+<p>開源的集中式管理軟體</p>
+<h1 id="hunting-dog">Hunting Dog</h1>
+<p>Sql Server Management Studio 上的插件，不然要找一隻 sp 真的有點麻煩</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> o.name, <span style="color:#66d9ef">c</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> syscomments <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> sysobjects o <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">c</span>.id<span style="color:#f92672">=</span>o.id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> (o.xtype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;P&#39;</span>           <span style="color:#75715e">--查SP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">OR</span> o.xtype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;V&#39;</span>)              <span style="color:#75715e">--查View
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">And</span> (o.name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%特定文字%&#39;</span>  <span style="color:#75715e">--查SP或View名稱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">c</span>.text <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%特定文字%&#39;</span>)   <span style="color:#75715e">--查SP或View內含文字
+</span></span></span></code></pre></div><h1 id="how-to-track-the-program">How to track the program?</h1>
+<p>Highly recommend <a href="http://www.rohitab.com">http://www.rohitab.com</a> and <a href="http://www.sandboxie.com">http://www.sandboxie.com</a>. Both utilities are free. Description of more than 10,000 api functions is included in the Api Monitor program by default. For example, you can install hooks for networking functions (I don&rsquo;t remember which ones, see msdn). And as soon as the program sends or receives something to the network, monitor will pause it. Then see what parameters and data are passed to these functions. By the way, all parameters that are passed to the function can be changed in the api monitor</p>
+    </div>
+    <a href="/posts/%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E8%88%87%E8%A8%AD%E5%AE%9A/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8git/" class="link black dim">
+        使用git
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>版本控制在開發過程占很重要的地位，那團隊裡該如何多人協作?整個專案管理的流程應該要怎樣才不會一天到晚衝突，功能互蓋?
+參考：為你自己學 git <a href="https://gitbook.tw/">https://gitbook.tw/</a> 非常推荐，基本上工作需要的东西在<strong>為你自己學 git</strong>都可以找到解答
+<a href="https://zlargon.gitbooks.io/git-tutorial/content/file/ignore.html">https://zlargon.gitbooks.io/git-tutorial/content/file/ignore.html</a>
+<a href="https://zlargon.gitbooks.io/git-tutorial/content/file/recover.html">https://zlargon.gitbooks.io/git-tutorial/content/file/recover.html</a></p>
+<h1 id="約定俗成">約定俗成</h1>
+<p>請儘量不要在已經 Push 出去之後再修改提交，否則可能會造成其它人的困擾
+Git 在計算、產生物件的時候，是根據「檔案的內容」去做計算的，所以光是新增一個目錄，Git 是沒辦法處理它的。慣例上可以放一個名為 “.keep” 或 “.gitkeep” 的空檔案，讓 Git 能「感應」到這個目錄的存在</p>
+<p>切好每一次的功能，有空就提交，但前提示提交的 code 都是可以 work 的，獨立且可正常運作的 code</p>
+<h1 id="免帳密-ssh-key-登入">免帳密 ssh key 登入</h1>
+<p><a href="https://aben20807.blogspot.com/2018/03/1070302-git-push-ssh-key.html">https://aben20807.blogspot.com/2018/03/1070302-git-push-ssh-key.html</a></p>
+<h1 id="git-基本指令">git 基本指令</h1>
+<h2 id="git-init">git init</h2>
+<h2 id="git-status">git status</h2>
+<h2 id="git-add">git add</h2>
+<p>檔案放到暫存區（Staging Area）</p>
+<pre><code>$ git add *.html
+</code></pre>
+<h2 id="git-commit">git commit</h2>
+<p>把暫存區的東西存放到儲存庫（Repository）裡</p>
+<h3 id="使用情境">使用情境</h3>
+<p>能增加新 add 到暫存區的檔案，和修改提交訊息，但只能修改前一次的提交
+$git commit &ndash;amend -m &ldquo;Welcome To Facebook&rdquo;</p>
+<h2 id="git-log">git log</h2>
+<p>只 show 一行資訊和版本路線
+$ git log &ndash;oneline &ndash;graph</p>
+<h3 id="使用情境-1">使用情境</h3>
+<p>找某個人或某些人的 Commit
+<a href="https://gitbook.tw/chapters/using-git/log.html">https://gitbook.tw/chapters/using-git/log.html</a>
+特定檔案的 Commit 紀錄
+$ git log welcome.html
+詳細內容
+$ git log -p welcome.html</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8git/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

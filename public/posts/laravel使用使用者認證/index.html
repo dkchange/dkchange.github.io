@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>laravel使用使用者認證 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+聊聊 Web API 认证方案那点儿事
+前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢?
+laravel 內建有種驗證方式，可參考简聊 Session 与 Token 身份验证
+
+seesion
+token
+可以外掛
+jwt 可參考API 开发中可选择传递 token 接口遇到的一个坑
+passport
+session就不贅述，這邊主要介紹api_token和passport的方式
+那官網一直到laravel 5.8 才有對api API Authentication 的token做出獨立的文件，
+之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位
+
+token
+內建token缺什麼?
+官方並沒有提供api_token的更新方式，也就是說，
+以session為例，你web用session登出sessionID會失效，
+那按照這道理，你api登出api_token也要失效，
+否則你的api還是可以被訪問的，這樣大不如api也用session來guard?
+要怎解決這問題?
+用jwt或passport
+或
+實作登入登出刷新token 可參考Laravel 自带的 API 守卫驱动 token 使用详解
+passport
+laravel 的API驗證API Authentication(passport)官網推薦
+composer require laravel/passport
+php artisan passport:install --force
+
+先把預設相關的表建到資料庫
+php artisan migrate
+
+然後跟著官網
+遭遇問題
+Encryption keys already exist. Use the &ndash;force option to overwrite them.">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/laravel%E4%BD%BF%E7%94%A8%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="laravel使用使用者認證">
+  <meta property="og:description" content="前言 聊聊 Web API 认证方案那点儿事
+前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢? laravel 內建有種驗證方式，可參考简聊 Session 与 Token 身份验证
+seesion token 可以外掛 jwt 可參考API 开发中可选择传递 token 接口遇到的一个坑 passport session就不贅述，這邊主要介紹api_token和passport的方式 那官網一直到laravel 5.8 才有對api API Authentication 的token做出獨立的文件， 之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位 token 內建token缺什麼? 官方並沒有提供api_token的更新方式，也就是說， 以session為例，你web用session登出sessionID會失效， 那按照這道理，你api登出api_token也要失效， 否則你的api還是可以被訪問的，這樣大不如api也用session來guard? 要怎解決這問題? 用jwt或passport 或 實作登入登出刷新token 可參考Laravel 自带的 API 守卫驱动 token 使用详解
+passport laravel 的API驗證API Authentication(passport)官網推薦
+composer require laravel/passportphp artisan passport:install --force先把預設相關的表建到資料庫
+php artisan migrate然後跟著官網
+遭遇問題 Encryption keys already exist. Use the –force option to overwrite them.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-07T20:46:04+00:00">
+    <meta property="article:modified_time" content="2019-11-07T20:46:04+00:00">
+    <meta property="article:tag" content="Session">
+    <meta property="article:tag" content="Token">
+    <meta property="article:tag" content="Passport">
+
+  <meta itemprop="name" content="laravel使用使用者認證">
+  <meta itemprop="description" content="前言 聊聊 Web API 认证方案那点儿事
+前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢? laravel 內建有種驗證方式，可參考简聊 Session 与 Token 身份验证
+seesion token 可以外掛 jwt 可參考API 开发中可选择传递 token 接口遇到的一个坑 passport session就不贅述，這邊主要介紹api_token和passport的方式 那官網一直到laravel 5.8 才有對api API Authentication 的token做出獨立的文件， 之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位 token 內建token缺什麼? 官方並沒有提供api_token的更新方式，也就是說， 以session為例，你web用session登出sessionID會失效， 那按照這道理，你api登出api_token也要失效， 否則你的api還是可以被訪問的，這樣大不如api也用session來guard? 要怎解決這問題? 用jwt或passport 或 實作登入登出刷新token 可參考Laravel 自带的 API 守卫驱动 token 使用详解
+passport laravel 的API驗證API Authentication(passport)官網推薦
+composer require laravel/passportphp artisan passport:install --force先把預設相關的表建到資料庫
+php artisan migrate然後跟著官網
+遭遇問題 Encryption keys already exist. Use the –force option to overwrite them.">
+  <meta itemprop="datePublished" content="2019-11-07T20:46:04+00:00">
+  <meta itemprop="dateModified" content="2019-11-07T20:46:04+00:00">
+  <meta itemprop="wordCount" content="146">
+  <meta itemprop="keywords" content="Session,Token,Passport">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="laravel使用使用者認證">
+  <meta name="twitter:description" content="前言 聊聊 Web API 认证方案那点儿事
+前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢? laravel 內建有種驗證方式，可參考简聊 Session 与 Token 身份验证
+seesion token 可以外掛 jwt 可參考API 开发中可选择传递 token 接口遇到的一个坑 passport session就不贅述，這邊主要介紹api_token和passport的方式 那官網一直到laravel 5.8 才有對api API Authentication 的token做出獨立的文件， 之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位 token 內建token缺什麼? 官方並沒有提供api_token的更新方式，也就是說， 以session為例，你web用session登出sessionID會失效， 那按照這道理，你api登出api_token也要失效， 否則你的api還是可以被訪問的，這樣大不如api也用session來guard? 要怎解決這問題? 用jwt或passport 或 實作登入登出刷新token 可參考Laravel 自带的 API 守卫驱动 token 使用详解
+passport laravel 的API驗證API Authentication(passport)官網推薦
+composer require laravel/passportphp artisan passport:install --force先把預設相關的表建到資料庫
+php artisan migrate然後跟著官網
+遭遇問題 Encryption keys already exist. Use the –force option to overwrite them.">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">laravel使用使用者認證</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-07T20:46:04Z">November 7, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p><a href="https://mp.weixin.qq.com/s/2Zu4XVhomoPjM6mAj1dFIw">聊聊 Web API 认证方案那点儿事</a></p>
+<p>前後端分離需要驗證，那怎樣讓會員可以不透過session維持登入狀態呢?
+laravel 內建有種驗證方式，可參考<a href="https://learnku.com/articles/17867">简聊 Session 与 Token 身份验证</a></p>
+<ul>
+<li>seesion</li>
+<li>token
+可以外掛</li>
+<li>jwt 可參考<a href="https://learnku.com/articles/13592/api-development-can-choose-to-pass-a-pit-encountered-by-token-interface">API 开发中可选择传递 token 接口遇到的一个坑</a></li>
+<li>passport
+session就不贅述，這邊主要介紹api_token和passport的方式
+那官網一直到laravel 5.8 才有對<a href="https://laravel.com/docs/5.8/api-authentication">api API Authentication</a> 的token做出獨立的文件，
+之前有關於API Authentication的介紹都是passport，5.8以後passport才被移到官方套件欄位</li>
+</ul>
+<h1 id="token">token</h1>
+<h2 id="內建token缺什麼">內建token缺什麼?</h2>
+<p>官方並沒有提供api_token的更新方式，也就是說，
+以session為例，你web用session登出sessionID會失效，
+那按照這道理，你api登出api_token也要失效，
+否則你的api還是可以被訪問的，這樣大不如api也用session來guard?
+要怎解決這問題?
+用jwt或passport
+或
+實作登入登出刷新token 可參考<a href="https://learnku.com/articles/11006/detailed-explanation-of-laravels-own-api-guard-drive-token">Laravel 自带的 API 守卫驱动 token 使用详解</a></p>
+<h1 id="passport">passport</h1>
+<p>laravel 的API驗證API Authentication(passport)官網推薦</p>
+<pre><code>composer require laravel/passport
+php artisan passport:install --force
+</code></pre>
+<p>先把預設相關的表建到資料庫</p>
+<pre><code>php artisan migrate
+</code></pre>
+<p>然後跟著官網</p>
+<h1 id="遭遇問題">遭遇問題</h1>
+<p>Encryption keys already exist. Use the &ndash;force option to overwrite them.</p>
+<h1 id="支援graphql">支援graphQL</h1>
+<pre><code>composer require joselfonseca/lighthouse-graphql-passport-auth
+</code></pre>
+<p>header如果有多欄位會報錯(註解不也不行)，原因不明
+例如在header多加//Content-Type已經註解起來了也不行
+Syntax Error: Unexpected <!-- raw HTML omitted --></p>
+<h1 id="遭遇狀況">遭遇狀況</h1>
+<p>GuzzleHttp Hangs When Using Localhost
+not localhost but multiple requests for a single-threaded web server are the problem. You still can use artisan, but you have to run another instance on another port e.g. with php artisan serve &ndash;port=8001 and tell Guzzle to use this base_uri (http://localhost:8001) instead
+<a href="https://stackoverflow.com/questions/48841018/guzzle-cannot-make-get-request-to-the-localhost-port-80-8000-8080-etc/57573002#57573002">https://stackoverflow.com/questions/48841018/guzzle-cannot-make-get-request-to-the-localhost-port-80-8000-8080-etc/57573002#57573002</a>
+<a href="https://stackoverflow.com/questions/36947844/guzzlehttp-hangs-when-using-localhost">https://stackoverflow.com/questions/36947844/guzzlehttp-hangs-when-using-localhost</a></p>
+<h1 id="延伸閱讀-自定義認證">延伸閱讀-自定義認證</h1>
+<p>[基于 Laravel Auth 实现自定义接口 API 用户认证详解]https://learnku.com/articles/14136/realization-of-user-interface-authentication-for-user-interface-api-based-on-laravel-auth?order_by=vote_count&amp;</p>
+<p><a href="https://jsnwork.kiiuo.com/archives/2937/laravel-api-oauth2-%E6%9E%B6%E8%A8%AD/">https://jsnwork.kiiuo.com/archives/2937/laravel-api-oauth2-%E6%9E%B6%E8%A8%AD/</a></p>
+<h1 id="jwt-vs-session">JWT VS Session</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/38942172">不要用JWT替代session管理（上）</a></p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/session/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Session</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/token/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Token</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/passport/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Passport</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

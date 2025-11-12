@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>laravel會員登入配置 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+幾乎每個網站都會有會員機制，所以laravel就幫我們串好了
+make:auth
+下完這段指令，laravel自動建會員登入系統
+php artisan make:auth
+
+laravel在6.0之後把這功能抽出來
+composer require laravel/ui
+php artisan ui vue --auth
+
+執行之後的效果是一樣的
+路由就會多了Auth::route();這個方法事實上就是幫我們添加以下的路由
+// Authentication Routes...
+$this-&gt;get(&#39;login&#39;, &#39;Auth\LoginController@showLoginForm&#39;)-&gt;name(&#39;login&#39;);
+$this-&gt;post(&#39;login&#39;, &#39;Auth\LoginController@login&#39;);
+$this-&gt;post(&#39;logout&#39;, &#39;Auth\LoginController@logout&#39;)-&gt;name(&#39;logout&#39;);
+
+// Registration Routes...
+$this-&gt;get(&#39;register&#39;, &#39;Auth\RegisterController@showRegistrationForm&#39;)-&gt;name(&#39;register&#39;);
+$this-&gt;post(&#39;register&#39;, &#39;Auth\RegisterController@register&#39;);
+
+// Password Reset Routes...
+$this-&gt;get(&#39;password/reset&#39;, &#39;Auth\ForgotPasswordController@showLinkRequestForm&#39;);
+$this-&gt;post(&#39;password/email&#39;, &#39;Auth\ForgotPasswordController@sendResetLinkEmail&#39;);
+$this-&gt;get(&#39;password/reset/{token}&#39;, &#39;Auth\ResetPasswordController@showResetForm&#39;);
+$this-&gt;post(&#39;password/reset&#39;, &#39;Auth\ResetPasswordController@reset&#39;);
+要客製前台的話，就近去個別controller做修改或Override即可，像是
+改會員登入畫面
+Controllers\Auth\LoginController.php
+    public function showLoginForm()
+    {
+        return view(&#39;admin.login&#39;);
+    }
+那如果我們要建個後臺，用不同的表儲存管理人員呢?
+這問題牽扯到使用者和管理這484相同的生物了，例如銀行，我們可以看看大家的討論
+Is it good database design to have admin users in the same table as front-end users?
+超全面的权限系统设计方案！
+本篇主要探討製作後台頁面
+創建資料表
+php artisan make:model Admin -a
+設定好欄位
+php artisan migrate
+
+塞資料
+後台不像前台有註冊頁面，所以，比較合理的方法就是把admin這些管理者寫進seed">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/laravel%E6%9C%83%E5%93%A1%E7%99%BB%E5%85%A5%E9%85%8D%E7%BD%AE/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/laravel%E6%9C%83%E5%93%A1%E7%99%BB%E5%85%A5%E9%85%8D%E7%BD%AE/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="laravel會員登入配置">
+  <meta property="og:description" content="前言 幾乎每個網站都會有會員機制，所以laravel就幫我們串好了
+make:auth 下完這段指令，laravel自動建會員登入系統
+php artisan make:authlaravel在6.0之後把這功能抽出來
+composer require laravel/uiphp artisan ui vue --auth執行之後的效果是一樣的 路由就會多了Auth::route();這個方法事實上就是幫我們添加以下的路由
+// Authentication Routes... $this-&gt;get(&#39;login&#39;, &#39;Auth\LoginController@showLoginForm&#39;)-&gt;name(&#39;login&#39;); $this-&gt;post(&#39;login&#39;, &#39;Auth\LoginController@login&#39;); $this-&gt;post(&#39;logout&#39;, &#39;Auth\LoginController@logout&#39;)-&gt;name(&#39;logout&#39;); // Registration Routes... $this-&gt;get(&#39;register&#39;, &#39;Auth\RegisterController@showRegistrationForm&#39;)-&gt;name(&#39;register&#39;); $this-&gt;post(&#39;register&#39;, &#39;Auth\RegisterController@register&#39;); // Password Reset Routes... $this-&gt;get(&#39;password/reset&#39;, &#39;Auth\ForgotPasswordController@showLinkRequestForm&#39;); $this-&gt;post(&#39;password/email&#39;, &#39;Auth\ForgotPasswordController@sendResetLinkEmail&#39;); $this-&gt;get(&#39;password/reset/{token}&#39;, &#39;Auth\ResetPasswordController@showResetForm&#39;); $this-&gt;post(&#39;password/reset&#39;, &#39;Auth\ResetPasswordController@reset&#39;); 要客製前台的話，就近去個別controller做修改或Override即可，像是 改會員登入畫面 Controllers\Auth\LoginController.php
+public function showLoginForm() { return view(&#39;admin.login&#39;); } 那如果我們要建個後臺，用不同的表儲存管理人員呢? 這問題牽扯到使用者和管理這484相同的生物了，例如銀行，我們可以看看大家的討論 Is it good database design to have admin users in the same table as front-end users? 超全面的权限系统设计方案！ 本篇主要探討製作後台頁面
+創建資料表 php artisan make:model Admin -a設定好欄位php artisan migrate塞資料 後台不像前台有註冊頁面，所以，比較合理的方法就是把admin這些管理者寫進seed">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-07T20:46:04+00:00">
+    <meta property="article:modified_time" content="2019-11-07T20:46:04+00:00">
+    <meta property="article:tag" content="後台管理">
+
+  <meta itemprop="name" content="laravel會員登入配置">
+  <meta itemprop="description" content="前言 幾乎每個網站都會有會員機制，所以laravel就幫我們串好了
+make:auth 下完這段指令，laravel自動建會員登入系統
+php artisan make:authlaravel在6.0之後把這功能抽出來
+composer require laravel/uiphp artisan ui vue --auth執行之後的效果是一樣的 路由就會多了Auth::route();這個方法事實上就是幫我們添加以下的路由
+// Authentication Routes... $this-&gt;get(&#39;login&#39;, &#39;Auth\LoginController@showLoginForm&#39;)-&gt;name(&#39;login&#39;); $this-&gt;post(&#39;login&#39;, &#39;Auth\LoginController@login&#39;); $this-&gt;post(&#39;logout&#39;, &#39;Auth\LoginController@logout&#39;)-&gt;name(&#39;logout&#39;); // Registration Routes... $this-&gt;get(&#39;register&#39;, &#39;Auth\RegisterController@showRegistrationForm&#39;)-&gt;name(&#39;register&#39;); $this-&gt;post(&#39;register&#39;, &#39;Auth\RegisterController@register&#39;); // Password Reset Routes... $this-&gt;get(&#39;password/reset&#39;, &#39;Auth\ForgotPasswordController@showLinkRequestForm&#39;); $this-&gt;post(&#39;password/email&#39;, &#39;Auth\ForgotPasswordController@sendResetLinkEmail&#39;); $this-&gt;get(&#39;password/reset/{token}&#39;, &#39;Auth\ResetPasswordController@showResetForm&#39;); $this-&gt;post(&#39;password/reset&#39;, &#39;Auth\ResetPasswordController@reset&#39;); 要客製前台的話，就近去個別controller做修改或Override即可，像是 改會員登入畫面 Controllers\Auth\LoginController.php
+public function showLoginForm() { return view(&#39;admin.login&#39;); } 那如果我們要建個後臺，用不同的表儲存管理人員呢? 這問題牽扯到使用者和管理這484相同的生物了，例如銀行，我們可以看看大家的討論 Is it good database design to have admin users in the same table as front-end users? 超全面的权限系统设计方案！ 本篇主要探討製作後台頁面
+創建資料表 php artisan make:model Admin -a設定好欄位php artisan migrate塞資料 後台不像前台有註冊頁面，所以，比較合理的方法就是把admin這些管理者寫進seed">
+  <meta itemprop="datePublished" content="2019-11-07T20:46:04+00:00">
+  <meta itemprop="dateModified" content="2019-11-07T20:46:04+00:00">
+  <meta itemprop="wordCount" content="248">
+  <meta itemprop="keywords" content="後台管理">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="laravel會員登入配置">
+  <meta name="twitter:description" content="前言 幾乎每個網站都會有會員機制，所以laravel就幫我們串好了
+make:auth 下完這段指令，laravel自動建會員登入系統
+php artisan make:authlaravel在6.0之後把這功能抽出來
+composer require laravel/uiphp artisan ui vue --auth執行之後的效果是一樣的 路由就會多了Auth::route();這個方法事實上就是幫我們添加以下的路由
+// Authentication Routes... $this-&gt;get(&#39;login&#39;, &#39;Auth\LoginController@showLoginForm&#39;)-&gt;name(&#39;login&#39;); $this-&gt;post(&#39;login&#39;, &#39;Auth\LoginController@login&#39;); $this-&gt;post(&#39;logout&#39;, &#39;Auth\LoginController@logout&#39;)-&gt;name(&#39;logout&#39;); // Registration Routes... $this-&gt;get(&#39;register&#39;, &#39;Auth\RegisterController@showRegistrationForm&#39;)-&gt;name(&#39;register&#39;); $this-&gt;post(&#39;register&#39;, &#39;Auth\RegisterController@register&#39;); // Password Reset Routes... $this-&gt;get(&#39;password/reset&#39;, &#39;Auth\ForgotPasswordController@showLinkRequestForm&#39;); $this-&gt;post(&#39;password/email&#39;, &#39;Auth\ForgotPasswordController@sendResetLinkEmail&#39;); $this-&gt;get(&#39;password/reset/{token}&#39;, &#39;Auth\ResetPasswordController@showResetForm&#39;); $this-&gt;post(&#39;password/reset&#39;, &#39;Auth\ResetPasswordController@reset&#39;); 要客製前台的話，就近去個別controller做修改或Override即可，像是 改會員登入畫面 Controllers\Auth\LoginController.php
+public function showLoginForm() { return view(&#39;admin.login&#39;); } 那如果我們要建個後臺，用不同的表儲存管理人員呢? 這問題牽扯到使用者和管理這484相同的生物了，例如銀行，我們可以看看大家的討論 Is it good database design to have admin users in the same table as front-end users? 超全面的权限系统设计方案！ 本篇主要探討製作後台頁面
+創建資料表 php artisan make:model Admin -a設定好欄位php artisan migrate塞資料 後台不像前台有註冊頁面，所以，比較合理的方法就是把admin這些管理者寫進seed">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">laravel會員登入配置</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-11-07T20:46:04Z">November 7, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>幾乎每個網站都會有會員機制，所以laravel就幫我們串好了</p>
+<h1 id="makeauth">make:auth</h1>
+<p>下完這段指令，laravel自動建會員登入系統</p>
+<pre><code>php artisan make:auth
+</code></pre>
+<p>laravel在6.0之後把這功能抽出來</p>
+<pre><code>composer require laravel/ui
+php artisan ui vue --auth
+</code></pre>
+<p>執行之後的效果是一樣的
+路由就會多了Auth::route();這個方法事實上就是幫我們添加以下的路由</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">// Authentication Routes...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#e6db74">&#39;Auth\LoginController@showLoginForm&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#39;login&#39;</span>);
+</span></span><span style="display:flex;"><span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#e6db74">&#39;Auth\LoginController@login&#39;</span>);
+</span></span><span style="display:flex;"><span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;logout&#39;</span>, <span style="color:#e6db74">&#39;Auth\LoginController@logout&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#39;logout&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Registration Routes...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;register&#39;</span>, <span style="color:#e6db74">&#39;Auth\RegisterController@showRegistrationForm&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#39;register&#39;</span>);
+</span></span><span style="display:flex;"><span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;register&#39;</span>, <span style="color:#e6db74">&#39;Auth\RegisterController@register&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Password Reset Routes...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;password/reset&#39;</span>, <span style="color:#e6db74">&#39;Auth\ForgotPasswordController@showLinkRequestForm&#39;</span>);
+</span></span><span style="display:flex;"><span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;password/email&#39;</span>, <span style="color:#e6db74">&#39;Auth\ForgotPasswordController@sendResetLinkEmail&#39;</span>);
+</span></span><span style="display:flex;"><span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;password/reset/{token}&#39;</span>, <span style="color:#e6db74">&#39;Auth\ResetPasswordController@showResetForm&#39;</span>);
+</span></span><span style="display:flex;"><span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;password/reset&#39;</span>, <span style="color:#e6db74">&#39;Auth\ResetPasswordController@reset&#39;</span>);
+</span></span></code></pre></div><p>要客製前台的話，就近去個別controller做修改或Override即可，像是
+改會員登入畫面
+Controllers\Auth\LoginController.php</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showLoginForm</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;admin.login&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>那如果我們要建個後臺，用不同的表儲存管理人員呢?
+這問題牽扯到使用者和管理這484相同的生物了，例如銀行，我們可以看看大家的討論
+<a href="https://stackoverflow.com/questions/4169893/is-it-good-database-design-to-have-admin-users-in-the-same-table-as-front-end-us">Is it good database design to have admin users in the same table as front-end users?</a>
+<a href="https://mp.weixin.qq.com/s/wox0f-bl9E7qAl3pXuuMTg">超全面的权限系统设计方案！</a>
+本篇主要探討製作後台頁面</p>
+<h1 id="創建資料表">創建資料表</h1>
+<pre><code>php artisan make:model Admin -a
+設定好欄位
+php artisan migrate
+</code></pre>
+<h1 id="塞資料">塞資料</h1>
+<p>後台不像前台有註冊頁面，所以，比較合理的方法就是把admin這些管理者寫進seed</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">// DB::table(&#39;admins&#39;)-&gt;insert([
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#39;username&#39; =&gt; &#39;admin&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#39;password&#39; =&gt; Hash::make(&#39;password&#39;),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#39;api_token&#39;=&gt; Str::random(32),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#39;created_at&#39; =&gt; Carbon::now()-&gt;format(&#39;Y-m-d H:i:s&#39;),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#39;updated_at&#39; =&gt; Carbon::now()-&gt;format(&#39;Y-m-d H:i:s&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// ]);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Auto timestamp saving is only for Eloquent feature so you need to do manually like below for non eloquent feature
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Admin</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>([
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;username&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;admin&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;password&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Hash</span><span style="color:#f92672">::</span><span style="color:#a6e22e">make</span>(<span style="color:#e6db74">&#39;password&#39;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;api_token&#39;</span><span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Str</span><span style="color:#f92672">::</span><span style="color:#a6e22e">random</span>(<span style="color:#ae81ff">32</span>), 
+</span></span><span style="display:flex;"><span>]);
+</span></span></code></pre></div><pre><code>php artisan db:seed
+</code></pre>
+<h1 id="使用者和資料庫做認證">使用者和資料庫做認證</h1>
+<p>因為laravel 有內建認證會員了，
+所以我們只要後台的會員認證即可</p>
+<h2 id="configauthphp">config\auth.php</h2>
+<p>添加下面的code進guards、providers這兩個key下面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;guards&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;admin&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;session&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;provider&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;admins&#39;</span>,<span style="color:#75715e">//對應下面provider的admins
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ],
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;admins&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;eloquent&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;model&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">App\Admin</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>    ],
+</span></span></code></pre></div><h2 id="controllersadminlogincontrollerphp">Controllers\Admin\LoginController.php</h2>
+<p>建controller</p>
+<pre><code>php artisan make:controller Admin/LoginController
+</code></pre>
+<p>以下為食用方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#75715e">//Controller
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Auth</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//驗證方式切到admin，配合config/auth設定的prvider進行驗證
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">guard</span>(<span style="color:#e6db74">&#39;admin&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">attempt</span>([
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;username&#39;</span> <span style="color:#f92672">=&gt;</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">input</span>(<span style="color:#e6db74">&#39;username&#39;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;password&#39;</span> <span style="color:#f92672">=&gt;</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">input</span>(<span style="color:#e6db74">&#39;password&#39;</span>)
+</span></span><span style="display:flex;"><span>        ]);
+</span></span></code></pre></div><h2 id="appadminphp">App\Admin.php</h2>
+<p>因為admin model並沒有驗證功能，所以需要繼承Illuminate\Foundation\Auth\User</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Foundation\Auth\User</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Authenticatable</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Admin</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Authenticatable</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>設定完驗證就能用了</p>
+<h1 id="防止未登入使用者繞過登入頁直接存取">防止未登入使用者，繞過登入頁直接存取</h1>
+<p>為防止使用者直接存取後台頁面，我們每一個請求都要做驗證，那這個時候就需要中間件了</p>
+<h2 id="middlewareadminmiddlewarephp">Middleware\AdminMiddleware.php</h2>
+<p>建middleware
+php artisan make:middleware AdminMiddleware</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">guard</span>(<span style="color:#e6db74">&#39;admin&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">check</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">redirect</span>(<span style="color:#e6db74">&#39;/&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="apphttpkernelphp">app\Http\Kernel.php</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> $routeMiddleware <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;admin.auth&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">\App\Http\Middleware\AdminMiddleware</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>    ];
+</span></span></code></pre></div><h2 id="controllersadminlogincontrollerphp-1">Controllers\Admin\LoginController.php</h2>
+<p>以下為中間件的食用方式，添加在建構子，或是個別路由</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">__construct</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//必須要略過登陸頁路由，因為我們需要給未登入的人用爾且我們驗證失敗會倒到這裡，會形成無窮迴圈
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//必須要略過登陸驗證路由，因為我們需要給未登入的人用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">middleware</span>(<span style="color:#e6db74">&#39;admin.auth&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">except</span>([<span style="color:#e6db74">&#39;loginForm&#39;</span>,<span style="color:#e6db74">&#39;login&#39;</span>]);
+</span></span><span style="display:flex;"><span>    }  
+</span></span></code></pre></div><p>這邊有個省事的小秘訣，每次要用Auth的時候都需要先調用guard(&lsquo;admin&rsquo;)，有個<a href="https://github.com/laravel/framework/issues/19547">直接切換的方法</a></p>
+<pre><code>//放在route裡面判斷即可，超省事
+Auth::shouldUse('admin');
+</code></pre>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/%E5%BE%8C%E5%8F%B0%E7%AE%A1%E7%90%86/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">後台管理</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

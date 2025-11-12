@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Posts">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Posts">
+  <meta itemprop="datePublished" content="2025-04-11T16:41:12+00:00">
+  <meta itemprop="dateModified" content="2025-11-12T12:47:49+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Posts">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AE%89%E8%A3%9Dyii/" class="link black dim">
+        使用yii2
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>你需要知道的 yii
+<a href="https://easy-yii.github.io/2017/01/09/know-PartFive/">https://easy-yii.github.io/2017/01/09/know-PartFive/</a></p>
+<p>PHP 目前最流行的 2 大框架，Laravel 和 Yii 的對比
+隨著新興的微服務/納米服務體系結構以及對具有獨立維護/部署的小型服務的需求，因此不再建議需要做很多事情的大型框架，所以最近框架也將一些非必要的功能拆出。
+兩大框架用更新速度來看 大概就是青少年 ，對上中年男子&hellip;
+工作需求開始學 yii
+<a href="https://www.yii-china.com/">https://www.yii-china.com/</a>
+文檔可能我還不習慣，頭看得很痛
+<a href="https://yii2-framework.readthedocs.io/en/stable/">https://yii2-framework.readthedocs.io/en/stable/</a></p>
+<h1 id="安裝-yii">安裝 yii</h1>
+<p>懶人包影片
+<a href="https://youtu.be/sRJ6GYiCwkI">https://youtu.be/sRJ6GYiCwkI</a></p>
+<p><a href="http://www.fancyecommerce.com/2016/05/18/yii2-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84bootstrap%E8%BF%87%E7%A8%8B-%E5%BC%95%E5%AF%BC/">http://www.fancyecommerce.com/2016/05/18/yii2-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84bootstrap%E8%BF%87%E7%A8%8B-%E5%BC%95%E5%AF%BC/</a>
+看起來 yii 分兩種版本，一種是有 init 檔的下面會提到
+php composer.phar create-project yiisoft/yii2-app-basic basic 2.0.15
+php composer.phar create-project yiisoft/yii2-app-advanced advanced 2.0.15
+這兩個專案的資料夾結構完全不同，切記，一開始吃了悶虧在研究，所以公司的專案，並沒有因為 docker 就把 yii 的資料夾結構做修改</p>
+<h1 id="yii-資料夾結構">yii 資料夾結構</h1>
+<p><a href="https://learnku.com/articles/31435">https://learnku.com/articles/31435</a></p>
+<h2 id="yii-basic-大致介紹">yii basic 大致介紹</h2>
+<p>assets 前端打包用
+commands console 命令用
+config
+controller
+mail email templates
+model
+runtime 框架產生的檔案
+tests
+vagrant vagrant container system
+vendor all package
+view
+web 入口文件
+widget 使用者界面的元件</p>
+    </div>
+    <a href="/posts/%E5%AE%89%E8%A3%9Dyii/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8docker/" class="link black dim">
+        使用docker
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>容器造就了許多現代化服務，諸如 serverless function as a service，然而技術的演變越來越快，那我們就必須跟著學新工具，新流程，新術語</p>
+<p>為什麼你需要 docker，因為你追求效率，速度，在容器化出現之前，你大概 80％的時間都都在做維運的事，更新，備份，佈署
+在 docker 出現之後，你可以更專注於開發</p>
+<p>docker 和 vagrant 有何不同
+<a href="http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/">http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/</a>
+<a href="https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html">https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html</a></p>
+<p>因為工作需要，開始使用 docker
+參考文章：https://ithelp.ithome.com.tw/users/20103456/ironman/1320
+docker image 是眾多 images 的集合，方便管理</p>
+<p><a href="https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9">https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9</a></p>
+<p>第二是 Docker container 也跟寫程式一樣，有 decouple(解藕合)的概念，我的開發環境通常會是 php + Nginx ，剛開始建的時候曾為了一個問題糾結很久：我到底應該要在
+在 php 的 image 上裝 Nginx？
+在 Nginx 的 image 上裝 php?
+用一個乾淨的 alpine image，在上面裝 php + Nginx？
+每個都會遇到不同的問題，後來看了一篇分享豁然開朗，兩個 image 分開，各司其職，這樣容易維護，調整功能也非常容易。
+有時候因為正式部署環境或其他需求的關係，你可能需要建成單一 image 來作業，這邊以開發時期，快速調整為前提</p>
+<h1 id="alpine-linux-挑戰最小-docker-image-os">Alpine Linux 挑戰最小 docker image OS</h1>
+<p>官方都會出一個服務例如 php，nginx，mysql
+然而這些服務，你連接到 php container 的時候，bash 下 mysql 在該 container 並找不到 mysql
+所以各項服務都是由 docker 來橋接的</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8docker/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8ubuntu%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2/" class="link black dim">
+        使用ubuntu圖形界面
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>因為工作需要開始接觸ubuntu，在此紀錄一些設定</p>
+<h1 id="顯示資料夾隱藏檔案">顯示資料夾隱藏檔案</h1>
+<p>在檔案瀏覽器開啟後按ctrl+h組合鍵</p>
+<h1 id="呼叫出terminal">呼叫出terminal</h1>
+<p>ctrl+alt+t</p>
+<h1 id="中文輸入法">中文輸入法</h1>
+<p>參考：https://blog.xuite.net/yh96301/blog/342227672-Ubuntu+16.0.4%E6%96%B0%E5%A2%9E%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95-%E6%96%B0%E9%85%B7%E9%9F%B3%E8%BC%B8%E5%85%A5%E6%B3%95</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8ubuntu%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8reactnative/" class="link black dim">
+        使用reactNative
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>因為工作需求所以接觸了RN</p>
+<h1 id="redux">redux</h1>
+<h2 id="情境">情境</h2>
+<p>Q:Why shall I use Redux rather than a plain global object to centralize state in a React application?
+A:
+Because you don’t have to write it yourself
+Because you don’t have to explain it
+Because you don’t have to maintain it
+<a href="https://www.quora.com/Why-shall-I-use-Redux-rather-than-a-plain-global-object-to-centralize-state-in-a-React-application">https://www.quora.com/Why-shall-I-use-Redux-rather-than-a-plain-global-object-to-centralize-state-in-a-React-application</a>
+這篇解釋得非常清楚</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8reactnative/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E8%88%87%E8%A8%AD%E5%AE%9A/" class="link black dim">
+        好用工具,插件與設定
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>太多好用的插件，當你換工作或電腦壞掉時會後悔沒有把名字記下來</p>
+<h1 id="tool">tool</h1>
+<h1 id="ngrok">ngrok</h1>
+<p><a href="https://blog.techbridge.cc/2018/05/24/ngrok/">https://blog.techbridge.cc/2018/05/24/ngrok/</a>
+平常要測試東西不可能無端生出一個 domain 給你，這個時候你就需要
+一個可以把你 localhost 對應到 https public domain 的服務</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>./ngrok http 10000
+</span></span><span style="display:flex;"><span>或是指定virtual host
+</span></span><span style="display:flex;"><span>./ngrok http -host-header=rewrite home.dev:80
+</span></span></code></pre></div><h1 id="mremoteng">mRemoteNG</h1>
+<p>開源的集中式管理軟體</p>
+<h1 id="hunting-dog">Hunting Dog</h1>
+<p>Sql Server Management Studio 上的插件，不然要找一隻 sp 真的有點麻煩</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> o.name, <span style="color:#66d9ef">c</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> syscomments <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> sysobjects o <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">c</span>.id<span style="color:#f92672">=</span>o.id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> (o.xtype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;P&#39;</span>           <span style="color:#75715e">--查SP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">OR</span> o.xtype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;V&#39;</span>)              <span style="color:#75715e">--查View
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">And</span> (o.name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%特定文字%&#39;</span>  <span style="color:#75715e">--查SP或View名稱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">c</span>.text <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%特定文字%&#39;</span>)   <span style="color:#75715e">--查SP或View內含文字
+</span></span></span></code></pre></div><h1 id="how-to-track-the-program">How to track the program?</h1>
+<p>Highly recommend <a href="http://www.rohitab.com">http://www.rohitab.com</a> and <a href="http://www.sandboxie.com">http://www.sandboxie.com</a>. Both utilities are free. Description of more than 10,000 api functions is included in the Api Monitor program by default. For example, you can install hooks for networking functions (I don&rsquo;t remember which ones, see msdn). And as soon as the program sends or receives something to the network, monitor will pause it. Then see what parameters and data are passed to these functions. By the way, all parameters that are passed to the function can be changed in the api monitor</p>
+    </div>
+    <a href="/posts/%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E8%88%87%E8%A8%AD%E5%AE%9A/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8pusher/" class="link black dim">
+        laravel使用pusher
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>工作中有很多情境需要接第三方的服務，因為公司不可能每項服務都自己開發，今天利用pusher來練習接websocket第三方，
+前端使用vue
+參考網址:
+<a href="https://pusher.com/tutorials/chat-laravel">https://pusher.com/tutorials/chat-laravel</a></p>
+<h1 id="註冊pusher">註冊pusher</h1>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8pusher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8migrate/" class="link black dim">
+        laravel使用migrate
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>假設你的資料表的建好了，你想要對資料庫做修改，但是資料不能清空，所以不能修改現有的檔案再migrate一次，你只能新增一個migration來修改資料庫的表格</p>
+<h1 id="使用情境">使用情境</h1>
+<h2 id="修改資料表的欄位名稱">修改資料表的欄位名稱</h2>
+<pre><code>https://stackoverflow.com/questions/51130611/rename-column-in-laravel-using-migration
+</code></pre>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8migrate/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E9%96%B1%E8%AE%80psr/" class="link black dim">
+        閱讀PSR
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>PHP 有 FIG 這個非官方組織，制定了一些最佳實踐，你不一定要遵守，但是常常會在人力銀行上面看到
+筆記來自於 Laravel China 的中文文檔
+<a href="https://learnku.com/docs/psr/psr-0-automatic-loading-specification/1603">https://learnku.com/docs/psr/psr-0-automatic-loading-specification/1603</a>
+<a href="https://blog.tonycube.com/2016/09/php-psr-4-autoloader.html">https://blog.tonycube.com/2016/09/php-psr-4-autoloader.html</a>
+<a href="https://events.storm.mg/codingstyle/coding_style/php/psr-4.html">https://events.storm.mg/codingstyle/coding_style/php/psr-4.html</a></p>
+<h1 id="重構">重構</h1>
+<p>優雅的重構
+<a href="https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit#slide=id.g76e5fccd8c_0_71">https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit#slide=id.g76e5fccd8c_0_71</a></p>
+<h1 id="psr-0-autoloading-standard已棄用">PSR-0 (Autoloading Standard)(已棄用)</h1>
+<h1 id="psr-1-basic-coding-standard">PSR-1 (Basic Coding Standard)</h1>
+<h1 id="psr-2-coding-style-guide">PSR-2 (Coding Style Guide)</h1>
+<h1 id="psr-4-autoloading-standard">PSR-4 (Autoloading Standard)</h1>
+<p>範例：
+<a href="https://jsnwork.kiiuo.com/archives/2618/php-composer-%E9%9D%9E%E5%B8%B8%E7%B0%A1%E5%96%AE%E7%9A%84%E4%BD%BF%E7%94%A8-psr-4-%E4%BE%86%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%8B%95%E8%AE%80%E5%8F%96%E9%A1%9E%E5%88%A5/">https://jsnwork.kiiuo.com/archives/2618/php-composer-%E9%9D%9E%E5%B8%B8%E7%B0%A1%E5%96%AE%E7%9A%84%E4%BD%BF%E7%94%A8-psr-4-%E4%BE%86%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%8B%95%E8%AE%80%E5%8F%96%E9%A1%9E%E5%88%A5/</a></p>
+    </div>
+    <a href="/posts/%E9%96%B1%E8%AE%80psr/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8mysql/" class="link black dim">
+        使用mysql
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<h1 id="環境設定">環境設定</h1>
+<h1 id="遭遇案例">遭遇案例</h1>
+<ol>
+<li>
+<p>Access denied for user &lsquo;root&rsquo;@&rsquo;localhost&rsquo;
+你只能藉由 sudo mysql -p 來登入資料庫是一件很麻煩的事，你的程式也需要權限來訪問資料庫
+<a href="https://blog.csdn.net/zhouyingge1104/article/details/85254895">https://blog.csdn.net/zhouyingge1104/article/details/85254895</a>
+<a href="https://www.opencli.com/mysql/reset-mysql-mariadb-root-password">https://www.opencli.com/mysql/reset-mysql-mariadb-root-password</a></p>
+</li>
+<li>
+<p>Display positive and negative values in different column</p>
+</li>
+</ol>
+<p><a href="https://www.c-sharpcorner.com/forums/display-positive-and-negative-values-in-different-column">https://www.c-sharpcorner.com/forums/display-positive-and-negative-values-in-different-column</a></p>
+<ol start="3">
+<li>MYSQL 查找所有的父级或子级
+<a href="https://segmentfault.com/a/1190000007531328">https://segmentfault.com/a/1190000007531328</a></li>
+</ol>
+<h1 id="分表">分表</h1>
+<p><a href="https://kkc.github.io/2017/07/07/mysql-partitioning/">https://kkc.github.io/2017/07/07/mysql-partitioning/</a></p>
+<h1 id="效能問題">效能問題</h1>
+<ul>
+<li>server 硬體
+<ul>
+<li>cpu 要看當前的 mysql 支不支援多核心處理同一語句</li>
+<li>那如果一個核心只能處理一句，那 n 個核心就可以處理 n 句 sql</li>
+<li>在高併發的情況下，多核心會比高頻的 cpu 重要</li>
+<li>64 位元的 cpu 不要用 32 位元版本的軟體</li>
+<li>大記憶體（內存），高頻率記憶體</li>
+<li>傳統硬碟，高容量，高傳輸速度，高轉速，物理尺寸小</li>
+<li>RAID 多個小硬碟組成一個大硬碟
+<ul>
+<li>RAID0 讀快寫快，沒有修復能力</li>
+<li>RAID1 讀快寫慢，有鏡像備份</li>
+<li>RAID5 讀快寫中，有備份</li>
+<li>RAID10 讀快寫快，有備份</li>
+</ul>
+</li>
+<li>SSD 受限 sata 界面傳輸速度 支援 RAID</li>
+<li>PCIESSD 貴，要裝驅動，但不受限於 sata</li>
+<li>SAN NAS 網路儲存 不如 RAID，只適合做數據備份</li>
+<li>網路，高性能交換機，對多張網卡進行綁定，用以增加頻寬</li>
+</ul>
+</li>
+<li>server 系統
+<ul>
+<li>windlow 系統下不分大小寫，需要做參數設定讓其能區分</li>
+<li>freebsd</li>
+<li>solaris</li>
+<li>linux 挑選 server 版的</li>
+</ul>
+</li>
+<li>db 儲存引擎選擇
+<ul>
+<li>MyISAM:5.5 以前的默認引擎，不支持 transation，支援表級鎖，可壓縮表，適合只讀的應用</li>
+<li>InnoDB:5.5 以後的默認引擎，5.6 默認使用獨立表空間儲存數據，支持 transation,支援行級鎖，事務 acid 特性，5.7 之後支援全文索引，空間函數</li>
+<li>csv:非二制文件，是以儲存文本的方式，所以可以直接查看，就是 excel 的文件來當一個表，不支援索引，不支援 null</li>
+</ul>
+</li>
+<li>參數設定
+<ul>
+<li>centos
+<ul>
+<li>內核相關參數/etc/sysctl.conf</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>db 結構設計和 sql 語句</li>
+</ul>
+<p>QPS：Queries Per Second 意思是“每秒查詢率” 每秒可以查詢幾句 sql
+TPS：是 TransactionsPerSecond 的縮寫，也就是事務數/秒
+併發量：高併發要調高 mysql 連接數 max_connections 默認 100
+cpu 使用率
+硬碟 io
+網卡流量：
+避免使用 select *</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8mysql/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8eloquent/" class="link black dim">
+        laravel使用eloquent
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>eloquent是遵循 active record pattern  ，但你去要資料，違反了 tell dont ask 原則
+doctrine是遵循 data mapper pattern</p>
+<h1 id="表格的default-value">表格的default value</h1>
+<p>在migration就設定default value</p>
+<ul>
+<li>-&gt;default($value)	Specify a &ldquo;default&rdquo; value for the column
+或者</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">ROLE_PUBLISHER</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> $attributes <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;role_id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">ROLE_PUBLISHER</span>,
+</span></span><span style="display:flex;"><span>    ];
+</span></span></code></pre></div><p><a href="https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model">https://stackoverflow.com/questions/39912372/how-to-set-the-default-value-of-an-attribute-on-a-laravel-model</a></p>
+<h1 id="many-to-many-relationship">many to many relationship</h1>
+<p><a href="https://www.youtube.com/watch?v=akKWC_vP7sE">https://www.youtube.com/watch?v=akKWC_vP7sE</a></p>
+<h1 id="fake-relationship">fake relationship</h1>
+<p><a href="https://www.youtube.com/watch?v=rx1DQBE01b0">https://www.youtube.com/watch?v=rx1DQBE01b0</a></p>
+<h1 id="laravel数据库操作的三种方式">Laravel数据库操作的三种方式</h1>
+<p><a href="https://www.youtube.com/watch?v=3TJfR1Ta4GU">https://www.youtube.com/watch?v=3TJfR1Ta4GU</a></p>
+<h1 id="laravel-配置mysql讀寫分離">laravel 配置MySQL讀寫分離</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/123092691">https://zhuanlan.zhihu.com/p/123092691</a></p>
+<h1 id="model如何知道table的欄位">model如何知道table的欄位</h1>
+<p><a href="https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes">https://stackoverflow.com/questions/23396138/laravel-eloquent-model-attributes</a></p>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8eloquent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/4/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/7/" aria-label="Page 7" class="page-link" role="button">7</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/6/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/8/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

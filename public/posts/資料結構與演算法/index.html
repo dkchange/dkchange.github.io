@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>資料結構與演算法 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+這筆記為開放式課程筆記 目的在補足大學時代的不認真
+資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢
+找出最有效率的演算法
+system life cycle
+
+需求
+分析
+設計
+細分寫 CODE
+驗證
+
+概述
+
+data abstraction
+algorithm specification
+資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？
+演算法就是解決問題的方法，跟你是哪一種語言沒有關係
+
+最簡單的演算法 sort
+
+
+selection sort
+每一次從一堆數字取最大的出來 放在第一個位置&hellip;第二個位置
+那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的
+
+
+bubble sort
+
+
+quick sort
+
+
+以數字為例作搜索 binary search
+和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了
+遞迴演算法
+
+n 階層
+乘法
+
+作業
+
+試著用 recursive 做 abc 排列組合
+試著用 for 做 abc 排列組合
+
+performance evaluation
+
+無關機器的評估
+有機器的評估
+
+效能分析
+這邊蠻重視數學的
+log？ n 次方程式？
+
+
+時間複雜度
+編譯時間&#43;input 所影響的時間
+一般來講就是程式預計要走幾步
+
+大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限；
+大寫的希臘字母 Ω (Omega)函數，代表下限；
+大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限
+那我們通常用的是 O
+f(n)&lt;=cg(n)
+
+
+
+空間複雜度(佔用多少記憶體)
+code 的大小&#43;input 的量所影響的空間">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="資料結構與演算法">
+  <meta property="og:description" content="前言 這筆記為開放式課程筆記 目的在補足大學時代的不認真 資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢 找出最有效率的演算法 system life cycle
+需求 分析 設計 細分寫 CODE 驗證 概述 data abstraction algorithm specification 資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？ 演算法就是解決問題的方法，跟你是哪一種語言沒有關係 最簡單的演算法 sort selection sort 每一次從一堆數字取最大的出來 放在第一個位置…第二個位置 那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的
+bubble sort
+quick sort
+以數字為例作搜索 binary search 和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了
+遞迴演算法 n 階層 乘法 作業 試著用 recursive 做 abc 排列組合 試著用 for 做 abc 排列組合 performance evaluation 無關機器的評估 有機器的評估 效能分析 這邊蠻重視數學的 log？ n 次方程式？
+時間複雜度 編譯時間&#43;input 所影響的時間 一般來講就是程式預計要走幾步
+大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限； 大寫的希臘字母 Ω (Omega)函數，代表下限； 大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限 那我們通常用的是 O f(n)&lt;=cg(n) 空間複雜度(佔用多少記憶體) code 的大小&#43;input 的量所影響的空間">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-21T13:44:30+00:00">
+    <meta property="article:modified_time" content="2020-05-21T13:44:30+00:00">
+
+  <meta itemprop="name" content="資料結構與演算法">
+  <meta itemprop="description" content="前言 這筆記為開放式課程筆記 目的在補足大學時代的不認真 資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢 找出最有效率的演算法 system life cycle
+需求 分析 設計 細分寫 CODE 驗證 概述 data abstraction algorithm specification 資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？ 演算法就是解決問題的方法，跟你是哪一種語言沒有關係 最簡單的演算法 sort selection sort 每一次從一堆數字取最大的出來 放在第一個位置…第二個位置 那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的
+bubble sort
+quick sort
+以數字為例作搜索 binary search 和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了
+遞迴演算法 n 階層 乘法 作業 試著用 recursive 做 abc 排列組合 試著用 for 做 abc 排列組合 performance evaluation 無關機器的評估 有機器的評估 效能分析 這邊蠻重視數學的 log？ n 次方程式？
+時間複雜度 編譯時間&#43;input 所影響的時間 一般來講就是程式預計要走幾步
+大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限； 大寫的希臘字母 Ω (Omega)函數，代表下限； 大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限 那我們通常用的是 O f(n)&lt;=cg(n) 空間複雜度(佔用多少記憶體) code 的大小&#43;input 的量所影響的空間">
+  <meta itemprop="datePublished" content="2020-05-21T13:44:30+00:00">
+  <meta itemprop="dateModified" content="2020-05-21T13:44:30+00:00">
+  <meta itemprop="wordCount" content="122">
+  <meta itemprop="keywords" content="任何路線">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="資料結構與演算法">
+  <meta name="twitter:description" content="前言 這筆記為開放式課程筆記 目的在補足大學時代的不認真 資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢 找出最有效率的演算法 system life cycle
+需求 分析 設計 細分寫 CODE 驗證 概述 data abstraction algorithm specification 資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？ 演算法就是解決問題的方法，跟你是哪一種語言沒有關係 最簡單的演算法 sort selection sort 每一次從一堆數字取最大的出來 放在第一個位置…第二個位置 那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的
+bubble sort
+quick sort
+以數字為例作搜索 binary search 和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了
+遞迴演算法 n 階層 乘法 作業 試著用 recursive 做 abc 排列組合 試著用 for 做 abc 排列組合 performance evaluation 無關機器的評估 有機器的評估 效能分析 這邊蠻重視數學的 log？ n 次方程式？
+時間複雜度 編譯時間&#43;input 所影響的時間 一般來講就是程式預計要走幾步
+大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限； 大寫的希臘字母 Ω (Omega)函數，代表下限； 大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限 那我們通常用的是 O f(n)&lt;=cg(n) 空間複雜度(佔用多少記憶體) code 的大小&#43;input 的量所影響的空間">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">資料結構與演算法</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-05-21T13:44:30Z">May 21, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>這筆記為開放式課程筆記 目的在補足大學時代的不認真
+資料結構在對程式設計師的身涯有什麼好處，佔怎樣的地位呢
+找出最有效率的演算法
+system life cycle</p>
+<ul>
+<li>需求</li>
+<li>分析</li>
+<li>設計</li>
+<li>細分寫 CODE</li>
+<li>驗證</li>
+</ul>
+<h1 id="概述">概述</h1>
+<ul>
+<li>data abstraction</li>
+<li>algorithm specification
+資料結構和演算法關係密切，你的演算法要用怎樣的資料結構來實作，效能會比較好？
+演算法就是解決問題的方法，跟你是哪一種語言沒有關係</li>
+</ul>
+<h1 id="最簡單的演算法-sort">最簡單的演算法 sort</h1>
+<ul>
+<li>
+<p>selection sort
+每一次從一堆數字取最大的出來 放在第一個位置&hellip;第二個位置
+那如何選出最大?拿第一個數字來跟一堆數字比 比我大就跟你做交換 最後地一個位置就會是最大的</p>
+</li>
+<li>
+<p>bubble sort</p>
+</li>
+<li>
+<p>quick sort</p>
+</li>
+</ul>
+<h1 id="以數字為例作搜索-binary-search">以數字為例作搜索 binary search</h1>
+<p>和二元樹不同，這是一個演算法，先決條件是此數列已經排序過了</p>
+<h1 id="遞迴演算法">遞迴演算法</h1>
+<ul>
+<li>n 階層</li>
+<li>乘法</li>
+</ul>
+<h1 id="作業">作業</h1>
+<ul>
+<li>試著用 recursive 做 abc 排列組合</li>
+<li>試著用 for 做 abc 排列組合</li>
+</ul>
+<h1 id="performance-evaluation">performance evaluation</h1>
+<ul>
+<li>無關機器的評估</li>
+<li>有機器的評估</li>
+</ul>
+<h1 id="效能分析">效能分析</h1>
+<p>這邊蠻重視數學的
+log？ n 次方程式？</p>
+<ul>
+<li>
+<p>時間複雜度
+編譯時間+input 所影響的時間
+一般來講就是程式預計要走幾步</p>
+<ul>
+<li>大寫的英文字母 O (big oh)函數，代表演算法執行步驟數目上限；</li>
+<li>大寫的希臘字母 Ω (Omega)函數，代表下限；</li>
+<li>大寫的希臘字母 Θ (Theta)函數，代表同時滿足上限與下限
+那我們通常用的是 O
+f(n)&lt;=cg(n)</li>
+</ul>
+</li>
+<li>
+<p>空間複雜度(佔用多少記憶體)
+code 的大小+input 的量所影響的空間</p>
+</li>
+</ul>
+<h1 id="陣列">陣列</h1>
+<p>定義：一組索引(index)和值(value)的集合
+資料結構：一個索引對應一個值
+實作：在電腦裡面用連續空間來存放
+應用例子：矩陣、多項式、字串</p>
+<h1 id="stack-a-last-in-first-out-list">stack: a last in first out list</h1>
+<p>定義：有限的元素
+實作：用陣列來實作
+應用例子：老鼠走迷宮</p>
+<h1 id="queue-a-first-in-first-out-list">queue: a first in first out list</h1>
+<p>定義：有限的元素 多了兩個變數指向 font 前面 rear 後面
+實作：用陣列來實作
+應用例子：job scheduling</p>
+<h1 id="circular-queue">circular queue</h1>
+<p>定義：實質上還是一長列的 queue
+實作：用 queue 實現
+好處：充分利用空間</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/artisan/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/artisan/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/artisan/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/artisan/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Artisan">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Artisan">
+  <meta itemprop="datePublished" content="2020-03-12T16:15:40+00:00">
+  <meta itemprop="dateModified" content="2020-03-12T16:15:40+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Artisan">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Artisan
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Artisan”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8migrate/" class="link black dim">
+        laravel使用migrate
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>假設你的資料表的建好了，你想要對資料庫做修改，但是資料不能清空，所以不能修改現有的檔案再migrate一次，你只能新增一個migration來修改資料庫的表格</p>
+<h1 id="使用情境">使用情境</h1>
+<h2 id="修改資料表的欄位名稱">修改資料表的欄位名稱</h2>
+<pre><code>https://stackoverflow.com/questions/51130611/rename-column-in-laravel-using-migration
+</code></pre>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8migrate/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8artisan/" class="link black dim">
+        laravel使用artisan
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="介紹">介紹</h1>
+<p>artisan 是 laravel 的 cli 工具，這種框架自帶的工具，在中國那邊都稱作腳手架，整個專案製作過程都離不開它，我們會用它來建 model、建 controller
+諸如:</p>
+<p>網站進入維修</p>
+<pre><code>php artisan down
+</code></pre>
+<p>本機啟動 server</p>
+<pre><code>php artisan serve 類似於php -S localhost:8000
+</code></pre>
+<p>建 controller</p>
+<pre><code>php artisan make:controller Admin/AdminController
+</code></pre>
+<p>要看<strong>所有指令</strong></p>
+<pre><code>php artisan help
+</code></pre>
+<p>目前是把常用的另列出來，之後再一一分開來筆記</p>
+<h1 id="常用指令">常用指令</h1>
+<h2 id="資料庫遷移">資料庫遷移</h2>
+<p>用在專案初始化時</p>
+<pre><code>php artisan migrate
+</code></pre>
+<p>下這個指令之後，就可以將<code>database\migrations</code>裡面 laravel 預設的三張表新增到資料庫
+遭遇狀況:</p>
+<pre><code>PDOException::(&quot;SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes&quot;)
+</code></pre>
+<p>解決辦法:(<a href="https://laravel-news.com/laravel-5-4-key-too-long-error">https://laravel-news.com/laravel-5-4-key-too-long-error</a>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">//app/Providers/AppServiceProvider.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Schema</span><span style="color:#f92672">::</span><span style="color:#a6e22e">defaultStringLength</span>(<span style="color:#ae81ff">191</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>或是改<code>config\database.php</code>裡面的字符集</p>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8artisan/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

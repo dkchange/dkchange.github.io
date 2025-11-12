@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用shell script | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+shell script 是初階維運必備技能
+shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快
+http://linux.vbird.org/linux_basic/0320bash.php
+例如 sh, bash, csh, tcsh,Powershell, MSDOS
+可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就不叫他 shell script 了
+例如 perl，php，java, python
+為什麼沒有 c 呢？因為 c 不是直譯而是編譯的，
+那 java 呢？因為 java 編譯出的是字節碼（需要透過 jdk 來執行），不是機器碼，cpu 不能直接用
+那為什麼有了 python 這些，還需要有 shell script 呢？
+https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163
+那在這篇探討最通用的 sh
+，本身語法難度相較於其他程式語言並不難，難的是你必須要會操作軟體的指令，例如 nginx 指令，git 指令等等
+既然是程式語言，就可以做任何事，但因為速度不快，比較長應用在維運方面，常見的應用
+
+初始化（軟體安裝）
+自動佈署（lamp，lnmp）
+寫管理應用程序（叢集管理，kvm，nginx，mysql，批量遠端 raid）
+log 分析（grep）
+自動化備份
+監控（cpu，disk）
+自動擴充（監控 &raquo; API AWS/EC2 &raquo; shell script 自動佈署）
+
+那以上應用也有不同軟體可以達成，不一定要用 sh，例如老牌 zabbix 監控軟體，絕對比自己寫 sh 好
+常用指令
+列出所有 shell
+cat /etc/shells">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8shell-script/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8shell-script/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用shell script">
+  <meta property="og:description" content="前言 shell script 是初階維運必備技能 shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快 http://linux.vbird.org/linux_basic/0320bash.php 例如 sh, bash, csh, tcsh,Powershell, MSDOS 可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就不叫他 shell script 了 例如 perl，php，java, python 為什麼沒有 c 呢？因為 c 不是直譯而是編譯的， 那 java 呢？因為 java 編譯出的是字節碼（需要透過 jdk 來執行），不是機器碼，cpu 不能直接用
+那為什麼有了 python 這些，還需要有 shell script 呢？ https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163
+那在這篇探討最通用的 sh ，本身語法難度相較於其他程式語言並不難，難的是你必須要會操作軟體的指令，例如 nginx 指令，git 指令等等
+既然是程式語言，就可以做任何事，但因為速度不快，比較長應用在維運方面，常見的應用
+初始化（軟體安裝） 自動佈署（lamp，lnmp） 寫管理應用程序（叢集管理，kvm，nginx，mysql，批量遠端 raid） log 分析（grep） 自動化備份 監控（cpu，disk） 自動擴充（監控 » API AWS/EC2 » shell script 自動佈署） 那以上應用也有不同軟體可以達成，不一定要用 sh，例如老牌 zabbix 監控軟體，絕對比自己寫 sh 好
+常用指令 列出所有 shell cat /etc/shells">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-07-28T09:48:13+00:00">
+    <meta property="article:modified_time" content="2020-07-28T09:48:13+00:00">
+
+  <meta itemprop="name" content="使用shell script">
+  <meta itemprop="description" content="前言 shell script 是初階維運必備技能 shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快 http://linux.vbird.org/linux_basic/0320bash.php 例如 sh, bash, csh, tcsh,Powershell, MSDOS 可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就不叫他 shell script 了 例如 perl，php，java, python 為什麼沒有 c 呢？因為 c 不是直譯而是編譯的， 那 java 呢？因為 java 編譯出的是字節碼（需要透過 jdk 來執行），不是機器碼，cpu 不能直接用
+那為什麼有了 python 這些，還需要有 shell script 呢？ https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163
+那在這篇探討最通用的 sh ，本身語法難度相較於其他程式語言並不難，難的是你必須要會操作軟體的指令，例如 nginx 指令，git 指令等等
+既然是程式語言，就可以做任何事，但因為速度不快，比較長應用在維運方面，常見的應用
+初始化（軟體安裝） 自動佈署（lamp，lnmp） 寫管理應用程序（叢集管理，kvm，nginx，mysql，批量遠端 raid） log 分析（grep） 自動化備份 監控（cpu，disk） 自動擴充（監控 » API AWS/EC2 » shell script 自動佈署） 那以上應用也有不同軟體可以達成，不一定要用 sh，例如老牌 zabbix 監控軟體，絕對比自己寫 sh 好
+常用指令 列出所有 shell cat /etc/shells">
+  <meta itemprop="datePublished" content="2020-07-28T09:48:13+00:00">
+  <meta itemprop="dateModified" content="2020-07-28T09:48:13+00:00">
+  <meta itemprop="wordCount" content="216">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用shell script">
+  <meta name="twitter:description" content="前言 shell script 是初階維運必備技能 shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快 http://linux.vbird.org/linux_basic/0320bash.php 例如 sh, bash, csh, tcsh,Powershell, MSDOS 可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就不叫他 shell script 了 例如 perl，php，java, python 為什麼沒有 c 呢？因為 c 不是直譯而是編譯的， 那 java 呢？因為 java 編譯出的是字節碼（需要透過 jdk 來執行），不是機器碼，cpu 不能直接用
+那為什麼有了 python 這些，還需要有 shell script 呢？ https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163
+那在這篇探討最通用的 sh ，本身語法難度相較於其他程式語言並不難，難的是你必須要會操作軟體的指令，例如 nginx 指令，git 指令等等
+既然是程式語言，就可以做任何事，但因為速度不快，比較長應用在維運方面，常見的應用
+初始化（軟體安裝） 自動佈署（lamp，lnmp） 寫管理應用程序（叢集管理，kvm，nginx，mysql，批量遠端 raid） log 分析（grep） 自動化備份 監控（cpu，disk） 自動擴充（監控 » API AWS/EC2 » shell script 自動佈署） 那以上應用也有不同軟體可以達成，不一定要用 sh，例如老牌 zabbix 監控軟體，絕對比自己寫 sh 好
+常用指令 列出所有 shell cat /etc/shells">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用shell script</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-07-28T09:48:13Z">July 28, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>shell script 是初階維運必備技能
+shell 是殼的意思，文字介面底下讓我們與系統溝通的一個工具介面，有自己的語法，其速度並沒有傳統程式語言的快
+<a href="http://linux.vbird.org/linux_basic/0320bash.php">http://linux.vbird.org/linux_basic/0320bash.php</a>
+例如 sh, bash, csh, tcsh,Powershell, MSDOS
+可以與系統程式語言都可以寫 script，只不過他不附帶工具界面，就不叫他 shell script 了
+例如 perl，php，java, python
+為什麼沒有 c 呢？因為 c 不是直譯而是編譯的，
+那 java 呢？因為 java 編譯出的是字節碼（需要透過 jdk 來執行），不是機器碼，cpu 不能直接用</p>
+<p>那為什麼有了 python 這些，還需要有 shell script 呢？
+<a href="https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163">https://stackoverflow.com/questions/2785155/php-vs-bash-for-cli-scripting/2785163#2785163</a></p>
+<p>那在這篇探討最通用的 sh
+，本身語法難度相較於其他程式語言並不難，難的是你必須要會操作軟體的指令，例如 nginx 指令，git 指令等等</p>
+<p>既然是程式語言，就可以做任何事，但因為速度不快，比較長應用在維運方面，常見的應用</p>
+<ul>
+<li>初始化（軟體安裝）</li>
+<li>自動佈署（lamp，lnmp）</li>
+<li>寫管理應用程序（叢集管理，kvm，nginx，mysql，批量遠端 raid）</li>
+<li>log 分析（grep）</li>
+<li>自動化備份</li>
+<li>監控（cpu，disk）</li>
+<li>自動擴充（監控 &raquo; API AWS/EC2 &raquo; shell script 自動佈署）</li>
+</ul>
+<p>那以上應用也有不同軟體可以達成，不一定要用 sh，例如老牌 zabbix 監控軟體，絕對比自己寫 sh 好</p>
+<h1 id="常用指令">常用指令</h1>
+<p>列出所有 shell
+cat /etc/shells</p>
+<p>查詢相關配置文件
+rpm -qc bash</p>
+<p>調適腳本 debug
+bash -vx pinggoogle.sh</p>
+<h2 id="alias">alias</h2>
+<p>查看別名
+alias
+定義臨時別名
+aias stanley = &lsquo;date&rsquo;
+定義永久別名
+vim .bashrc
+取消別名
+unalias 別名</p>
+<h2 id="歷史相關指令">歷史相關指令</h2>
+<p>!! 上個命令
+!$ 上個命令的最後一個參數</p>
+<h1 id="規則">規則</h1>
+<h1 id="分類">分類</h1>
+<ul>
+<li>login shell（ su - stanley）
+<ul>
+<li>/etc/profile</li>
+<li>/etc/bashrc</li>
+<li>~/.bash_profile</li>
+<li>~/.bashrc</li>
+</ul>
+</li>
+<li>nologin shell ( su stanley)
+<ul>
+<li>/ect/bashrc</li>
+<li>~/.bashrc</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件開頭">文件開頭</h2>
+<p>#!/usr/bin/bash
+#!/usr/bin/python
+指定解釋器</p>
+<blockquote>
+<p>chmod +x pinggoogle.sh</p>
+</blockquote>
+<p>就可以直接執行
+sub shell 會另開 shell</p>
+<blockquote>
+<p>./pinggoole.sh</p>
+</blockquote>
+<p>或是</p>
+<blockquote>
+<p>. pinggoole.sh
+source pinggoogle.sh</p>
+</blockquote>
+<p>會影響當前 shell 的執行（目前的視窗）
+否則就必須前面訂解釋器</p>
+<p>sub shell 會另開 shell</p>
+<blockquote>
+<p>bash pinggoogle.sh</p>
+</blockquote>
+<h2 id="兩段不同語言混雜">兩段不同語言混雜</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>echo <span style="color:#e6db74">&#34;im bash&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/usr/bin/python <span style="color:#e6db74">&lt;&lt;-EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print &#34;im python&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;im bash&#39;</span>
+</span></span></code></pre></div><p>上面這段代碼，EOF 是約定俗成，可自由定義，其中&laquo;-的-可以避免縮進問題
+例如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>echo <span style="color:#e6db74">&#34;im bash&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/usr/bin/python <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print &#34;im python&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>上面這段去掉-就會報錯</p>
+<h2 id="範例-1">範例 1</h2>
+<p>ping 一次</p>
+<blockquote>
+<p>ping -c1 google.com &amp;&gt;/dev/null &amp;&amp; echo &ldquo;google is alive&rdquo; || echo &ldquo;google is down&rdquo;
+&amp;&amp;和||相當於三元運算子
+&amp;&gt;/dev/null 將過程輸出到/dev/null 不顯示</p>
+</blockquote>
+<h2 id="shell-環境變量">shell 環境變量</h2>
+<p>相關內容鳥哥的網站都有說
+<a href="https://www.cntofu.com/book/46/linux_system/1517.md">https://www.cntofu.com/book/46/linux_system/1517.md</a></p>
+<p>set:顯示(設置)shell 變量 包括的私有變量以及用戶變量，不同類的 shell 有不同的私有變量 bash,ksh,csh 每中 shell 私有變量都不一樣</p>
+<p>env:顯示(設置)用戶變量變量</p>
+<p>export:顯示(設置)當前導出成用戶變量的 shell 變量。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

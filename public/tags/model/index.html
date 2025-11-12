@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/model/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/model/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/model/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/model/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Model">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Model">
+  <meta itemprop="datePublished" content="2019-12-16T17:11:47+00:00">
+  <meta itemprop="dateModified" content="2019-12-16T17:11:47+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Model">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Model
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Model”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/laravel%E4%BD%BF%E7%94%A8model/" class="link black dim">
+        laravel使用model
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>這篇重點在紀錄 model 使用時的幾個知識點
+youtue 上有教學講得很清楚，這邊是看完教學的心得紀錄
+參考自:https://youtu.be/L1E_uJxNC3M</p>
+<p>laravel 框架中的 Model 操作数据库 , 相比 DB 类有什么明显的优越性吗?
+<a href="https://www.zhihu.com/question/49649216">https://www.zhihu.com/question/49649216</a></p>
+<h1 id="路由和-model-綁定">路由和 model 綁定</h1>
+<p>Route Model Binding</p>
+<p><code>/customers/{customer}</code>路由的參數只要和 founction 參數一樣的變數名稱</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show</span>($customer)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//when the value is not found,this will return 404
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $customer <span style="color:#f92672">=</span> <span style="color:#a6e22e">Customer</span><span style="color:#f92672">::</span><span style="color:#a6e22e">where</span>(<span style="color:#e6db74">&#39;id&#39;</span>,$customer)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">firstOrFail</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;customers.show&#39;</span>, <span style="color:#a6e22e">compact</span>(<span style="color:#e6db74">&#39;customer&#39;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>就可以省略成這樣</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">Customer</span> $customer)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;customers.show&#39;</span>, <span style="color:#a6e22e">compact</span>(<span style="color:#e6db74">&#39;customer&#39;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h1 id="知識點">知識點</h1>
+<h2 id="eloquent-scopes">Eloquent Scopes</h2>
+<p>這個是用來客製化查詢結果的
+例如在 model 裡</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">scopeActive</span>($query)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $query<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">where</span>(<span style="color:#e6db74">&#39;active&#39;</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>controller 裡面就可以用<strong>靜態方法</strong>的方式調用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#a6e22e">ModelName</span><span style="color:#f92672">::</span><span style="color:#a6e22e">Active</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>();
+</span></span></code></pre></div><p>好處就是 sql 的查詢語句都放在 model 裡，controller 程式語意一目瞭然</p>
+    </div>
+    <a href="/posts/laravel%E4%BD%BF%E7%94%A8model/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

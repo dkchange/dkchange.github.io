@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/linux/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/tags/linux/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/linux/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/linux/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="Linux">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Linux">
+  <meta itemprop="datePublished" content="2020-11-18T14:38:24+00:00">
+  <meta itemprop="dateModified" content="2020-11-18T14:38:24+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Linux
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Linux”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%B8%BB%E6%A9%9F%E7%AE%A1%E7%90%86/" class="link black dim">
+        主機管理
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>實體的機器
+要考慮作業系統，資料庫管理工具，提供的服務，那當要在同一台機器提供需要不同環境(例如升級新版的資料庫)的服務時，兩個服務就不能同時存在同一台機器了
+虛擬機
+我們開始想辦法在作業系統上再裝一個作業系統，這樣環境就不會衝突，然而這樣會非常的消耗資源
+容器
+我們開始把現有的作業系統的使用最大化，讓每一個服務都是一個進程，這樣就可以省掉很多資源了</p>
+<h1 id="掛載nfs硬碟解決權限問題">掛載NFS硬碟解決權限問題</h1>
+<p>Change your configuration so that</p>
+<blockquote>
+<p>mount -t cifs -o username=someuser,password=somepass //192.168.0.110/backup /var/backup
+Then in /etc/fstab add</p>
+</blockquote>
+<blockquote>
+<p>//192.168.0.110/backup /var/backup cifs username=someuser,password=somepass,network,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm</p>
+</blockquote>
+<p><a href="https://unix.stackexchange.com/questions/98707/how-do-i-mount-a-cifs-share-so-i-can-fully-control-the-mounted-volume-on-the-cli">https://unix.stackexchange.com/questions/98707/how-do-i-mount-a-cifs-share-so-i-can-fully-control-the-mounted-volume-on-the-cli</a></p>
+<p><a href="https://superuser.com/questions/744384/allow-chmod-on-cifs-mount">https://superuser.com/questions/744384/allow-chmod-on-cifs-mount</a></p>
+<p><a href="https://superuser.com/questions/451475/chmod-doesnt-work">https://superuser.com/questions/451475/chmod-doesnt-work</a></p>
+    </div>
+    <a href="/posts/%E4%B8%BB%E6%A9%9F%E7%AE%A1%E7%90%86/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/" class="link black dim">
+        不常用會忘的linux指令
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="改變資料夾底下檔案的預設權限">改變資料夾底下檔案的預設權限</h1>
+<p>使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增
+如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000
+此時你需要在container增加user</p>
+<blockquote>
+<p>useradd -u 1000 stanley
+此時我們可以把www-data加到stanley的group
+usermod -a -G stanley www-data
+加完之後確認是否有在群組內
+getent group stanley
+帳號重登一次電腦，如果是container就restart
+之後www-data就有權限創檔案了
+但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改
+因為檔案的user和group都是www-data
+此時我們在透過網頁創建檔案之前
+chmod g+s .;
+This command sets the group ID (setgid) on the current directory, written as ..
+This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory.
+g+s affects the file&rsquo;s group ID but does not affect the owner ID.</p>
+    </div>
+    <a href="/posts/%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%9C%83%E5%BF%98%E7%9A%84linux%E6%8C%87%E4%BB%A4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

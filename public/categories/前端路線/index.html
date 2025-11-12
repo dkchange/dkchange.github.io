@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/categories/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%B7%9A/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="前端路線">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="前端路線">
+  <meta itemprop="datePublished" content="2019-10-31T23:53:26+00:00">
+  <meta itemprop="dateModified" content="2019-10-31T23:53:26+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="前端路線">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          前端路線
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “前端路線”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E4%BD%BF%E7%94%A8npm/" class="link black dim">
+        使用npm
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="安裝nodejs">安裝nodejs</h1>
+<p>windows環境去官網下載安裝檔安裝</p>
+<pre><code>node -v
+</code></pre>
+<p>如果成功看到版本號就是安裝成功</p>
+<h1 id="nodejs-版本問題">nodejs 版本問題</h1>
+<p>建議安裝nvm，windows就裝nvm-windows
+指令都一樣，只是windows記得在CMD底下運行
+情境:
+What&rsquo;s your nodejs version? jsdom requires node &gt;= 10.
+node -e &ldquo;try {} catch {}&rdquo;
+node -v</p>
+<h1 id="npm常用指令">npm常用指令</h1>
+<p>初始化一個專案</p>
+<pre><code>npm init &quot;專案名&quot;
+</code></pre>
+<p>然後就會看到多了個package.json檔，那如果你是一個現成的專案，你就會看到這隻檔案</p>
+<pre><code>npm install -g &quot;package的名字&quot;
+</code></pre>
+<p>上面-g代表global<strong>全局安裝</strong>，不管你切到哪個資料夾直接下這個指令，windows系統都找的到，通常是各個專案都有機會用到的工具</p>
+<pre><code>npm install &quot;package的名字&quot;
+</code></pre>
+<p>這就直接安裝在專案底下，<strong>本地安裝</strong>會出現在node_modules資料夾，來方便專案引用，所以專案要引用所有module的<strong>根目錄</strong>就是在這</p>
+<pre><code>npm install --save-dev &quot;package的名字&quot; 
+</code></pre>
+<p>一樣直接安裝在開發依賴底下也可以用-D，注意是大寫D，<strong>本地安裝</strong>會出現在node_modules資料夾，通常是開發時才會用到的工具，生產環境的code不會引用到，所以大致上你在開發專案時，為了讓人家順利使用，很少用-g這種全局的安裝
+<a href="https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program">https://stackoverflow.com/questions/44764004/ts-node-is-not-recognized-as-an-internal-or-external-command-operable-program</a></p>
+<pre><code>npm uninstall --save webpack
+</code></pre>
+<p>加上&ndash;save移除時才會順便更新package.json檔</p>
+<pre><code>npm update &quot;package的名字&quot;
+</code></pre>
+<p>更新某package</p>
+<h1 id="指定版本號">指定版本號</h1>
+<pre><code>nodejs採用semver版本號規範，這版本號的命名規則再去看看
+
+npm install webpack@^1.*
+</code></pre>
+<p>符號號代表什麼再上網查語意吧</p>
+    </div>
+    <a href="/posts/%E4%BD%BF%E7%94%A8npm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="link black dim">
+        安裝webpack4
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="前言">前言</h1>
+<p>webpack是前端各大框架必備工具，用來編譯和打包，雖然各大場都有提供設訂好的工具，但為了理解，還是必學</p>
+<h1 id="用npm安裝webpack">用npm安裝webpack</h1>
+<p>使用nodejs內建的npm來安裝</p>
+<pre><code>npm install -g webpack
+npm install -g webpack-cli
+</code></pre>
+<p>以上兩個包有相依関係，所以要-g就要一起-g，不然會找不到，btw関方不推薦全侷
+接著</p>
+<pre><code>webpack -v
+</code></pre>
+<p>一樣如果看到版本號就是安裝成功</p>
+<h1 id="運行webpack">運行webpack</h1>
+<p>預設編譯src目錄底下的文件
+mkdir src
+建index.js檔，在裏面寫js
+webpack
+不填參數預設生產環境，編譯出來的code會看不懂，壓縮過
+成功運行
+webpack &ndash;mode=development
+開發環境的main.js就可讀了</p>
+<h1 id="webpack配置文件">webpack配置文件</h1>
+<p>因為不想指令后面一堆參數，所以配置文件是必需的
+默認<code>webpack.config.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;main.js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="npm-run指令">npm run指令</h1>
+<p>專案需要客制化指令給使用者
+package.json</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;script&#39;</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;dev&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;npx webpack&#39;</span> <span style="color:#75715e">//可以不用加--development這個參數了^^
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//npx預設會找node_modules底下的.bin的二進位library，沒有的話就會往全侷找
+</span></span></span></code></pre></div><p>使用者執行
+npm run dev
+編譯成功</p>
+<h1 id="結合html文件">結合html文件</h1>
+<p>創建index.html</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;../dist/main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h1 id="結合多入口html文件">結合多入口html文件</h1>
+<p>一般來說，現在的網站都會把所有js壓成同一支，但你可能有多個html入口的需求</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">main</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">hello</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./src/hello.js&#39;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;dist&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;[name].js&#39;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="loader">loader</h1>
+<h2 id="前言-1">前言</h2>
+<p>webpack和各大工具合作的包叫作loader</p>
+    </div>
+    <a href="/posts/%E5%AE%89%E8%A3%9Dwebpack4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/" class="link black dim">
+        創建github網誌
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="使用工具">使用工具</h1>
+<p>網路上有三套靜態網頁的產生工具
+Jekyll、Hexo、Hugo
+那我選擇<strong>Hexo</strong>是因為，用 nodejs 感覺比較不會陌生</p>
+<h1 id="使用主題">使用主題</h1>
+<p>Hexo 有不少免費主題，我喜歡 NexT</p>
+<h1 id="附加價值">附加價值</h1>
+<p>希望能讓自己熟悉 markdown</p>
+<h1 id="注意">注意</h1>
+<p><a href="https://blog.moli.rocks/2018/07/11/how-to-set-custom-domain-and-cloudflare-ssl-to-github-pages/">如何將 GitHub Pages 套上個人網域</a>
+如果是專案頁面請發佈到專案的 gh-page 分支
+如果是個人或公司頁面請發佈到 XXXXX.github.io 底下的 master</p>
+<h1 id="gitbook">gitbook</h1>
+<p><a href="https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github">https://www.ucamc.com/e-learning/computer-skills/245-gitbook-link-github</a></p>
+<h1 id="markdown">markdown</h1>
+<p><a href="https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown">https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown</a></p>
+<h1 id="markdown-技巧-diff">markdown 技巧 diff</h1>
+<p><a href="https://youtu.be/yzeVMecydCE?t=1485">https://youtu.be/yzeVMecydCE?t=1485</a></p>
+    </div>
+    <a href="/posts/%E5%89%B5%E5%BB%BAgithub%E7%B6%B2%E8%AA%8C/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

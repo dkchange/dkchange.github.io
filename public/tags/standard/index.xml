@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Standard on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/standard/</link>
+    <description>Recent content in Standard on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Mar 2020 21:47:47 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/standard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>閱讀PSR</title>
+      <link>http://localhost:1313/posts/%E9%96%B1%E8%AE%80psr/</link>
+      <pubDate>Tue, 10 Mar 2020 21:47:47 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E9%96%B1%E8%AE%80psr/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;PHP 有 FIG 這個非官方組織，制定了一些最佳實踐，你不一定要遵守，但是常常會在人力銀行上面看到&#xA;筆記來自於 Laravel China 的中文文檔&#xA;&lt;a href=&#34;https://learnku.com/docs/psr/psr-0-automatic-loading-specification/1603&#34;&gt;https://learnku.com/docs/psr/psr-0-automatic-loading-specification/1603&lt;/a&gt;&#xA;&lt;a href=&#34;https://blog.tonycube.com/2016/09/php-psr-4-autoloader.html&#34;&gt;https://blog.tonycube.com/2016/09/php-psr-4-autoloader.html&lt;/a&gt;&#xA;&lt;a href=&#34;https://events.storm.mg/codingstyle/coding_style/php/psr-4.html&#34;&gt;https://events.storm.mg/codingstyle/coding_style/php/psr-4.html&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;重構&#34;&gt;重構&lt;/h1&gt;&#xA;&lt;p&gt;優雅的重構&#xA;&lt;a href=&#34;https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit#slide=id.g76e5fccd8c_0_71&#34;&gt;https://docs.google.com/presentation/d/10vxyi5VXSSZ4MMjLrKAIhrnpmuCjdDaZ_4K7ma1KIys/edit#slide=id.g76e5fccd8c_0_71&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;psr-0-autoloading-standard已棄用&#34;&gt;PSR-0 (Autoloading Standard)(已棄用)&lt;/h1&gt;&#xA;&lt;h1 id=&#34;psr-1-basic-coding-standard&#34;&gt;PSR-1 (Basic Coding Standard)&lt;/h1&gt;&#xA;&lt;h1 id=&#34;psr-2-coding-style-guide&#34;&gt;PSR-2 (Coding Style Guide)&lt;/h1&gt;&#xA;&lt;h1 id=&#34;psr-4-autoloading-standard&#34;&gt;PSR-4 (Autoloading Standard)&lt;/h1&gt;&#xA;&lt;p&gt;範例：&#xA;&lt;a href=&#34;https://jsnwork.kiiuo.com/archives/2618/php-composer-%E9%9D%9E%E5%B8%B8%E7%B0%A1%E5%96%AE%E7%9A%84%E4%BD%BF%E7%94%A8-psr-4-%E4%BE%86%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%8B%95%E8%AE%80%E5%8F%96%E9%A1%9E%E5%88%A5/&#34;&gt;https://jsnwork.kiiuo.com/archives/2618/php-composer-%E9%9D%9E%E5%B8%B8%E7%B0%A1%E5%96%AE%E7%9A%84%E4%BD%BF%E7%94%A8-psr-4-%E4%BE%86%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%8B%95%E8%AE%80%E5%8F%96%E9%A1%9E%E5%88%A5/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

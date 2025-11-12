@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>使用docker | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+容器造就了許多現代化服務，諸如 serverless function as a service，然而技術的演變越來越快，那我們就必須跟著學新工具，新流程，新術語
+為什麼你需要 docker，因為你追求效率，速度，在容器化出現之前，你大概 80％的時間都都在做維運的事，更新，備份，佈署
+在 docker 出現之後，你可以更專注於開發
+docker 和 vagrant 有何不同
+http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/
+https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html
+因為工作需要，開始使用 docker
+參考文章：https://ithelp.ithome.com.tw/users/20103456/ironman/1320
+docker image 是眾多 images 的集合，方便管理
+https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9
+第二是 Docker container 也跟寫程式一樣，有 decouple(解藕合)的概念，我的開發環境通常會是 php &#43; Nginx ，剛開始建的時候曾為了一個問題糾結很久：我到底應該要在
+在 php 的 image 上裝 Nginx？
+在 Nginx 的 image 上裝 php?
+用一個乾淨的 alpine image，在上面裝 php &#43; Nginx？
+每個都會遇到不同的問題，後來看了一篇分享豁然開朗，兩個 image 分開，各司其職，這樣容易維護，調整功能也非常容易。
+有時候因為正式部署環境或其他需求的關係，你可能需要建成單一 image 來作業，這邊以開發時期，快速調整為前提
+Alpine Linux 挑戰最小 docker image OS
+官方都會出一個服務例如 php，nginx，mysql
+然而這些服務，你連接到 php container 的時候，bash 下 mysql 在該 container 並找不到 mysql
+所以各項服務都是由 docker 來橋接的">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8docker/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E4%BD%BF%E7%94%A8docker/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="使用docker">
+  <meta property="og:description" content="前言 容器造就了許多現代化服務，諸如 serverless function as a service，然而技術的演變越來越快，那我們就必須跟著學新工具，新流程，新術語
+為什麼你需要 docker，因為你追求效率，速度，在容器化出現之前，你大概 80％的時間都都在做維運的事，更新，備份，佈署 在 docker 出現之後，你可以更專注於開發
+docker 和 vagrant 有何不同 http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/ https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html
+因為工作需要，開始使用 docker 參考文章：https://ithelp.ithome.com.tw/users/20103456/ironman/1320 docker image 是眾多 images 的集合，方便管理
+https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9
+第二是 Docker container 也跟寫程式一樣，有 decouple(解藕合)的概念，我的開發環境通常會是 php &#43; Nginx ，剛開始建的時候曾為了一個問題糾結很久：我到底應該要在 在 php 的 image 上裝 Nginx？ 在 Nginx 的 image 上裝 php? 用一個乾淨的 alpine image，在上面裝 php &#43; Nginx？ 每個都會遇到不同的問題，後來看了一篇分享豁然開朗，兩個 image 分開，各司其職，這樣容易維護，調整功能也非常容易。 有時候因為正式部署環境或其他需求的關係，你可能需要建成單一 image 來作業，這邊以開發時期，快速調整為前提
+Alpine Linux 挑戰最小 docker image OS 官方都會出一個服務例如 php，nginx，mysql 然而這些服務，你連接到 php container 的時候，bash 下 mysql 在該 container 並找不到 mysql 所以各項服務都是由 docker 來橋接的">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-04-06T09:32:25+00:00">
+    <meta property="article:modified_time" content="2020-04-06T09:32:25+00:00">
+
+  <meta itemprop="name" content="使用docker">
+  <meta itemprop="description" content="前言 容器造就了許多現代化服務，諸如 serverless function as a service，然而技術的演變越來越快，那我們就必須跟著學新工具，新流程，新術語
+為什麼你需要 docker，因為你追求效率，速度，在容器化出現之前，你大概 80％的時間都都在做維運的事，更新，備份，佈署 在 docker 出現之後，你可以更專注於開發
+docker 和 vagrant 有何不同 http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/ https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html
+因為工作需要，開始使用 docker 參考文章：https://ithelp.ithome.com.tw/users/20103456/ironman/1320 docker image 是眾多 images 的集合，方便管理
+https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9
+第二是 Docker container 也跟寫程式一樣，有 decouple(解藕合)的概念，我的開發環境通常會是 php &#43; Nginx ，剛開始建的時候曾為了一個問題糾結很久：我到底應該要在 在 php 的 image 上裝 Nginx？ 在 Nginx 的 image 上裝 php? 用一個乾淨的 alpine image，在上面裝 php &#43; Nginx？ 每個都會遇到不同的問題，後來看了一篇分享豁然開朗，兩個 image 分開，各司其職，這樣容易維護，調整功能也非常容易。 有時候因為正式部署環境或其他需求的關係，你可能需要建成單一 image 來作業，這邊以開發時期，快速調整為前提
+Alpine Linux 挑戰最小 docker image OS 官方都會出一個服務例如 php，nginx，mysql 然而這些服務，你連接到 php container 的時候，bash 下 mysql 在該 container 並找不到 mysql 所以各項服務都是由 docker 來橋接的">
+  <meta itemprop="datePublished" content="2020-04-06T09:32:25+00:00">
+  <meta itemprop="dateModified" content="2020-04-06T09:32:25+00:00">
+  <meta itemprop="wordCount" content="849">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用docker">
+  <meta name="twitter:description" content="前言 容器造就了許多現代化服務，諸如 serverless function as a service，然而技術的演變越來越快，那我們就必須跟著學新工具，新流程，新術語
+為什麼你需要 docker，因為你追求效率，速度，在容器化出現之前，你大概 80％的時間都都在做維運的事，更新，備份，佈署 在 docker 出現之後，你可以更專注於開發
+docker 和 vagrant 有何不同 http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/ https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html
+因為工作需要，開始使用 docker 參考文章：https://ithelp.ithome.com.tw/users/20103456/ironman/1320 docker image 是眾多 images 的集合，方便管理
+https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9
+第二是 Docker container 也跟寫程式一樣，有 decouple(解藕合)的概念，我的開發環境通常會是 php &#43; Nginx ，剛開始建的時候曾為了一個問題糾結很久：我到底應該要在 在 php 的 image 上裝 Nginx？ 在 Nginx 的 image 上裝 php? 用一個乾淨的 alpine image，在上面裝 php &#43; Nginx？ 每個都會遇到不同的問題，後來看了一篇分享豁然開朗，兩個 image 分開，各司其職，這樣容易維護，調整功能也非常容易。 有時候因為正式部署環境或其他需求的關係，你可能需要建成單一 image 來作業，這邊以開發時期，快速調整為前提
+Alpine Linux 挑戰最小 docker image OS 官方都會出一個服務例如 php，nginx，mysql 然而這些服務，你連接到 php container 的時候，bash 下 mysql 在該 container 並找不到 mysql 所以各項服務都是由 docker 來橋接的">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">使用docker</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-04-06T09:32:25Z">April 6, 2020</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p>容器造就了許多現代化服務，諸如 serverless function as a service，然而技術的演變越來越快，那我們就必須跟著學新工具，新流程，新術語</p>
+<p>為什麼你需要 docker，因為你追求效率，速度，在容器化出現之前，你大概 80％的時間都都在做維運的事，更新，備份，佈署
+在 docker 出現之後，你可以更專注於開發</p>
+<p>docker 和 vagrant 有何不同
+<a href="http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/">http://blog.iwonder.tw/2017/12/27/reflection-of-vagrant-and-docker-positioning/</a>
+<a href="https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html">https://peihsinsu.gitbooks.io/docker-note-book/content/docker_data_volume_container.html</a></p>
+<p>因為工作需要，開始使用 docker
+參考文章：https://ithelp.ithome.com.tw/users/20103456/ironman/1320
+docker image 是眾多 images 的集合，方便管理</p>
+<p><a href="https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9">https://medium.com/@charliecc/docker-%E7%B7%B4%E7%BF%92%E7%AD%86%E8%A8%98-vol-1-df59d4fdc9c9</a></p>
+<p>第二是 Docker container 也跟寫程式一樣，有 decouple(解藕合)的概念，我的開發環境通常會是 php + Nginx ，剛開始建的時候曾為了一個問題糾結很久：我到底應該要在
+在 php 的 image 上裝 Nginx？
+在 Nginx 的 image 上裝 php?
+用一個乾淨的 alpine image，在上面裝 php + Nginx？
+每個都會遇到不同的問題，後來看了一篇分享豁然開朗，兩個 image 分開，各司其職，這樣容易維護，調整功能也非常容易。
+有時候因為正式部署環境或其他需求的關係，你可能需要建成單一 image 來作業，這邊以開發時期，快速調整為前提</p>
+<h1 id="alpine-linux-挑戰最小-docker-image-os">Alpine Linux 挑戰最小 docker image OS</h1>
+<p>官方都會出一個服務例如 php，nginx，mysql
+然而這些服務，你連接到 php container 的時候，bash 下 mysql 在該 container 並找不到 mysql
+所以各項服務都是由 docker 來橋接的</p>
+<h1 id="exited">exited</h1>
+<p>有的時候官方的映像檔啟動時並不如你預期
+可能會出現 status exited 1
+這時候就來查 log 啦
+docker-compose logs 服務名
+docker logs 容器 id</p>
+<h2 id="如何開發與維運">如何開發與維運</h2>
+<p><a href="https://ithelp.ithome.com.tw/articles/10185892">https://ithelp.ithome.com.tw/articles/10185892</a></p>
+<h1 id="docker-目錄解說">docker 目錄解說</h1>
+<p><a href="https://www.jianshu.com/p/02c1051245d2">https://www.jianshu.com/p/02c1051245d2</a></p>
+<h1 id="自建環境">自建環境</h1>
+<p>sudo docker build . -t myyii &ndash;no-cache
+sudo
+sudo docker run -d &ndash;name yii-adv -p 8088:80 <br>
+-v /home/stanley/Desktop/mydockertest/www/yii-adv:/var/www/yii-adv <br>
+-v /home/stanley/Desktop/mydockertest/nginx-yii-adv.conf:/etc/nginx/conf.d/default.conf <br>
+&ndash;network=desktop_backend <br>
+myyii</p>
+<p>sudo docker run -d &ndash;name yii-basic -p 8089:80 <br>
+-v /home/stanley/Desktop/mydockertest/www/yii-basic:/var/www/yii-basic <br>
+-v /home/stanley/Desktop/mydockertest/nginx-yii-basic.conf:/etc/nginx/conf.d/default.conf <br>
+&ndash;network=desktop_backend <br>
+myyii</p>
+<p><a href="https://stackoverflow.com/questions/46266527/could-not-reliably-determine-the-servers-fully-qualified-domain-name-how-to">https://stackoverflow.com/questions/46266527/could-not-reliably-determine-the-servers-fully-qualified-domain-name-how-to</a></p>
+<p>有成功，但還要在設定 apache 那些
+sudo docker run -d &ndash;name mypay &ndash;hostname myphppay.com -p 8087:80 <br>
+-v /home/stanley/Desktop/Docker/php5217/weifu:/var/www mypay</p>
+<p>docker run mypay 不在背景執行看報什麼錯
+docker run -dit mypay 可以強行執行
+然後再進去看哪裡錯</p>
+<p><a href="https://stackoverflow.com/questions/28212380/why-docker-container-exits-immediately">https://stackoverflow.com/questions/28212380/why-docker-container-exits-immediately</a></p>
+<p>改換
+<a href="https://github.com/fifilyu/docker-php-5.2.17-fpm">https://github.com/fifilyu/docker-php-5.2.17-fpm</a>
+docker run -d &ndash;name mypay -p 8087:8080 docker-php-5.2.17-fpm
+sudo docker run -d &ndash;name mypay -v /home/stanley/Downloads/weifu/zfb:/data/web <br>
+-p 8087:8080 <br>
+docker-php-5.2.17-fpm</p>
+<p>sudo docker network ls</p>
+<p>default.conf /etc/nginx/conf.d/default.conf
+sudo docker run -d &ndash;name yiitest -p 8088:80 -v /home/stanley/Desktop/mydockertest/www:/var/www &ndash;network=desktop_backend myyii</p>
+<p>sudo docker exec -it yiitest /bin/bash</p>
+<p>sudo stats 會秀出 container 佔用的資源</p>
+<p>sudo logs containerName 會 show 出如果執行在前景的 log</p>
+<h1 id="dockerfile">dockerfile</h1>
+<p><a href="https://github.com/kaushalkishorejaiswal/Docker-Centos-Nginx-PHP">https://github.com/kaushalkishorejaiswal/Docker-Centos-Nginx-PHP</a></p>
+<pre><code>vi Dockerfile
+撰寫dokerfile
+
+ADD nginx.repo /etc/yum.repos.d/nginx.repo
+ADD 把 Local 的檔案複製到 Image 裡
+
+RUN yum -y install nginx
+RUN Linux 指令
+RUN yum update -y &amp;&amp; \
+    yum install -y epel-release
+</code></pre>
+<p>**&amp;&amp; \**用來連接字串</p>
+<p>以下是 centos 推薦庫
+<a href="https://zoneless.blog/2018/01/07/install-repository-on-centos7/">https://zoneless.blog/2018/01/07/install-repository-on-centos7/</a></p>
+<pre><code>VOLUME ./www
+掛載local位置給container，然而你無法指定container的對應的位置
+只能透過指令來完成A Dockerfile defines how an image is built, not how it's used
+https://stackoverflow.com/questions/47942016/add-bind-mount-to-dockerfile-just-like-volume
+using -v /path/on/host:/path/in/container to access directories from the host.
+
+EXPOSE 80
+對外開放80port
+
+WORKDIR /var/www/
+預設工作目錄
+
+CMD [&quot;supervisord&quot;, &quot;-n&quot;]
+在執行docker run
+之後會直接開啟這個程式
+</code></pre>
+<h1 id="docker-image">docker image</h1>
+<pre><code>docker build -t imageName . --no-cache
+</code></pre>
+<p>在剛剛的 dockerfile 目錄下指令，客製 docker image</p>
+<p>docker run -p 8080:8080 imageName</p>
+<p>執行該 image
+run 自家專案時，出現了以下錯誤
+exited: php5-fpm-log (exit status 1; not expected)
+是因為我們有執行 supervisor，所以在前景出現這個正常</p>
+<p>所以記得加上-d 在背景執行
+docker run -p 8088:80 -d imageName
+加上 port 號的對應之後，就可以用 localhost:8088 進入改該專案</p>
+<h1 id="bash">bash</h1>
+<pre><code>docker run -it --entrypoint bash imageName
+docker exec -it docker_id /bin/bash
+sudo docker exec -it yiitest /bin/bash
+</code></pre>
+<p>進入該 container</p>
+<p>當進入容器時，要進行服務開啟會保下列的錯
+Failed to get D-Bus connection: Operation not permitted
+原因是因為 <strong><em>Docker 的设计理念是在容器里面不运行后台服务</em></strong>
+<a href="https://blog.51cto.com/lizhenliang/1975466">https://blog.51cto.com/lizhenliang/1975466</a></p>
+<p>所以最好一開始就在 dockerfile 寫好要啟動的服務</p>
+<h1 id="docker-compose">docker-compose</h1>
+<p>docker-compose 可使用的指令比 docker 多很多，因為連結各個 container
+docker-compose 雖然是獨立的軟體，但是和 docker 還是有相依性，所以安裝時要注意版本
+docker-compose up -d
+驗證 docker-compose.yml 內容是否正確
+啟動很多個 Docker Container 時，就需要輸入很多次 docker run 指令，另外 container 和 container 之間要做關聯的話也要記得它們之間要如何的連結(link) Container</p>
+<pre><code>volumes:
+  - &quot;./m88web:/var/www&quot;
+  - &quot;./config/freetds.conf:/etc/freetds.conf&quot;
+  - &quot;./config/nginx/backend.conf:/etc/nginx/conf.d/default.conf&quot;
+</code></pre>
+<p>用上面的設定做檔案的替換</p>
+<pre><code>在有docker-compose.yml的資料夾底下，下
+sudo docker-compose up -d
+如果檔案有做修改，會把新增的service建起來，但已經打開的不會因為你註解就關掉，以防你註解錯直接關掉，引發災情，所以要關掉就手動關吧
+
+
+docker info
+列出docker相關訊息image path等
+
+
+sudo docker ps -a
+列出所有運作的container
+
+sudo docker-compose stop container_id
+停止單一container
+
+sudo docker stop $(sudo docker ps -a -q)
+停止所有container
+
+sudo docker rm $(sudo docker rm -a -q)
+移除所有container
+
+image has dependent child images
+查出有相依的images
+sudo docker image inspect  --format='{{.RepoTags}} {{.Id}} {{.Parent}}' $(sudo docker image ls -q --filter since=container_id)
+
+sudo docker-compose exec serviceName bash
+進入container環境,這裡和docker不一樣，用的是yml檔裡面設定的serviceName
+尔且切记一定要在docker-compose.yml的目录下执行
+
+exit
+離開container
+
+因為adminer有版本相關問題，所以決定rebuild image
+Postgres: ERROR: column d.adsrc does not exist 4.7.5版本以上才ok
+sudo docker-compose up -d --no-deps --build adminer
+sudo docker-compose up -d --no-deps --build m88-mapi
+sudo docker-compose buil m1-frontend
+不须去pull 新版的adminer image
+</code></pre>
+<h2 id="bash-executable-file-not-found-in-path">&quot;bash&quot;: executable file not found in $PATH&quot;</h2>
+<p>有的精简的 docker 镜像使用的 Alpine 这个 Linux 发行版，没有内置 bash 的。所以应该用 /bin/sh
+docker exec -it XXXXX /bin/sh</p>
+<h2 id="电脑重啟后">电脑重啟后</h2>
+<p>电脑重起之后有设定 restart:always 的服务基本上都会重啟，没有设定的就要自己手动下指令
+sudo docker restart container_name
+sudo docker-compose restart service_name</p>
+<h1 id="container-内指定登入的使用者">container 内指定登入的使用者</h1>
+<p>會指定使用者權限通常都是有掛載 Host volume 進入容器內，但是您又沒有 root 權限，如果沒有這樣做，
+這樣產生出來的檔案都會是 root 權限，一般使用者無法寫入，只能讀取，這時就需要用到此方法。
+<a href="https://blog.wu-boy.com/2019/10/three-ways-to-setup-docker-user-and-group/">https://blog.wu-boy.com/2019/10/three-ways-to-setup-docker-user-and-group/</a>
+假設我是 stanley 登入 local 端，在 container 裡面是 uid 1001,但沒有此 user，我們可以改用 uid 1001 去 run container,
+uid 在 host 和 container 的關係
+<a href="https://gist.github.com/mrtns/69a92fb387c20bf9add622c4304876b6">https://gist.github.com/mrtns/69a92fb387c20bf9add622c4304876b6</a>
+但是这样又会遇到常驻程式 daemon 无法 run 的问题，
+所以我折衷的方法是，用 local root 登入 vsc 做编辑，这样一樣是 root,編輯檔案就不会有权限问题了,但是這樣就變成 local 端在下指令時都要是 sudo,其也相當不方便
+要不然就是要設定資料夾權限全部 777, 不懂數字轉換可以到以下網址
+<a href="https://chmod-calculator.com/">https://chmod-calculator.com/</a></p>
+<h2 id="是否會影響其他的使用者執行">是否會影響其他的使用者執行</h2>
+<p>會，git commit 會連權限都 commit 進去，但是因為你的檔案擁有者會隨著 git pull 下來而改變，所以一般都不會受影響
+git checkout/diff 略過 file permission 屬性
+git config core.fileMode false</p>
+<p><a href="https://stackoverflow.com/questions/40978921/how-to-add-chmod-permissions-to-file-in-git/40979016">https://stackoverflow.com/questions/40978921/how-to-add-chmod-permissions-to-file-in-git/40979016</a></p>
+<h1 id="看-log">看 log</h1>
+<p>docker inspect $container_id
+sudo docker logs desktop_m88-mapi_1</p>
+<h1 id="網路設定">網路設定</h1>
+<p><a href="https://godleon.github.io/blog/Docker/docker-network-bridge/">https://godleon.github.io/blog/Docker/docker-network-bridge/</a></p>
+<p>那通常 docker-compose 之後，你可以在 host 檔上加一些域名，會讓自己方便一些，例如
+127.0.0.1 postgres
+127.0.0.1 mssql
+127.0.0.1 mysql
+不全部都是 localhost 看起來比較不會那麼亂，用 adminer 連專案，還會幫你選預設 port 號，很方便喔</p>
+<h1 id="設定-user">設定 user</h1>
+<p><a href="https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf">https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf</a></p>
+<h1 id="clone-a-container">clone a container</h1>
+<p>docker commit
+阿如果你有掛載東西，掛載的資料不會被複製喔
+<a href="https://gist.github.com/thaJeztah/8d0e901bd21329d80cf2">https://gist.github.com/thaJeztah/8d0e901bd21329d80cf2</a></p>
+<h1 id="利用-ssh-對多台遠端主機下指令">利用 SSH 對多台遠端主機下指令</h1>
+<p><a href="https://medium.com/@charliecc/%E5%88%A9%E7%94%A8-ssh-%E5%B0%8D%E5%A4%9A%E5%8F%B0%E9%81%A0%E7%AB%AF%E4%B8%BB%E6%A9%9F%E4%B8%8B%E6%8C%87%E4%BB%A4-a1504cfd1e64">https://medium.com/@charliecc/%E5%88%A9%E7%94%A8-ssh-%E5%B0%8D%E5%A4%9A%E5%8F%B0%E9%81%A0%E7%AB%AF%E4%B8%BB%E6%A9%9F%E4%B8%8B%E6%8C%87%E4%BB%A4-a1504cfd1e64</a></p>
+<h1 id="當你用-docker-compose">當你用 docker-compose</h1>
+<p>&lsquo;mysql:host=1270.0.1;dbname=yiivue;&rsquo;,
+一直失敗
+<a href="https://stackoverflow.com/questions/40561433/docker-mysql-2002-connection-refused">https://stackoverflow.com/questions/40561433/docker-mysql-2002-connection-refused</a>
+要用 service name
+&lsquo;mysql:host=db;dbname=yiivue;&rsquo;,</p>
+<h1 id="熱門的專案">熱門的專案</h1>
+<p>當你使用的技術比較熱門時，你的資源總是會比較多，可以加快你的學習速度
+<a href="https://github.com/yii2-starter-kit/yii2-starter-kit">https://github.com/yii2-starter-kit/yii2-starter-kit</a></p>
+<h1 id="使用-alpine-nodejs-時候出現-python-找不到">使用 alpine nodejs 時候出現 python 找不到</h1>
+<p><a href="https://github.com/nodejs/docker-node/issues/384">https://github.com/nodejs/docker-node/issues/384</a>
+這時候可能就要撰寫 dockerfile 了</p>
+<h1 id="could-not-reliably-determine-the-servers-fully-qualified-domain-name">Could not reliably determine the server&rsquo;s fully qualified domain name</h1>
+<p><a href="https://stackoverflow.com/questions/46266527/could-not-reliably-determine-the-servers-fully-qualified-domain-name-how-to">https://stackoverflow.com/questions/46266527/could-not-reliably-determine-the-servers-fully-qualified-domain-name-how-to</a></p>
+<h1 id="使用-docker-compose-安裝的工具指令">使用 docker-compose 安裝的工具指令</h1>
+<p>像是我把 node 命名為 webpacker</p>
+<p>docker-compose run webpacker npm install &ndash;save vue-circle-slider</p>
+<h1 id="服務">服務</h1>
+<p>使用 docker-compose 在使用服務的時候，使用 adminer 存取資料庫相關服務，用 localhost:port 號，會有無法存取資料庫的問題，但是在 host 加完服務名稱 mysql，使用 mysql 或 mysql:3306 就可以正常存取，所以在此推測服務也是有對應域名之類的關係，但是自己架的純網站的服務用 用服務名或 localhost:port 號存取 又都沒什麼事，可以正常存取，之後再來探討，應該是官方的 image 有做設定吧？那內部的服務互相溝通舊部需要再填 port 號了，port 號是給給本機外連的程式用的</p>
+<h1 id="切換使用者之後鍵盤上下鍵失效">切換使用者之後鍵盤上下鍵失效</h1>
+<p>after su in container the arrow keys seems not woking
+<a href="https://github.com/jupyter/notebook/issues/2457">https://github.com/jupyter/notebook/issues/2457</a></p>
+<p>the issue by explicitly setting the SHELL env var to /bin/bash</p>
+<p>所以就 執行一次/bin/bash 就可以使用 bash 了</p>
+<h1 id="如何不重啟容器就讓php-fpm服務reload-config">如何不重啟容器就讓php-fpm服務reload config</h1>
+<p>php-fpm is a process manager which supports the USER2 signal, which is used to reload the config file.</p>
+<p>From inside the container:</p>
+<pre><code>kill -USR2 1
+</code></pre>
+<p>Outside:</p>
+<pre><code>docker exec -it &lt;mycontainer&gt; kill -USR2 1
+</code></pre>
+<p>Complete example:</p>
+<pre><code>docker run -d --name test123 php:7.1-fpm-alpine
+docker exec -it test123 ps aux
+docker exec -it test123 kill -USR2 1
+docker exec -it test123 ps aux
+</code></pre>
+<p><a href="https://stackoverflow.com/questions/37806188/how-to-restart-php-fpm-inside-a-docker-container">https://stackoverflow.com/questions/37806188/how-to-restart-php-fpm-inside-a-docker-container</a></p>
+<h1 id="docker-compose-v2">docker-compose v2</h1>
+<p>docker-compose 變成插件的形式，所以我們可以加個別名解決這個問題
+<a href="https://github.com/docker/compose/issues/8575#issuecomment-906298809">如何安裝docker-compose</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>alias docker-compose=&#34;docker compose&#34;
+</span></span></code></pre></div><h1 id="如何清理docker-log">如何清理docker log</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>truncate -s 0 /var/lib/docker/containers/*/*-json.log
+</span></span></code></pre></div><p><a href="https://stackoverflow.com/questions/42510002/docker-how-to-clear-the-logs-properly-for-a-docker-container">https://stackoverflow.com/questions/42510002/docker-how-to-clear-the-logs-properly-for-a-docker-container</a></p>
+<h1 id="devstdout">/dev/stdout</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span># 輸出到螢幕上
+</span></span><span style="display:flex;"><span>stanley@localhost:~$ echo &#39;123&#39; &gt; /dev/stdout
+</span></span></code></pre></div><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

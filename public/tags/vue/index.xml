@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/vue/</link>
+    <description>Recent content in Vue on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Nov 2019 21:17:46 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用vue</title>
+      <link>http://localhost:1313/posts/%E4%BD%BF%E7%94%A8vue/</link>
+      <pubDate>Fri, 15 Nov 2019 21:17:46 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E4%BD%BF%E7%94%A8vue/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架&lt;/p&gt;&#xA;&lt;h1 id=&#34;安裝&#34;&gt;安裝&lt;/h1&gt;&#xA;&lt;p&gt;整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;sudo npm install -g @vue/cli&#xD;&#xA;&#xD;&#xA;vue create myvue&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;自選安裝的項目或者用高級的 GUI 來裝也行&lt;/p&gt;&#xA;&lt;p&gt;Check the features needed for your project:&#xA;◉ Babel&#xA;◯ TypeScript&#xA;◯ Progressive Web App (PWA) Support&#xA;◉ Router&#xA;◉ Vuex&#xA;◯ CSS Pre-processors&#xA;◉ Linter / Formatter&#xA;◯ Unit Testing&#xA;◯ E2E Testing&lt;/p&gt;&#xA;&lt;p&gt;難過的是即便用腳手架來裝問題還是會一堆&lt;/p&gt;&#xA;&lt;p&gt;error Found incompatible module.&#xA;ERROR command failed: yarn &amp;ndash;registry=https://registry.npm.taobao.org&#xA;user 底下.vuerc 改&#xA;{&#xA;&amp;ldquo;useTaobaoRegistry&amp;rdquo;: false,&#xA;&amp;ldquo;packageManager&amp;rdquo;: &amp;ldquo;npm&amp;rdquo;,&#xA;}&#xA;&lt;a href=&#34;https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829&#34;&gt;https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laravel on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/laravel/</link>
+    <description>Recent content in Laravel on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Nov 2019 17:36:44 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安裝laravel</title>
+      <link>http://localhost:1313/posts/%E5%AE%89%E8%A3%9Dlaravel/</link>
+      <pubDate>Mon, 04 Nov 2019 17:36:44 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%AE%89%E8%A3%9Dlaravel/</guid>
+      <description>&lt;h1 id=&#34;安裝-laravel&#34;&gt;安裝 laravel&lt;/h1&gt;&#xA;&lt;p&gt;本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提 VirtualBox 沒有 command line 的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在 AWS 的免費 EC2 方案，受限於電腦配備，虛擬機行不通、然後 docker 容器也行不通，所以認命重頭裝 QQ&#xA;BTW 簡中的 laravel 文檔，翻譯得比繁中的完整喔https://learnku.com/docs/laravel/5.7&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://kejyun.github.io/Laravel-5-Learning-Notes-Books/&#34;&gt;http://kejyun.github.io/Laravel-5-Learning-Notes-Books/&lt;/a&gt;&#xA;&lt;a href=&#34;https://github.com/oomusou/oomusou.github.io/issues/1&#34;&gt;https://github.com/oomusou/oomusou.github.io/issues/1&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;安裝過程&#34;&gt;安裝過程&lt;/h1&gt;&#xA;&lt;p&gt;就是中間有報錯上網查，缺什麼裝什麼&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;sudo apt-get update&#xD;&#xA;sudo apt install mariadb-server&#xD;&#xA;sudo apt install nginx&#xD;&#xA;&#xD;&#xA;再來就是php是命令行用的，php-fpm是server用的所以都要裝&#xD;&#xA;sudo apt-get install php7.2&#xD;&#xA;sudo apt-get install php7.2-fpm&#xD;&#xA;&#xD;&#xA;把laravel 需要的php擴展裝一裝&#xD;&#xA;sudo apt-get install php7.2-pdo&#xD;&#xA;sudo apt-get install php7.2-xml&#xD;&#xA;sudo apt-get install php7.2-mbstring&#xD;&#xA;&#xD;&#xA;像是連資料庫的時候會出現could not find driver就是缺&#xD;&#xA;sudo apt-get install php7.2-mysql&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;下載composer執行檔，然後移到global的資料夾&#xD;&#xA;curl -sS https://getcomposer.org/installer | php&#xD;&#xA;mv composer.phar /usr/local/bin/composer&#xD;&#xA;&#xD;&#xA;composer self-update&#xD;&#xA;更新composer&#xD;&#xA;&#xD;&#xA;composer global require laravel/installer&#xD;&#xA;上面這行有報錯的話要給權限&#xD;&#xA;&#xD;&#xA;新增.bash_profile到自己的~目錄(/home/ubuntu/)下，然後加上&#xD;&#xA;export PATH=~/.composer/vendor/bin:$PATH&#xD;&#xA;儲存後登出&#xD;&#xA;這樣以ubuntu登入時就可以使用laravel這個指令&#xD;&#xA;cd /var/www/html/&#xD;&#xA;laravel new myproject&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;之後進&lt;code&gt;/etc/nginx/sites-enabled/default&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

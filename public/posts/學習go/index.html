@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>學習go | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="前言
+資料來源
+新一代的程式語言，由 google 開發，目的在於解決現有語言的困境
+例如
+python 簡單但太慢
+java 太複雜度太高
+c/c&#43;&#43; 複雜 編譯慢(編譯慢對雲端佈署來說，是個相當大的缺點)
+特性
+
+強型別靜態型別(99％的變數都會在邊一時被宣告)
+優良的社群
+簡單
+編譯快
+垃圾回收
+內建併發
+編譯成一個二進位 bin(不依賴其他的 dll 檔之類的)
+
+開發環境設定
+
+windows 去載安裝檔
+linux
+預設目錄/usr/local/go
+設定環境變數 vim .bashrc
+
+//設定goroot目前發現會有版本上的問題，所以能避免盡量避免
+export GOROOT= /usr/local/go
+export PATH= $PATH:$GOROOT/bin
+//用來放置第三方套件的地方，弟一個gopath設定用來放套件，之後的就依規定裝在go工作目錄中
+export GOPATH = /home/stanley/golib
+//讓第三方插件的二進位檔也可執行
+export PATH= $PATH:$GOPATH/bin
+
+source ~/.bashrc
+
+重新導入環境變數
+
+go get github.com/stanley/gocode
+
+就會發現第三方插件被安裝到了 golib
+但是有些插件我們想要分全域用和專案用
+此時就要在設置另一個 GOPATH
+export GOPATH = $GOPATH:/home/stanley/code
+那如何得到 go 的工作目錄呢？有 src 資料夾即可
+
+src go 自己會去尋找這個資料架
+bin 編譯過得二進位檔
+pkg 編譯過得第三方二進位檔
+
+執行
+run 指令">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/%E5%AD%B8%E7%BF%92go/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/%E5%AD%B8%E7%BF%92go/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="學習go">
+  <meta property="og:description" content="前言 資料來源
+新一代的程式語言，由 google 開發，目的在於解決現有語言的困境 例如 python 簡單但太慢 java 太複雜度太高 c/c&#43;&#43; 複雜 編譯慢(編譯慢對雲端佈署來說，是個相當大的缺點)
+特性 強型別靜態型別(99％的變數都會在邊一時被宣告) 優良的社群 簡單 編譯快 垃圾回收 內建併發 編譯成一個二進位 bin(不依賴其他的 dll 檔之類的) 開發環境設定 windows 去載安裝檔 linux 預設目錄/usr/local/go 設定環境變數 vim .bashrc //設定goroot目前發現會有版本上的問題，所以能避免盡量避免 export GOROOT= /usr/local/go export PATH= $PATH:$GOROOT/bin //用來放置第三方套件的地方，弟一個gopath設定用來放套件，之後的就依規定裝在go工作目錄中 export GOPATH = /home/stanley/golib //讓第三方插件的二進位檔也可執行 export PATH= $PATH:$GOPATH/bin source ~/.bashrc
+重新導入環境變數
+go get github.com/stanley/gocode
+就會發現第三方插件被安裝到了 golib 但是有些插件我們想要分全域用和專案用 此時就要在設置另一個 GOPATH
+export GOPATH = $GOPATH:/home/stanley/code 那如何得到 go 的工作目錄呢？有 src 資料夾即可
+src go 自己會去尋找這個資料架 bin 編譯過得二進位檔 pkg 編譯過得第三方二進位檔 執行 run 指令">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-02-08T13:19:58+00:00">
+    <meta property="article:modified_time" content="2021-02-08T13:19:58+00:00">
+
+  <meta itemprop="name" content="學習go">
+  <meta itemprop="description" content="前言 資料來源
+新一代的程式語言，由 google 開發，目的在於解決現有語言的困境 例如 python 簡單但太慢 java 太複雜度太高 c/c&#43;&#43; 複雜 編譯慢(編譯慢對雲端佈署來說，是個相當大的缺點)
+特性 強型別靜態型別(99％的變數都會在邊一時被宣告) 優良的社群 簡單 編譯快 垃圾回收 內建併發 編譯成一個二進位 bin(不依賴其他的 dll 檔之類的) 開發環境設定 windows 去載安裝檔 linux 預設目錄/usr/local/go 設定環境變數 vim .bashrc //設定goroot目前發現會有版本上的問題，所以能避免盡量避免 export GOROOT= /usr/local/go export PATH= $PATH:$GOROOT/bin //用來放置第三方套件的地方，弟一個gopath設定用來放套件，之後的就依規定裝在go工作目錄中 export GOPATH = /home/stanley/golib //讓第三方插件的二進位檔也可執行 export PATH= $PATH:$GOPATH/bin source ~/.bashrc
+重新導入環境變數
+go get github.com/stanley/gocode
+就會發現第三方插件被安裝到了 golib 但是有些插件我們想要分全域用和專案用 此時就要在設置另一個 GOPATH
+export GOPATH = $GOPATH:/home/stanley/code 那如何得到 go 的工作目錄呢？有 src 資料夾即可
+src go 自己會去尋找這個資料架 bin 編譯過得二進位檔 pkg 編譯過得第三方二進位檔 執行 run 指令">
+  <meta itemprop="datePublished" content="2021-02-08T13:19:58+00:00">
+  <meta itemprop="dateModified" content="2021-02-08T13:19:58+00:00">
+  <meta itemprop="wordCount" content="2234">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="學習go">
+  <meta name="twitter:description" content="前言 資料來源
+新一代的程式語言，由 google 開發，目的在於解決現有語言的困境 例如 python 簡單但太慢 java 太複雜度太高 c/c&#43;&#43; 複雜 編譯慢(編譯慢對雲端佈署來說，是個相當大的缺點)
+特性 強型別靜態型別(99％的變數都會在邊一時被宣告) 優良的社群 簡單 編譯快 垃圾回收 內建併發 編譯成一個二進位 bin(不依賴其他的 dll 檔之類的) 開發環境設定 windows 去載安裝檔 linux 預設目錄/usr/local/go 設定環境變數 vim .bashrc //設定goroot目前發現會有版本上的問題，所以能避免盡量避免 export GOROOT= /usr/local/go export PATH= $PATH:$GOROOT/bin //用來放置第三方套件的地方，弟一個gopath設定用來放套件，之後的就依規定裝在go工作目錄中 export GOPATH = /home/stanley/golib //讓第三方插件的二進位檔也可執行 export PATH= $PATH:$GOPATH/bin source ~/.bashrc
+重新導入環境變數
+go get github.com/stanley/gocode
+就會發現第三方插件被安裝到了 golib 但是有些插件我們想要分全域用和專案用 此時就要在設置另一個 GOPATH
+export GOPATH = $GOPATH:/home/stanley/code 那如何得到 go 的工作目錄呢？有 src 資料夾即可
+src go 自己會去尋找這個資料架 bin 編譯過得二進位檔 pkg 編譯過得第三方二進位檔 執行 run 指令">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">學習go</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-02-08T13:19:58Z">February 8, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="前言">前言</h1>
+<p><a href="https://www.youtube.com/watch?v=OSPNUKoN81o&amp;list=PLq9Ra239pNZC0MgMN4j6ZiPHv_c0UPnBX">資料來源</a></p>
+<p>新一代的程式語言，由 google 開發，目的在於解決現有語言的困境
+例如
+python 簡單但太慢
+java 太複雜度太高
+c/c++ 複雜 編譯慢(編譯慢對雲端佈署來說，是個相當大的缺點)</p>
+<h1 id="特性">特性</h1>
+<ul>
+<li>強型別靜態型別(99％的變數都會在邊一時被宣告)</li>
+<li>優良的社群</li>
+<li>簡單</li>
+<li>編譯快</li>
+<li>垃圾回收</li>
+<li>內建併發</li>
+<li>編譯成一個二進位 bin(不依賴其他的 dll 檔之類的)</li>
+</ul>
+<h1 id="開發環境設定">開發環境設定</h1>
+<ul>
+<li>windows 去載安裝檔</li>
+<li>linux
+預設目錄/usr/local/go
+設定環境變數 vim .bashrc</li>
+</ul>
+<pre tabindex="0"><code class="language-conosle" data-lang="conosle">//設定goroot目前發現會有版本上的問題，所以能避免盡量避免
+export GOROOT= /usr/local/go
+export PATH= $PATH:$GOROOT/bin
+//用來放置第三方套件的地方，弟一個gopath設定用來放套件，之後的就依規定裝在go工作目錄中
+export GOPATH = /home/stanley/golib
+//讓第三方插件的二進位檔也可執行
+export PATH= $PATH:$GOPATH/bin
+</code></pre><blockquote>
+<p>source ~/.bashrc</p>
+</blockquote>
+<p>重新導入環境變數</p>
+<blockquote>
+<p>go get github.com/stanley/gocode</p>
+</blockquote>
+<p>就會發現第三方插件被安裝到了 golib
+但是有些插件我們想要分全域用和專案用
+此時就要在設置另一個 GOPATH</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>export GOPATH = $GOPATH:/home/stanley/code
+</span></span></code></pre></div><p>那如何得到 go 的工作目錄呢？有 <strong>src</strong> 資料夾即可</p>
+<ul>
+<li>src go 自己會去尋找這個資料架</li>
+<li>bin 編譯過得二進位檔</li>
+<li>pkg 編譯過得第三方二進位檔</li>
+</ul>
+<h1 id="執行">執行</h1>
+<p>run 指令</p>
+<blockquote>
+<p>go run xxx.go</p>
+</blockquote>
+<p>或者 go build 之後直接執行 binary 檔</p>
+<blockquote>
+<p>./xxx</p>
+</blockquote>
+<h1 id="變數宣告">變數宣告</h1>
+<ul>
+<li>
+<p>依照宣告的位置與大寫小寫分三總作用域</p>
+<ol>
+<li>function 外面宣告(outside of function)</li>
+</ol>
+<ul>
+<li>
+<p>規則：</p>
+<ul>
+<li>
+<p><input checked="" disabled="" type="checkbox"> 可以用正常的宣告方式宣告，且可以做區塊宣告</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> (
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span> = <span style="color:#e6db74">&#34;stanley&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">age</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div></li>
+<li>
+<p><input disabled="" type="checkbox"> package 級別不能讓 go 自己判斷變數型態，所以不能使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">name</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;stanley&#34;</span> <span style="color:#a6e22e">age</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">30</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>命名規則</strong></p>
+<ul>
+<li>第一個字大寫屬於 export 出去的變數 <strong>global</strong> 級別</li>
+<li>第一個字小寫屬於 package 的變數 <strong>package</strong> 級別</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>function 級別可用 <strong>block</strong> 級別</li>
+</ol>
+<ul>
+<li>規則
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span> = <span style="color:#e6db74">&#34;stanley&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span><span style="color:#f92672">:=</span><span style="color:#e6db74">&#34;stanley&#34;</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p>沒使用的變數會導致編譯錯誤</p>
+</li>
+<li>
+<p>重複宣告變數只存在於 shadowing(function 外的變數，在 function 內可以再宣告一次)</p>
+</li>
+<li>
+<p>如果變數沒給值，他的值會是該資料型態的 0 值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">bool</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v,%T&#34;</span>,<span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// false,bool</span>
+</span></span></code></pre></div></li>
+<li>
+<p>go 對資料型態的轉換非常嚴格，例如不同位元的數字相加，go 是不會自動幫你轉換的，你必須自己轉，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">s</span><span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;this is a string&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">b</span><span style="color:#f92672">:=</span> []byte(<span style="color:#a6e22e">s</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v,%T&#34;</span>,<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">b</span>)
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<h1 id="常數宣告">常數宣告</h1>
+<ul>
+<li>
+<p>通常宣告在 package level</p>
+</li>
+<li>
+<p>immutable , but can be shadowed</p>
+</li>
+<li>
+<p>編譯期間值就必須確定</p>
+</li>
+<li>
+<p>命名規則就和一般變數一樣，大寫字母開頭會被 export</p>
+</li>
+<li>
+<p>讓 go 自己判斷常數型態不像變數需要加冒號</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a</span> = <span style="color:#ae81ff">44</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int16</span> = <span style="color:#ae81ff">27</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 這邊不會出現型別不同不能相加的錯誤</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v,%T&#34;</span>,<span style="color:#a6e22e">a</span><span style="color:#f92672">+</span><span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">a</span><span style="color:#f92672">+</span><span style="color:#a6e22e">b</span>)
+</span></span></code></pre></div></li>
+<li>
+<p>iota</p>
+<ul>
+<li>
+<p>範例</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// const block 的宣告方式</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">b</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>和下列結果相同</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// const block 的宣告方式,可以讓編譯器幫常數自動累加</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">b</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>要注意 iota 從零開始，而其他變數例如 int 的 zero value 是 0，預防方式如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 預設第一個元素代表error</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">errorList</span> = <span style="color:#66d9ef">iota</span> <span style="color:#75715e">// 或者 _ = iota，compiler 知道_代表不重要的變數</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">catList</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dogList</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">snakeList</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">list</span> = <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 這樣即使list沒設值也不會有相等的問題</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Prinft</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>,<span style="color:#a6e22e">list</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">catList</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>iota 的第一個元素，可以是有規則的公式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 場景1： 檔案大小</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">KB</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">*</span><span style="color:#66d9ef">iota</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MB</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">GB</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">TB</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PB</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">EB</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ZB</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">YB</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fileSize</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">4000000000</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%2fGB&#34;</span>,<span style="color:#a6e22e">fileSize</span><span style="color:#f92672">/</span><span style="color:#a6e22e">GB</span>) <span style="color:#75715e">//3.73GB</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 場景1： 角色管理</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">canCreate</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">canRead</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">canUpdate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">canDelete</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">roles</span> <span style="color:#66d9ef">byte</span> = <span style="color:#a6e22e">canCreate</span> | <span style="color:#a6e22e">canRead</span> | <span style="color:#a6e22e">canDelete</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%b\n&#34;</span>,<span style="color:#a6e22e">roles</span>) <span style="color:#75715e">//1011</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Is this role able to create? %v&#34;</span>, <span style="color:#a6e22e">canCreate</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">roles</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">canCreate</span>) <span style="color:#75715e">//true</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h1 id="命名習慣">命名習慣</h1>
+<ul>
+<li>變數名的長短，反映變數的生命，例如 for 迴圈裡面通常用變數 i</li>
+<li>camelCase 當變數命名有 HTTP 這懂縮寫時，請保持 HTTP 都是大寫 useHttp(X) useHTTP(o)</li>
+<li>不要用底線_這些來命名</li>
+</ul>
+<h1 id="資料型態">資料型態</h1>
+<ul>
+<li>
+<p>boolean</p>
+<ul>
+<li>ture or false</li>
+<li>not an alias for other types e.g 0 或 1 這種 int 型態</li>
+<li>預設 zero value 是 false</li>
+</ul>
+</li>
+<li>
+<p>numberic</p>
+<ul>
+<li>
+<p>intergers</p>
+<ul>
+<li>signed intergers
+<ul>
+<li>int (:=預設)不管環境為何，至少會是 32 位元，根據系統不同有可能會是 64 或 128
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int8</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// -128~127</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>unsigned intergers
+<ul>
+<li>unit16 只有正整數(弟一個字母 u 帶表 unsigned)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">uint8</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 0~255</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>預設 zero value is 0</li>
+</ul>
+</li>
+<li>
+<p>floating point numbers</p>
+<ul>
+<li>float64(:=預設)</li>
+<li>預設 zero value is 0</li>
+</ul>
+</li>
+<li>
+<p>complex numbers 用於科學計算</p>
+<ul>
+<li>complex64(:=預設)</li>
+<li>預設 zero value is 0</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">complex128</span> = <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2i</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v,%T&#34;</span>,real(<span style="color:#a6e22e">n</span>),real(<span style="color:#a6e22e">n</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 0~255</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v,%T&#34;</span>,imag(<span style="color:#a6e22e">n</span>),imag(<span style="color:#a6e22e">n</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// -128~127</span>
+</span></span></code></pre></div></li>
+<li>
+<p>% mod 預算符只適用於 int</p>
+</li>
+</ul>
+</li>
+<li>
+<p>text</p>
+<ul>
+<li>string
+<ul>
+<li>(:=預設) UTF8</li>
+<li>用 <strong>+</strong> 來連結字串</li>
+<li>可被轉換成[]byte</li>
+<li>取字母 取出來的會是 ascii code
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">s</span><span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">s</span>[<span style="color:#ae81ff">1</span>])) <span style="color:#75715e">//e</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>rune
+<ul>
+<li>(:=預設) UTF32，注意 UTF32 的字母不一定是 32bits 的長度</li>
+<li>alias for int32</li>
+<li>ReadRune 常用來處理上面的 alias</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>collection</p>
+<ul>
+<li>
+<p>Arrays</p>
+<ul>
+<li>陣列直接取<strong>連續</strong>記憶體來劃分，所以存取陣列的效率是很快的</li>
+<li>索引從 0 開始</li>
+<li>陣列元素的型態都需要一致</li>
+<li>固定長度</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#a6e22e">grades</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">60</span>,<span style="color:#ae81ff">70</span>,<span style="color:#ae81ff">80</span>};<span style="color:#75715e">//這裡相當於宣告長度2次</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//所以可以改成</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//grades := [...]int{60,70,80};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Grades: %v&#34;</span>,<span style="color:#a6e22e">grades</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// len(grades) 可知陣列長度</span>
+</span></span></code></pre></div><ul>
+<li>陣列是<strong>傳值</strong>呼叫(這點和 js 不同)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span><span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span><span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// [1 2 3]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">b</span>) <span style="color:#75715e">// [1 0 3]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 運用指標來解決陣列複製的資源浪費</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span><span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span><span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// [1 0 3]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">b</span>) <span style="color:#75715e">// [1 0 3]</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Slices</p>
+<ul>
+<li>所有 array 有的功能 slice 都有</li>
+<li>好處是可以先不用固定長度</li>
+<li>陣列是<strong>傳址</strong>呼叫(和 Array 不同)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span><span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>} <span style="color:#75715e">//和array的差別是中括號裡什麼都不用填</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// [1 0 3]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span><span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>} <span style="color:#75715e">//和array的差別是中括號裡什麼都不用填</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span><span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[:] <span style="color:#75715e">// 用：來代表切割範圍</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">c</span><span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">3</span>:<span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// [1 2 3 4 5 6]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">b</span>) <span style="color:#75715e">// [1 2 3 4 5 6]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">c</span>) <span style="color:#75715e">// [4 5 6]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span><span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">100</span>) <span style="color:#75715e">//這個function的優點是，如果你要append元素，一開始沒指定slice容量的話，go 會先填滿這個slice，如果容量不夠則會新增一個slice長度的兩倍的slice進行擴充，當容量一大會耗效能，所以能預先知道容量大小填進第三個參數是最好的</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// [0 0 0]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// len(a) cap(a)  //長度3容量100，slice 的容量不必和長度相同</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Maps</p>
+<ul>
+<li>
+<p>宣告方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">statePopulations</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;New York&#34;</span>:<span style="color:#ae81ff">9000425</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Florida&#34;</span>:<span style="color:#ae81ff">5905421</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;California&#34;</span>:<span style="color:#ae81ff">2954248</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// delete(statePopulations,&#34;New York&#34;) 刪除元素</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">statePopulations</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">statePopulations</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;New York&#34;</span>:<span style="color:#ae81ff">9000425</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Florida&#34;</span>:<span style="color:#ae81ff">5905421</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;California&#34;</span>:<span style="color:#ae81ff">2954248</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>元素的順序並不固定(和 js 一樣)</p>
+</li>
+<li>
+<p>元素的類型要一樣</p>
+</li>
+<li>
+<p>如果元素不存在 map，回傳預設值為 0</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">statePopulations</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">statePopulations</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;New York&#34;</span>:<span style="color:#ae81ff">9000425</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Florida&#34;</span>:<span style="color:#ae81ff">5905421</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;California&#34;</span>:<span style="color:#ae81ff">2954248</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_</span>,<span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">statePopulations</span>[<span style="color:#e6db74">&#34;Ohio&#34;</span>] <span style="color:#75715e">//_是即時這變數沒用到，go也會忽略，ok是習慣命名</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">ok</span>) <span style="color:#75715e">// 0,false 藉由false可知此元素不存在map中</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>傳址</strong>呼叫</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Struct</p>
+</li>
+<li>
+<p>宣告</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 大寫的宣告可讓外面看見此結構</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Doctor</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">number</span> <span style="color:#66d9ef">int</span> <span style="color:#75715e">// 小寫的宣告，讓人雖然看到結構，但看不到欄位的名字</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">actorName</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">companions</span> [] <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aDoctor</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Doctor</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">number</span>:<span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">actorName</span>:<span style="color:#e6db74">&#34;Jon Petwee&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">companions</span>: []<span style="color:#66d9ef">string</span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;Lisa ke&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;Mansa cheng&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;donna liu&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>positional declaration</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 不建議使用這種實例化的方式，因為一旦有人改了struct宣告結構，會報錯或是改變順序，會錯亂</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aDoctor</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Doctor</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;Jon Petwee&#34;</span>
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;Lisa ke&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;Mansa cheng&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;donna liu&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>用 **.**來存取元素</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">aDoctor</span>.<span style="color:#a6e22e">actorName</span>)
+</span></span></code></pre></div><ul>
+<li>匿名 struct</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 通常用在生命週期短的變數  例如你可能要格式化api吐的資料結構</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aDoctor</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">struct</span>{<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>}{<span style="color:#a6e22e">name</span>:<span style="color:#e6db74">&#34;John Pertwee&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">aDoctor</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>傳值</strong>呼叫，所以要宣告賦值時要注意 struct 是否很大，或者用&amp; pointer</p>
+</li>
+<li>
+<p>embedding go 提供一種叫做 embedded 的語法，來達成組合，和傳統的繼承不同的是 Bird has Animal characteristic 是 has 關係而不是 is 關係，那這種方法不適合在模組化的時候使用，模組化應該要用 interface，這通常用於該資料型態要借助某個功能時</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Origin</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Bird</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Animal</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">SpeedKPH</span> <span style="color:#66d9ef">float32</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">CanFly</span> <span style="color:#66d9ef">bool</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Bird</span>{}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Emu&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Origin</span> = <span style="color:#e6db74">&#34;Australia&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">SpeedKPH</span> = <span style="color:#ae81ff">48</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">CanFly</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Name</span>)<span style="color:#75715e">//Emu</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>或是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Bird</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Animal</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Name</span> :<span style="color:#e6db74">&#34;Emu&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Origin</span> :<span style="color:#e6db74">&#34;Australia&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">SpeedKPH</span> :<span style="color:#ae81ff">48</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">CanFly</span> :<span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">Name</span>)<span style="color:#75715e">//Emu</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>tag 通常用在驗證</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#f92672">import</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;reflect&#34;</span>  <span style="color:#75715e">//為了拿到struct的欄位，必須要用到反射</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`require max:&#34;100&#34;`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Origin</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">t</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">Animail</span>{})
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">field</span>,<span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">FieldByName</span>(<span style="color:#e6db74">&#34;Name&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">field</span>.<span style="color:#a6e22e">Tag</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h1 id="流程控制-control-flow">流程控制 control flow</h1>
+<ul>
+<li>
+<p>if</p>
+<ul>
+<li>一定要有大括號</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// pop only existing in if block</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pop</span>,<span style="color:#a6e22e">ok</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">statePopulations</span>[<span style="color:#e6db74">&#34;Florida&#34;</span>];<span style="color:#a6e22e">ok</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printlin</span>(<span style="color:#a6e22e">pop</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>Switch case</p>
+<ul>
+<li>
+<p>switching with no tag (非固定值的意思)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">switch</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;less than or equal to ten&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;less than or equal to twenty&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;greater than twenty&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//less than or equal to ten</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>如果要其他語言 falling through 的用法但可以</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">switch</span> <span style="color:#ae81ff">3</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">10</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;one&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;two&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;not one or two&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>或是 fallthrough ，但要小心 fallthrough 不管邏輯都會往下掉</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">switch</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;less than or equal to ten&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">fallthrough</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;less than or equal to twenty&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;greater than twenty&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//less than or equal to ten</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//less than or equal to twenty</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>type switch</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">interface</span>{} = [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">i</span>.(<span style="color:#66d9ef">type</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">int</span> :
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is an int&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">float64</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is a float64&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">string</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is string&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is [3]int&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">break</span> <span style="color:#75715e">//breaking out early</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;other stuff&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is another type&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// i is [3]int</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Looping</p>
+<ul>
+<li>迴圈的三個流程，個別只能是一個句子</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 在go i++是句子不是運算子</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span>&lt;<span style="color:#ae81ff">5</span> ;<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">j</span> = <span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">j</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>loop block
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 宣告在外面</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> ; <span style="color:#a6e22e">i</span>&lt;<span style="color:#ae81ff">5</span> ;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 才能存取到i</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span></code></pre></div></li>
+<li>分號也可以省略
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>&lt;<span style="color:#ae81ff">5</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>range
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>,<span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">s</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">k</span>,<span style="color:#a6e22e">v</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Defer</p>
+<ul>
+<li>目的：延遲執行直到回傳之前</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;start&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;middle&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;end&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>LIFO(last in first out) 因為通常用在 resource</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;http://www.google.com/robots.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>() <span style="color:#75715e">//因為你可能一直需要用res 這樣就不怕忘記寫這行</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">robots</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">Body</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">robots</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>defer 會拿到的值是 defer 觸發時當下的值 而不是最後呼叫該 function 的值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span><span style="color:#f92672">:=</span><span style="color:#e6db74">&#34;start&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span> = <span style="color:#e6db74">&#34;end&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// print out start</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Panic</p>
+</li>
+<li>
+<p>在 go 沒有 exception，因為在很多語言的 exception 在 go 裡面都算正常，例如要打開一個不存在的文件，在 go 是 return error value 而不是 exception</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ans</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">/</span><span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">ans</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>painc 生命週期在執行玩 defer 之後</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;start&#34;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;this was deffered&#34;</span>)
+</span></span><span style="display:flex;"><span>    panic(<span style="color:#e6db74">&#34;something bad happend&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;end&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>Recover
+<ul>
+<li>用來恢復程式運作的</li>
+<li>一定在 defer function 內，因為 panic 之後只會執行 defer</li>
+</ul>
+</li>
+</ul>
+<h1 id="pointer-指標">pointer 指標</h1>
+<ul>
+<li>把他想作是變數的一個附加欄位？裡面放的值一定是記憶體位址</li>
+<li>creating pointer</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">int</span> =<span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span> <span style="color:#75715e">//一個數字的指標，指向a位址 用&amp;位址運算符拿出位址</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) <span style="color:#75715e">// 42 0x1040a124</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) <span style="color:#75715e">//這裡的*作用為取出 42 42</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>pointer arithmetic
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v %p %p\n&#34;</span>,<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">c</span>) <span style="color:#75715e">// [ 1 2 3 ] 0x1040a124 0x1040a128  可知b 和 c元素之間差4個bytes</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div>在其他的語言你可能會這樣做
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span> <span style="color:#75715e">//go不能這樣做記憶體的運算，因為這樣會讓程式變複雜，如果你真的要這麼做，官方有unsafe package</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v %p %p\n&#34;</span>,<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">c</span>) <span style="color:#75715e">//error</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>new function
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ms</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myStruct</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">ms</span>) <span style="color:#75715e">// 初始值&lt;nil&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ms = &amp;myStruct{foo:42} //&amp;{42} 初始化一個變數指向物件的指標</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ms</span> = new(<span style="color:#a6e22e">myStruct</span>) <span style="color:#75715e">//用new的話沒辦法像上面一樣初始值，所以他的zero value是0 //&amp;{0}</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#f92672">*</span><span style="color:#a6e22e">ms</span>).<span style="color:#a6e22e">foo</span> = <span style="color:#ae81ff">42</span> <span style="color:#75715e">//()是因為.操作符的優先權高，避免取到ms.foo的pointer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>((<span style="color:#f92672">*</span><span style="color:#a6e22e">ms</span>).<span style="color:#a6e22e">foo</span>)<span style="color:#75715e">// 42</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div>然而 go 比其他語言方便的是
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ms</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myStruct</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ms</span> = new(<span style="color:#a6e22e">myStruct</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ms</span>.<span style="color:#a6e22e">foo</span> = <span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">ms</span>.<span style="color:#a6e22e">foo</span>) <span style="color:#75715e">//可以省略星號和括號，因為go知道你要取值</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="function">function</h1>
+<ul>
+<li>最簡單的程式基本構成</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){ <span style="color:#75715e">//一定要有一個entry point</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>參數 type 一樣可以一起擺在後面</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">greeting</span>(<span style="color:#a6e22e">greeting</span> <span style="color:#66d9ef">string</span>,<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">greeting</span>,<span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>可以寫成這樣的語法糖</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">greeting</span>(<span style="color:#a6e22e">greeting</span>,<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">greeting</span>,<span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>
+<p>傳址呼叫</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:=</span><span style="color:#e6db74">&#34;Stacey&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greeting</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">name</span>)<span style="color:#75715e">//Ted</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">greeting</span>(<span style="color:#a6e22e">name</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">string</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">name</span>) <span style="color:#75715e">//Stacey</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">*</span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Ted&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">name</span>) <span style="color:#75715e">//Ted</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>最後一組同類型參數可使用 slice</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sum</span>(<span style="color:#e6db74">&#34;the sum is &#34;</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">msg</span> <span style="color:#66d9ef">string</span>,<span style="color:#a6e22e">values</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">int</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>,<span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">values</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span><span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">msg</span>,<span style="color:#a6e22e">result</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>回傳參數要宣告</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sum</span>() <span style="color:#66d9ef">int</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">12</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>回傳指標變數</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sum</span>() <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 在很多語言並不允許這樣做，因為function執行完的時候，釋放變數，此時你回傳的記憶體位址並不能確定值是正確不變得，但在go 如果他發現你回傳記憶體位址，他會將此變數提昇到share memory ，也就是我們說的heap裡面</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">result</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>回傳參數名宣告</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">//這種方式不常用，因為如果function太長，你還要回來看他回傳什麼，可讀性沒比較號</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sum</span>() (<span style="color:#a6e22e">result</span> <span style="color:#66d9ef">int</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">result</span> = <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>處理例外</p>
+<ul>
+<li>回傳例外(通常不這樣做，因為 panic 最好是等到程式執行不下去才用)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">d</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">divide</span>(<span style="color:#ae81ff">5.0</span>,<span style="color:#ae81ff">0.0</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">d</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">divide</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span> <span style="color:#66d9ef">float64</span>) (<span style="color:#66d9ef">float64</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0.0</span>{
+</span></span><span style="display:flex;"><span>    panic(<span style="color:#e6db74">&#34;cant provide 0 as second value&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">/</span><span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>常用的方式，回傳錯誤值
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">d</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span><span style="color:#a6e22e">divide</span>(<span style="color:#ae81ff">5.0</span>,<span style="color:#ae81ff">0.0</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">d</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">divide</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span> <span style="color:#66d9ef">float64</span>) (<span style="color:#66d9ef">float64</span>, <span style="color:#66d9ef">error</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0.0</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0.0</span>,<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;cant divide by 0&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">/</span><span style="color:#a6e22e">b</span>,<span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>匿名函式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 常用在非同步執行時,scope的區隔</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">i</span>&lt;<span style="color:#ae81ff">5</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>    }(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>宣告函數類型的變數</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#a6e22e">f</span><span style="color:#f92672">:=</span><span style="color:#66d9ef">func</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;hello&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f</span> <span style="color:#66d9ef">func</span>() : =<span style="color:#66d9ef">func</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;hello&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">divide</span> <span style="color:#66d9ef">func</span> (<span style="color:#66d9ef">float64</span>,<span style="color:#66d9ef">float64</span>) (<span style="color:#66d9ef">float64</span>,<span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">divide</span> = <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span> <span style="color:#66d9ef">float64</span>) (<span style="color:#66d9ef">float64</span>,<span style="color:#66d9ef">error</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">/</span><span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>方法(可以依附在任何的資料型態上面，有點像 js)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">g</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">greeter</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:=</span><span style="color:#e6db74">&#34;stanley&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">greet</span>() <span style="color:#75715e">//stanley</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">greeter</span> <span style="color:#a6e22e">stuct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">greeter</span>) <span style="color:#a6e22e">greet</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;hello&#34;</span>,<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="interfaces">Interfaces</h1>
+<ul>
+<li>
+<p>命名習慣 通常是動詞加上 er</p>
+</li>
+<li>
+<p>struct 裡面會放資料</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//宣告 Writer 類型的變數</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">w</span> <span style="color:#a6e22e">Writer</span> = <span style="color:#a6e22e">ConsoleWriter</span>{}<span style="color:#75715e">//達成多型</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span> ,<span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Writer</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ConsoleWriter</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 這作法很強大，因為你不需要在設計接端就抽出個interface，因為你隨時都可以加個方法進一個資料型態，只要你可以加方法進去，就代表隨時都可以加個interface</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 將Write依附在cw，讓ConsoleWriter有write這個方法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">cw</span> <span style="color:#a6e22e">ConsoleWriter</span>) <span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">data</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">error</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>,<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">data</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>embeding interface(組合 interface)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#f92672">import</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;bytes&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wc</span> <span style="color:#a6e22e">WriterCloser</span> = <span style="color:#a6e22e">NewBufferWritterCloser</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wc</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;Hello my name is stanley&#34;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wc</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bwc</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">wc</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">BufferedWriterCloser</span>) <span style="color:#75715e">//type conversion 用這語法可轉型態</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">bwc</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Writer</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Closer</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Close</span>() <span style="color:#66d9ef">error</span> <span style="color:#75715e">//return error</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">WriteCloser</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Writer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Closer</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">BufferedWriteClose</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">buffer</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">bwc</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BufferedWriterCloser</span>) <span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">data</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">error</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bwc</span>.<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">data</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">v</span><span style="color:#f92672">:=</span>make([]<span style="color:#66d9ef">byte</span>,<span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">bwc</span>.<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">Len</span>()&gt;<span style="color:#ae81ff">8</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">_</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bwc</span>.<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">v</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">_</span>,<span style="color:#a6e22e">err</span>=<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">v</span>))
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span>,<span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">bwc</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BufferedWriteCloser</span>) <span style="color:#a6e22e">Close</span>() <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">bwc</span>.<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">Len</span>()&gt;<span style="color:#ae81ff">0</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span><span style="color:#f92672">:=</span><span style="color:#a6e22e">bwc</span>.<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">Next</span>(<span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">_</span>,<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">data</span>))
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span><span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewBufferWriterCloser</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">BufferWriterCloser</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">BufferedWriterCloser</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">buffer</span>:<span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">NewBuffer</span>([]<span style="color:#a6e22e">bytes</span>{})
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>類型轉換</p>
+<ul>
+<li>empty interface 沒有方法的 interface，所以的類型都實作這個界面，有點像是 any？</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#75715e">// 然而實際上這界面沒有方法，所以你要不就是利用反射，要不就是要做類型轉換，才能知道你用的是什物件，才能運用這個物件</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myObj</span> <span style="color:#66d9ef">interface</span>{} = <span style="color:#a6e22e">NewBufferedWriterCloser</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">wc</span>,<span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">myObj</span>.(<span style="color:#a6e22e">WriterCloser</span>);<span style="color:#a6e22e">ok</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wc</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;Hello my name is stanley&#34;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wc</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>type switches 在 switch 的章節有講到，需要用到 empty interface</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">interface</span>{} = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">i</span>.(<span style="color:#66d9ef">type</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">int</span> :
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is an int&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">float64</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is a float64&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">string</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is string&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is [3]int&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">break</span> <span style="color:#75715e">//breaking out early</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;other stuff&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i is another type&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>實例值和指標</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#f92672">import</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;bytes&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wc</span> <span style="color:#a6e22e">WriterCloser</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">myWritterCloser</span>() <span style="color:#75715e">// 加上&amp; 其method就可以是value reciver 或 pointer reciver，但如我們所說，操作pointer 的時候要小心改到資料</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">wc</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Writer</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Closer</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Close</span>() <span style="color:#66d9ef">error</span> <span style="color:#75715e">//return error</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">WriteCloser</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Writer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Closer</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">myWriteClose</span> <span style="color:#66d9ef">struct</span> { }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">mwc</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myWriteClose</span>) <span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">data</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">error</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span>,<span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">mwc</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myWriteClose</span>) <span style="color:#a6e22e">Close</span>() <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>最佳實踐 //todo 以下筆記需要實作後才能領悟，所以目前的筆記有可能是理解錯誤的</p>
+<ul>
+<li>使用多而小的 interface</li>
+<li>不要將會被使用類型的界面匯出，讓使用者自訂界面，讓他們選想要的方法</li>
+<li>將會被套件使用到的類型界面匯出 因為 go 可延遲界面的實作，所以讓使用者實例你的界面，拿到你需要的類型</li>
+<li>製作接收使用者自訂界面的 function</li>
+</ul>
+</li>
+</ul>
+<h1 id="併發">併發</h1>
+<p>在多數的語言裡面，開線程是相當耗費資源的，但對 go 來講並不會，你甚至可以看到有上千個線程的進程在跑，這在別種語言幾乎是不可能的，因為別種語言的線程是建立在 os 之上，每個線程幾乎都要佔 1mb 的堆，然而 go 則是利用現有的線程，看哪個有空用哪個，所以省資源</p>
+<ul>
+<li>go routine</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span> = <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span> (){
+</span></span><span style="display:flex;"><span>     <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">msg</span>)
+</span></span><span style="display:flex;"><span>   }()
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">msg</span> = <span style="color:#e6db74">&#34;goodbye&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)<span style="color:#75715e">// 因為go routine會來不急執行，所以加這句</span>
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// goodbye  你可以看出，即便線程是在另一個堆，closure可以仍取到外面的變數，但是這樣有個缺點，this is what we call race condition，你可以發現go routine在sleep之後執行</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// go run -race src/main.go 可以檢查是否有race condition</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span> = <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">msg</span> <span style="color:#66d9ef">string</span>){
+</span></span><span style="display:flex;"><span>     <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">msg</span>)
+</span></span><span style="display:flex;"><span>   }(<span style="color:#a6e22e">msg</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">msg</span> = <span style="color:#e6db74">&#34;goodbye&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// hello  在這裡我們複製了一份，利用傳值的方式，做解偶</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>waitgroup</p>
+<ul>
+<li>同步兩個線程
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span> = <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">msg</span> <span style="color:#66d9ef">string</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">msg</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>() <span style="color:#75715e">//會自動減1，讓go知道，沒有其他線程</span>
+</span></span><span style="display:flex;"><span>  }(<span style="color:#a6e22e">msg</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">msg</span> = <span style="color:#e6db74">&#34;goodbye&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// hello  在這裡我們複製了一份，利用傳值的方式，做解偶</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>mutex</p>
+<ul>
+<li>
+<p>同步多個線程</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">GOMAXPROC</span>(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Threads:%v\n&#34;</span>,<span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">GOMAXPROCS</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#75715e">//印出上一個設定線程的數量，在預設上，go會預設以電腦cup核心數目相同的線程</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#f92672">import</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sync&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;runtime&#34;</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">counter</span> = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">RWMutex</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">GOMAXPROCS</span>(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span><span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">i</span>&lt;<span style="color:#ae81ff">10</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">wg</span>,<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">RLock</span>()
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">sayHello</span>()
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Lock</span>()
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">increment</span>()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sayHello</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Hello #%v\n&#34;</span>,<span style="color:#a6e22e">counter</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">RUnlock</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">increment</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Unlock</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 以上所有的作法都讓go routine的好處消失，變成單線程的程式，這樣倒不如直接不用go routine，一般來說多線程也都是在處理不同的事，然而萬一真的有共享的資料，mutex就是用在這時候</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h1 id="channel">Channel</h1>
+<ul>
+<li>可以解決上述資料共用的混亂</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ch</span><span style="color:#f92672">:=</span>make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) <span style="color:#75715e">// 初始化channel所能接收或發出的資料型態</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>){ <span style="color:#75715e">//reciving data</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">i</span><span style="color:#f92672">:=&lt;-</span> <span style="color:#a6e22e">ch</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>    }(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span><span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">int</span>){ <span style="color:#75715e">// sendgin data</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ch</span><span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>    }(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ch</span><span style="color:#f92672">:=</span>make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">j</span>&lt;<span style="color:#ae81ff">5</span>;<span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">i</span><span style="color:#f92672">:=&lt;-</span> <span style="color:#a6e22e">ch</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>      }()
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ch</span><span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>      }()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ul>
+<li>
+<p>close channel</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ch</span><span style="color:#f92672">:=</span>make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">50</span>) <span style="color:#75715e">// 初始化channel所能接收或發出的資料型態</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>){ <span style="color:#75715e">//reciving data</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=&lt;-</span><span style="color:#a6e22e">ch</span>;<span style="color:#a6e22e">ok</span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>    }(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span><span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">int</span>){ <span style="color:#75715e">// sendgin data</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ch</span><span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ch</span><span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">27</span>
+</span></span><span style="display:flex;"><span>      close(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>    }(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+<li>
+<p>select</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logInfo</span> = <span style="color:#e6db74">&#34;INFO&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logWarning</span> = <span style="color:#e6db74">&#34;WARNING&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logError</span> = <span style="color:#e6db74">&#34;ERROR&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">logEntry</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">time</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Time</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">severity</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">message</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">logCh</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">logEntry</span>,<span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">logger</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>(){
+</span></span><span style="display:flex;"><span>      close(<span style="color:#a6e22e">logCh</span>)
+</span></span><span style="display:flex;"><span>    }()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logCh</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">logEntry</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logInfo</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;App is starting&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logCh</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">logEntry</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logInfo</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;App is shutting down&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">logger</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">entry</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">logCh</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v - [%v]%v\n&#34;</span>,<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Format</span>(<span style="color:#e6db74">&#34;2006-01-02&#34;</span>,<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">severity</span>,<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">message</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logInfo</span> = <span style="color:#e6db74">&#34;INFO&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logWarning</span> = <span style="color:#e6db74">&#34;WARNING&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logError</span> = <span style="color:#e6db74">&#34;ERROR&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">logEntry</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">time</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Time</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">severity</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">message</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">logCh</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">logEntry</span>,<span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doneCh</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">struct</span>{})
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">logger</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logCh</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">logEntry</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logInfo</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;App is starting&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logCh</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">logEntry</span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logInfo</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;App is shutting down&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">doneCh</span> <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">struct</span>{}{}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">logger</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">select</span>{ <span style="color:#75715e">// 整個段落會阻塞，直到我們收到需要的channel</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">entry</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">logCh</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v - [%v]%v\n&#34;</span>,<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Format</span>(<span style="color:#e6db74">&#34;2006-01-02&#34;</span>,<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">severity</span>,<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">message</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">doneCh</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  My New Hugo Site 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Https on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/https/</link>
+    <description>Recent content in Https on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Nov 2019 18:31:21 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/https/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>申請SSL</title>
+      <link>http://localhost:1313/posts/%E7%94%B3%E8%AB%8Bssl/</link>
+      <pubDate>Wed, 06 Nov 2019 18:31:21 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E7%94%B3%E8%AB%8Bssl/</guid>
+      <description>&lt;h1 id=&#34;自簽名&#34;&gt;自簽名&lt;/h1&gt;&#xA;&lt;p&gt;因為開發環境沒有 domain，可有些技術又強制要走 ssl，像是 webrtc 的其中一個環節&#xA;&lt;a href=&#34;https://help.fanruan.com/finereport/doc-view-2662.html&#34;&gt;https://help.fanruan.com/finereport/doc-view-2662.html&lt;/a&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;yum install openssl openssl-devel&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl version -a&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl genrsa -des3 -out server.key 2048&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl rsa -in server.key -out server.key&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl req -new -key server.key -out server.csr&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl req -new -x509 -key server.key -out ca.crt -days 3650&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;之後在 nginx 做相關的設定&lt;/p&gt;&#xA;&lt;p&gt;在 Chrome 的設定中，匯入憑證，再啟動 Chrom，就大功告成了&#xA;&lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10230157&#34;&gt;https://ithelp.ithome.com.tw/articles/10230157&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;憑證取得方法&#34;&gt;憑證取得方法&lt;/h1&gt;&#xA;&lt;p&gt;憑證有分等級，最簡單的就是&lt;strong&gt;驗證網域 484 你的&lt;/strong&gt;(傳檔案驗證 OR DNS 驗證)然後就發給你憑證，&#xA;阿高級一點的就須要人工的身份證明之類的東西&#xA;我們申請簡單的憑證，幾個方法&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
