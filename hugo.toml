@@ -1,4 +1,7 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://dkchange.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'dkchange'
 theme = 'ananke'
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
