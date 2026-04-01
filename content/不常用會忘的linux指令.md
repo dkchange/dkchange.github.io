@@ -1,378 +1,679 @@
 ---
-title: 不常用會忘的linux指令
+title: 不常用會忘的 Linux 指令
 date: 2019-11-07 16:17:32
 tags:
   - linux
+  - 作業系統
+  - 管理伺服器
 categories:
-  - [DevOps路線, 管理伺服器, 作業系統]
+  - DevOps路線
+  - 日記
 ---
 
 # 改變資料夾底下檔案的預設權限
-使用場景，常常在遠程修改線上的電腦(例如docker container)，要透過網頁走php-fpm新增檔案， 但是資料夾775權限 group stanley一直都不是 nginx 在php-fpm設定的www-data，所以php-fpm無權限新增
-如果你是用container，你會發現ll指令會print出userid 1000和groupid 1000
-此時你需要在container增加user
-> useradd -u 1000 stanley
-此時我們可以把www-data加到stanley的group
-> usermod -a -G stanley www-data
-加完之後確認是否有在群組內
-> getent group stanley
-帳號重登一次電腦，如果是container就restart
-之後www-data就有權限創檔案了
-但是www-data創建出來的檔案換成遠端的stanley無法對其進行修改
-因為檔案的user和group都是www-data
-此時我們在透過網頁創建檔案之前
-> chmod g+s .;
-This command sets the group ID (setgid) on the current directory, written as ..
-This means that all new files and subdirectories created within the current directory inherit the group ID of the directory, rather than the primary group ID of the user who created the file. This will also be passed on to new subdirectories created in the current directory.
-g+s affects the file's group ID but does not affect the owner ID.
 
-Note that this applies only to newly-created files. Files that are moved (mv) into the directory are unaffected by the setgid setting. Files that are copied with cp -p are also unaffected.
-chmod g+s <directory> //set gid
+使用場景：常常在遠端修改線上的電腦（例如 [[Docker]] container），要透過網頁走 [[PHP-FPM]] 新增檔案。  
+但是資料夾雖然是 `775` 權限，group `stanley` 一直都不是 php-fpm 設定的 `www-data`，所以 php-fpm 無權限新增檔案。
 
-特殊權限
-> setfacl -m u:stanley:rwx /www/index.php
-> setfacl -d -m g::rwx /<directory> //set group to rwx default
-> setfacl -d -m o::rx /<directory> //set other
-setfacl 命令是用来在命令行里设置 ACL（访问控制列表)
-> getfacl /<directory>
-getfacl 來查看檔案的所有權限，也會把特殊權限的使用者列出來
+如果你是用 container，你會發現 `ll` 指令可能會印出 `userid 1000` 和 `groupid 1000`。  
+此時你需要在 container 增加 user：
+
+```bash
+useradd -u 1000 stanley
+```
+
+此時我們可以把 `www-data` 加到 `stanley` 的 group：
+
+```bash
+usermod -a -G stanley www-data
+```
+
+加完之後確認是否有在群組內：
+
+```bash
+getent group stanley
+```
+
+帳號要重新登入一次；如果是 container，通常就 restart。
+
+之後 `www-data` 就有權限創檔案了。  
+但是 `www-data` 創建出來的檔案，換成遠端的 `stanley` 可能還是無法修改，因為新檔案的 user 和 group 可能都是 `www-data`。
+
+此時，在透過網頁建立檔案之前，可以先在目錄上設定 setgid：
+
+```bash
+chmod g+s .
+```
+
+這個指令會替目前目錄加上 group ID（setgid）位元。  
+它的作用是：之後在這個目錄底下新建立的檔案與子目錄，會繼承**該目錄的群組**，而不是建立者自己的主要群組。  
+這個效果也會傳遞到新建立的子目錄。
+
+注意：
+
+- `g+s` 影響的是 **group**，不影響 owner。
+- 這只對**新建立**的檔案有效。
+- 用 `mv` 移進來的檔案通常不受影響。
+- 用 `cp -p` 保留原權限複製的檔案，也可能不受影響。
+- `setgid` 只保證繼承群組，**不保證**新檔案一定有 group write 權限，這還會受 `umask` 影響。
+
+```bash
+chmod g+s <directory>   # setgid on directory
+```
+
+## 特殊權限 ACL
+
+```bash
+setfacl -m u:stanley:rwx /www/index.php
+setfacl -d -m g::rwx /<directory>   # 預設 group 權限
+setfacl -d -m o::rx /<directory>    # 預設 other 權限
+```
+
+`setfacl` 命令是用來在命令列設定 ACL（Access Control List，存取控制列表）。
+
+```bash
+getfacl /<directory>
+```
+
+`getfacl` 用來查看檔案或目錄的所有權限，也會列出 ACL 特殊權限使用者。
+
+---
 
 # 不存在的使用者
 
 [Is it ok to have files owned by a non-existent user?](https://unix.stackexchange.com/questions/305170/is-it-ok-to-have-files-owned-by-a-non-existent-user)
+
 Yes, it's fine.
-在掛載 docker volume 的時候就會發現檔案的 user 是 1001 這個 uid
+
+在掛載 Docker volume 的時候，就會發現檔案的 user 可能是 `1001` 這種 UID。  
+這通常代表系統找不到對應帳號名稱，但檔案仍然是由這個 UID 擁有。
+
+---
 
 # history 儲存指令
 
-有的時候你有沒有想過為什麼 git bash 沒有儲存你之前打的指令，
-因為你沒有打 exit 或是 ctrl + c ，你直接就跳離開，這樣他不會儲存
-.bash_history 這個檔案
+有的時候你有沒有想過，為什麼 Git Bash 沒有儲存你之前打的指令？
 
-# window 打開檔案縂管
+因為你沒有正常離開 shell，例如沒有打 `exit`，或 shell 被異常中斷、視窗直接關閉，這樣 history 可能不會即時寫入。
 
-要在 window 打開檔案縂管
+history 常見儲存在：
 
-> start .
+```bash
+.bash_history
+```
 
-# 环境变数
+---
 
-有的时候我们软体不是安装在全局的资料夹，系统在全局资料夹底下就找不到该软体，那我们可以怎么做？
-就是设定环境变数，这样以后下程式指令就不会找不到 command 了，所以
-设定取决于你是用那一款 shell 软体
-https://stackoverflow.com/questions/25373188/how-to-place-the-composer-vendor-bin-directory-in-your-path
+# Windows 打開檔案總管
 
-## linux 變數設定
+要在 Windows 打開目前資料夾的檔案總管：
 
-linux
-https://www.cnblogs.com/flying-tiger/p/5616934.html
-https://blog.csdn.net/GYQJN/article/details/50818231
+```bash
+start .
+```
 
-## windows 變數設定
+---
 
-假如在环境变量新增了
-变量名 stanley
-变量值 php D:\stanley.phar
-那 CMD 呼叫时
+# 環境變數
+
+有時候我們的軟體不是安裝在全域資料夾，系統在預設路徑底下找不到該軟體，這時就可以設定環境變數。  
+設定完成後，以後下指令時就比較不會遇到 `command not found`。
+
+設定方式會取決於你使用哪一款 shell。
+
+[Stack Overflow 討論](https://stackoverflow.com/questions/25373188/how-to-place-the-composer-vendor-bin-directory-in-your-path)
+
+## Linux 變數設定
+
+[[Linux]]  
+[部落格教學](https://www.cnblogs.com/flying-tiger/p/5616934.html)  
+[CSDN 教學](https://blog.csdn.net/GYQJN/article/details/50818231)
+
+## Windows 變數設定
+
+假如在環境變數新增了：
+
+- 變數名：`stanley`
+- 變數值：`php D:\stanley.phar`
+
+那 CMD 呼叫時：
+
+```bat
 %stanley% run
-相当于
-php D:\stanley.phar run
+```
 
-http://batcheero.blogspot.com/2008/02/set-and-setx.html
-https://www.mobile01.com/topicdetail.php?f=300&t=723300
+相當於：
+
+```bat
+php D:\stanley.phar run
+```
+
+[Batcheero 教學](http://batcheero.blogspot.com/2008/02/set-and-setx.html)  
+[Mobile01 討論](https://www.mobile01.com/topicdetail.php?f=300&t=723300)
+
+---
 
 # 安裝 GD Graphics Library
 
 GD Library extension not available with this PHP installation Ubuntu Nginx
-https://stackoverflow.com/questions/34009844/gd-library-extension-not-available-with-this-php-installation-ubuntu-nginx
 
-# 找 ip
+[Stack Overflow 討論](https://stackoverflow.com/questions/34009844/gd-library-extension-not-available-with-this-php-installation-ubuntu-nginx)
 
+---
+
+# 找 IP
+
+```bash
 ifconfig | grep 192
+```
 
+如果出現：
+
+```bash
 ifconfig: command not found
-netstat command not found
-這是因為在 RHEL / CentOS 7 開始, 最小化安裝不會包括 ifconfig 及 netstat 等工具, 以前在 CentOS 5 及 6 都是預設安裝的.
+netstat: command not found
+```
+
+這是因為在 RHEL / CentOS 7 開始，最小化安裝不一定會包含 `ifconfig` 及 `netstat` 等工具。  
+以前在 CentOS 5 / 6 常常是預設安裝。
+
+可以安裝：
+
+```bash
 yum install net-tools
+```
+
+---
 
 # 查看網路使用狀態
 
+```bash
 netstat -natpe
+```
+
+---
 
 # 列出被程序開啟的檔案
 
+```bash
 lsof -i
-COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
-nginx 9 root 8u IPv4 10172200 0t0 TCP \*:http (LISTEN)
-php-fpm 12 root 9u IPv4 10171176 0t0 TCP localhost:cslistener (LISTEN)
+```
 
-# 删除资料夹和檔案
+範例：
 
+```text
+COMMAND PID USER     FD   TYPE DEVICE   SIZE/OFF NODE NAME
+nginx   9   root     8u   IPv4 10172200 0t0      TCP *:http (LISTEN)
+php-fpm 12  root     9u   IPv4 10171176 0t0      TCP localhost:cslistener (LISTEN)
+```
+
+---
+
+# 刪除資料夾和檔案
+
+```bash
 rm -rf letters/
+```
 
-# 查看已安装套件
+---
 
-apt-get 也是 dpkg 的包装
-直接使用 dpkg -l 来查看已经安装了的软件
+# 查看已安裝套件
 
-> dpkg -l | grep php
+`apt-get` 也是 `dpkg` 的包裝工具。  
+直接使用 `dpkg -l` 也可以查看已經安裝的軟體。
 
-# 查询安装路径
+```bash
+dpkg -l | grep php
+```
 
-> dpkg -L 软件名
-> whereis php7.3
+---
 
-# 切换 PHP 版本
+# 查詢安裝路徑
 
-php cli 可以透過 update-alternatives 來進行版本切換
+```bash
+dpkg -L 軟體名
+whereis php7.3
+```
+
+---
+
+# 切換 PHP 版本
+
+php CLI 可以透過 `update-alternatives` 來進行版本切換。
+
 [在 ubuntu 安裝多版本 PHP](https://xenby.com/b/169-%E6%95%99%E5%AD%B8-%E5%9C%A8ubuntu%E5%AE%89%E8%A3%9D%E5%A4%9A%E7%89%88%E6%9C%ACphp-apache)
 
-> sudo update-alternatives --set php /usr/bin/php7.3
-> sudo update-alternatives --set php /usr/bin/php5.6
+```bash
+sudo update-alternatives --set php /usr/bin/php7.3
+sudo update-alternatives --set php /usr/bin/php5.6
+```
 
-# 查看 linux 版本
+---
 
-> ls -l /etc/\*release
-> lsb_release -a
-> uname -a
-> cat /proc/version
+# 查看 Linux 版本
 
-# 查看权限
+```bash
+ls -l /etc/*release
+lsb_release -a
+uname -a
+cat /proc/version
+```
 
-> ls -la /root
+---
 
-# 關閉 xwindow 的視窗
+# 查看權限
 
-之後點選對應的視窗 x 按鈕
+```bash
+ls -la /root
+```
 
-> xkill
+---
+
+# 關閉 X Window 的視窗
+
+先執行：
+
+```bash
+xkill
+```
+
+之後點選對應的視窗 X 按鈕，或直接點選要關閉的視窗即可。
+
+---
 
 # 看文件最後幾行
 
-tail -n 1000 看最後 1000 行
-tail -n +1000 看 1000 行之後的內容
+```bash
+tail -n 1000
+```
+
+看最後 1000 行。
+
+```bash
+tail -n +1000
+```
+
+看第 1000 行之後的內容。
+
+實際使用通常會加上檔名，例如：
+
+```bash
+tail -n 1000 app.log
+tail -n +1000 app.log
+```
+
+---
 
 # Linux 如何找出佔用較大空間的檔案
 
-最近家中的 linux 突然磁碟空間爆增!!!
+最近家中的 Linux 突然磁碟空間爆增。  
+到底是什麼檔案佔用了這些空間？
 
-到底是什麼檔案佔用了這些空間?
+先用下面指令看整體磁碟空間：
 
-在找出大檔案時,又怎麼知道 Linux 剩餘磁碟空間呢?
+```bash
+df -h
+```
 
-df -h 就可以很清楚知道目前磁碟空間是使用多少了
+至於如何找到佔用空間大的檔案，可以利用以下指令：
 
-至於如何找到佔用的檔案,可以利用以下指令
+- `du`：計算目錄所使用的空間
+- `sort`：將輸入資料排序
+- `head`：將輸入資料最前面的幾行輸出
 
-du: 計算目錄所使用的空間
-sort: 將輸入的資料排序
-head: 將輸入資料的最開頭幾行資料輸出
+像是要找出 `/home` 下最大的前 5 名：
 
-像如要找到 home 下最大前 5 名如下
-
+```bash
 du -a /home | sort -n -r | head -n 5
+```
 
-至於要找到磁碟佔用最大的檔案呢?
+至於要找到磁碟佔用最大的檔案，方式有幾種。
 
-方式有好幾種:
+## 第一種方式
 
-第一種方式:
+先到根目錄下利用：
 
-像是我們可以先至根目錄下利用
+```bash
+du -h --max-depth=1
+```
 
-指令 du -h --max-depth=1
+`--max-depth` 是表示查詢子目錄的層級。
 
-–max-depth 是表示查詢子目錄的層級
+可以先找出哪個目錄最大，再進入較大的目錄重複使用這個指令。
 
-就可查到目錄佔用的情形,再到較大的目錄,重覆利用此指令去找出佔用較大的檔案
+## 第二種方式
 
-第二種方式:
+利用 `find` 指令：
 
-利用 find 指令如
-
+```bash
 find / -type f -size +5G
+```
 
-我們可以利用此種方式找出大於 5G 的檔案
+可以找出大於 5GB 的檔案。
 
-第三種方式:
+## 第三種方式
 
-find / -type f -exec du {} \; 2>/dev/null |
-sort -n | tail -n 10 | xargs -n 1 du -h 2>/dev/null
-"find / -type f" 的意思是「搜尋根目錄中的所有檔案」。
+```bash
+find / -type f -exec du {} \; 2>/dev/null | sort -n | tail -n 10 | xargs -n 1 du -h 2>/dev/null
+```
 
--exec du {} \;" 代表「每個找到的檔案都用 du 指令執行以取得以 bytes 為單位的檔案大小資訊」。
+說明：
 
-"2>/dev/null" 是指將所有的錯誤訊息丟棄。
+- `find / -type f`：搜尋根目錄中的所有檔案
+- `-exec du {} \;`：對每個找到的檔案執行 `du`
+- `2>/dev/null`：把錯誤訊息丟棄
+- `sort -n`：依大小排序
+- `tail -n 10`：顯示最後 10 筆，也就是最大的 10 筆
 
-"sort -n" 會將所有的檔案依大小列出，
-
-"tail -n 10" 則是顯示最後 10 筆，兩個指令合起來就會顯示出依大小排序的前 10 大檔案
+---
 
 # symlink
 
+```bash
 ln -s /var/www /home/stanley/sites/www
+```
+
+---
 
 # cat
 
-將一個文件合併到另一個文件
+將一個文件合併到另一個文件：
+
+```bash
 cat a.sh >> b.py
+```
+
+建立檔案：
 
 ```console
-cat <<EOF >file2
-> 111
-> 5555
-> 333
-> EOF
+cat <<EOF > file2
+111
+5555
+333
+EOF
 ```
+
+---
 
 # cd 回上一頁
 
-> cd -
+```bash
+cd -
+```
+
+---
 
 # 目前所在終端
 
+```bash
 tty
+```
+
+---
 
 # 背景執行
 
+```bash
 sleep 5000 &
-但終端機管掉就會消失
+```
+
+但終端機關掉就會消失。
+
+```bash
 nohup sleep 5000 &
-終端機關掉也不會消失
+```
+
+終端機關掉也不會消失。
+
+---
 
 # 查詢進程
 
+```bash
 ps aux | grep sleep
+```
+
+---
 
 # 暫時切換前後台
 
+```bash
 bg
 fg
-那如果是 vim 編輯到一半可以^+Z 到背景
-fg 繼續回來編輯
+```
 
-# | 一個命令的輸出是下一個命令的輸入
+如果是 `vim` 編輯到一半，可以按 `Ctrl + Z` 丟到背景，之後再用 `fg` 回來。
 
-## |tee 把內容複製到某文件
-會覆蓋掉檔案
-例如
+---
+
+# `|` 一個命令的輸出是下一個命令的輸入
+
+## `tee` 把內容複製到某文件
+
+會覆蓋掉檔案，例如：
+
+```bash
 date > date.txt
-date |tee date.txt
+date | tee date.txt
+```
 
-## >> 把內容複製到某文件的最後一行
-例如
+## `>>` 把內容加到某文件最後一行
+
+例如：
+
+```bash
 date >> date.txt
+```
+
+---
 
 # SSH 複製檔案
 
+```bash
 scp ubuntu@168.138.40.82:/srv/www/happypanda.subnet.vcn.oraclevcn.com/current/happypanda_subnet_vcn_oraclevcn_com_production-2020-08-30-5a26f48.sql /home/stanley/Downloads
+```
 
-https://discourse.roots.io/t/migration-from-bedrock-to-a-normal-install/12551
+[Roots.io 討論](https://discourse.roots.io/t/migration-from-bedrock-to-a-normal-install/12551)
+
+---
 
 # UNPROTECTED PRIVATE KEY FILE
 
-https://stackabuse.com/how-to-fix-warning-unprotected-private-key-file-on-mac-and-linux/
+[StackAbuse 教學](https://stackabuse.com/how-to-fix-warning-unprotected-private-key-file-on-mac-and-linux/)
 
-把權限改一下即可
+把權限改一下即可：
+
+```bash
 sudo chmod 600 /path/to/my/key.pem
+```
 
-# 匯入 匯出 sql
+---
 
+# 匯入 / 匯出 SQL
+
+```bash
 sudo wp db export --add-drop-table --allow-root
+```
 
+```bash
 docker-compose run --rm wordpress-cli db import happypanda_subnet_vcn_oraclevcn_com_production-2020-08-30-7da1ec2.sql
+```
+
+---
 
 # 開機就會執行的指令
-[Linux中设置服务自启动的三种方式](https://www.cnblogs.com/nerxious/archive/2013/01/18/2866548.HTML)
 
-會放在 /etc/rc.local 這個檔案裡面
+[博客園教學](https://www.cnblogs.com/nerxious/archive/2013/01/18/2866548.HTML)
 
-大多時候我們可以在/etc/rc.local 中寫一些命令來啓動自己的程序或服務，但是配置後無法啓動，查看了下是 rc-local.service 未啓動
+有些系統會放在 `/etc/rc.local` 這個檔案裡。
+
+大多時候我們可以在 `/etc/rc.local` 中寫一些命令來啟動自己的程序或服務。  
+但配置後如果無法啟動，可能是 `rc-local.service` 沒啟用，或 `rc.local` 沒有執行權限。
+
+例如曾看過：
+
+```text
 ConditionFileIsExecutable=/etc/rc.d/rc.local was not met
-默認情況下，使用上面的命令無法啓動 rc-local.service 服務，原因是需要兩處文件都設置可執行權限，但是 /etc/rc.d/rc.local 默認沒有可執行權限
-https://stackoverflow.com/questions/43671482/how-to-run-docker-compose-up-d-at-system-start-up
+```
+
+預設情況下，可能需要把下列檔案都設為可執行：
+
+[Stack Overflow 討論](https://stackoverflow.com/questions/43671482/how-to-run-docker-compose-up-d-at-system-start-up)
 
 ## 設置可執行權限
 
-[root@master ~]# chmod +x /etc/rc.d/rc.local
-[root@master ~]# chmod +x /etc/rc.local
+```bash
+chmod +x /etc/rc.d/rc.local
+chmod +x /etc/rc.local
+```
+
+---
 
 # 檢查 TCP port 有沒有開
 
-telnet 域名 port 號
+```bash
+telnet 域名 port號
+```
 
-# 檢查域名對應 ip
+---
 
+# 檢查域名對應 IP
+
+```bash
 ping 域名
+```
 
-# iptable 規則必須按順序放 然後重啟
+---
 
-https://www.itread01.com/articles/1487665153.html
-端口放行條目，請放在下列條目之前，然後修改後，重啟防火墻服務
--A INPUT -j REJECT --reject-with icmp-host-prohibited -A FORWARD -j REJECT --reject-with icmp-host-prohibited
+# iptables 規則必須按順序放，然後重啟
 
+[IT .read01 教學](https://www.itread01.com/articles/1487665153.html)
+
+端口放行條目，請放在下列條目之前，然後修改後重啟防火牆服務：
+
+```text
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+```
+
+```bash
 service iptables restart
+```
 
-阿如果不想電腦重開機規則不見的話
-可以修改以下檔案
+如果不想電腦重開機規則消失，可以修改以下檔案：
+
+```bash
 /etc/sysconfig/iptables
-或
+```
+
+或使用：
+
+```bash
 service iptables save
-也會存進去
-/etc/sysconfig/iptables
+```
 
-在不然就是
-保存规则：#iptables-save >/etc/iptables-script
-恢复规则：#iptables-restore>/etc/iptables-script
-开机自动恢复规则，把恢复命令添加到启动脚本：echo '/sbin/iptables-restore /etc/iptables-script' >>/etc/rc.d/rc.local
+也會存進：
+
+```bash
+/etc/sysconfig/iptables
+```
+
+另外也可以：
+
+```bash
+iptables-save > /etc/iptables-script
+iptables-restore < /etc/iptables-script
+```
+
+開機自動恢復規則，可把恢復命令加到啟動腳本：
+
+```bash
+echo '/sbin/iptables-restore /etc/iptables-script' >> /etc/rc.d/rc.local
+```
+
+---
 
 # 查看服務列表
 
+```bash
 service --status-all
 chkconfig --list
-
 systemctl list-units --type=service
+```
+
+---
 
 # 查看硬碟用量
 
-https://blog.csdn.net/qq_35076663/article/details/103556988?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
+[CSDN 教學](https://blog.csdn.net/qq_35076663/article/details/103556988)
 
-du -hsx /data/www/lotteryhub/daemon/\* | sort -hr | head
+```bash
+du -hsx /data/www/lotteryhub/daemon/* | sort -hr | head
+```
+
+---
 
 # 修改使用者群組
 
-當你修改使用者群組時，記得要將使用者登出後再登入，這樣才會成功被納入該群組
-要知道有沒有被列入群組之中，用`id`指令即可查看
+當你修改使用者群組時，記得要將使用者登出後再登入，這樣才會成功被納入該群組。  
+要知道有沒有被列入群組之中，用 `id` 指令即可查看。
+
+---
 
 # 掛載硬碟
 
+```bash
 mount /dev/sda1 /media/stanley/hdd
+```
 
-# 找出重疊的指令
+---
 
-grep -r listen /etc/nginx/\*
+# 找出重疊的指令 / 設定
+
+```bash
+grep -r listen /etc/nginx/*
+```
+
+---
 
 # cron 自己的日誌
-https://serverfault.com/questions/136461/how-to-check-cron-logs-in-ubuntu?rq=1
+
+[https://serverfault.com/questions/136461/how-to-check-cron-logs-in-ubuntu?rq=1](https://serverfault.com/questions/136461/how-to-check-cron-logs-in-ubuntu?rq=1)
+
+---
 
 # cron log 分檔
-logrotate
-https://stackoverflow.com/questions/53366062/creating-cron-job-that-sends-output-to-file-every-day-and-overwrites-this-file-e
 
+`logrotate`
 
-# linux 查看环境变量和修改环境变量
+[https://stackoverflow.com/questions/53366062/creating-cron-job-that-sends-output-to-file-every-day-and-overwrites-this-file-e](https://stackoverflow.com/questions/53366062/creating-cron-job-that-sends-output-to-file-every-day-and-overwrites-this-file-e)
 
-“/etc/profile”对系统里所有用户都有效，用户主目录下的“.bash_profile”只对这个用户有效。
-https://blog.csdn.net/w6028819321/article/details/21600423
+---
+
+# Linux 查看環境變數和修改環境變數
+
+`/etc/profile` 對系統裡所有使用者都有效，使用者主目錄下的 `.bash_profile` 只對這個使用者有效。
+
+[CSDN 教學](https://blog.csdn.net/w6028819321/article/details/21600423)
+
+---
 
 # 搬移檔案，包括隱藏檔
 
 ```bash
 find . -maxdepth 1 -exec mv {} .. \;
 ```
+
+注意：這種寫法很危險，可能會連 `.` 本身或不想移動的項目也一起處理。  
+使用前建議先用 `find . -maxdepth 1` 確認內容。
+
+---
+
 # 新增加的群組組員無法在有群組權限的資料夾新增檔案
 
 1. 登出後重登
-2. https://superuser.com/questions/1620868/user-added-to-group-cant-create-files-or-folders-inside-group-owned-folder
+2. 檢查目錄是否真的有 group write / execute 權限
+3. 檢查是否有 ACL 覆蓋原本權限
 
-https://superuser.com/questions/665057/group-member-cannot-create-files-directories-in-folder
+- [https://superuser.com/questions/1620868/user-added-to-group-cant-create-files-or-folders-inside-group-owned-folder](https://superuser.com/questions/1620868/user-added-to-group-cant-create-files-or-folders-inside-group-owned-folder)
+- [https://superuser.com/questions/665057/group-member-cannot-create-files-directories-in-folder](https://superuser.com/questions/665057/group-member-cannot-create-files-directories-in-folder)

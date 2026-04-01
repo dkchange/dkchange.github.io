@@ -3,7 +3,9 @@ title: laravel欄位驗證
 date: 2019-11-08 02:15:08
 tags: 欄位驗證
 categories:
-  - [後端路徑,framework,laravel]
+  - 後端路徑
+  - framework
+  - laravel
 ---
 
 # 前言
@@ -51,6 +53,7 @@ public function store(StoreUserRequest $request)
 ```
 
 驗證失敗時：
+
 - **網頁請求**：自動重導回上一頁，並帶上錯誤訊息（可用 `$errors` 在 blade 取得）
 - **API 請求**：自動回傳 `422 Unprocessable Entity` 加上 JSON 錯誤訊息
 
@@ -82,6 +85,7 @@ public function messages(): array
 ## `nullable`
 
 允許欄位為 null，與 `sometimes` 的差異：
+
 - `sometimes`：欄位完全不在請求裡時跳過驗證
 - `nullable`：欄位存在但值為空（null 或空字串）時允許通過
 

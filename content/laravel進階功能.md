@@ -4,26 +4,27 @@ date: 2020-10-05 11:02:05
 tags:
   - service container
 categories:
-  - [後端路線, framework, laravel]
+  - 後端路線
+  - framework
+  - laravel
 ---
 
 # Symfony
 
-一個開源的框架，因為致力於做出PHP比較底層的原件，所以很多php框架都底層都用他，laravel也不例外，其中尤其重要的是
-http-kernel這個元件
-
+一個開源的框架，因為致力於做出 [[PHP]] 比較底層的原件，所以很多 PHP 框架都底層都用他，[[Laravel]] 也不例外，其中尤其重要的是 HTTP Kernel 這個元件
 
 # 生命週期
-[Laravel 執行原理分析與原始碼分析,底層看這篇足矣](https://learnku.com/articles/54613)
+
+[Laravel 執行原理分析與原始碼分析，底層看這篇足矣](https://learnku.com/articles/54613)
 
 # Service Container
 
-laravel 服務容器管理 class 的依賴關係的一種方式，例如 route model binding，讓你可以依賴注入，
+Laravel 服務容器管理 class 的依賴關係的一種方式，例如 Route Model Binding，讓你可以依賴注入，
 好處是當你的建構子需要改東西時，你不用在個別有 new 他的地方改 code，你只需要改一個地方
 
-https://laracasts.com/series/laravel-6-from-scratch/episodes/39?autoplay=true
+[Laracasts 教學](https://laracasts.com/series/laravel-6-from-scratch/episodes/39?autoplay=true)
 
-那由於 laravel 最自動幫你找命名空間下的 class,有的話他就會幫你注入，你不必自己去綁定進 app 這個 container，但是如果你是個 interface，laravel 就不能幫你實體化了
+那由於 Laravel 最自動幫你找命名空間下的 class，有的話他就會幫你注入，你不必自己去綁定進 app 這個 container，但是如果你是個 interface，Laravel 就不能幫你實體化了
 
 在 AppServiceProvider
 
@@ -55,22 +56,22 @@ public function boot(){
 
 # Polymorphic Relationships
 
-https://www.itdaan.com/blog/2011/03/22/1861cf1574aa7995b47010f2e11f87e2.html
+[多態關聯教學](https://www.itdaan.com/blog/2011/03/22/1861cf1574aa7995b47010f2e11f87e2.html)
 
 多態的關聯不是真的表格中的關聯，而是定義在 class 中的關係，程式自己會去找欄位對應的關係
-所以不必建立獨立關聯表，但仍需在 migration 建立 *_id 和 *_type 欄位，而不需要 FK constraint，註意這是 eloquent 層的關聯，db 層不會自動清除孤児資料
-https://youtu.be/6J8vb5_WRBw
+所以不必建立獨立關聯表，但仍需在 migration 建立 _\_id 和 _\_type 欄位，而不需要 FK constraint，註意這是 Eloquent 層的關聯，DB 層不會自動清除孤兒資料
+[YouTube 教學](https://youtu.be/6J8vb5_WRBw)
 
-- 1 對 1 的關係 ，不常見
-  例如： 一個人對應一個身份字號
+- 1 對 1 的關係，不常見
+  例如：一個人對應一個身份字號
 - 1 對多的關係，最常見的一種
-  例如： 一個有多筆訂單
+  例如：一個有多筆訂單
 - 多對多的關係，在實際的表格設計中你就需要設計另外一個表個來存放關聯
   例如：一個文章有多個標籤，一個標籤屬於多個文章
 
 # Facades
 
-看起來像呼叫靜態方法的設計模式，配合著 service contaier 來做，達到用看似使用靜態方法的 code 來呼叫需要實例化的方法
+看起來像呼叫靜態方法的設計模式，配合著 Service Container 來做，達到用看似使用靜態方法的 code 來呼叫需要實例化的方法
 不用像參數依賴注入一樣不需要在 register 註冊，直接使用更方便，你參數才不會議長串很難看，那跟依賴注入一樣，new 的動作就交給 container
 
 在 AppServiceProvider
@@ -86,7 +87,7 @@ public function boot(){
 
 # Macros
 
-用來擴充 laravel 內建 class 方法 的方式，laravel 官網有列可以這樣擴充的清單
+用來擴充 Laravel 內建 class 方法的方式，Laravel 官網有列可以這樣擴充的清單
 
 ```php
 // 在 AppServiceProvider 的 boot() 中注冊 Macro
@@ -101,6 +102,7 @@ collect(['hello', 'world'])->toUpper(); // ['HELLO', 'WORLD']
 ```
 
 # Pipeline
+
 用來將一系列操作（如驗證、轉換、處理）鏈成管道依序執行，適合中間層處理，Laravel 內建了 Pipeline facade
 
 ```php
@@ -130,17 +132,17 @@ class ValidateAge
 
 # Repository Pattern
 
-有人主张 controller 應該要愈少行愈清楚越好，
-為了不讓 controller 參雜重複太多邏輯，有些人會把邏輯直接放在 model，讓 orm 的 find where 留在 model，但有時候商業邏輯牽扯到兩個 model 時，你是要將他寫在哪一個 model 呢？
-所以有些人會特地抽出一層 repository 來，一切看你專案複雜度而定
+有人主張 Controller 應該要愈少行愈清楚越好，
+為了不讓 Controller 參雜重複太多邏輯，有些人會把邏輯直接放在 Model，讓 ORM 的 find where 留在 Model，但有時候商業邏輯牽扯到兩個 Model 時，你是要將他寫在哪一個 Model 呢？
+所以有些人會特地抽出一層 Repository 來，一切看你專案複雜度而定
 
-好處是假如你哪一天 orm 換掉了，controller 和 model 也不會有太大變動，商業邏輯的部份特地切了出來
+好處是假如你哪一天 ORM 換掉了，Controller 和 Model 也不會有太大變動，商業邏輯的部份特地切了出來
 
 中小型專案並不建議導入，會增加專案的複雜度
 
-為什 laravel 不內建這設計模式？
+為什麼 Laravel 不內建這設計模式？
 因為業界對於這個設計模式沒有一個準則
-https://stackoverflow.com/questions/60295553/creating-laravel-repositories-and-binding-as-service-providers
+[Stack Overflow 討論](https://stackoverflow.com/questions/60295553/creating-laravel-repositories-and-binding-as-service-providers)
 
 ```php
 // 1. 定義 Interface
@@ -203,63 +205,29 @@ LazyCollection::times(100000)->map(function($number){
 User::cursor();
 ```
 
-# Soft delete
+# Soft Delete
 
-這也是很常用的功能
-大部分的時候，如果你要刪除使用者，你並不會真的刪除他，而是把他隱藏起來
-需要在 migration 做欄位的增加，通常會配合 policy 來實作
+這也是很常用的功能，大部分的時候，如果你要刪除使用者，你並不會真的刪除他，而是把他隱藏起來
+需要在 Migration 做欄位的增加，通常會配合 Policy 來實作
 
 ```php
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model{
-  use SoftDelets
+  use SoftDeletes;
   protected $guarded = [];
 }
 ```
 
 # Notifications
 
-用於將訊息利用不同頻道（mail、SMS、database、Slack 等）傳送給使用者，通常搭配第三方套件使用
+用於將訊息利用不同頻道（Mail、SMS、Database、Slack 等）傳送給使用者，通常搭配第三方套件使用
 
 ```bash
 # 建立 Notification class
 php artisan make:notification InvoicePaid
 ```
 
-```php
-// app/Notifications/InvoicePaid.php
-class InvoicePaid extends Notification
-{
-    public function via($notifiable)
-    {
-        return ['mail', 'database'];
-    }
+# Laravel Design Pattern
 
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-            ->line('Your invoice has been paid.')
-            ->action('View Invoice', url('/invoices'))
-            ->line('Thank you!');
-    }
-
-    public function toArray($notifiable)
-    {
-        return [
-            'invoice_id' => $this->invoice->id,
-        ];
-    }
-}
-
-// 發送通知
-$user->notify(new InvoicePaid($invoice));
-
-// 或者使用 Notification facade
-Notification::send($users, new InvoicePaid($invoice));
-```
-
-# laravel design pattern
-
-https://stackoverflow.com/questions/60029955/when-to-use-repository-vs-service-vs-trait-in-laravel
-https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/
-
+[Stack Overflow 討論](https://stackoverflow.com/questions/60029955/when-to-use-repository-vs-service-vs-trait-in-laravel)
+[CodeSource 教學](https://codesource.io/brief-overview-of-design-pattern-used-in-laravel/)

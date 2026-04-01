@@ -3,12 +3,12 @@ title: laravel資訊安全
 date: 2021-12-30 10:24:05
 tags:
 categories:
-  - [後端]
+  - 後端
 ---
 
 # 前言
 
-[How your Laravel application can get hacked, and how to prevent that from happening by Anti Reci](https://www.youtube.com/watch?v=3k8n6Vi4rg4)
+[YouTube 教學 - How your Laravel application can get hacked](https://www.youtube.com/watch?v=3k8n6Vi4rg4)
 
 # SQL Injection
 
@@ -77,7 +77,7 @@ $users = DB::table('users')->where('name', 'LIKE', "%{$name}%")->get();
 ```php
 class Evil {
     public $cmd = 'id';
-    
+
     public function __destruct() {
         shell_exec($this->cmd);
     }
@@ -94,11 +94,12 @@ phar 文件在某些 PHP 文件函數中會自動觸發反序列化，即使沒�
 
 ```php
 // 當 $filename 是 phar:// 協議時，會觸發反序列化
-filesize($filename); 
+filesize($filename);
 file_exists($filename);
 ```
 
 攻擊流程：
+
 1. 攻擊者上傳混合了序列化 payload 的圖片檔案
 2. 伺服器對這個檔案呼叫 `filesize()` 或 `file_exists()`
 3. 觸發反序列化，執行攻擊代碼

@@ -4,7 +4,9 @@ date: 2019-12-16 21:20:09
 tags:
   - mail
 categories:
-  - [後端路線, framework, laravel]
+  - 後端路線
+  - framework
+  - laravel
 ---
 
 # 前言

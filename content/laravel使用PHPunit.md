@@ -4,7 +4,9 @@ date: 2019-12-19 21:44:48
 tags:
   - PHPunit
 categories:
-  - [後端語言, framework, laravel]
+  - 後端語言
+  - framework
+  - laravel
 ---
 
 # 前言

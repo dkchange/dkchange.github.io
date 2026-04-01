@@ -4,7 +4,9 @@ date: 2019-12-17 15:13:08
 tags:
   - middleware
 categories:
-  - [後端路線, framework, laravel]
+  - 後端路線
+  - framework
+  - laravel
 ---
 
 # 前言

@@ -3,63 +3,72 @@ title: 使用yii2
 date: 2020-04-06 14:51:59
 tags:
 categories:
-  - [後端路線, framework, yii2]
+  - 後端路線
+  - framework
+  - Yii2
 ---
 
 # 前言
 
-你需要知道的 yii
-https://easy-yii.github.io/2017/01/09/know-PartFive/
+你需要知道的 Yii：
 
-PHP 目前最流行的 2 大框架，Laravel 和 Yii 的對比
+> 參考：[Yii 框架介紹 - Easy Yii](https://easy-yii.github.io/2017/01/09/know-PartFive/)
+
+PHP 目前最流行的 2 大框架，[[Laravel]] 和 [[Yii]] 的對比：
 隨著新興的微服務/納米服務體系結構以及對具有獨立維護/部署的小型服務的需求，因此不再建議需要做很多事情的大型框架，所以最近框架也將一些非必要的功能拆出。
-兩大框架用更新速度來看 大概就是青少年 ，對上中年男子...
-工作需求開始學 yii
-https://www.yii-china.com/
-文檔可能我還不習慣，頭看得很痛
-https://yii2-framework.readthedocs.io/en/stable/
+兩大框架用更新速度來看，大概就是青少年對上中年男子...
 
-# 安裝 yii
+工作需求開始學 Yii：
 
-懶人包影片
-https://youtu.be/sRJ6GYiCwkI
+> 參考：[Yii-China](https://www.yii-china.com/)
+> 文檔可能我還不習慣，頭看得很痛：[Yii2 官方文檔](https://yii2-framework.readthedocs.io/en/stable/)
 
-http://www.fancyecommerce.com/2016/05/18/yii2-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84bootstrap%E8%BF%87%E7%A8%8B-%E5%BC%95%E5%AF%BC/
-看起來 yii 分兩種版本，一種是有 init 檔的下面會提到
+# 安裝 Yii
+
+懶人包影片：[YouTube 教學](https://youtu.be/sRJ6GYiCwkI)
+
+> 參考：[Fancyecommerce 教學](http://www.fancyecommerce.com/2016/05/18/yii2-%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84bootstrap%E8%BF%87%E7%A8%8B-%E5%BC%95%E5%AF%BC/)
+
+看起來 [[Yii]] 分兩種版本，一種是有 init 檔的下面會提到：
+
+```bash
 php composer.phar create-project yiisoft/yii2-app-basic basic 2.0.15
 php composer.phar create-project yiisoft/yii2-app-advanced advanced 2.0.15
-這兩個專案的資料夾結構完全不同，切記，一開始吃了悶虧在研究，所以公司的專案，並沒有因為 docker 就把 yii 的資料夾結構做修改
+```
 
-# yii 資料夾結構
+這兩個專案的資料夾結構完全不同，切記。一開始吃了悶虧在研究，所以公司的專案並沒有因為 [[Docker]] 就把 [[Yii]] 的資料夾結構做修改。
 
-https://learnku.com/articles/31435
+# Yii 資料夾結構
 
-## yii basic 大致介紹
+> 參考：[LearnKu 文章](https://learnku.com/articles/31435)
 
-assets 前端打包用
-commands console 命令用
-config
-controller
-mail email templates
-model
-runtime 框架產生的檔案
-tests
-vagrant vagrant container system
-vendor all package
-view
-web 入口文件
-widget 使用者界面的元件
+## Yii Basic 大致介紹
 
-## yii advance
+| 目錄       | 說明                     |
+| ---------- | ------------------------ |
+| assets     | 前端打包用               |
+| commands   | console 命令用           |
+| config     | 設定檔                   |
+| controller | 控制器                   |
+| mail       | email templates          |
+| model      | 模型                     |
+| runtime    | 框架產生的檔案           |
+| tests      | 測試                     |
+| vagrant    | vagrant container system |
+| vendor     | all package              |
+| view       | 視圖                     |
+| web        | 入口檔案                 |
+| widget     | 使用者界面的元件         |
 
-公司的專案大多採用此架構，進而分出其他的專案例如 api 等等
-如何新增 api 專案就看下面的教學
-https://blog.csdn.net/post_mans/article/details/72876763
+## Yii Advanced
+
+公司的專案大多採用此架構，進而分出其他的專案例如 API 等等。
+
+如何新增 API 專案：[Csdn 教學](https://blog.csdn.net/post_mans/article/details/72876763)
 
 # 設置 yii
 
-all the key in config file are the public properties of the application,
-https://www.yiiframework.com/doc/guide/2.0/en/structure-applications
+all the key in config file are the public properties of the application，詳見：[Yii 應用程式設定](https://www.yiifrframework.com/doc/guide/2.0/en/structure-applications)
 id
 name
 language
@@ -71,8 +80,7 @@ all the components are singleton objects
 component=>你看得到的預設設定都是核心元件
 像是
 request cache user errorHandler db log mailer ...
-那有些元件會沒有設定 class 代表，這個元件的 class 是由核心決定傳入的 key 是什，就用哪個 class
-https://youtu.be/iB-CllQVZTg
+那有些元件會沒有設定 class 代表，這個元件的 class 是由核心決定傳入的 key 是什，就用哪個 class，詳見：[Yii 元件設定影片](https://youtu.be/iB-CllQVZTg)
 再來就是註冊完 component 之後，可用 yii::＄ app->componentname 來存取，如果沒有存取，就不會實例化這個 class，
 'test'=>[
 class=>'app/component/test'
@@ -89,12 +97,8 @@ return new app/component/test();
 
 ## yii basic 遇到的問題
 
-cookieValidationKey must be configured with a secret key
-https://stackoverflow.com/questions/38824006/error-when-installed-yii2
-
-yii 的設置可能是整個專案最重要的一環，一定要懂的如何設定，
-https://www.yiiframework.com/doc/guide/2.0/en/concept-configurations
-個人覺得英文版的參考文檔要比簡中版本的易懂，所以如果看不懂簡中的，可以試著看看英文版
+cookieValidationKey must be configured with a secret key，詳見：[Stack Overflow 討論](https://stackoverflow.com/questions/38824006/error-when-installed-yii2)
+個人覺得英文版的參考文檔要比簡中版本的易懂，所以如果看不懂簡中的，可以試著看看英文版，詳見：[Yii 設定教學](https://www.yiifrframework.com/doc/guide/2.0/en/concept-configurations)
 
 # 開啟 debug 工具
 
@@ -119,13 +123,12 @@ runtime 的資料夾權限記得改為可寫入
 # yii 知識點
 
 Yii2 use "new" everywhere to create models.
-Why Yii2 use “new” everywhere while pushing their “Dependency Injection Container” feature that is not compatible with “new”
-Performance mainly.
-https://forum.yiiframework.com/t/new-vs-yii-createobject/86677
+Why Yii2 use "new" everywhere while pushing their "Dependency Injection Container" feature that is not compatible with "new"
+Performance mainly.，詳見：[Yii 論壇討論](https://forum.yiifrframework.com/t/new-vs-yii-createobject/86677)
 
 # 安裝完之後
 
-https://github.com/yiisoft/yii2-app-advanced/blob/master/init
+init 腳本：[GitHub yii2-app-advanced](https://github.com/yiisoft/yii2-app-advanced/blob/master/init)
 
 ## 遭遇問題
 
@@ -154,27 +157,26 @@ yii 分两入口，一部份是 web，另一部份是 console
 # 运行错误
 
 运行时可能有遭遇到的错误
-Fatal error: Cannot use 'Object' as class name as it is reserved
-https://github.com/yiisoft/yii2/issues/14823
+Fatal error: Cannot use 'Object' as class name as it is reserved，詳見：[GitHub Issue](https://github.com/yiisoft/yii2/issues/14823)
 
 # yii 生命周期
 
-https://juejin.im/post/5d51056be51d4561c02a250b
+Yii 框架生命週期詳解：[掘金文章](https://juejin.im/post/5d51056be51d4561c02a250b)
 
 # yii console
 
-This is Yii version 2.0.15.1.
+This is [[Yii]] version 2.0.15.1.
 The following commands are available:
 
 - asset Allows you to combine and compress your JavaScript and CSS files.
 - cache Allows you to flush cache.
 - fixture Manages fixture data loading and unloading.
-- gii This is the command line version of Gii - a code generator.
+- gii This is the command line version of [[Gii]] - a code generator.
 - help Provides help information about console commands.
 - message Extracts messages to be translated from source files.
 - migrate Manages application migrations.
 - serve Runs PHP built-in web server.
-  那记得每个指令最好要用之前都先透过 yii help XXXX，会有详细的说明，以及列出其他的指令
+  那記得每個指令最好要用之前都先透過 yii help XXXX，會有詳細的說明，以及列出其他的指令
 
 No command 'yii' found,
 ./yii migrate/create user
@@ -184,7 +186,7 @@ add it to the PATH variable in .bashrc:
 vi ~/.bashrc
 
 export PATH="/var/www/yii/framework:\$PATH"
-export PATH="$HOME/.composer/vender/bin:bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:bin:$PATH"
 
 就像 nodejs
 echo 'export PATH=$PATH:/usr/local/bin' >> $HOME/.bashrc
@@ -215,48 +217,47 @@ backend/config/main.php
    ],
 ```
 
-http://localhost:8088/?r=gii
+http://localhost:8088/?r=gii（本地開發用 Gii 入口）
 或是
 url 美化後之後 gii 會提到
-http://localhost:8088/gii
+http://localhost:8088/gii（本地開發用 Gii 入口，啟用 Pretty URL 後）
 
-# yii 的资料夹结构
+# yii 的資料夾結構
 
-yii 的资料夹结构除了 gii 之类的指令会生成档案，大致上就没什么变，大部分都要手动新增，例如你需要手动新增 fixture
+Yii 的資料夾結構除了 gii 之類的指令會生成檔案，大致上就沒什麼變，大部分都要手動新增，例如你需要手動新增 fixture
 
-# yii validation
+# yii Validation
 
-https://yii2-framework.readthedocs.io/en/stable/guide/input-validation/
+[[Yii]] 欄位驗證教學：[Yii2 官方文檔](https://yii2-framework.readthedocs.io/en/stable/guide/input-validation/)
 
-yii 在做欄位驗證的時候，
+Yii 在做欄位驗證的時候，
 可以對整個表單做驗證，
 $form->validate()
 可以對單一欄位做驗證
 $form->validate(['field_name'])
 
-那如果需要特別指定(Ad hoc)某個驗證規則
-\$validator = new yii\validators\EmailValidator();
+那如果需要特別指定（Ad hoc）某個驗證規則
+$validator = new yii\validators\EmailValidator();
 
-那傳統 form 表單傳過來的資料都是字串，所以如果是數字，php 會自動進行轉換
-所以 rule integer 就算你是字串他也會給你過，那萬一你是對型別有要求的 json，那傳統表單的驗證規則和 json 的就不能共用
-https://www.yiiframework.com/doc/api/2.0/yii-validators-numbervalidator
-請加上 intergeronly=>true
+那傳統 form 表單傳過來的資料都是字串，所以如果是數字，PHP 會自動進行轉換
+所以 rule integer 就算你是字串他也會給你過，那萬一你是對型別有要求的 json，那傳統表單的驗證規則和 json 的就不能共用，詳見：[NumberValidator 文檔](https://www.yiifrframework.com/doc/api/2.0/yii-validators-numbervalidator)
+請加上 integerOnly=>true
 
-https://flamerecca.gitbooks.io/yii-2-0-cookbook-yii2-gitbook-cookbook/forms-validator-multiple-attributes.html
+Yii2 Cookbook：[多屬性驗證](https://flamerecca.gitbooks.io/yii-2-0-cookbook-yii2-gitbook-cookbook/forms-validator-multiple-attributes.html)
 
-## 有关栏位个别更新
+## 有關欄位個別更新
 
-因為栏位有时需要同意支 api 可更新个别单个栏位，此时要自己在家逻辑看看栏位是否為 null
-但记得 trim 过后的栏位一定是空字串，此时你会无从判断使用者是否有传值过来，所以如果允许 null 的栏位建议就不要再加 trim 规则，
-如果要的话，就变成只能判断是否為空字串，就要加上 empty 判断，让你的栏位不能是空字串，但通常云许 null 的栏位都可以是空字串，在此建议可以不用家 trim 以免麻烦
+因為欄位有時需要同意支 API 可更新個別單個欄位，此時要自己在家邏輯看看欄位是否為 null
+但記得 trim 過後的欄位一定是空字串，此時你會無從判斷使用者是否有傳值過來，所以如果允許 null 的欄位建議就不要再加 trim 規則，
+如果要的話，就變成只能判斷是否為空字串，就要加上 empty 判斷，讓你的欄位不能是空字串，但通常允許 null 的欄位都可以是空字串，在此建議可以不用加 trim 以免麻煩
 
 ## safe
 
-https://www.yiichina.com/question/2093
+Yii safe 属性：[YiiChina 討論](https://www.yiichina.com/question/2093)
 
-## 如何自订验证和参数
+## 如何自訂驗證和參數
 
-https://github.com/yiisoft/yii2/issues/1174
+Yii 自訂驗證器：[GitHub Issue](https://github.com/yiisoft/yii2/issues/1174)
 
 传参数要用关键字**params** 否则会报错
 
@@ -269,18 +270,19 @@ https://github.com/yiisoft/yii2/issues/1174
     }
 ```
 
-## 密码验证
+## 密碼驗證
 
 generatePasswordHash
-yii 的加密函数和一般的 md5 hash1 不一样，即便事项同的输入也会有不同的输出
-所以必须透过 yii 的 validatePassword 来验证
-这点是蛮特别的
+Yii 的加密函數和一般的 md5 hash1 不一樣，即便輸入相同也會有不同的輸出
+所以必須透過 Yii 的 validatePassword 來驗證
+這點是蠻特別的
 
 # yii 中学习到的原则
 
 1. 要考虑维护性
    scenarios ,最好设定常数,不要直接用字串，这样档案之前才可以互相参考和提示
 2. 要划分好职责,就像一般 mvc 会遇到的问题一样，有人会建议在画个 repository
+
 - controller的原則，超過10行就是臃腫的controller
 - controller放不會重複的code
 
@@ -288,28 +290,27 @@ yii 的加密函数和一般的 md5 hash1 不一样，即便事项同的输入�
 
 # yii scenarios
 
-## rule
+## Rule
 
-https://www.yii-china.com/post/detail/40.html
+[[Yii]] Scenarios 教學：[Yii-China](https://www.yii-china.com/post/detail/40.html)
 
-## 栏位验证
+## 欄位驗證
 
-像再做 api 和后台栏位会有不同的客制化需求，主体的 model 不变，但是验证规则继承下来之后，多半都是需要重写的，若不想要重写，建议设置**on** scenarios,
-尤其是 required 规则一继承下来大家都吃的到，这样要运用就不是很好运用，非必填变成一定要填，除非你能确定该规则换情况都通用，例如密码格式，长度，这些可以共用就不用设置 scenarios
-另外就是例如 unique 规则会去访问 db，所以的验证的 form 除了一定要是继承自原本的 model 以外，一定要加上 scenarios,不然查询功能还要验证参数的 username 是否唯一这是蛇鬼
+像在做 API 和後台欄位會有不同的客製化需求，主體的 model 不變，但是驗證規則繼承下來之後，多半都是需要重寫的。若不想要重寫，建議設置 **on** scenarios，
+尤其是 required 規則一繼承下來大家都吃的到，這樣要運用就不是很好運用，非必填變成一定要填，除非你能確定該規則換情況都通用，例如密碼格式、長度，這些可以共用就不用設置 scenarios。
+另外就是例如 unique 規則會去訪問 DB，所以驗證的 form 除了一定要繼承自原本的 model 以外，一定要加上 scenarios，不然查詢功能還要驗證參數的 username 是否唯一這是什麼
 
 # yii 調適
 
 show raw sql query
 \$query->createCommand()->getRawSql()
-https://www.yiiframework.com/wiki/857/show-raw-sql-query
-或者記下 log
-https://forum.yiiframework.com/t/is-there-a-log-of-sql-queries/27533
+詳見：[顯示原始 SQL](https://www.yiifrframework.com/wiki/857/show-raw-sql-query)
+或者記下 log：[Yii 論壇討論](https://forum.yiifrframework.com/t/is-there-a-log-of-sql-queries/27533)
 
 # gii
 
 如果开启了 pretty URLs, 则这样访问:
-http://localhost/path/to/index.php/gii
+http://localhost/path/to/index.php/gii（Gii 入口）
 
 gii forbidden (#403)
 如果从除 localhost 之外的 IP 地址访问 gii ，访问将被默认拒绝。 要规避该默认值，则需将允许的 IP 地址添加到配置中：
@@ -326,7 +327,7 @@ yiitest/config/web.php
     ],
 ```
 
-https://www.yiiframework.com/extension/yiisoft/yii2-gii/doc/guide/2.1/zh-cn/installation
+Yii Gii 模組：[官方文檔](https://www.yiifrframework.com/extension/yiisoft/yii2-gii/doc/guide/2.1/zh-cn/installation)
 
 # 啟動 server 放文件給同事看
 
@@ -338,7 +339,7 @@ php -S localhost:8080 -t web
 
 # ERROR : (2006, 'MySQL server has gone away'
 
-市因為設定檔忘記將 mysql:改成 pgsql:
+是因為設定檔忘記將 mysql:改成 pgsql:
 
 # phpstorm shortcut duplicate lines
 
@@ -358,10 +359,10 @@ $query = GetGameRecord::find()
 ->orderBy('settle_time desc');
 ```
 
-# yii 分页
+# yii 分頁
 
-這是 yii orm 內建的子查詢，如果不想要子查詢那麼多
-可以在下 sql 的時候作 join 像上面一樣
+這是 Yii ORM 內建的子查詢，如果不想要子查詢那麼多
+可以在下 SQL 的時候作 join 像上面一樣
 
 ```php
     public function fields()
@@ -439,27 +440,27 @@ $query = GetGameRecord::find()
 
 ## yii 連接 tsql
 
-https://forum.yiiframework.com/t/odbc-support/42598/6
+Yii 連接 T-SQL：[Yii 論壇](https://forum.yiifrframework.com/t/odbc-support/42598/6)
 
 # yii 多個表 join
 
-https://www.yii-china.com/topic/detail/110
+Yii 多表 JOIN：[Yii-China](https://www.yii-china.com/topic/detail/110)
 
 # thousands of single SELECTs
 
-https://stackoverflow.com/questions/30195428/why-is-yii2s-activerecord-using-lots-of-single-selects-instead-of-joins
+Yii ActiveRecord N+1 問題：[Stack Overflow](https://stackoverflow.com/questions/30195428/why-is-yii2s-activerecord-using-lots-of-single-selects-instead-of-joins)
 
 # yii 格式化輸出
 
-https://github.com/yiisoft/yii2/issues/10927
+Yii 格式化輸出：[GitHub Issue](https://github.com/yiisoft/yii2/issues/10927)
 
 # 用 join 進來的表格做排序
 
-https://forum.yiiframework.com/t/sort-dataprovider-with-count-on-related-field/82810
+Yii DataProvider 排序：[Yii 論壇](https://forum.yiifrframework.com/t/sort-dataprovider-with-count-on-related-field/82810)
 
-# 如何分割 log 档
+# 如何分割 log 檔
 
-https://www.jb51.net/article/81094.htm
+[[PHP]]/Yii 日誌設定：[腳本之家](https://www.jb51.net/article/81094.htm)
 
 ```php
         'log' => [
@@ -472,10 +473,10 @@ https://www.jb51.net/article/81094.htm
         ],
 ```
 
-# cotroller
+# Controller
 
-controller 介於 veiw 和 model 之間做溝通的橋樑，
-router 和 functoin 的名字做對應，有大小寫和 dash 的規則
+controller 介於 View 和 model 之間做溝通的橋樑，
+router 和 function 的名字做對應，有大小寫和 dash 的規則
 public $defaultAction = 'XXX';
 可以改變 router 根目錄/為 index 的預設
 public $layout = 'main';
@@ -483,7 +484,7 @@ public $layout = 'main';
 public \$enableCsrfValidation = false;
 關掉 csrf 驗證，通常不建議這麼做
 function actionXXX 的參數可以作為 queryString 參數的接口
-https://youtu.be/hQr0ce2OvmA
+Yii Controller 影片教學：[YouTube](https://youtu.be/hQr0ce2OvmA)
 
 事件註冊：
 以 on beforeAction 為例，註冊在 config 裡面的會先於個別 controller,
@@ -547,7 +548,7 @@ $model->attributeName
 $model['attributeName']
 都可行
 那如果要大量賦值的話
-$model->attriutes = $post;
+$model->attributes = $post;
 那記得一定要經過\$model->validate()
 
 # request
@@ -571,7 +572,7 @@ Yill::$app->request->getBodyParams()
 
 # response
 
-https://youtu.be/omqyY94WVos
+Yii Response 影片教學：[YouTube](https://youtu.be/omqyY94WVos)
 當你在 actionXXX 回傳東西的時候就相當於
 
 ```php
@@ -623,7 +624,7 @@ Yii::\$app->reponse->sendStreamsFile()//這個在傳送大檔的時候，特別�
 
 # layout
 
-https://youtu.be/69zKqHrU5-Y
+Yii Layout 影片教學：[YouTube](https://youtu.be/69zKqHrU5-Y)
 
 在 layout 頁面
 \$this->beginPage()會呼叫 on beforePageBegin 事件
@@ -639,7 +640,7 @@ Yii::setAlias('@home','/home');
 
 # asset bundle
 
-https://youtu.be/eJBQeRocRac
+Yii Asset Bundle 影片教學：[YouTube](https://youtu.be/eJBQeRocRac)
 在你不需要內建的 css 和 js 的時候，你需要自訂義
 
 # dao
@@ -681,9 +682,9 @@ $db->createCommand('SELECT IFFULL(email,username) from user')->execute();
 $db->createCommand('SELECT IFFULL([[email]],[[username]]) from {{user}}')->execute();
 ```
 
-# active Record
+# Active Record
 
-我們的 model 通常都會繼承 active Record
+我們的 model 通常都會繼承 [[ActiveRecord]]
 Model::findOne($id);
 update insert用
 $model->save();
@@ -703,7 +704,7 @@ Model::find()->all();
 
 yii 提供了讓你創建物件的方法
 例如
-https://youtu.be/lQaCY8Zza2U.
+Yii 設定物件影片教學：[YouTube](https://youtu.be/lQaCY8Zza2U)
 
 ```php
 Yii::Createobject([
@@ -745,7 +746,7 @@ Yii::$container->set(Myclass::class,[
 
 # restAPI
 
-https://youtu.be/XyHHMvRt6Cw
+Yii REST API 影片教學：[YouTube](https://youtu.be/XyHHMvRt6Cw)
 
 yii 支援 restapi，只要做幾個設定，就能輕鬆做出 restful 的 api
 
@@ -774,9 +775,9 @@ controller extends yii/rest/ActiveController
 
 # yii 框架 日誌設定
 
-https://www.jb51.net/article/81094.htm
+PHP/Yii 日誌設定：[腳本之家](https://www.jb51.net/article/81094.htm)
 
 # 當你的 php 是 5.2x 不支援 sha256
 
-https://stackoverflow.com/questions/10524198/what-version-of-openssl-is-needed-to-sign-with-sha256withrsaencryption
+OpenSSL SHA256 需求：[Stack Overflow](https://stackoverflow.com/questions/10524198/what-version-of-openssl-is-needed-to-sign-with-sha256withrsaencryption)
 此篇像上帝一般，生產環境動不了只好動 code

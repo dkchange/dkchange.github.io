@@ -5,7 +5,9 @@ tags:
   - artisan
   - migrate
 categories:
-  - [後端語言, framework, laravel]
+  - 後端語言
+  - framework
+  - laravel
 ---
 
 # 前言

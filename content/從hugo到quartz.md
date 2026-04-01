@@ -20,8 +20,12 @@ categories:
 
 # 主題
 
+## 改標題
+
 # 推上GitHub
 因為我們是clone quartz專案來改，所以origin 要改成自己的倉庫
 quartz專案會更新，所以upstream不動，pull時才會拿到quartz的最新版
 
 	git remote set-url origin git@github.com:dkchange/dkchange.github.io.git
+
+	git push

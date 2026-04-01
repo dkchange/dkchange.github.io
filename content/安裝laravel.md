@@ -3,72 +3,89 @@ title: 安裝laravel
 date: 2019-11-04 17:36:44
 tags: laravel
 categories:
-  - [後端路線, framework, laravel]
+  - 後端路線
+  - framework
+  - laravel
 ---
 
-# 安裝 laravel
+# 安裝 Laravel
 
-本來想簡單用官網的 VirtualBox 搭配 Vagrant 來安裝(順帶一提 VirtualBox 沒有 command line 的模式，需要額外下載別的軟體下指令)，因為目前要搭的網站建在 AWS 的免費 EC2 方案，受限於電腦配備，虛擬機行不通、然後 docker 容器也行不通，所以認命重頭裝 QQ
-BTW 簡中的 laravel 文檔，翻譯得比繁中的完整喔https://learnku.com/docs/laravel/5.7
+本來想簡單用官網的 [[VirtualBox]] 搭配 [[Vagrant]] 來安裝（順帶一提 VirtualBox 沒有 command line 的模式，需要額外下載別的軟體下指令），因為目前要搭的網站建在 [[AWS]] 的免費 EC2 方案，受限於電腦配備，虛擬機行不通、然後 [[Docker]] 容器也行不通，所以認命重頭裝 QQ
 
-http://kejyun.github.io/Laravel-5-Learning-Notes-Books/
-https://github.com/oomusou/oomusou.github.io/issues/1
+> BTW：簡中的 [[Laravel]] 文檔，翻譯得比繁中的完整喔！[Laravel 5.7 文檔](https://learnku.com/docs/laravel/5.7)
+
+參考資源：
+
+- [KeJyun Laravel 學習筆記](http://kejyun.github.io/Laravel-5-Learning-Notes-Books/)
+- [oomusou Laravel 教學](https://github.com/oomusou/oomusou.github.io/issues/1)
 
 # 安裝過程
 
-就是中間有報錯上網查，缺什麼裝什麼
+就是中間有報錯上網查，缺什麼裝什麼：
 
-    sudo apt-get update
-    sudo apt install mariadb-server
-    sudo apt install nginx
+```bash
+# 更新套件
+sudo apt-get update
 
-    再來就是php是命令行用的，php-fpm是server用的所以都要裝
-    sudo apt-get install php7.2
-    sudo apt-get install php7.2-fpm
+# 安裝資料庫
+sudo apt install mariadb-server
 
-    把laravel 需要的php擴展裝一裝
-    sudo apt-get install php7.2-pdo
-    sudo apt-get install php7.2-xml
-    sudo apt-get install php7.2-mbstring
+# 安裝 Web Server
+sudo apt install nginx
 
-    像是連資料庫的時候會出現could not find driver就是缺
-    sudo apt-get install php7.2-mysql
+# PHP 命令行和 php-fpm 伺服器都要裝
+sudo apt-get install php7.2
+sudo apt-get install php7.2-fpm
 
+# Laravel 需要的 PHP 擴充
+sudo apt-get install php7.2-pdo
+sudo apt-get install php7.2-xml
+sudo apt-get install php7.2-mbstring
 
-    下載composer執行檔，然後移到global的資料夾
-    curl -sS https://getcomposer.org/installer | php
-    mv composer.phar /usr/local/bin/composer
+# 連資料庫時出現 "could not find driver" 就是缺這個
+sudo apt-get install php7.2-mysql
 
-    composer self-update
-    更新composer
+# 下載 [[Composer]] 並移到 global 目錄
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
 
-    composer global require laravel/installer
-    上面這行有報錯的話要給權限
+# 更新 Composer
+composer self-update
 
-    新增.bash_profile到自己的~目錄(/home/ubuntu/)下，然後加上
-    export PATH=~/.composer/vendor/bin:$PATH
-    儲存後登出
-    這樣以ubuntu登入時就可以使用laravel這個指令
-    cd /var/www/html/
-    laravel new myproject
+# 安裝 Laravel installer
+composer global require laravel/installer
+# 上面這行有報錯的話要給權限
 
-之後進`/etc/nginx/sites-enabled/default`
+# 新增 .bash_profile 到自己家目錄 (/home/ubuntu/)
+export PATH=~/.composer/vendor/bin:$PATH
+# 儲存後登出，這樣以 ubuntu 登入時就可以使用 laravel 指令
 
-把 try_files 最後的 404 改成入口文件，[詳情請看](https://www.hi-linux.com/posts/53878.html)
+# 建立新專案
+cd /var/www/html/
+laravel new myproject
+```
 
-    try_files $uri $uri/ /index.php?$query_string;
-    設定nginx的網站根目錄
-    root /var/www/html/myproject/public/;
-    還有設定php7.2-fpm的位置
-    fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+之後編輯 `/etc/nginx/sites-enabled/default`，把 `try_files` 最後的 404 改成入口文件，[詳情請看 HiLinux 教學](https://www.hi-linux.com/posts/53878.html)：
 
-然後重啟 nginx
+```nginx
+try_files $uri $uri/ /index.php?$query_string;
+# 設定 [[Nginx]] 的網站根目錄
+root /var/www/html/myproject/public/;
+# 設定 php7.2-fpm 的位置
+fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+```
 
-    systemctl restart nginx
+然後重啟 Nginx：
 
-之後進`/etc/nginx/nginx.conf`看看 nginx 的 user 是誰，改網站目錄
+```bash
+sudo systemctl restart nginx
+```
 
-    chown -R www-data:www-data /var/www/html/myproject
+之後進 `/etc/nginx/nginx.conf` 看看 Nginx 的 user 是誰，改網站目錄權限：
+
+```bash
+sudo chown -R www-data:www-data /var/www/html/myproject
+```
 
 # 最後
 
@@ -76,11 +93,8 @@ https://github.com/oomusou/oomusou.github.io/issues/1
 
 # 資料庫設定
 
-網路上教學清楚
-https://gist.github.com/vicgonvt/cd0431a5cdc043ebab7f4954f7b4d471
+[Laravel 資料庫設定 gist](https://gist.github.com/vicgonvt/cd0431a5cdc043ebab7f4954f7b4d471)
 
-# laravel 套件開發
+# Laravel 套件開發
 
-http://kejyun.github.io/Laravel-5-Learning-Notes-Books/package/development/package-development-README.html
-
-
+[KeJyun Laravel 套件開發文檔](http://kejyun.github.io/Laravel-5-Learning-Notes-Books/package/development/package-development-README.html)

@@ -5,7 +5,9 @@ tags:
   - pusher
   - websocket
 categories:
-  - [後端語言, framework, laravel]
+  - 後端語言
+  - framework
+  - laravel
 ---
 
 # 前言
@@ -108,15 +110,15 @@ event(new MessageSent($message));
 在 `resources/js/bootstrap.js` 中加入：
 
 ```js
-import Echo from 'laravel-echo';
-window.Pusher = require('pusher-js');
+import Echo from "laravel-echo"
+window.Pusher = require("pusher-js")
 
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true
-});
+  broadcaster: "pusher",
+  key: process.env.MIX_PUSHER_APP_KEY,
+  cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+  encrypted: true,
+})
 ```
 
 ## 在 Vue 組件監聽事件

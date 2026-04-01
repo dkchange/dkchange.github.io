@@ -3,16 +3,18 @@ title: 使用vue
 date: 2019-11-15 21:17:46
 tags: vue
 categories:
-  - [前端路線, framework, vue]
+  - 前端路線
+  - framework
+  - vue
 ---
 
 # 前言
 
-之前學框架都是一點點碰，學都學半套，angular 碰不到 2 個禮拜，reactNative 碰不到 2 個月，學完就忘，現在來主動學 vue 吧，畢竟是最早跟 laravel 一起搭的前端框架
+之前學框架都是一點點碰，學都學半套，[[Angular]] 碰不到 2 個禮拜，[[React Native]] 碰不到 2 個月，學完就忘，現在來主動學 [[Vue]] 吧，畢竟是最早跟 [[Laravel]] 一起搭的前端框架
 
 # 安裝
 
-整個裝案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 vue-cli 來裝會簡單些，等以後有機會再來了解如何配置
+整個專案的建置可以看說明書慢慢裝，但是等真的裝好設定好就不知道牛年馬月，透過腳手架 [[Vue CLI]] 來裝會簡單些，等以後有機會再來了解如何配置
 
     sudo npm install -g @vue/cli
 
@@ -40,11 +42,11 @@ user 底下.vuerc 改
 "useTaobaoRegistry": false,
 "packageManager": "npm",
 }
-https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829
+[GitHub Issue](https://github.com/vuejs/vue-cli/issues/889#issuecomment-397225829)
 
-linux 環境還是失敗，windows 環境倒是成功了，先在本機開發吧
+[[Linux]] 環境還是失敗，[[Windows]] 環境倒是成功了，先在本機開發吧
 
-# 安裝 vue-apollo
+# 安裝 Vue Apollo
 
     vue add apollo
 
@@ -61,7 +63,7 @@ error: 'graphql-tag' should be listed in the project's dependencies, not devDepe
 # 設置 IDE
 
 可以發現專案在儲存時不會 autofix，
-https://juejin.im/post/5b39f274f265da59a07c5836
+[Juejin 教學](https://juejin.im/post/5b39f274f265da59a07c5836)
 
 ```js
     "eslint.autoFixOnSave": true,
@@ -79,38 +81,38 @@ https://juejin.im/post/5b39f274f265da59a07c5836
     ],
 ```
 
-# vue 冷知識
+# Vue 冷知識
 
-你知道路徑裡的@為什麼是 src 嗎?
-https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack
+你知道路徑裡的 @ 為什麼是 src 嗎？
+[Stack Overflow 討論](https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack)
 
 ```js
 // @ is an alias to /src
-import Home from "@/components/Home";
+import Home from "@/components/Home"
 ```
 
-https://github.com/vuejs/vue-apollo/issues/263
+[GitHub Issue](https://github.com/vuejs/vue-apollo/issues/263)
 
 Expected linebreaks to be 'LF' but found 'CRLF'.
-最簡單的方法就是 VSC 右下角切換成 LF
+最簡單的方法就是 [[VS Code]] 右下角切換成 LF
 
-# gql 檔案上傳
+# GQL 檔案上傳
 
 不用設定什麼就可以上傳檔案
-遇到的問題:請求回傳
+遇到的問題：請求回傳
 "message": "Undefined index: File",
 "exception": "ErrorException",
-"file": "/var/www/html/myproject/vendor/nuwave/lighthouse/src/Schema/TypeRegistry.php",
-然後看 header 那邊多了字串
+"file": "/var/www/html/myproject/vendor/nuwave/lighthouse/src/Schema/TypeRegistry.php"
+然後看 Header 那邊多了字串
 
     fragment file on File
 
-真的是搞死我，gql 檔不要有空白或註解~~#import "./FileFragment.gql"~~刪掉就沒事了
+真的是搞死我，gql 檔不要有空白或註解 ~~#import "./FileFragment.gql"~~ 刪掉就沒事了
 
 ```gql
 #import "./FileFragment.gql"
 
-mutation($file: Upload!) {
+mutation ($file: Upload!) {
   upload(file: $file)
 }
 ```

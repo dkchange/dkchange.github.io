@@ -3,7 +3,9 @@ title: laravel使用artisan
 date: 2019-11-04 20:30:13
 tags: artisan
 categories:
-  - [後端路線, framework, laravel]
+  - 後端路線
+  - framework
+  - laravel
 ---
 
 # 介紹

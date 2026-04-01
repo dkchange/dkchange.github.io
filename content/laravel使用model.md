@@ -4,7 +4,9 @@ date: 2019-12-16 17:11:47
 tags:
   - model
 categories:
-  - [後端路線, framework, laravel]
+  - 後端路線
+  - framework
+  - laravel
 ---
 
 # 前言
